@@ -1,4 +1,4 @@
-package de.htwsaar.zuse;
+package de.htwsaar.hopper;
 
 import static org.junit.Assert.assertTrue;
 

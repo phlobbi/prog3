@@ -1,4 +1,4 @@
-package de.htwsaar.zuse;
+package de.htwsaar.hopper;
 
 /**
  * Hello world!
@@ -6,6 +6,10 @@ package de.htwsaar.zuse;
  */
 public class App 
 {
+    /**
+     *
+     * @param args
+     */
     public static void main( String[] args )
     {
         System.out.println( "Hello World!" );
