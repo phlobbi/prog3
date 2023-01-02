@@ -1,6 +1,6 @@
 package de.htwsaar.hopper.logic.interfaces;
 
-public interface Customer {
+public interface CustomerInterface {
 
     /*
         GETTER
