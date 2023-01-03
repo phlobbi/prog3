@@ -14,10 +14,10 @@ public class Bookings {
     @Column(name = "CarID", unique = true)
     private int carId;
     @Basic
-    @Column(name = "CustomerID")
+    @Column(name = "CustomerID", unique = true)
     private int customerId;
     @Basic
-    @Column(name = "PickUpDate", unique = true)
+    @Column(name = "PickUpDate")
     private Date pickUpDate;
     @Basic
     @Column(name = "DropOffDate")
