@@ -19,9 +19,15 @@
     <hibernate.version>5.6.14.Final</hibernate.version>
     <sqlite.version>3.40.0.0</sqlite.version>
     <sqlite.dialect.version>0.1.2</sqlite.dialect.version>
+    <iban.version>1.13.0</iban.version>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>nl.garvelink.oss</groupId>
+      <artifactId>iban</artifactId>
+      <version>${iban.version}</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
