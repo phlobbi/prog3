@@ -10,7 +10,7 @@ public interface CustomerInterface {
     int getCustomerId();
     String getFirstName();
     String getLastName();
-    String getMailAddress();
+    String getEmail();
     String getStreet();
     String getHouseNumber();
     int getZipCode();
@@ -25,7 +25,7 @@ public interface CustomerInterface {
     void setCustomerId(int customerId);
     void setFirstName(String firstName);
     void setLastName(String lastName);
-    void setMailAddress(String mailAddress);
+    void setEmail(String email);
     void setStreet(String street);
     void setHouseNumber(String houseNumber);
     void setZipCode(int zipCode);
