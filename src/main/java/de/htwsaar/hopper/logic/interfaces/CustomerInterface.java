@@ -83,4 +83,11 @@ public interface CustomerInterface {
     //  Führerschein Ablaufdatum
     void setDriverLicenseExpirationDate(String driverLicenseExpirationDate);
 
+    /*
+        toString
+     */
+
+    //toString
+    String toString();
+
 }
