@@ -58,4 +58,12 @@ public interface CarInterface {
 
     //  Modell
     void setModel(String model);
+
+
+    /*
+        toString
+     */
+
+    //toString
+    String toString();
 }
