@@ -1,93 +1,41 @@
 package de.htwsaar.hopper.logic.interfaces;
 
+/**
+ * Interface für die Klasse Customer.
+ * @author Bennet
+ */
 public interface CustomerInterface {
 
-    /*
-        GETTER
-     */
-
-    //  Kunden ID
+    /* GETTER */
     int getCustomerId();
-
-    //  Vorname
     String getFirstName();
-
-    //  Nachname
     String getLastName();
-
-    //  Email
-    String getMailAddress();
-
-    //  Strasse
+    String getEmail();
     String getStreet();
-
-    //  Hausnummer
     String getHouseNumber();
-
-    //  PLZ
     int getZipCode();
-
-    //  Ort
     String getCity();
-
-    //  Telefonnummer
     String getPhoneNumber();
-
-    //  IBAN
     String getIBAN();
-
-    //  Führerschein Nummer
     int getDriverLicenseNumber();
-
-    //  Führerschein Ablaufdatum
     String getDriverLicenseExpirationDate();
 
 
-    /*
-        SETTER
-     */
-
-    //  Kunden ID
+    /* SETTER */
     void setCustomerId(int customerId);
-
-    //  Vorname
     void setFirstName(String firstName);
-
-    //  Nachname
     void setLastName(String lastName);
-
-    //  Email
-    void setMailAddress(String mailAddress);
-
-    //  Strasse
+    void setEmail(String email);
     void setStreet(String street);
-
-    //  Hausnummer
     void setHouseNumber(String houseNumber);
-
-    //  PLZ
     void setZipCode(int zipCode);
-
-    //  Ort
     void setCity(String city);
-
-    //  Telefonnummer
     void setPhoneNumber(String phoneNumber);
-
-    //  IBAN
     void setIBAN(String iban);
-
-    //  Führerschein Nummer
     void setDriverLicenseNumber(int driverLicenseNumber);
-
-    //  Führerschein Ablaufdatum
     void setDriverLicenseExpirationDate(String driverLicenseExpirationDate);
 
-    /*
-        toString
-     */
-
-    //toString
+    /* toString */
     String toString();
 
 }
