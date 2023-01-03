@@ -1,5 +1,9 @@
 package de.htwsaar.hopper.logic.interfaces;
 
+/**
+ * Interface für die Car-Klasse.
+ * @author Daniel G
+ */
 public interface CarInterface {
 
     /*  GETTER  */
