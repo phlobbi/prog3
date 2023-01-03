@@ -12,17 +12,17 @@ public interface BookingInterface {
     int getBookingId();
     int getCarId();
     int getCustomerId();
-    Date getStartDate();
-    Date getReturnDate();
-    Date getRealReturnDate();
+    Date getPickUpDate();
+    Date getDropOffDate();
+    Date getRealDropOffDate();
 
     /* SETTER */
     void setBookingId(int bookingId);
     void setCarId(int carId);
     void setCustomerId(int customerId);
-    void getStartDate(Date startDate);
-    void getReturnDate(Date returnDate);
-    void getRealReturnDate(Date realReturnDate);
+    void setPickUpDate(Date startDate);
+    void setDropOffDate(Date returnDate);
+    void setRealDropOffDate(Date realReturnDate);
 
     /* toString */
     String toString();
