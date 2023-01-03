@@ -2,6 +2,8 @@ package de.htwsaar.hopper.logic.interfaces;
 
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 
+import java.util.Date;
+
 /**
  * Interface für die Car-Klasse.
  * @author Daniel G
@@ -12,7 +14,7 @@ public interface CarInterface {
     int getCarId();
     CarTypeEnum getType();
     String getBrand();
-    String getCreationDate();
+    Date getCreationDate();
     int getSeats();
     double getBasePrice();
     double getCurrentPrice();
@@ -24,7 +26,7 @@ public interface CarInterface {
     void setCarId(int carId);
     void setType(CarTypeEnum type);
     void setBrand(String brand);
-    void setCreationDate(String creationDate);
+    void setCreationDate(Date creationDate);
     void setSeats(int seats);
     void setBasePrice(double basePrice);
     void setCurrentPrice(double currentPrice);
