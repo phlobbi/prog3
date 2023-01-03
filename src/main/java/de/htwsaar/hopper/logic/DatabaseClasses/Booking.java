@@ -1,11 +1,16 @@
-package DatabaseClasses;
+package de.htwsaar.hopper.logic.DatabaseClasses;
 
+import de.htwsaar.hopper.logic.interfaces.BookingInterface;
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Objects;
+
+/**
+ * Buchungsklasse für die Datenbankverwaltung
+ * @author Sosthene
+ */
 
 @Entity
-public class Booking implements BookingInterface{
+public class Booking implements BookingInterface {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "BookingID", unique = true)
@@ -37,26 +42,32 @@ public class Booking implements BookingInterface{
     /* GETTER */
 
     public int getBookingId() {
+
         return bookingId;
     }
 
     public int getCarId() {
+
         return carId;
     }
 
     public int getCustomerId() {
+
         return customerId;
     }
 
     public Date getPickUpDate() {
+
         return pickUpDate;
     }
 
     public Date getDropOffDate() {
+
         return dropOffDate;
     }
 
     public Date getRealDropOffDate() {
+
         return realDropOffDate;
     }
 
@@ -64,30 +75,34 @@ public class Booking implements BookingInterface{
 
 
     public void setBookingId(int bookingId) {
+
         this.bookingId = bookingId;
     }
 
     public void setCarId(int carId) {
+
         this.carId = carId;
     }
 
     public void setCustomerId(int customerId) {
+
         this.customerId = customerId;
     }
 
     public void setPickUpDate(Date pickUpDate) {
+
         this.pickUpDate = pickUpDate;
     }
 
     public void setDropOffDate(Date dropOffDate) {
+
         this.dropOffDate = dropOffDate;
     }
 
     public void setRealDropOffDate(Date realDropOffDate) {
+
         this.realDropOffDate = realDropOffDate;
     }
-    
-    /* toString */
-    String toString();
+
 
 }
