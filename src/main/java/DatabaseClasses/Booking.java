@@ -5,28 +5,36 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-public class Bookings {
+public class Booking implements BookingInterface{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "BookingID", unique = true)
     private int bookingId;
+    
     @Basic
-    @Column(name = "CarID", unique = true)
+    @Column(name = "CarID")
     private int carId;
+    
     @Basic
-    @Column(name = "CustomerID", unique = true)
+    @Column(name = "CustomerID")
     private int customerId;
+    
     @Basic
     @Column(name = "PickUpDate")
+    @Temporal(TemporalType.DATE)
     private Date pickUpDate;
+    
     @Basic
     @Column(name = "DropOffDate")
+    @Temporal(TemporalType.DATE)
     private Date dropOffDate;
+    
     @Basic
     @Column(name = "RealDropOffDate")
+    @Temporal(TemporalType.DATE)
     private Date realDropOffDate;
 
-    //GETTERS
+    /* GETTER */
 
     public int getBookingId() {
         return bookingId;
@@ -52,7 +60,7 @@ public class Bookings {
         return realDropOffDate;
     }
 
-    //SETTERS
+    /* SETTER */
 
 
     public void setBookingId(int bookingId) {
@@ -78,46 +86,8 @@ public class Bookings {
     public void setRealDropOffDate(Date realDropOffDate) {
         this.realDropOffDate = realDropOffDate;
     }
+    
+    /* toString */
+    String toString();
 
-    @Override
-    /**
-     * Equals-Methode zur Überprüfung von Objektgleichheit.
-     */
-    public boolean equals(Object object) {
-        if (this == object){
-            return true;
-        } else if (object == null || getClass() != object.getClass()){
-            return false;
-        }
-
-        Bookings bookings = (Bookings) object;
-
-        if (bookingId != bookings.bookingId){
-            return false;
-        }else if (carId != bookings.carId){
-            return false;
-        }else if (customerId != bookings.customerId){
-            return false;
-        }
-        if (!Objects.equals(pickUpDate, bookings.pickUpDate)) {
-            return false;
-        }else if (!Objects.equals(dropOffDate, bookings.dropOffDate)) {
-            return false;
-        }else if (!Objects.equals(realDropOffDate, bookings.realDropOffDate)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = bookingId;
-        result = 31 * result + carId;
-        result = 31 * result + customerId;
-        result = 31 * result + (pickUpDate != null ? pickUpDate.hashCode() : 0);
-        result = 31 * result + (dropOffDate != null ? dropOffDate.hashCode() : 0);
-        result = 31 * result + (realDropOffDate != null ? realDropOffDate.hashCode() : 0);
-        return result;
-    }
 }
