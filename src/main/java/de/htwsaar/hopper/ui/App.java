@@ -13,14 +13,14 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-	    URL url = getClass().getResource("firstview.fxml") ;
+	    URL url = getClass().getResource("/firstview.fxml") ;
 		System.out.println(url.toString()) ;
 		root = FXMLLoader.load(url) ;
 		scene = new Scene(root) ;
 		primaryStage.setScene(scene);
 		
 		primaryStage.show();
-		
+		 
 		
 	}
 	
