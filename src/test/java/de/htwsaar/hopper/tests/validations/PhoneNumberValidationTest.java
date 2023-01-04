@@ -32,12 +32,6 @@ public class PhoneNumberValidationTest {
     }
 
     @Test (expected = IllegalArgumentException.class)
-    public void phoneNumberWithWhiteSpaceInBetweenShouldThrowException(){
-        String phoneNumber = "0176 12345678";
-        Validation.validatePhonenumber(phoneNumber);
-    }
-
-    @Test (expected = IllegalArgumentException.class)
     public void phoneNumberWithWrongSpecialCharacterShouldThrowException(){
         String phoneNumber = "-017612345678";
         Validation.validatePhonenumber(phoneNumber);
@@ -105,6 +99,30 @@ public class PhoneNumberValidationTest {
     @Test
     public void phoneNumberWithFourDigitRegionWithoutSlashShouldBeTrue(){
         String phoneNumber = "0176312345678";
+        assertEquals(Validation.validatePhonenumber(phoneNumber), phoneNumber.trim());
+    }
+
+    @Test
+    public void phoneNumberWithThreeDigitRegionWhitespaceShouldBeTrue(){
+        String phoneNumber = "0173 12345678";
+        assertEquals(Validation.validatePhonenumber(phoneNumber), phoneNumber.trim());
+    }
+
+    @Test
+    public void phoneNumberInternationalWhitespaceShouldBeTrue(){
+        String phoneNumber = "+49173 12345678";
+        assertEquals(Validation.validatePhonenumber(phoneNumber), phoneNumber.trim());
+    }
+
+    @Test
+    public void phoneNumberInternationalFourDigitRegionWhitespaceShouldBeTrue(){
+        String phoneNumber = "+491734 12345678";
+        assertEquals(Validation.validatePhonenumber(phoneNumber), phoneNumber.trim());
+    }
+
+    @Test
+    public void phoneNumberFourDigitRegionWhitespaceShouldBeTrue(){
+        String phoneNumber = "01734 12345678";
         assertEquals(Validation.validatePhonenumber(phoneNumber), phoneNumber.trim());
     }
 }
