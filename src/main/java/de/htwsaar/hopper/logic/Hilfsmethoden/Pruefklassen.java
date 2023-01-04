@@ -9,7 +9,7 @@ public class Pruefklassen {
     private int driveLiscenceNumber;
     //String muss mit entweder +49 oder 0 starten, darauf muss maximal 1 / folgen, anschließend eine Folge von
     //natürlichen Zahlen die mindestens aus 11 und maximal aus 15 Ziffern besteht.
-    String regexEmail = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"
+    String regexEmail = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
     String regexTelefonnummer = "^([+]+[4]+[9]|[0])+([/]{1}){1}+[0-9]{11,15}$";
 
     //public void validateIBAN(IBAN iban) {
@@ -21,7 +21,7 @@ public class Pruefklassen {
         Utils.check(email == null || email.trim().isEmpty(),
                 "Die Email darf nicht leer sein!");
        Utils.check(!email.matches(regexTelefonnummer),
-            "Die Email ist ungültig!"
+            "Die Email ist ungültig!");
     }
     public void validatePhonenumber(String telefonnummer) {
             Utils.check(telefonnummer == null || telefonnummer.trim().isEmpty(),
