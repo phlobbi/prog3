@@ -38,7 +38,28 @@ public class Booking implements BookingInterface {
     @Temporal(TemporalType.DATE)
     private Date realDropOffDate;
 
+    /**
+    * Standard-Konstruktor
+    */
     public Booking() {
+    }
+    
+    /**
+     * Konstruktor zum Anlegen von Buchungen
+     * @param bookingId BuchungID(Schuessel-Attribut)
+     * @param carId ID eines beliebigen Autos
+     * @param customerId ID eines Kunden
+     * @param pickUpDate Abholdatum eines Autos vom Kunde
+     * @param dropOffDate Rueckgabedatum eines Autos vom Kunde
+     * @param realDropOffDate Tatsaechliches Rueckgabedatum eines Autos vom Kunden
+     */
+    public Booking(int bookingId, int carId, int customerId, Date pickUpDate, Date dropOffDate, Date realDropOffDate) {
+        this.bookingId = bookingId;
+        this.carId = carId;
+        this.customerId = customerId;
+        this.pickUpDate = pickUpDate;
+        this.dropOffDate = dropOffDate;
+        this.realDropOffDate = realDropOffDate;
     }
 
     /* GETTER */
