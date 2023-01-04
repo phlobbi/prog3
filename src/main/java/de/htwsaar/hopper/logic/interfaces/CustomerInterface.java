@@ -1,5 +1,7 @@
 package de.htwsaar.hopper.logic.interfaces;
 
+import java.util.Date;
+
 /**
  * Interface für die Klasse Customer.
  * @author Bennet
@@ -18,7 +20,7 @@ public interface CustomerInterface {
     String getPhoneNumber();
     String getIBAN();
     int getDriverLicenseNumber();
-    String getDriverLicenseExpirationDate();
+    Date getDriverLicenseExpirationDate();
 
 
     /* SETTER */
@@ -33,7 +35,7 @@ public interface CustomerInterface {
     void setPhoneNumber(String phoneNumber);
     void setIBAN(String iban);
     void setDriverLicenseNumber(int driverLicenseNumber);
-    void setDriverLicenseExpirationDate(String driverLicenseExpirationDate);
+    void setDriverLicenseExpirationDate(Date driverLicenseExpirationDate);
 
     /* toString */
     String toString();
