@@ -11,7 +11,7 @@ public class Validation {
     private int driverLicenseNumber;
 
 
-    final static String regexTelefonnummer = "^(\\+49|0)[0-9]{1,5}\\/?[0-9]{4,10}";
+    final static String regexTelefonnummer = "^(\\+49|0)[0-9]{1,5}(\\/| )?[0-9]{4,10}";
 
     //public void validateIBAN(IBAN iban) {
         //Utils.check(IBAN.parse(iban) == false),
