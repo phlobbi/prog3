@@ -24,8 +24,6 @@ public class Validation {
      * @return Getrimmte E-Mail, falls gültig
      */
     public static String validateEmail(String email) {
-        boolean isValid = false;
-
         //allow Localhost mails
         boolean allowLocal = false;
 
@@ -47,15 +45,11 @@ public class Validation {
         email = email.trim();
 
         //prüfen ob Mail gültig ist
-        if(emailValidator.isValid(email))
-            isValid = true;
-
-        if (isValid){
+        if (emailValidator.isValid(email)){
             return email;
         } else {
             throw new IllegalArgumentException("Die E-Mail ist ungültig!");
         }
-
     }
 
     /**
