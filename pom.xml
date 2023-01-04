@@ -20,6 +20,7 @@
     <sqlite.version>3.40.0.0</sqlite.version>
     <sqlite.dialect.version>0.1.2</sqlite.dialect.version>
     <iban.version>1.13.0</iban.version>
+    <commons-validator.version>1.7</commons-validator.version>
   </properties>
 
   <dependencies>
@@ -48,6 +49,12 @@
       <groupId>com.github.gwenn</groupId>
       <artifactId>sqlite-dialect</artifactId>
       <version>${sqlite.dialect.version}</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/commons-validator/commons-validator -->
+    <dependency>
+      <groupId>commons-validator</groupId>
+      <artifactId>commons-validator</artifactId>
+      <version>${commons-validator.version}</version>
     </dependency>
   </dependencies>
 

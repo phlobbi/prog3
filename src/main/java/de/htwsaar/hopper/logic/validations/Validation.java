@@ -1,5 +1,7 @@
 package de.htwsaar.hopper.logic.validations;
 import nl.garvelink.iban.IBAN;
+import org.apache.commons.validator.routines.DomainValidator;
+import org.apache.commons.validator.routines.EmailValidator;
 
 public class Validation {
     // Objekt vom Typ "IBAN"
@@ -8,8 +10,7 @@ public class Validation {
     private String phoneNumber;
     private int driverLicenseNumber;
 
-    //TODO Email-Regex optimieren
-    final static String regexEmail = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+
     final static String regexTelefonnummer = "^(\\+49|0)[0-9]{1,5}\\/?[0-9]{4,10}";
 
     //public void validateIBAN(IBAN iban) {
@@ -23,10 +24,38 @@ public class Validation {
      * @return Getrimmte E-Mail, falls gültig
      */
     public static String validateEmail(String email) {
-        email = Utils.validateString(email, "Die Email darf nicht leer sein!");
-        Utils.check(email.matches(regexEmail),
-            "Die Email ist ungültig!");
-        return email.trim();
+        boolean isValid = false;
+
+        //allow Localhost mails
+        boolean allowLocal = false;
+
+        /*
+        AllowTld hab ich aus Testcases geschlossen, dass es false sein muss
+        Hab nämlich bei mailWithoutTldNotWorking() gesehen, dass es mit true für ne @hotmail
+        einfach durchgewunken wird, daher müsste false gehen, falls euch noch Testcases einfallen,
+        könnt ihr die gerne hinzufügen!
+         */
+        boolean allowTld =  false;
+
+        //DomainValidator für den EmailValidator
+        DomainValidator domainValidator = DomainValidator.getInstance(allowLocal);
+
+        //Angaben ob Local und TLD erlaubt sind
+        EmailValidator emailValidator = new EmailValidator(allowLocal, allowTld, domainValidator);
+
+        //trimmen
+        email = email.trim();
+
+        //prüfen ob Mail gültig ist
+        if(emailValidator.isValid(email))
+            isValid = true;
+
+        if (isValid){
+            return email;
+        } else {
+            throw new IllegalArgumentException("Die E-Mail ist ungültig!");
+        }
+
     }
 
     /**
@@ -41,4 +70,5 @@ public class Validation {
                     "Die Telefonnummer ist ungültig!");
             return telefonnummer.trim();
     }
+
 }
