@@ -1,29 +1,29 @@
-package de.htwsaar.hopper.logic.Hilfsmethoden;
+package de.htwsaar.hopper.logic.validations;
 import nl.garvelink.iban.IBAN;
 
-public class Pruefklassen {
+public class Validation {
     // Objekt vom Typ "IBAN"
     private IBAN iban;
     private String email;
     private String phoneNumber;
-    private int driveLiscenceNumber;
-    //String muss mit entweder +49 oder 0 starten, darauf muss maximal 1 / folgen, anschließend eine Folge von
-    //natürlichen Zahlen die mindestens aus 11 und maximal aus 15 Ziffern besteht.
-    String regexEmail = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
-    String regexTelefonnummer = "^([+]+[4]+[9]|[0])+([/]{1}){1}+[0-9]{11,15}$";
+    private int driverLicenseNumber;
+
+    //TODO Email-Regex optimieren
+    final static String regexEmail = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+    final static String regexTelefonnummer = "^(\\+49|0)[0-9]{1,5}\\/?[0-9]{4,10}";
 
     //public void validateIBAN(IBAN iban) {
         //Utils.check(IBAN.parse(iban) == false),
           //      "Die IBAN ist ungültig!";
-    //} Vermutlich obsolet da die IBAN-Klasse schon alles abfängt.
+    // Vermutlich obsolet da die IBAN-Klasse schon alles abfängt.
 
-    public void validateEmail(String email) {
+    public static void validateEmail(String email) {
         Utils.check(email == null || email.trim().isEmpty(),
                 "Die Email darf nicht leer sein!");
-       Utils.check(!email.matches(regexTelefonnummer),
+       Utils.check(!email.matches(regexEmail),
             "Die Email ist ungültig!");
     }
-    public void validatePhonenumber(String telefonnummer) {
+    public static void validatePhonenumber(String telefonnummer) {
             Utils.check(telefonnummer == null || telefonnummer.trim().isEmpty(),
                 "Die Telefonnummer darf nicht leer sein!");
             Utils.check(!telefonnummer.matches(regexTelefonnummer),
