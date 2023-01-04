@@ -37,4 +37,9 @@ public class StringValidationTest {
         String string = "";
         Utils.validateString(string, "Fehler");
     }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void nullStringShouldThrowException(){
+        Utils.validateString(null, "Fehler");
+    }
 }
