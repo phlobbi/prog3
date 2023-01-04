@@ -18,6 +18,7 @@ public class Utils {
      * @param string String, der überprüft werden soll
      * @param message Nachricht, die bei fehlgeschlagener Prüfung ausgegeben werden soll
      * @return Getrimmter String, falls gültig
+     * @throws IllegalArgumentException Falls der String null ist oder leer ist
      */
     public static String validateString(String string, String message) {
         if(string == null) {
