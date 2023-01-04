@@ -1,11 +1,10 @@
-package de.htwsaar.hopper.database.implementations;
+package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.interfaces.CarInterface;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Objects;
 
 /**
  * Implementierung des CarInterface.
@@ -13,38 +12,48 @@ import java.util.Objects;
  * @author gitroba
  */
 @Entity
-@Table(name = "Autos",
+@Table(name = "Cars",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = "AutoId"),
-                @UniqueConstraint(columnNames = "Kennzeichen")})
+                @UniqueConstraint(columnNames = "CarId"),
+                @UniqueConstraint(columnNames = "LicensePlate")})
 public class Car implements CarInterface {
 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "AutoId")
+    @Column(name = "CarId")
     private int carId;
 
-    @Column(name = "Typ")
+    @Basic
+    @Column(name = "Type")
     private CarTypeEnum type;
 
-    @Column(name = "Marke")
+    @Basic
+    @Column(name = "Brand")
     private String brand;
 
-    @Column(name = "Erstellungsdatum")
+    @Basic
+    @Column(name = "CreationDate")
+    @Temporal(TemporalType.DATE)
     private Date creationDate;
 
-    @Column(name = "Sitze")
+    @Basic
+    @Column(name = "Seats")
     private int seats;
 
-    @Column(name = "Grundpreis")
+    @Basic
+    @Column(name = "BasePrice")
     private double basePrice;
 
-    @Column(name = "Tagespreis")
+    @Basic
+    @Column(name = "CurrentPrice")
     private double currentPrice;
 
-    @Column(name = "Kennzeichen")
+    @Basic
+    @Column(name = "LicensePlate")
     private String licensePlate;
 
-    @Column(name = "Modell")
+    @Basic
+    @Column(name = "Model")
     private String model;
 
     /**
@@ -223,24 +232,4 @@ public class Car implements CarInterface {
         this.model = model;
     }
 
-    /**
-     * Equals-Methode.
-     * @param o Das zu vergleichende Objekt.
-     * @return Ergebnis des Vergleiches.
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Car car = (Car) o;
-        return carId == car.carId && seats == car.seats && basePrice == car.basePrice && currentPrice == car.currentPrice && Objects.equals(type, car.type) && Objects.equals(brand, car.brand) && Objects.equals(creationDate, car.creationDate) && Objects.equals(licensePlate, car.licensePlate) && Objects.equals(model, car.model);
-    }
-
-    /*+
-     * HashCode-Methode.
-     */
-    @Override
-    public int hashCode() {
-        return Objects.hash(carId, type, brand, creationDate, seats, basePrice, currentPrice, licensePlate, model);
-    }
 }
