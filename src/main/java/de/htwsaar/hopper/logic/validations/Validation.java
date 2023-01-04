@@ -23,8 +23,7 @@ public class Validation {
      * @return Getrimmte E-Mail, falls gültig
      */
     public static String validateEmail(String email) {
-        Utils.check(email != null && !email.trim().isEmpty(),
-                "Die Email darf nicht leer sein!");
+        email = Utils.validateString(email, "Die Email darf nicht leer sein!");
         Utils.check(email.matches(regexEmail),
             "Die Email ist ungültig!");
         return email.trim();
@@ -37,8 +36,7 @@ public class Validation {
      * @return Getrimmte Telefonnummer, falls gültig
      */
     public static String validatePhonenumber(String telefonnummer) {
-            Utils.check(telefonnummer != null && !telefonnummer.trim().isEmpty(),
-                "Die Telefonnummer darf nicht leer sein!");
+            telefonnummer = Utils.validateString(telefonnummer, "Die Telefonnummer darf nicht leer sein!");
             Utils.check(telefonnummer.matches(regexTelefonnummer),
                     "Die Telefonnummer ist ungültig!");
             return telefonnummer.trim();

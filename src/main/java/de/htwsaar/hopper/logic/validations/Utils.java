@@ -12,4 +12,21 @@ public class Utils {
             throw new IllegalArgumentException(msg);
         }
     }
+
+    /**
+     * Prüft, ob ein String leer ist.
+     * @param string String, der überprüft werden soll
+     * @param message Nachricht, die bei fehlgeschlagener Prüfung ausgegeben werden soll
+     * @return Getrimmter String, falls gültig
+     */
+    public static String validateString(String string, String message) {
+        if(string == null) {
+            throw new IllegalArgumentException(message);
+        }
+        string = string.trim();
+        if(string.isEmpty()) {
+            throw new IllegalArgumentException(message);
+        }
+        return string;
+    }
 }
