@@ -17,17 +17,30 @@ public class Validation {
           //      "Die IBAN ist ungültig!";
     // Vermutlich obsolet da die IBAN-Klasse schon alles abfängt.
 
-    public static void validateEmail(String email) {
-        Utils.check(email == null || email.trim().isEmpty(),
+    /**
+     * Prüft, ob eine E-Mail gültig ist.
+     * @param email E-Mail, die überprüft werden soll
+     * @return Getrimmte E-Mail, falls gültig
+     */
+    public static String validateEmail(String email) {
+        Utils.check(email != null && !email.trim().isEmpty(),
                 "Die Email darf nicht leer sein!");
-       Utils.check(!email.matches(regexEmail),
+        Utils.check(email.matches(regexEmail),
             "Die Email ist ungültig!");
-    }
-    public static void validatePhonenumber(String telefonnummer) {
-            Utils.check(telefonnummer == null || telefonnummer.trim().isEmpty(),
-                "Die Telefonnummer darf nicht leer sein!");
-            Utils.check(!telefonnummer.matches(regexTelefonnummer),
-                    "Die Telefonnummer muss mit entweder 01 oder +49 beginnen und muss aus maximal 15 Zeichen bestehen!");
+        return email.trim();
     }
 
+    /**
+     * Prüft, ob eine Telefonnummer gültig ist.
+     * Es sind nur deutsche Telefonnummern erlaubt.
+     * @param telefonnummer Telefonnummer, die überprüft werden soll
+     * @return Getrimmte Telefonnummer, falls gültig
+     */
+    public static String validatePhonenumber(String telefonnummer) {
+            Utils.check(telefonnummer != null && !telefonnummer.trim().isEmpty(),
+                "Die Telefonnummer darf nicht leer sein!");
+            Utils.check(telefonnummer.matches(regexTelefonnummer),
+                    "Die Telefonnummer ist ungültig!");
+            return telefonnummer.trim();
+    }
 }
