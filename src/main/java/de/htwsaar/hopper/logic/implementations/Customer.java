@@ -5,14 +5,19 @@ import de.htwsaar.hopper.logic.interfaces.CustomerInterface;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * Implementierung des Customer-Interface.
+ * Annotiert fuer die Verwendung mit der Datenbank.
+ * @author gitroba
+ */
 @Entity
 @Table(name = "Customer",
     uniqueConstraints = {
         @UniqueConstraint(columnNames = "CustomerId"),
-            @UniqueConstraint(columnNames = "Email"),
-           @UniqueConstraint(columnNames = "PhoneNumber"),
-           @UniqueConstraint(columnNames = "IBAN"),
-           @UniqueConstraint(columnNames = "DriverLicenseNumber")
+        @UniqueConstraint(columnNames = "Email"),
+        @UniqueConstraint(columnNames = "PhoneNumber"),
+        @UniqueConstraint(columnNames = "IBAN"),
+        @UniqueConstraint(columnNames = "DriverLicenseNumber")
     })
 public class Customer implements CustomerInterface {
 
