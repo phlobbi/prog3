@@ -1,8 +1,5 @@
 /**
- * 
- */
-/**
- * @author Acer
+ * @author Anderson
  *
  */
 module de.htwsaar.hopper.ui {
