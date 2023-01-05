@@ -65,4 +65,10 @@ public class IbanValidationTest {
         String iban = "DE89370400440532013001";
         Validation.validateIBAN(iban);
     }
+
+    @Test
+    public void IbanWithAdditionalWhitespaceShouldProcess() {
+        String iban = "  DE89 3704 0044 0532 0130 00  ";
+        assertEquals(Validation.validateIBAN(iban), EXPECTED_IBAN);
+    }
 }
