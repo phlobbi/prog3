@@ -81,16 +81,16 @@ public class Customer implements CustomerInterface {
                     String houseNumber, int zipCode, String city, String phoneNumber,
                     String iban, String driverLicenseNumber, Date driverLicenseExpirationDate) {
         this.customerId = customerId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.street = street;
-        this.houseNumber = houseNumber;
+        this.firstName = Validation.validateString(firstName, "Der Vorname darf nicht leer sein.");
+        this.lastName = Validation.validateString(lastName, "Der Nachname darf nicht leer sein.");
+        this.email = Validation.validateEmail(email);
+        this.street = Validation.validateString(street, "Die Strasse darf nicht leer sein.");
+        this.houseNumber = Validation.validateString(houseNumber, "Die Hausnummer darf nicht leer sein.");
         this.zipCode = zipCode;
-        this.city = city;
-        this.phoneNumber = phoneNumber;
-        this.iban = iban;
-        this.driverLicenseNumber = driverLicenseNumber;
+        this.city = Validation.validateString(city, "Die Stadt darf nicht leer sein.");
+        this.phoneNumber = Validation.validatePhonenumber(phoneNumber);
+        this.iban = Validation.validateIBAN(iban);
+        this.driverLicenseNumber = Validation.validateDriverLicenseNumber(driverLicenseNumber);
         this.driverLicenseExpirationDate = driverLicenseExpirationDate;
     }
 
