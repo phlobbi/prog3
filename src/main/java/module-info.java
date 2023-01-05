@@ -13,5 +13,7 @@ module de.htwsaar.hopper.ui {
 	requires javafx.graphics;
 	requires javafx.controls ;
 	requires javafx.fxml ;
+    requires nl.garvelink.iban;
+	requires commons.validator;
 	opens de.htwsaar.hopper.ui to javafx.graphics ;
 }

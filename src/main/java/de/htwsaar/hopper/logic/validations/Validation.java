@@ -4,25 +4,25 @@ import org.apache.commons.validator.routines.DomainValidator;
 import org.apache.commons.validator.routines.EmailValidator;
 
 public class Validation {
-    // Objekt vom Typ "IBAN"
-    private IBAN iban;
-    private String email;
-    private String phoneNumber;
-    private int driverLicenseNumber;
-
-
     final static String regexTelefonnummer = "^(\\+49|0)[0-9]{1,5}(\\/| )?[0-9]{4,10}";
     final static String regexDriverLicenseNumber = "^[A-z0-9][0-9]{2}[A-z0-9]{6}[0-9]{1}[A-z0-9]{1}";
 
-    //public void validateIBAN(IBAN iban) {
-        //Utils.check(IBAN.parse(iban) == false),
-          //      "Die IBAN ist ungültig!";
-    // Vermutlich obsolet da die IBAN-Klasse schon alles abfängt.
+    /**
+     * Prüft, ob eine IBAN gültig ist.
+     * @param iban Zu prüfende IBAN
+     * @return IBAN als String mit Separierung nach 4 Zeichen
+     * @throws IllegalArgumentException Wenn die IBAN ungültig ist
+     */
+    public String validateIBAN(String iban) {
+        IBAN ibanObject = IBAN.valueOf(iban);
+        return ibanObject.toString();
+    }
 
     /**
      * Prüft, ob eine E-Mail gültig ist.
      * @param email E-Mail, die überprüft werden soll
      * @return Getrimmte E-Mail, falls gültig
+     * @throws IllegalArgumentException Wenn die E-Mail ungültig ist
      */
     public static String validateEmail(String email) {
         //allow Localhost mails
@@ -58,6 +58,7 @@ public class Validation {
      * Es sind nur deutsche Telefonnummern erlaubt.
      * @param telefonnummer Telefonnummer, die überprüft werden soll
      * @return Getrimmte Telefonnummer, falls gültig
+     * @throws IllegalArgumentException Wenn die Telefonnummer ungültig ist
      */
     public static String validatePhonenumber(String telefonnummer) {
             telefonnummer = Utils.validateString(telefonnummer, "Die Telefonnummer darf nicht leer sein!");
@@ -71,6 +72,7 @@ public class Validation {
      * Es sind nur deutsche Führerscheinnummer erlaubt.
      * @param driverLicenseNumber Führerscheinnummer, die überprüft werden soll
      * @return Geprüfte Führerscheinnummer
+     * @throws IllegalArgumentException Wenn die Führerscheinnummer ungültig ist
      */
     public static String validateDriverLicenseNumber(String driverLicenseNumber){
         //  Führerscheinnummer überprüfen
