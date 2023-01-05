@@ -105,7 +105,7 @@ public class Validation {
         checkNumber = checkNumber%11;
 
         // Prüfziffer prüfen
-         Utils.check(Number = intArray[9]),
+         Utils.check(Number == intArray[9]),
                     "Prüfziffer stimmt nicht überein")
         } else {
             return driverLicenseNumber;
