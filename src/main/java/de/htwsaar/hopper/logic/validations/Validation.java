@@ -11,7 +11,7 @@ public class Validation {
     private int driverLicenseNumber;
 
 
-    final static String regexTelefonnummer = "^(\\+49|0)[0-9]{1,5}\\/?[0-9]{4,10}";
+    final static String regexTelefonnummer = "^(\\+49|0)[0-9]{1,5}(\\/| )?[0-9]{4,10}";
     final static String regexDriverLicenseNumber = "^[A-z0-9][0-9]{2}[A-z0-9]{6}[0-9]{1}[A-z0-9]{1}";
 
     //public void validateIBAN(IBAN iban) {
@@ -68,9 +68,9 @@ public class Validation {
 
     /**
      * Prüft, ob eine Führerscheinnummer gültig ist.
-     * Es sind nur die deutschen Führerscheinnummern erlaubt.
+     * Es sind nur deutsche Führerscheinnummer erlaubt.
      * @param driverLicenseNumber Führerscheinnummer, die überprüft werden soll
-     * @return Überprüfte Führerscheinnummer
+     * @return Geprüfte Führerscheinnummer
      */
     public static String validateDriverLicenseNumber(String driverLicenseNumber){
         //  Führerscheinnummer überprüfen
@@ -103,7 +103,7 @@ public class Validation {
         checkNumber = checkNumber%11;
 
         // Prüfziffer prüfen
-        if(checkNumber != intArray[10]){
+        if(checkNumber != intArray[9]){
             throw new IllegalArgumentException("Prüfziffer stimmt nicht überein");
         } else {
             return driverLicenseNumber;
