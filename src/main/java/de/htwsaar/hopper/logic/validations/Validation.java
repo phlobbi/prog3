@@ -14,7 +14,7 @@ public class Validation {
      * @throws IllegalArgumentException Wenn die IBAN ungültig ist
      */
     public static String validateIBAN(String iban) {
-        IBAN ibanObject = IBAN.valueOf(Utils.validateString(iban, "Die IBAN darf nicht leer sein."));
+        IBAN ibanObject = IBAN.valueOf(validateString(iban, "Die IBAN darf nicht leer sein."));
         return ibanObject.toString();
     }
 
@@ -25,7 +25,7 @@ public class Validation {
      * @throws IllegalArgumentException Wenn die E-Mail ungültig ist
      */
     public static String validateEmail(String email) {
-        //allow Localhost mails
+        //disallow Localhost mails
         boolean allowLocal = false;
 
         /*
@@ -54,6 +54,24 @@ public class Validation {
     }
 
     /**
+     * Prüft, ob ein String leer ist.
+     * @param string String, der überprüft werden soll
+     * @param message Nachricht, die bei fehlgeschlagener Prüfung ausgegeben werden soll
+     * @return Getrimmter String, falls gültig
+     * @throws IllegalArgumentException Falls der String null ist oder leer ist
+     */
+    public static String validateString(String string, String message) {
+        if(string == null) {
+            throw new IllegalArgumentException(message);
+        }
+        string = string.trim();
+        if(string.isEmpty()) {
+            throw new IllegalArgumentException(message);
+        }
+        return string;
+    }
+
+    /**
      * Prüft, ob eine Telefonnummer gültig ist.
      * Es sind nur deutsche Telefonnummern erlaubt.
      * @param telefonnummer Telefonnummer, die überprüft werden soll
@@ -61,7 +79,7 @@ public class Validation {
      * @throws IllegalArgumentException Wenn die Telefonnummer ungültig ist
      */
     public static String validatePhonenumber(String telefonnummer) {
-            telefonnummer = Utils.validateString(telefonnummer, "Die Telefonnummer darf nicht leer sein!");
+            telefonnummer = validateString(telefonnummer, "Die Telefonnummer darf nicht leer sein!");
             Utils.check(telefonnummer.matches(regexTelefonnummer),
                     "Die Telefonnummer ist ungültig!");
             return telefonnummer.trim();
@@ -76,7 +94,7 @@ public class Validation {
      */
     public static String validateDriverLicenseNumber(String driverLicenseNumber){
         //  Führerscheinnummer überprüfen
-        driverLicenseNumber = Utils.validateString(driverLicenseNumber, "Die Führerscheinnummer darf nicht leer sein!");
+        driverLicenseNumber = validateString(driverLicenseNumber, "Die Führerscheinnummer darf nicht leer sein!");
         Utils.check(driverLicenseNumber.matches(regexDriverLicenseNumber),
                 "Die Führerscheinnummer ist ungültig!");
 

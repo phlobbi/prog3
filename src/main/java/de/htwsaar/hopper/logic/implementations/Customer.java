@@ -1,9 +1,12 @@
 package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.interfaces.CustomerInterface;
+import de.htwsaar.hopper.logic.validations.Validation;
 
 import javax.persistence.*;
 import java.util.Date;
+
+import static de.htwsaar.hopper.logic.validations.Validation.*;
 
 /**
  * Implementierung des Customer-Interface.
@@ -64,7 +67,7 @@ public class Customer implements CustomerInterface {
 
     @Basic
     @Column(name = "DriverLicenseNumber")
-    int driverLicenseNumber;
+    String driverLicenseNumber;
 
     @Basic
     @Column(name = "DriverLicenseExpirationDate")
@@ -76,7 +79,7 @@ public class Customer implements CustomerInterface {
 
     public Customer(int customerId, String firstName, String lastName, String email, String street,
                     String houseNumber, int zipCode, String city, String phoneNumber,
-                    String iban, int driverLicenseNumber, Date driverLicenseExpirationDate) {
+                    String iban, String driverLicenseNumber, Date driverLicenseExpirationDate) {
         this.customerId = customerId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -98,7 +101,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+        this.customerId = customerId;;
     }
 
     @Override
@@ -108,7 +111,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.firstName = Validation.validateString(lastName,"keine gültiger Vorname!");
     }
 
     @Override
@@ -118,7 +121,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.lastName = Validation.validateString(lastName,"keine gültiger Nachname!");
     }
 
     @Override
@@ -128,7 +131,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setEmail(String email) {
-        this.email = email;
+        this.email = Validation.validateEmail(email);
     }
 
     @Override
@@ -138,7 +141,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setStreet(String street) {
-        this.street = street;
+        this.street = Validation.validateString(street,"keine gültige Straße!");
     }
 
     @Override
@@ -148,7 +151,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setHouseNumber(String houseNumber) {
-        this.houseNumber = houseNumber;
+        this.houseNumber = Validation.validateString(houseNumber,"keine gültige Hausnummer!");
     }
 
     @Override
@@ -168,7 +171,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setCity(String city) {
-        this.city = city;
+        this.city = Validation.validateString(city,"keine gültige Stadt!");
     }
 
     @Override
@@ -178,7 +181,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber = Validation.validatePhonenumber(phoneNumber);
     }
 
     public String getIBAN() {
@@ -186,17 +189,17 @@ public class Customer implements CustomerInterface {
     }
 
     public void setIBAN(String iban) {
-        this.iban = iban;
+        this.iban = Validation.validateIBAN(iban);
     }
 
     @Override
-    public int getDriverLicenseNumber() {
+    public String getDriverLicenseNumber() {
         return driverLicenseNumber;
     }
 
     @Override
-    public void setDriverLicenseNumber(int driverLicenseNumber) {
-        this.driverLicenseNumber = driverLicenseNumber;
+    public void setDriverLicenseNumber(String driverLicenseNumber) {
+        this.driverLicenseNumber = Validation.validateDriverLicenseNumber(driverLicenseNumber);
     }
 
     @Override
