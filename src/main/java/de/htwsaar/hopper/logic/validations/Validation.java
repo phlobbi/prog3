@@ -105,8 +105,8 @@ public class Validation {
         checkNumber = checkNumber%11;
 
         // Prüfziffer prüfen
-        if(checkNumber != intArray[9]){
-            throw new IllegalArgumentException("Prüfziffer stimmt nicht überein");
+         Utils.check(Number = intArray[9]),
+                    "Prüfziffer stimmt nicht überein")
         } else {
             return driverLicenseNumber;
         }
