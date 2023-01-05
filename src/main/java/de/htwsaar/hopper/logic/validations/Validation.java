@@ -13,7 +13,7 @@ public class Validation {
      * @return IBAN als String mit Separierung nach 4 Zeichen
      * @throws IllegalArgumentException Wenn die IBAN ungültig ist
      */
-    public String validateIBAN(String iban) {
+    public static String validateIBAN(String iban) {
         IBAN ibanObject = IBAN.valueOf(iban);
         return ibanObject.toString();
     }
