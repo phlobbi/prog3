@@ -11,7 +11,8 @@ public class Validation {
     private int driverLicenseNumber;
 
 
-    final static String regexTelefonnummer = "^(\\+49|0)[0-9]{1,5}(\\/| )?[0-9]{4,10}";
+    final static String regexTelefonnummer = "^(\\+49|0)[0-9]{1,5}\\/?[0-9]{4,10}";
+    final static String regexDriverLicenseNumber = "^[A-z0-9][0-9]{2}[A-z0-9]{6}[0-9]{1}[A-z0-9]{1}";
 
     //public void validateIBAN(IBAN iban) {
         //Utils.check(IBAN.parse(iban) == false),
@@ -63,6 +64,50 @@ public class Validation {
             Utils.check(telefonnummer.matches(regexTelefonnummer),
                     "Die Telefonnummer ist ungültig!");
             return telefonnummer.trim();
+    }
+
+    /**
+     * Prüft, ob eine Führerscheinnummer gültig ist.
+     * Es sind nur die deutschen Führerscheinnummern erlaubt.
+     * @param driverLicenseNumber Führerscheinnummer, die überprüft werden soll
+     * @return Überprüfte Führerscheinnummer
+     */
+    public static String validateDriverLicenseNumber(String driverLicenseNumber){
+        //  Führerscheinnummer überprüfen
+        driverLicenseNumber = Utils.validateString(driverLicenseNumber, "Die Führerscheinnummer darf nicht leer sein!");
+        Utils.check(driverLicenseNumber.matches(regexDriverLicenseNumber),
+                "Die Führerscheinnummer ist ungültig!");
+
+        //  String nur in Großbuchstaben darstellen
+        driverLicenseNumber = driverLicenseNumber.toUpperCase();
+
+        //  Buchstaben in Zahlen umwandeln und mit 9 addieren
+        char[] charArray = driverLicenseNumber.toCharArray();
+        int[] intArray = new int[charArray.length];
+
+        for (int i = 0; i < charArray.length; i++) {
+            if(Character.isLetter(charArray[i])) {
+                intArray[i] = 9 + ((char)(charArray[i] - 'A' + 1));
+            } else {
+                intArray[i] = Integer.parseInt(String.valueOf(charArray[i]));
+            }
+        }
+
+        //  Prüfziffer ausrechnen
+        int checkNumber = 0;
+        int j = 9;
+        for (int i = 0; i < intArray.length-2; i++) {
+            checkNumber += j * intArray[i];
+            j--;
+        }
+        checkNumber = checkNumber%11;
+
+        // Prüfziffer prüfen
+        if(checkNumber != intArray[10]){
+            throw new IllegalArgumentException("Prüfziffer stimmt nicht überein");
+        } else {
+            return driverLicenseNumber;
+        }
     }
 
 }
