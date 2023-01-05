@@ -101,7 +101,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setCustomerId(int customerId) {
-        this.customerId = customerId;;
+        this.customerId = customerId;
     }
 
     @Override
