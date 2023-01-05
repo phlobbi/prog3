@@ -14,7 +14,7 @@ public class Validation {
      * @throws IllegalArgumentException Wenn die IBAN ungültig ist
      */
     public static String validateIBAN(String iban) {
-        IBAN ibanObject = IBAN.valueOf(iban);
+        IBAN ibanObject = IBAN.valueOf(Utils.validateString(iban, "Die IBAN darf nicht leer sein."));
         return ibanObject.toString();
     }
 
