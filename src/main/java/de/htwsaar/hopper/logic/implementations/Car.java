@@ -79,13 +79,13 @@ public class Car implements CarInterface {
                double currentPrice, String licensePlate, String model) {
         this.carId = carId;
         this.type = type;
-        this.brand = brand;
+        this.brand = Validation.validateString(brand, "Die Automarke darf nicht leer sein.");
         this.creationDate = creationDate;
         this.seats = seats;
         this.basePrice = basePrice;
         this.currentPrice = currentPrice;
         this.licensePlate = licensePlate;
-        this.model = model;
+        this.model = Validation.validateString(model, "Das Automodell darf nicht leer sein.");
     }
 
     /**
@@ -134,7 +134,7 @@ public class Car implements CarInterface {
      * @param brand Die Marke.
      */
     public void setBrand(String brand) {
-        this.brand = brand;
+        this.brand = Validation.validateString(brand, "Die Automarke darf nicht leer sein.");
     }
 
     /**
