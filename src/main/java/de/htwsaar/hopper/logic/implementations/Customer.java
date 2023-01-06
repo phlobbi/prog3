@@ -151,7 +151,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setHouseNumber(String houseNumber) {
-        this.houseNumber = Validation.validateString(houseNumber,"keine gültige Hausnummer!");
+        this.houseNumber = Validation.validateHouseNumber(houseNumber);
     }
 
     @Override
@@ -161,7 +161,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
+        this.zipCode = Validation.validateZipCode(zipCode);
     }
 
     @Override
@@ -208,6 +208,6 @@ public class Customer implements CustomerInterface {
     }
 
     public void setDriverLicenseExpirationDate(Date driverLicenseExpirationDate) {
-        this.driverLicenseExpirationDate = driverLicenseExpirationDate;
+        this.driverLicenseExpirationDate = (Date) Validation.validateDate(driverLicenseExpirationDate);
     }
 }

@@ -161,7 +161,7 @@ public class Validation {
         Date prev = new Date(prevDay);
 
         if (prev.before((Date) currentDate)) {
-            throw new IllegalArgumentException("The date is older than current day");
+            throw new IllegalArgumentException("Das Datum ist abgelaufen");
         } else {
             return currentDate;
         }
