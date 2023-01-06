@@ -80,11 +80,11 @@ public class Car implements CarInterface {
         this.carId = carId;
         this.type = type;
         this.brand = Validation.validateString(brand, "Die Automarke darf nicht leer sein.");
-        this.creationDate = creationDate;
-        this.seats = seats;
-        this.basePrice = basePrice;
-        this.currentPrice = currentPrice;
-        this.licensePlate = licensePlate;
+        this.creationDate = Validation.validateDate(creationDate);
+        this.seats = Validation.validateSeats(seats);
+        this.basePrice = Validation.validateBasePrice(basePrice);
+        this.currentPrice = Validation.validateCurrentPrice(currentPrice);
+        this.licensePlate = Validation.validateLicensePlate(licensePlate);
         this.model = Validation.validateString(model, "Das Automodell darf nicht leer sein.");
     }
 
@@ -150,7 +150,7 @@ public class Car implements CarInterface {
      * @param creationDate Das Erstellungsdatum.
      */
     public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+        this.creationDate = Validation.validateDate(creationDate);
     }
 
     /**
@@ -166,7 +166,7 @@ public class Car implements CarInterface {
      * @param seats Die Sitzanzahl.
      */
     public void setSeats(int seats) {
-        this.seats = seats;
+        this.seats = Validation.validateSeats(seats);
     }
 
     /**
@@ -182,7 +182,7 @@ public class Car implements CarInterface {
      * @param basePrice Der Grundpreis.
      */
     public void setBasePrice(double basePrice) {
-        this.basePrice = basePrice;
+        this.basePrice = Validation.validateBasePrice(basePrice);
     }
 
     /**
@@ -190,7 +190,7 @@ public class Car implements CarInterface {
      * @return Der Tagespreis.
      */
     public double getCurrentPrice() {
-        return currentPrice;
+        return Validation.validateCurrentPrice(currentPrice);
     }
 
     /**
@@ -198,7 +198,7 @@ public class Car implements CarInterface {
      * @param currentPrice Der Tagespreis.
      */
     public void setCurrentPrice(double currentPrice) {
-        this.currentPrice = currentPrice;
+        this.currentPrice = Validation.validateCurrentPrice(currentPrice);
     }
 
     /**
@@ -214,7 +214,7 @@ public class Car implements CarInterface {
      * @param licensePlate Das Kennzeichen.
      */
     public void setLicensePlate(String licensePlate) { // mit regex prüfen ob Nummernschild existiert???
-        this.licensePlate = licensePlate;
+        this.licensePlate = Validation.validateLicensePlate(licensePlate);
     }
 
     /**

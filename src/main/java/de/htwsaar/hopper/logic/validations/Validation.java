@@ -3,9 +3,13 @@ import nl.garvelink.iban.IBAN;
 import org.apache.commons.validator.routines.DomainValidator;
 import org.apache.commons.validator.routines.EmailValidator;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class Validation {
     final static String regexTelefonnummer = "^(\\+49|0)[0-9]{1,5}(\\/| )?[0-9]{4,10}";
     final static String regexDriverLicenseNumber = "^[A-z0-9][0-9]{2}[A-z0-9]{6}[0-9]{1}[A-z0-9]{1}";
+    final static String regexLicensePlate = "([a-zA-Z]{2})((-){1})([0-9a-zA-Z]{2})((-)){1}([0-9]{2})";
 
     /**
      * Prüft, ob eine IBAN gültig ist.
@@ -128,4 +132,33 @@ public class Validation {
         return driverLicenseNumber;
     }
 
+    public static int validateSeats(int seats) {
+        Utils.check(seats >= 0, "Die Anzahl der Sitze muss größer als 0 sein!");
+        Utils.check(seats < 302, "Die Anzahl der Sitze darf nicht größer als 301 sein!\n" +
+                "Der Volvo Gran Artic 300 mit 301 Sitzen ist der größte Bus der Welt!"); //Schleichwerbung? rausnehmen? :D
+        return seats;
+    }
+
+    public static Date validateDate(Date date) {
+        Utils.check(date != null, "Das Datum darf nicht leer sein!");
+        Utils.check(date.before(new Date()), "Das Datum darf nicht in der Zukunft liegen!");
+        return date;
+    }
+
+    public static double validateBasePrice(double basePrice) {
+        Utils.check(basePrice >= 0, "Der Basispreis muss größer als 0 sein!");
+        return basePrice;
+    }
+
+    public static double validateCurrentPrice(double currentPrice) {
+        Utils.check(currentPrice >= 0, "Der aktuelle Preis muss größer als 0 sein!");
+        return currentPrice;
+    }
+
+    public static String validateLicensePlate(String licensePlate) {
+        licensePlate = validateString(licensePlate, "Die Kennzeichen dürfen nicht leer sein!");
+        Utils.check(licensePlate.matches(regexLicensePlate),
+                "Die Kennzeichen sind ungültig!");
+        return licensePlate;
+    }
 }
