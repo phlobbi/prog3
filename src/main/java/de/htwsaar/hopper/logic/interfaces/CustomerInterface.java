@@ -19,7 +19,7 @@ public interface CustomerInterface {
     String getCity();
     String getPhoneNumber();
     String getIBAN();
-    int getDriverLicenseNumber();
+    String getDriverLicenseNumber();
     Date getDriverLicenseExpirationDate();
 
 
@@ -34,7 +34,7 @@ public interface CustomerInterface {
     void setCity(String city);
     void setPhoneNumber(String phoneNumber);
     void setIBAN(String iban);
-    void setDriverLicenseNumber(int driverLicenseNumber);
+    void setDriverLicenseNumber(String driverLicenseNumber);
     void setDriverLicenseExpirationDate(Date driverLicenseExpirationDate);
 
     /* toString */
