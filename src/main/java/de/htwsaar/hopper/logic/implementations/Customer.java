@@ -85,13 +85,13 @@ public class Customer implements CustomerInterface {
         this.lastName = Validation.validateString(lastName, "Der Nachname darf nicht leer sein.");
         this.email = Validation.validateEmail(email);
         this.street = Validation.validateString(street, "Die Strasse darf nicht leer sein.");
-        this.houseNumber = Validation.validateString(houseNumber, "Die Hausnummer darf nicht leer sein.");
-        this.zipCode = zipCode;
+        this.houseNumber = Validation.validateHouseNumber(houseNumber);
+        this.zipCode = Validation.validateZipCode(zipCode);
         this.city = Validation.validateString(city, "Die Stadt darf nicht leer sein.");
         this.phoneNumber = Validation.validatePhonenumber(phoneNumber);
         this.iban = Validation.validateIBAN(iban);
         this.driverLicenseNumber = Validation.validateDriverLicenseNumber(driverLicenseNumber);
-        this.driverLicenseExpirationDate = driverLicenseExpirationDate;
+        this.driverLicenseExpirationDate = (Date) Validation.validateDate(driverLicenseExpirationDate);
     }
 
     @Override
