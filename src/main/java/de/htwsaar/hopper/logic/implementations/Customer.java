@@ -208,6 +208,6 @@ public class Customer implements CustomerInterface {
     }
 
     public void setDriverLicenseExpirationDate(Date driverLicenseExpirationDate) {
-        this.driverLicenseExpirationDate = (Date) Validation.validateDate(driverLicenseExpirationDate);
+        this.driverLicenseExpirationDate = Validation.validateDate(driverLicenseExpirationDate);
     }
 }

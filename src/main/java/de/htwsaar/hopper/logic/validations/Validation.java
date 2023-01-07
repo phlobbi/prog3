@@ -153,7 +153,7 @@ public class Validation {
         return zipCode;
     }
 
-    public static Comparable validateDate(Comparable currentDate) {
+    public static Date validateDate(Date currentDate) {
         if (currentDate == null) {
             throw new IllegalArgumentException("Das Datum darf nicht leer sein!");
         }
