@@ -90,7 +90,7 @@ public class Validation {
         telefonnummer = validateString(telefonnummer, "Die Telefonnummer darf nicht leer sein!");
         Utils.check(telefonnummer.matches(regexTelefonnummer),
                 "Die Telefonnummer ist ungültig!");
-        return telefonnummer.trim();
+        return telefonnummer;
     }
 
     /**
@@ -141,7 +141,7 @@ public class Validation {
         houseNumber = validateString(houseNumber, "Die Hausnummer darf nicht leer sein!");
         Utils.check(houseNumber.matches(regexHouseNumber),
                 "Die Hausnummer ist ungültig!");
-        return houseNumber.trim();
+        return houseNumber;
     }
 
     public static int validateZipCode(int zipCode) {
@@ -153,7 +153,7 @@ public class Validation {
         return zipCode;
     }
 
-    public static Comparable validateDate(Comparable currentDate) {
+    public static Date validateDate(Date currentDate) {
         if (currentDate == null) {
             throw new IllegalArgumentException("Das Datum darf nicht leer sein!");
         }
