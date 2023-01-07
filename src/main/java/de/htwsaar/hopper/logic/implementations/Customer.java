@@ -91,7 +91,7 @@ public class Customer implements CustomerInterface {
         this.phoneNumber = Validation.validatePhonenumber(phoneNumber);
         this.iban = Validation.validateIBAN(iban);
         this.driverLicenseNumber = Validation.validateDriverLicenseNumber(driverLicenseNumber);
-        this.driverLicenseExpirationDate = (Date) Validation.validateDate(driverLicenseExpirationDate);
+        this.driverLicenseExpirationDate = Validation.validateDate(driverLicenseExpirationDate);
     }
 
     @Override

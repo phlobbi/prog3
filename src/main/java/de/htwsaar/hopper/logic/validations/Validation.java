@@ -9,7 +9,7 @@ public class Validation {
     final static String regexTelefonnummer = "^(\\+49|0)[0-9]{1,5}(\\/| )?[0-9]{4,10}";
     final static String regexDriverLicenseNumber = "^[A-z0-9][0-9]{2}[A-z0-9]{6}[0-9]{1}[A-z0-9]{1}";
     final static String regexHouseNumber = "^[0-9]{1,3}[A-z]{0,1}";
-    final static String regexGermanZipCode = "/^(?!01000|99999)(0[1-9]\\d{3}|[1-9]\\d{4})$/";
+    final static String regexGermanZipCode = "^[0-9]{5}";
 
     /**
      * Prüft, ob eine IBAN gültig ist.
@@ -90,7 +90,7 @@ public class Validation {
         telefonnummer = validateString(telefonnummer, "Die Telefonnummer darf nicht leer sein!");
         Utils.check(telefonnummer.matches(regexTelefonnummer),
                 "Die Telefonnummer ist ungültig!");
-        return telefonnummer.trim();
+        return telefonnummer;
     }
 
     /**
@@ -141,7 +141,7 @@ public class Validation {
         houseNumber = validateString(houseNumber, "Die Hausnummer darf nicht leer sein!");
         Utils.check(houseNumber.matches(regexHouseNumber),
                 "Die Hausnummer ist ungültig!");
-        return houseNumber.trim();
+        return houseNumber;
     }
 
     public static int validateZipCode(int zipCode) {
