@@ -6,8 +6,6 @@ import de.htwsaar.hopper.logic.validations.Validation;
 import javax.persistence.*;
 import java.util.Date;
 
-import static de.htwsaar.hopper.logic.validations.Validation.*;
-
 /**
  * Implementierung des Customer-Interface.
  * Annotiert fuer die Verwendung mit der Datenbank.
@@ -51,7 +49,7 @@ public class Customer implements CustomerInterface {
 
     @Basic
     @Column(name = "ZipCode")
-    int zipCode;
+    String zipCode;
 
     @Basic
     @Column(name = "City")
@@ -78,7 +76,7 @@ public class Customer implements CustomerInterface {
     }
 
     public Customer(int customerId, String firstName, String lastName, String email, String street,
-                    String houseNumber, int zipCode, String city, String phoneNumber,
+                    String houseNumber, String zipCode, String city, String phoneNumber,
                     String iban, String driverLicenseNumber, Date driverLicenseExpirationDate) {
         this.customerId = customerId;
         this.firstName = Validation.validateString(firstName, "Der Vorname darf nicht leer sein.");
@@ -155,12 +153,12 @@ public class Customer implements CustomerInterface {
     }
 
     @Override
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
     @Override
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = Validation.validateZipCode(zipCode);
     }
 

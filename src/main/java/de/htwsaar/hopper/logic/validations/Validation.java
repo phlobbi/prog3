@@ -9,7 +9,7 @@ public class Validation {
     final static String regexTelefonnummer = "^(\\+49|0)[0-9]{1,5}(\\/| )?[0-9]{4,10}";
     final static String regexDriverLicenseNumber = "^[A-z0-9][0-9]{2}[A-z0-9]{6}[0-9]{1}[A-z0-9]{1}";
     final static String regexHouseNumber = "^[0-9]{1,3}[A-z]{0,1}";
-    final static String regexGermanZipCode = "^[0-9]{5}";
+    final static String regexGermanZipCode = "^(0[1-9]\\d{3}|[1-9]\\d{4})$";
 
     /**
      * Prüft, ob eine IBAN gültig ist.
@@ -144,11 +144,9 @@ public class Validation {
         return houseNumber;
     }
 
-    public static int validateZipCode(int zipCode) {
-        String StrZipCode = "";
-        StrZipCode += zipCode;
-        validateString(StrZipCode, "Die Postleitzahl darf nicht leer sein!");
-        Utils.check(StrZipCode.matches(regexGermanZipCode),
+    public static String validateZipCode(String zipCode) {
+        zipCode = validateString(zipCode, "Die Postleitzahl darf nicht leer sein!");
+        Utils.check(zipCode.matches(regexGermanZipCode),
                 "Die Postleitzahl ist ungültig!");
         return zipCode;
     }
