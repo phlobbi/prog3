@@ -9,7 +9,7 @@ import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 
-public class AutoVerwaltungsController {
+public class CarManagementController {
 
     @FXML
     private Button bntRead;
