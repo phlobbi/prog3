@@ -15,7 +15,7 @@ public interface CustomerInterface {
     String getEmail();
     String getStreet();
     String getHouseNumber();
-    int getZipCode();
+    String getZipCode();
     String getCity();
     String getPhoneNumber();
     String getIBAN();
@@ -30,7 +30,7 @@ public interface CustomerInterface {
     void setEmail(String email);
     void setStreet(String street);
     void setHouseNumber(String houseNumber);
-    void setZipCode(int zipCode);
+    void setZipCode(String zipCode);
     void setCity(String city);
     void setPhoneNumber(String phoneNumber);
     void setIBAN(String iban);
