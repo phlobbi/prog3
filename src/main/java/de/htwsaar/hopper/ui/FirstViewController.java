@@ -15,7 +15,7 @@ public class FirstViewController {
     private AnchorPane borderpane;
 
     @FXML
-    private Button btnAutoVermietung;
+    private Button btnCarRental;
 
     @FXML
     private Button btnBuchungVerwaltung;
