@@ -18,7 +18,7 @@ public class CarManagementController {
     private Button btnCreate;
 
     @FXML
-    private Button btnGoback;
+    private Button btnGoBack;
 
     @FXML
     private Button btnRemove;
