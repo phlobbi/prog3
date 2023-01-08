@@ -15,5 +15,6 @@ module de.htwsaar.hopper.ui {
 	requires javafx.fxml ;
     requires nl.garvelink.iban;
 	requires commons.validator;
-	opens de.htwsaar.hopper.ui to javafx.graphics ;
+	opens de.htwsaar.hopper.ui to javafx.graphics,javafx.fxml ;
+
 }

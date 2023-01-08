@@ -1,0 +1,63 @@
+package de.htwsaar.hopper.ui;
+
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.BorderPane;
+
+import java.io.IOException;
+
+public class AutoVerwaltungsController {
+
+    @FXML
+    private Button bntRead;
+
+    @FXML
+    private Button btnCreate;
+
+    @FXML
+    private Button btnGoback;
+
+    @FXML
+    private Button btnRemove;
+
+    @FXML
+    private Button btnUpdate;
+
+    @FXML
+    private BorderPane root;
+
+    @FXML
+    private TableView<?> tableView;
+
+    @FXML
+    void switchToSceneAddCar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void switchToSceneReadCar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void switchToSceneRemovecar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void switchToSceneUpdateCar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void switchTofirstView(ActionEvent event) throws IOException {
+        App.setRoot("firstview.fxml");
+
+    }
+
+}
+
+
