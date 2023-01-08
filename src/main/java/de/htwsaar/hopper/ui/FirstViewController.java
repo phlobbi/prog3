@@ -30,7 +30,7 @@ public class FirstViewController {
     private BorderPane root;
 
     @FXML
-    void SwitchToBuchungview(ActionEvent event) {
+    void SwitchToBookingView(ActionEvent event) {
 
     }
 
