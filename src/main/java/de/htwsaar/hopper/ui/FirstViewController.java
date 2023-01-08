@@ -40,7 +40,7 @@ public class FirstViewController {
     }
 
     @FXML
-    void switchToKundenView(ActionEvent event) {
+    void switchToCustomerView(ActionEvent event) {
 
     }
 
