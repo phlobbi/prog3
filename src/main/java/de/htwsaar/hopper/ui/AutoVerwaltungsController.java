@@ -43,7 +43,7 @@ public class CarManagementController {
     }
 
     @FXML
-    void switchToSceneRemovecar(ActionEvent event) {
+    void switchToSceneRemoveCar(ActionEvent event) {
 
     }
 
