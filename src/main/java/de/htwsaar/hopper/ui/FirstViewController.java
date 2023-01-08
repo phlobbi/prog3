@@ -21,7 +21,7 @@ public class FirstViewController {
     private Button btnBookingManagement;
 
     @FXML
-    private Button btnKundeVerwaltung;
+    private Button btnCustomerManagement;
 
     @FXML
     private Label label;
