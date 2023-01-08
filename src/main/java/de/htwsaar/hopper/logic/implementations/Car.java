@@ -5,7 +5,7 @@ import de.htwsaar.hopper.logic.interfaces.CarInterface;
 import de.htwsaar.hopper.logic.validations.Validation;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  * Implementierung des CarInterface.
@@ -35,7 +35,7 @@ public class Car implements CarInterface {
     @Basic
     @Column(name = "CreationDate")
     @Temporal(TemporalType.DATE)
-    private Date creationDate;
+    private Calendar creationDate;
 
     @Basic
     @Column(name = "Seats")
@@ -75,16 +75,16 @@ public class Car implements CarInterface {
      * @param licensePlate Das Kennzeichen.
      * @param model Das Modell.
      */
-    public Car(int carId, CarTypeEnum type, String brand, Date creationDate, int seats, double basePrice,
+    public Car(int carId, CarTypeEnum type, String brand, Calendar creationDate, int seats, double basePrice,
                double currentPrice, String licensePlate, String model) {
         this.carId = carId;
         this.type = type;
         this.brand = Validation.validateString(brand, "Die Automarke darf nicht leer sein.");
-        this.creationDate = creationDate;
-        this.seats = seats;
-        this.basePrice = basePrice;
-        this.currentPrice = currentPrice;
-        this.licensePlate = licensePlate;
+        this.creationDate = Validation.validateDate(creationDate);
+        this.seats = Validation.validateSeats(seats);
+        this.basePrice = Validation.validateBasePrice(basePrice);
+        this.currentPrice = Validation.validateCurrentPrice(currentPrice);
+        this.licensePlate = Validation.validateLicensePlate(licensePlate);
         this.model = Validation.validateString(model, "Das Automodell darf nicht leer sein.");
     }
 
@@ -141,7 +141,7 @@ public class Car implements CarInterface {
      * Getter fuer das Erstellungsdatum.
      * @return Das Erstellungsdatum.
      */
-    public Date getCreationDate() {
+    public Calendar getCreationDate() {
         return creationDate;
     }
 
@@ -149,8 +149,8 @@ public class Car implements CarInterface {
      * Setter fuer das Erstellungsdatum.
      * @param creationDate Das Erstellungsdatum.
      */
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+    public void setCreationDate(Calendar creationDate) {
+        this.creationDate = Validation.validateDate(creationDate);
     }
 
     /**
@@ -166,7 +166,7 @@ public class Car implements CarInterface {
      * @param seats Die Sitzanzahl.
      */
     public void setSeats(int seats) {
-        this.seats = seats;
+        this.seats = Validation.validateSeats(seats);
     }
 
     /**
@@ -182,7 +182,7 @@ public class Car implements CarInterface {
      * @param basePrice Der Grundpreis.
      */
     public void setBasePrice(double basePrice) {
-        this.basePrice = basePrice;
+        this.basePrice = Validation.validateBasePrice(basePrice);
     }
 
     /**
@@ -190,7 +190,7 @@ public class Car implements CarInterface {
      * @return Der Tagespreis.
      */
     public double getCurrentPrice() {
-        return currentPrice;
+        return Validation.validateCurrentPrice(currentPrice);
     }
 
     /**
@@ -198,7 +198,7 @@ public class Car implements CarInterface {
      * @param currentPrice Der Tagespreis.
      */
     public void setCurrentPrice(double currentPrice) {
-        this.currentPrice = currentPrice;
+        this.currentPrice = Validation.validateCurrentPrice(currentPrice);
     }
 
     /**
@@ -214,7 +214,7 @@ public class Car implements CarInterface {
      * @param licensePlate Das Kennzeichen.
      */
     public void setLicensePlate(String licensePlate) { // mit regex prüfen ob Nummernschild existiert???
-        this.licensePlate = licensePlate;
+        this.licensePlate = Validation.validateLicensePlate(licensePlate);
     }
 
     /**
