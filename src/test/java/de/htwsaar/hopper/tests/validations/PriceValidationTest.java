@@ -3,44 +3,41 @@ package de.htwsaar.hopper.tests.validations;
 import de.htwsaar.hopper.logic.validations.Validation;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
 public class PriceValidationTest {
 
-    @Test
-    public void basePriceNull(){
-        int basePrice = 0;
+    @Test (expected = IllegalArgumentException.class)
+    public void basePriceZero(){
+        double basePrice = 0.00;
         Validation.validateBasePrice(basePrice);
     }
 
     @Test
     public void basePricePositive(){
-        int basePrice = 1000;
+        double basePrice = 1000.00;
         Validation.validateBasePrice(basePrice);
     }
 
     @Test   (expected = IllegalArgumentException.class)
     public void basePriceNegative(){
-        int basePrice = -1000;
+        double basePrice = -1000.00;
         Validation.validateBasePrice(basePrice);
     }
 
-    @Test
-    public void currentPriceNull(){
-        int currentPrice = 0;
+    @Test (expected = IllegalArgumentException.class)
+    public void currentPriceZero(){
+        double currentPrice = 0.00;
         Validation.validateBasePrice(currentPrice);
     }
 
     @Test
     public void currentPricePositive(){
-        int currentPrice = 1000;
+        double currentPrice = 1000.00;
         Validation.validateBasePrice(currentPrice);
     }
 
     @Test   (expected = IllegalArgumentException.class)
     public void currentPriceNegative(){
-        int currentPrice = -1000;
+        double currentPrice = -1000.00;
         Validation.validateBasePrice(currentPrice);
     }
-
 }

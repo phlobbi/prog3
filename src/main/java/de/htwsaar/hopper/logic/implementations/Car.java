@@ -5,7 +5,7 @@ import de.htwsaar.hopper.logic.interfaces.CarInterface;
 import de.htwsaar.hopper.logic.validations.Validation;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  * Implementierung des CarInterface.
@@ -35,7 +35,7 @@ public class Car implements CarInterface {
     @Basic
     @Column(name = "CreationDate")
     @Temporal(TemporalType.DATE)
-    private Date creationDate;
+    private Calendar creationDate;
 
     @Basic
     @Column(name = "Seats")
@@ -75,7 +75,7 @@ public class Car implements CarInterface {
      * @param licensePlate Das Kennzeichen.
      * @param model Das Modell.
      */
-    public Car(int carId, CarTypeEnum type, String brand, Date creationDate, int seats, double basePrice,
+    public Car(int carId, CarTypeEnum type, String brand, Calendar creationDate, int seats, double basePrice,
                double currentPrice, String licensePlate, String model) {
         this.carId = carId;
         this.type = type;
@@ -141,7 +141,7 @@ public class Car implements CarInterface {
      * Getter fuer das Erstellungsdatum.
      * @return Das Erstellungsdatum.
      */
-    public Date getCreationDate() {
+    public Calendar getCreationDate() {
         return creationDate;
     }
 
@@ -149,7 +149,7 @@ public class Car implements CarInterface {
      * Setter fuer das Erstellungsdatum.
      * @param creationDate Das Erstellungsdatum.
      */
-    public void setCreationDate(Date creationDate) {
+    public void setCreationDate(Calendar creationDate) {
         this.creationDate = Validation.validateDate(creationDate);
     }
 
