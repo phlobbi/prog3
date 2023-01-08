@@ -53,7 +53,7 @@ public class CarManagementController {
     }
 
     @FXML
-    void switchTofirstView(ActionEvent event) throws IOException {
+    void switchToFirstView(ActionEvent event) throws IOException {
         App.setRoot("firstview.fxml");
 
     }
