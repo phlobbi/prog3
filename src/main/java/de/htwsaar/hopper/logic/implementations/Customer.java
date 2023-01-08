@@ -1,12 +1,11 @@
 package de.htwsaar.hopper.logic.implementations;
 
+import de.htwsaar.hopper.logic.interfaces.CarInterface;
 import de.htwsaar.hopper.logic.interfaces.CustomerInterface;
 import de.htwsaar.hopper.logic.validations.Validation;
 
 import javax.persistence.*;
-import java.util.Date;
-
-import static de.htwsaar.hopper.logic.validations.Validation.*;
+import java.util.Calendar;
 
 /**
  * Implementierung des Customer-Interface.
@@ -72,14 +71,14 @@ public class Customer implements CustomerInterface {
     @Basic
     @Column(name = "DriverLicenseExpirationDate")
     @Temporal(TemporalType.DATE)
-    Date driverLicenseExpirationDate;
+    Calendar driverLicenseExpirationDate;
 
     public Customer() {
     }
 
     public Customer(int customerId, String firstName, String lastName, String email, String street,
                     String houseNumber, int zipCode, String city, String phoneNumber,
-                    String iban, String driverLicenseNumber, Date driverLicenseExpirationDate) {
+                    String iban, String driverLicenseNumber, Calendar driverLicenseExpirationDate) {
         this.customerId = customerId;
         this.firstName = Validation.validateString(firstName, "Der Vorname darf nicht leer sein.");
         this.lastName = Validation.validateString(lastName, "Der Nachname darf nicht leer sein.");
@@ -203,11 +202,11 @@ public class Customer implements CustomerInterface {
     }
 
     @Override
-    public Date getDriverLicenseExpirationDate() {
+    public Calendar getDriverLicenseExpirationDate() {
         return driverLicenseExpirationDate;
     }
 
-    public void setDriverLicenseExpirationDate(Date driverLicenseExpirationDate) {
+    public void setDriverLicenseExpirationDate(Calendar driverLicenseExpirationDate) {
         this.driverLicenseExpirationDate = driverLicenseExpirationDate;
     }
 }
