@@ -12,7 +12,7 @@ import java.io.IOException;
 public class CarManagementController {
 
     @FXML
-    private Button bntRead;
+    private Button btnRead;
 
     @FXML
     private Button btnCreate;
