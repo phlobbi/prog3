@@ -42,9 +42,9 @@
    <center>
       <AnchorPane fx:id="borderpane" prefHeight="200.0" prefWidth="200.0" stylesheets="@Style.css" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnAutoVermietung" layoutX="223.0" layoutY="244.0" mnemonicParsing="false" onAction="#switchToCarView" prefHeight="25.0" prefWidth="178.0" text="Autoverwaltung" />
-            <Button fx:id="btnKundeVerwaltung" layoutX="550.0" layoutY="246.0" mnemonicParsing="false" onAction="#switchToKundenView" prefHeight="25.0" prefWidth="147.0" text="Kundenverwaltung" />
-            <Button fx:id="btnBuchungVerwaltung" layoutX="884.0" layoutY="245.0" mnemonicParsing="false" onAction="#SwitchToBuchungview" prefHeight="26.0" prefWidth="142.0" text="Buchungsverwaltung" />
+            <Button fx:id="btnCarsManagement" layoutX="223.0" layoutY="244.0" mnemonicParsing="false" onAction="#switchToCarView" prefHeight="25.0" prefWidth="178.0" text="Autoverwaltung" />
+            <Button fx:id="btnCustomerManagement" layoutX="550.0" layoutY="246.0" mnemonicParsing="false" onAction="#switchToCustomerView" prefHeight="25.0" prefWidth="147.0" text="Kundenverwaltung" />
+            <Button fx:id="btnBookingManagement" layoutX="884.0" layoutY="245.0" mnemonicParsing="false" onAction="#SwitchToCarRental" prefHeight="26.0" prefWidth="142.0" text="Buchungsverwaltung" />
          </children>
       </AnchorPane>
    </center>

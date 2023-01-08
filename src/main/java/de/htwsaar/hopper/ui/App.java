@@ -24,6 +24,9 @@ public class App extends Application {
 		 
 		
 	}
+	/*
+	Diese  Methode  erlaubt von einer Scene zur einer  anderer zu wechsel .
+	 */
 	public static void setRoot(String fxmlfile) throws IOException {
 		URL url = App.class.getResource("/"+fxmlfile+"") ;
 		//	System.out.println(url.toString()) ;

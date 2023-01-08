@@ -9,16 +9,16 @@ import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 
-public class AutoVerwaltungsController {
+public class CarManagementController {
 
     @FXML
-    private Button bntRead;
+    private Button btnRead;
 
     @FXML
     private Button btnCreate;
 
     @FXML
-    private Button btnGoback;
+    private Button btnGoBack;
 
     @FXML
     private Button btnRemove;
@@ -43,7 +43,7 @@ public class AutoVerwaltungsController {
     }
 
     @FXML
-    void switchToSceneRemovecar(ActionEvent event) {
+    void switchToSceneRemoveCar(ActionEvent event) {
 
     }
 
@@ -53,7 +53,10 @@ public class AutoVerwaltungsController {
     }
 
     @FXML
-    void switchTofirstView(ActionEvent event) throws IOException {
+    /*
+    Diese Methode ermoeglicht es Ihnen , zum Firstview Fenster zu gehen .
+     */
+    void switchToFirstView(ActionEvent event) throws IOException {
         App.setRoot("firstview.fxml");
 
     }

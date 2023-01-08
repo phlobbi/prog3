@@ -15,13 +15,13 @@ public class FirstViewController {
     private AnchorPane borderpane;
 
     @FXML
-    private Button btnAutoVermietung;
+    private Button btnCarsManagement;
 
     @FXML
-    private Button btnBuchungVerwaltung;
+    private Button btnBookingManagement;
 
     @FXML
-    private Button btnKundeVerwaltung;
+    private Button btnCustomerManagement;
 
     @FXML
     private Label label;
@@ -30,7 +30,7 @@ public class FirstViewController {
     private BorderPane root;
 
     @FXML
-    void SwitchToBuchungview(ActionEvent event) {
+    void SwitchToCarRental(ActionEvent event) {
 
     }
 
@@ -40,7 +40,7 @@ public class FirstViewController {
     }
 
     @FXML
-    void switchToKundenView(ActionEvent event) {
+    void switchToCustomerView(ActionEvent event) {
 
     }
 
