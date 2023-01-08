@@ -171,6 +171,7 @@ public class Validation {
         Utils.check(licensePlate.matches(regexLicensePlate),
                 "Die Kennzeichen sind ungültig!");
         return licensePlate;
+    }
 
     public static String validateHouseNumber(String houseNumber) {
         houseNumber = validateString(houseNumber, "Die Hausnummer darf nicht leer sein!");
