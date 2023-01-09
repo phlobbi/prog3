@@ -162,7 +162,7 @@ public class CustomerTest {
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithInvalidDriverLicenseExpirationDateThrowException() {
         cal = Calendar.getInstance();
-        cal.add(Calendar.MONTH, 1);
+        cal.add(Calendar.MONTH, -1);
         new Customer(1, "Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
@@ -255,16 +255,6 @@ public class CustomerTest {
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", null);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void constructorWithInvalidDriverLicenseExpirationDateShouldThrowException() {
-        cal = Calendar.getInstance();
-        cal.add(Calendar.MONTH, 1);
-        new Customer(1, "Max", "Mustermann",
-                "max@mustermann.de", "Musterstraße", "1", "12345",
-                "Musterstadt", "0123456789", "DE89370400440532013000",
-                "B072RRE2I55", cal);
     }
 
     @Test
@@ -634,7 +624,7 @@ public class CustomerTest {
         assertNull(setterTestCustomer.getDriverLicenseExpirationDate());
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void setDriverLicenseExpirationDateWithPastDateShouldThrowException() {
         cal.set(2010, 1, 1);
         setterTestCustomer.setDriverLicenseExpirationDate(cal);

@@ -145,7 +145,17 @@ public class Validation {
         return seats;
     }
 
-    public static Calendar validateDate(Calendar date) {
+    public static Calendar validateExpirationDate(Calendar date) {
+        Utils.check(date != null, "Das Datum darf nicht leer sein!");
+        Calendar currentCalendar = Calendar.getInstance();
+        if (date.after(currentCalendar)) {
+            return date;
+        } else {
+            throw new IllegalArgumentException("Das Datum darf nicht in der Vergangenheit liegen!");
+        }
+    }
+
+    public static Calendar validateCreatedDate(Calendar date) {
         Utils.check(date != null, "Das Datum darf nicht leer sein!");
         Calendar currentCalendar = Calendar.getInstance();
         if (date.before(currentCalendar)) {
