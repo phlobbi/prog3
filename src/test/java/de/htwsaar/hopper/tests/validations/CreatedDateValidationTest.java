@@ -11,6 +11,7 @@ public class CreatedDateValidationTest {
     @Test
     public void dateWorking(){
         Calendar current = Calendar.getInstance();
+        current.add(Calendar.MONTH, -1);
         Validation.validateCreatedDate(current);
     }
     @Test
