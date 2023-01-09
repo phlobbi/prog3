@@ -109,7 +109,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setFirstName(String firstName) {
-        this.firstName = Validation.validateString(lastName,"keine gültiger Vorname!");
+        this.firstName = Validation.validateString(firstName,"keine gültiger Vorname!");
     }
 
     @Override
