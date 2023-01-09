@@ -14,13 +14,13 @@ public enum ValidationRegexEnum {
 
 
 
-    private final String label;
+    private final String regex;
 
     ValidationRegexEnum(String label) {
-        this.label = label;
+        this.regex = label;
     }
 
-    public String getLabel() {
-        return label;
+    public String getRegex() {
+        return regex;
     }
 }

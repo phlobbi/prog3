@@ -1,6 +1,7 @@
 package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.interfaces.CustomerInterface;
+import de.htwsaar.hopper.logic.validations.CustomerValidation;
 import de.htwsaar.hopper.logic.validations.Validation;
 
 import javax.persistence.*;
@@ -81,13 +82,13 @@ public class Customer implements CustomerInterface {
         this.customerId = customerId;
         this.firstName = Validation.validateString(firstName, "Der Vorname darf nicht leer sein.");
         this.lastName = Validation.validateString(lastName, "Der Nachname darf nicht leer sein.");
-        this.email = Validation.validateEmail(email);
+        this.email = CustomerValidation.validateEmail(email);
         this.street = Validation.validateString(street, "Die Strasse darf nicht leer sein.");
         this.houseNumber = Validation.validateHouseNumber(houseNumber);
         this.zipCode = Validation.validateZipCode(zipCode);
         this.city = Validation.validateString(city, "Die Stadt darf nicht leer sein.");
         this.phoneNumber = Validation.validatePhonenumber(phoneNumber);
-        this.iban = Validation.validateIBAN(iban);
+        this.iban = CustomerValidation.validateIBAN(iban);
         this.driverLicenseNumber = Validation.validateDriverLicenseNumber(driverLicenseNumber);
         this.driverLicenseExpirationDate = Validation.validateDate(driverLicenseExpirationDate);
     }
@@ -129,7 +130,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setEmail(String email) {
-        this.email = Validation.validateEmail(email);
+        this.email = CustomerValidation.validateEmail(email);
     }
 
     @Override
@@ -187,7 +188,7 @@ public class Customer implements CustomerInterface {
     }
 
     public void setIBAN(String iban) {
-        this.iban = Validation.validateIBAN(iban);
+        this.iban = CustomerValidation.validateIBAN(iban);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package de.htwsaar.hopper.tests.validations;
 
+import de.htwsaar.hopper.logic.enums.ValidationRegexEnum;
+import de.htwsaar.hopper.logic.validations.CustomerValidation;
 import de.htwsaar.hopper.logic.validations.Validation;
 import org.junit.Test;
 
@@ -41,5 +43,11 @@ public class StringValidationTest {
     @Test (expected = IllegalArgumentException.class)
     public void nullStringShouldThrowException(){
         Validation.validateString(null, "Fehler");
+    }
+
+    @Test
+    public void stringRegexValidation1True(){
+        String string = "12a";
+        CustomerValidation.validateStringViaRegex(string, ValidationRegexEnum.HOUSE_NUMBER.getRegex(),"Fehler");
     }
 }
