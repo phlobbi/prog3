@@ -156,7 +156,7 @@ public class CustomerTest {
         new Customer(1, "Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
-                "B072RRE2I56", cal);
+                "B072RRE2I65", cal);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -594,7 +594,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void setDriverLicenseWithInvalidDriverLicenseShouldThrowException() {
-        setterTestCustomer.setDriverLicenseNumber("B072RRE2I6");
+        setterTestCustomer.setDriverLicenseNumber("B072RRE2I66");
     }
 
     @Test(expected = IllegalArgumentException.class)
