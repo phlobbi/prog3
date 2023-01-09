@@ -9,5 +9,8 @@
         <module name="autovermietung" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="autovermietung" target="9" />
+    </bytecodeTargetLevel>
   </component>
 </project>

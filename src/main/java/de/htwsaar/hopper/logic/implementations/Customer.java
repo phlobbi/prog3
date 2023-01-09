@@ -90,7 +90,7 @@ public class Customer implements CustomerInterface {
         this.phoneNumber = Validation.validatePhonenumber(phoneNumber);
         this.iban = CustomerValidation.validateIBAN(iban);
         this.driverLicenseNumber = Validation.validateDriverLicenseNumber(driverLicenseNumber);
-        this.driverLicenseExpirationDate = Validation.validateDate(driverLicenseExpirationDate);
+        this.driverLicenseExpirationDate = Validation.validateExpirationDate(driverLicenseExpirationDate);
     }
 
     @Override
@@ -110,7 +110,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setFirstName(String firstName) {
-        this.firstName = Validation.validateString(lastName,"keine gültiger Vorname!");
+        this.firstName = Validation.validateString(firstName,"keine gültiger Vorname!");
     }
 
     @Override
@@ -207,6 +207,6 @@ public class Customer implements CustomerInterface {
     }
 
     public void setDriverLicenseExpirationDate(Calendar driverLicenseExpirationDate) {
-        this.driverLicenseExpirationDate = Validation.validateDate(driverLicenseExpirationDate);
+        this.driverLicenseExpirationDate = Validation.validateExpirationDate(driverLicenseExpirationDate);
     }
 }

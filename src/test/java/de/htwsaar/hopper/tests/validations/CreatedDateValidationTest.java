@@ -6,26 +6,27 @@ import org.junit.Test;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class DateValidationTest {
+public class CreatedDateValidationTest {
 
     @Test
     public void dateWorking(){
         Calendar current = Calendar.getInstance();
-        Validation.validateDate(current);
+        current.add(Calendar.MONTH, -1);
+        Validation.validateCreatedDate(current);
     }
     @Test
     public void dateBefore() {
         Calendar pastDate = new GregorianCalendar(2014, Calendar.JANUARY, 1);
-        Validation.validateDate(pastDate);
+        Validation.validateCreatedDate(pastDate);
     }
     @Test (expected = IllegalArgumentException.class)
     public void dateFuture() {
         Calendar futureDate = new GregorianCalendar(2024, Calendar.JANUARY, 1);
-        Validation.validateDate(futureDate);
+        Validation.validateCreatedDate(futureDate);
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void dateNull() {
-        Validation.validateDate(null);
+        Validation.validateCreatedDate(null);
     }
 }

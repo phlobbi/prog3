@@ -6,7 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class IbanValidationTest {
-    private final static String EXPECTED_IBAN = "DE89 3704 0044 0532 0130 00";
+    private final static String EXPECTED_IBAN = "DE89370400440532013000";
 
     @Test
     public void ibanValid() {
