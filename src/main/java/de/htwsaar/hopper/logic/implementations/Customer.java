@@ -4,9 +4,7 @@ import de.htwsaar.hopper.logic.interfaces.CustomerInterface;
 import de.htwsaar.hopper.logic.validations.Validation;
 
 import javax.persistence.*;
-import java.util.Date;
-
-import static de.htwsaar.hopper.logic.validations.Validation.*;
+import java.util.Calendar;
 
 /**
  * Implementierung des Customer-Interface.
@@ -51,7 +49,7 @@ public class Customer implements CustomerInterface {
 
     @Basic
     @Column(name = "ZipCode")
-    int zipCode;
+    String zipCode;
 
     @Basic
     @Column(name = "City")
@@ -72,26 +70,26 @@ public class Customer implements CustomerInterface {
     @Basic
     @Column(name = "DriverLicenseExpirationDate")
     @Temporal(TemporalType.DATE)
-    Date driverLicenseExpirationDate;
+    Calendar driverLicenseExpirationDate;
 
     public Customer() {
     }
 
     public Customer(int customerId, String firstName, String lastName, String email, String street,
-                    String houseNumber, int zipCode, String city, String phoneNumber,
-                    String iban, String driverLicenseNumber, Date driverLicenseExpirationDate) {
+                    String houseNumber, String zipCode, String city, String phoneNumber,
+                    String iban, String driverLicenseNumber, Calendar driverLicenseExpirationDate) {
         this.customerId = customerId;
         this.firstName = Validation.validateString(firstName, "Der Vorname darf nicht leer sein.");
         this.lastName = Validation.validateString(lastName, "Der Nachname darf nicht leer sein.");
         this.email = Validation.validateEmail(email);
         this.street = Validation.validateString(street, "Die Strasse darf nicht leer sein.");
-        this.houseNumber = Validation.validateString(houseNumber, "Die Hausnummer darf nicht leer sein.");
-        this.zipCode = zipCode;
+        this.houseNumber = Validation.validateHouseNumber(houseNumber);
+        this.zipCode = Validation.validateZipCode(zipCode);
         this.city = Validation.validateString(city, "Die Stadt darf nicht leer sein.");
         this.phoneNumber = Validation.validatePhonenumber(phoneNumber);
         this.iban = Validation.validateIBAN(iban);
         this.driverLicenseNumber = Validation.validateDriverLicenseNumber(driverLicenseNumber);
-        this.driverLicenseExpirationDate = driverLicenseExpirationDate;
+        this.driverLicenseExpirationDate = Validation.validateDate(driverLicenseExpirationDate);
     }
 
     @Override
@@ -151,17 +149,17 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setHouseNumber(String houseNumber) {
-        this.houseNumber = Validation.validateString(houseNumber,"keine gültige Hausnummer!");
+        this.houseNumber = Validation.validateHouseNumber(houseNumber);
     }
 
     @Override
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
     @Override
-    public void setZipCode(int zipCode) {
-        this.zipCode = zipCode;
+    public void setZipCode(String zipCode) {
+        this.zipCode = Validation.validateZipCode(zipCode);
     }
 
     @Override
@@ -203,11 +201,11 @@ public class Customer implements CustomerInterface {
     }
 
     @Override
-    public Date getDriverLicenseExpirationDate() {
+    public Calendar getDriverLicenseExpirationDate() {
         return driverLicenseExpirationDate;
     }
 
-    public void setDriverLicenseExpirationDate(Date driverLicenseExpirationDate) {
-        this.driverLicenseExpirationDate = driverLicenseExpirationDate;
+    public void setDriverLicenseExpirationDate(Calendar driverLicenseExpirationDate) {
+        this.driverLicenseExpirationDate = Validation.validateDate(driverLicenseExpirationDate);
     }
 }
