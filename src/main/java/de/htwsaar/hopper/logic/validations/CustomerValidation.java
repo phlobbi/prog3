@@ -15,7 +15,7 @@ public class CustomerValidation extends Validation{
      */
     public static String validateIBAN(String iban) {
         IBAN ibanObject = IBAN.valueOf(validateString(iban, "Die IBAN darf nicht leer sein."));
-        return ibanObject.toString();
+        return ibanObject.toPlainString();
     }
 
 
@@ -45,7 +45,7 @@ public class CustomerValidation extends Validation{
         EmailValidator emailValidator = new EmailValidator(allowLocal, allowTld, domainValidator);
 
         //trimmen
-        email = email.trim();
+        email = validateString(email, "Die E-Mail darf nicht leer sein.");
 
         //prüfen ob Mail gültig ist
         if (emailValidator.isValid(email)) {
