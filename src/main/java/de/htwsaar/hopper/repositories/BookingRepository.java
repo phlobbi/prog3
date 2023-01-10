@@ -55,4 +55,12 @@ public class BookingRepository {
             entityManagerFactory.close();
         }
     }
+
+    public static void main(String[] args) {
+        List<Booking> bookings = findAll();
+        assert bookings != null;
+        for (Booking booking: bookings) {
+            System.out.println(booking);
+        }
+    }
 }
