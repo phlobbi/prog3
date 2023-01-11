@@ -5,6 +5,8 @@ import nl.garvelink.iban.IBAN;
 import org.apache.commons.validator.routines.DomainValidator;
 import org.apache.commons.validator.routines.EmailValidator;
 
+import java.util.Calendar;
+
 public class CustomerValidation extends Validation{
 
     /**
@@ -56,9 +58,134 @@ public class CustomerValidation extends Validation{
         }
     }
 
-    public static String validateHouseNumber(String houseNumber) {
-        return validateStringViaRegex(houseNumber, ValidationRegexEnum.HOUSE_NUMBER.getRegex(), "Die Hausnummer ist ungültig!");
+
+    /**
+     * Telefonnummer prüfen mit Fehlermeldung mitgeben
+     *
+     * @param phoneNumber Telefonnummer
+     * @param errorMessage Fehlermeldung
+     * @return getrimmte Telefonnummer
+     * @throws IllegalArgumentException wenn Telefonnummer falsch
+     */
+    public static String validatePhoneNumber(String phoneNumber, String errorMessage) {
+        return validateStringViaRegex(phoneNumber, ValidationRegexEnum.PHONE_NUMBER.getRegex(), errorMessage);
     }
+
+    /**
+     * Telefonnummer prüfen
+     *
+     * @param phoneNumber Telefonnummer
+     * @return getrimmte Telefonnummer
+     * @throws IllegalArgumentException wenn Telefonnummer falsch
+     */
+    public static String validatePhoneNumber(String phoneNumber) {
+        return validateStringViaRegex(phoneNumber, ValidationRegexEnum.PHONE_NUMBER.getRegex(), "Die Telefonnummer darf nicht leer sein.");
+    }
+
+
+    /**
+     * Prüft, ob eine Führerscheinnummer gültig ist.
+     * Es sind nur deutsche Führerscheinnummer erlaubt.
+     *
+     * @param driverLicenseNumber Führerscheinnummer, die überprüft werden soll
+     * @return Geprüfte Führerscheinnummer
+     * @throws IllegalArgumentException Wenn die Führerscheinnummer ungültig ist
+     */
+    public static String validateDriverLicenseNumber(String driverLicenseNumber) {
+        //  Führerscheinnummer überprüfen
+        driverLicenseNumber = validateString(driverLicenseNumber, "Die Führerscheinnummer darf nicht leer sein!");
+        Utils.check(driverLicenseNumber.matches(ValidationRegexEnum.DRIVER_LICENSE_NUMBER.getRegex()),
+                "Die Führerscheinnummer ist ungültig!");
+
+        //  String nur in Großbuchstaben darstellen
+        driverLicenseNumber = driverLicenseNumber.toUpperCase();
+
+        //  Buchstaben in Zahlen umwandeln und mit 9 addieren
+        char[] charArray = driverLicenseNumber.toCharArray();
+        int[] intArray = new int[charArray.length];
+
+        for (int i = 0; i < charArray.length; i++) {
+            if (Character.isLetter(charArray[i])) {
+                intArray[i] = 9 + ((char) (charArray[i] - 'A' + 1));
+            } else {
+                intArray[i] = Integer.parseInt(String.valueOf(charArray[i]));
+            }
+        }
+
+        //  Prüfziffer ausrechnen
+        int checkNumber = 0;
+        int j = 9;
+        for (int i = 0; i < intArray.length - 2; i++) {
+            checkNumber += j * intArray[i];
+            j--;
+        }
+        checkNumber = checkNumber % 11;
+
+        // Prüfziffer prüfen
+        Utils.check(checkNumber == intArray[9], "Prüfziffer stimmt nicht überein");
+
+        return driverLicenseNumber;
+    }
+
+    /**
+     * Prüft das Ablaufdatum des Führerscheins
+     *
+     * @param date Führerscheinablaufdatum
+     * @return getrimmtes Datum
+     */
+    public static Calendar validateExpirationDate(Calendar date) {
+        return validateDatePastForbidden(date);
+    }
+
+
+    /**
+     * Hausnummer prüfen mit Fehlermeldung mitgeben
+     *
+     * @param houseNumber
+     * @param errorMessage
+     * @return getrimmte Hausnummer
+     * @throws IllegalArgumentException wenn Hausnummer ungültig
+     */
+    public static String validateHouseNumber(String houseNumber, String errorMessage) {
+        return validateStringViaRegex(houseNumber, ValidationRegexEnum.HOUSE_NUMBER.getRegex(), errorMessage);
+    }
+
+    /**
+     * Hausnummer prüfen
+     *
+     * @param houseNumber
+     * @return getrimmte Hausnummer
+     * @throws IllegalArgumentException wenn Hausnummer ungültig
+     */
+    public static String validateHouseNumber(String houseNumber) {
+        return validateStringViaRegex(houseNumber, ValidationRegexEnum.HOUSE_NUMBER.getRegex(), "Die Hausnummer ist ungültig");
+    }
+
+
+    /**
+     * Postleitzahl prüfen mit Fehlermeldung
+     *
+     * @param errorMessage Fehlermedlung
+     * @param zipCode PLZ
+     * @return getrimmte PLZ
+     * @throws IllegalArgumentException wenn PLZ ungültig
+     */
+    public static String validateZipCode(String zipCode, String errorMessage){
+        return validateStringViaRegex(zipCode, ValidationRegexEnum.GERMAN_ZIP_CODE.getRegex(), errorMessage);
+    }
+
+    /**
+     * Postleitzahl prüfen
+     *
+     * @param zipCode PLZ
+     * @return getrimmte PLZ
+     * @throws IllegalArgumentException wenn PLZ ungültig
+     */
+    public static String validateZipCode(String zipCode){
+        return validateStringViaRegex(zipCode, ValidationRegexEnum.GERMAN_ZIP_CODE.getRegex(), "Die Postleitzahl ist ungültig");
+    }
+
+
 
 
 }
