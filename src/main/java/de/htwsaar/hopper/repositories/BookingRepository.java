@@ -8,11 +8,16 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.util.List;
 
+/**
+ * Repository-Klasse fuer das Booking. Dient zum Abrufbarmachen ueber die Datenbank.
+ * @author roblin
+ */
 public class BookingRepository {
+
     /**
-     * Findet ein spezielles Booking ueber seine ID
-     * @param bookingId Die gesuchte ID
-     * @return Das gefundene Booking; wenn keines gefunden wurde null
+     * Findet ein spezielles Booking ueber seine ID.
+     * @param bookingId Die gesuchte ID.
+     * @return Das gefundene Booking; wenn keines gefunden wurde null.
      */
     public static Booking find(int bookingId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
@@ -33,7 +38,7 @@ public class BookingRepository {
     }
 
     /**
-     * Geht alle gespeicherten Bookings durch und gibt sie als Liste zurueck
+     * Geht alle gespeicherten Bookings durch und gibt sie als Liste zurueck.
      * @return Alle Bookings in der Datenbank; null wenn (noch) keines existiert.
      */
     public static List<Booking> findAll() {
@@ -53,14 +58,6 @@ public class BookingRepository {
         } finally {
             entityManager.close();
             entityManagerFactory.close();
-        }
-    }
-
-    public static void main(String[] args) {
-        List<Booking> bookings = findAll();
-        assert bookings != null;
-        for (Booking booking: bookings) {
-            System.out.println(booking);
         }
     }
 }

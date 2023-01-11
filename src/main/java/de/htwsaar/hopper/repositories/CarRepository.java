@@ -6,13 +6,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import java.util.Calendar;
 import java.util.List;
 
+/**
+ * Repository-Klasse fuer das Car. Dient zum Abrufbarmachen ueber die Datenbank.
+ * @author roblin
+ */
 public class CarRepository {
+
     /**
-     * Findet ein spezielles Car ueber seine ID
-     * @param carId Die gesuchte ID
-     * @return Das gefundene Car; wenn keiner gefunden wurde null
+     * Findet ein spezielles Car ueber seine ID.
+     * @param carId Die gesuchte ID.
+     * @return Das gefundene Car; wenn keins gefunden wurde null.
      */
     public static Car find(int carId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
@@ -33,7 +39,7 @@ public class CarRepository {
     }
 
     /**
-     * Geht alle gespeicherten Cars durch und gibt sie als Liste zurueck
+     * Geht alle gespeicherten Cars durch und gibt sie als Liste zurueck.
      * @return Alle Cars in der Datenbank; null wenn (noch) keins existiert.
      */
     public static List<Car> findAll() {

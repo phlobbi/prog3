@@ -8,11 +8,16 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.util.List;
 
+/**
+ * Repository-Klasse fuer den Customer. Dient zum Abrufbarmachen ueber die Datenbank.
+ * @author roblin
+ */
 public class CustomerRepository {
+
     /**
-     * Findet einen speziellen Customer ueber seine ID
-     * @param customerId Die gesuchte ID
-     * @return Der gefundene Customer; wenn keiner gefunden wurde null
+     * Findet einen speziellen Customer ueber seine ID.
+     * @param customerId Die gesuchte ID.
+     * @return Der gefundene Customer; wenn keiner gefunden wurde null.
      */
     public static Customer find(int customerId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
@@ -33,7 +38,7 @@ public class CustomerRepository {
     }
 
     /**
-     * Geht alle gespeicherten Customer durch und gibt sie als Liste zurueck
+     * Geht alle gespeicherten Customer durch und gibt sie als Liste zurueck.
      * @return Alle Customer in der Datenbank; null wenn (noch) keiner existiert.
      */
     public static List<Customer> findAll() {
