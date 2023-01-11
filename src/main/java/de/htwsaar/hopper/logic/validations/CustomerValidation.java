@@ -1,5 +1,6 @@
 package de.htwsaar.hopper.logic.validations;
 
+import de.htwsaar.hopper.logic.enums.ValidationRegexEnum;
 import nl.garvelink.iban.IBAN;
 import org.apache.commons.validator.routines.DomainValidator;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -54,4 +55,10 @@ public class CustomerValidation extends Validation{
             throw new IllegalArgumentException("Die E-Mail ist ungültig!");
         }
     }
+
+    public static String validateHouseNumber(String houseNumber) {
+        return validateStringViaRegex(houseNumber, ValidationRegexEnum.HOUSE_NUMBER.getRegex(), "Die Hausnummer ist ungültig!");
+    }
+
+
 }

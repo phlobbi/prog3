@@ -1,5 +1,7 @@
 package de.htwsaar.hopper.tests.validations;
 
+import de.htwsaar.hopper.logic.enums.ValidationRegexEnum;
+import de.htwsaar.hopper.logic.validations.CustomerValidation;
 import de.htwsaar.hopper.logic.validations.Validation;
 import org.junit.Test;
 
@@ -10,7 +12,7 @@ public class HouseNumberValidationTest {
     @Test
     public void houseNumberWithOneDigitShouldBeTrimmed(){
         String houseNumber = "  1  ";
-        assertEquals(Validation.validateHouseNumber(houseNumber), "1");
+        assertEquals(CustomerValidation.validateStringViaRegex(houseNumber, ValidationRegexEnum.HOUSE_NUMBER.getRegex(), "Fehler"), "1");
     }
 
     @Test
