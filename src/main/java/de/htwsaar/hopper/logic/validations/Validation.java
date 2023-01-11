@@ -21,7 +21,7 @@ public class Validation {
      */
     public static String validateIBAN(String iban) {
         IBAN ibanObject = IBAN.valueOf(validateString(iban, "Die IBAN darf nicht leer sein."));
-        return ibanObject.toString();
+        return ibanObject.toPlainString();
     }
 
     /**
@@ -50,7 +50,7 @@ public class Validation {
         EmailValidator emailValidator = new EmailValidator(allowLocal, allowTld, domainValidator);
 
         //trimmen
-        email = email.trim();
+        email = validateString(email, "Die E-Mail darf nicht leer sein.");
 
         //prüfen ob Mail gültig ist
         if (emailValidator.isValid(email)) {
@@ -145,7 +145,17 @@ public class Validation {
         return seats;
     }
 
-    public static Calendar validateDate(Calendar date) {
+    public static Calendar validateExpirationDate(Calendar date) {
+        Utils.check(date != null, "Das Datum darf nicht leer sein!");
+        Calendar currentCalendar = Calendar.getInstance();
+        if (date.after(currentCalendar)) {
+            return date;
+        } else {
+            throw new IllegalArgumentException("Das Datum darf nicht in der Vergangenheit liegen!");
+        }
+    }
+
+    public static Calendar validateCreatedDate(Calendar date) {
         Utils.check(date != null, "Das Datum darf nicht leer sein!");
         Calendar currentCalendar = Calendar.getInstance();
         if (date.before(currentCalendar)) {

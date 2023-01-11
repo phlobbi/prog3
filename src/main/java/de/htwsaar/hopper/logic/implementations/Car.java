@@ -80,7 +80,7 @@ public class Car implements CarInterface {
         this.carId = carId;
         this.type = type;
         this.brand = Validation.validateString(brand, "Die Automarke darf nicht leer sein.");
-        this.creationDate = Validation.validateDate(creationDate);
+        this.creationDate = Validation.validateCreatedDate(creationDate);
         this.seats = Validation.validateSeats(seats);
         this.basePrice = Validation.validateBasePrice(basePrice);
         this.currentPrice = Validation.validateCurrentPrice(currentPrice);
@@ -150,7 +150,7 @@ public class Car implements CarInterface {
      * @param creationDate Das Erstellungsdatum.
      */
     public void setCreationDate(Calendar creationDate) {
-        this.creationDate = Validation.validateDate(creationDate);
+        this.creationDate = Validation.validateCreatedDate(creationDate);
     }
 
     /**
