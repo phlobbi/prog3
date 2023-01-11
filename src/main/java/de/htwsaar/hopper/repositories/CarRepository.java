@@ -64,30 +64,27 @@ public class CarRepository {
 
     /**
      * Sucht alle Cars, die noch verfuegbar sind und gibt sie als Liste aus.
-     * todo: !Workaround-Loesung; geht bestimmt mit einem einzigen Query eleganter
      * @return Die Car-Liste, null wenn keins mehr verfuegbar ist.
      */
     public static List<Car> findAvailable() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+            EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        Query queryForUnavailableCars = entityManager.createQuery("SELECT c FROM Car AS c, Booking AS b WHERE c.carId = b.carId");
-        Query queryForAllCars = entityManager.createQuery("SELECT c FROM Car AS c");
+            Query queryForAvailableCars = entityManager.createQuery("SELECT c FROM Car AS c WHERE NOT EXISTS (SELECT b FROM Booking AS b WHERE c.carId=b.carId)");
 
-        try {
-            List<Car> listOfAll = queryForAllCars.getResultList();
-            List<Car> listOfUnavailable = queryForUnavailableCars.getResultList();
-            listOfAll.removeAll(listOfUnavailable);
+            try {
 
-            if (listOfAll == null) {
-                return null;
-            } else {
-                return listOfAll;
+                List <Car> listOfAll = queryForAvailableCars.getResultList();
+
+                if (listOfAll == null) {
+                    return null;
+                } else {
+                    return listOfAll;
+                }
+            } finally {
+                entityManager.close();
+                entityManagerFactory.close();
             }
-        } finally {
-            entityManager.close();
-            entityManagerFactory.close();
-        }
     }
 
     /**
