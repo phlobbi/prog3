@@ -6,10 +6,6 @@ import java.util.Calendar;
 
 public class Validation {
 
-    final static String regexLicensePlate = "^[A-ZÖÜÄ]{1,3}-[A-ZÖÜÄ]{1,2}-[1-9]{1}[0-9]{1,3}";
-
-
-
     /**
      * Prüft, ob ein String leer ist.
      *
@@ -74,7 +70,7 @@ public class Validation {
      * @return das Datum wenn es passt
      * @throws IllegalArgumentException wenn das Datum in der Zukunft liegt
      */
-    public static Calendar validateDateFutureForbidden(Calendar date) {
+    public static Calendar validateDateFutureForbidden(Calendar date){
         Utils.check(date != null, "Das Datum darf nicht leer sein!");
         Calendar currentCalendar = Calendar.getInstance();
         if (date.before(currentCalendar)) {
@@ -83,23 +79,5 @@ public class Validation {
             throw new IllegalArgumentException("Das Datum darf nicht in der Zukunft liegen!");
         }
     }
-
-
-    /*
-        Car Methods to be moved
-     */
-
-    public static int validateSeats(int seats) {
-        Utils.check(seats > 0, "Die Anzahl der Sitze muss größer als 0 sein!");
-        Utils.check(seats < 302, "Die Anzahl der Sitze darf nicht größer als 301 sein!\n" +
-                "Der Volvo Gran Artic 300 mit 301 Sitzen ist der größte Bus der Welt!"); //Schleichwerbung? rausnehmen? :D
-        return seats;
-    }
-
-
-
-
-
-
 
 }

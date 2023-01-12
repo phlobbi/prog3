@@ -82,7 +82,7 @@ public class Car implements CarInterface {
         this.type = type;
         this.brand = Validation.validateString(brand, "Die Automarke darf nicht leer sein.");
         this.creationDate = CarValidation.validateCreatedDate(creationDate);
-        this.seats = Validation.validateSeats(seats);
+        this.seats = CarValidation.validateSeats(seats);
         this.basePrice = CarValidation.validateBasePrice(basePrice);
         this.currentPrice = CarValidation.validateCurrentPrice(currentPrice);
         this.licensePlate = CarValidation.validateLicensePlate(licensePlate);
@@ -167,7 +167,7 @@ public class Car implements CarInterface {
      * @param seats Die Sitzanzahl.
      */
     public void setSeats(int seats) {
-        this.seats = Validation.validateSeats(seats);
+        this.seats = CarValidation.validateSeats(seats);
     }
 
     /**
