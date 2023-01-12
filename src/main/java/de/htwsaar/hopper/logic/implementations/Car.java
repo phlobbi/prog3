@@ -2,6 +2,7 @@ package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.interfaces.CarInterface;
+import de.htwsaar.hopper.logic.validations.CarValidation;
 import de.htwsaar.hopper.logic.validations.Validation;
 
 import javax.persistence.*;
@@ -80,10 +81,10 @@ public class Car implements CarInterface {
         this.carId = carId;
         this.type = type;
         this.brand = Validation.validateString(brand, "Die Automarke darf nicht leer sein.");
-        this.creationDate = Validation.validateCreatedDate(creationDate);
+        this.creationDate = CarValidation.validateCreatedDate(creationDate);
         this.seats = Validation.validateSeats(seats);
-        this.basePrice = Validation.validateBasePrice(basePrice);
-        this.currentPrice = Validation.validateCurrentPrice(currentPrice);
+        this.basePrice = CarValidation.validateBasePrice(basePrice);
+        this.currentPrice = CarValidation.validateCurrentPrice(currentPrice);
         this.licensePlate = Validation.validateLicensePlate(licensePlate);
         this.model = Validation.validateString(model, "Das Automodell darf nicht leer sein.");
     }
@@ -150,7 +151,7 @@ public class Car implements CarInterface {
      * @param creationDate Das Erstellungsdatum.
      */
     public void setCreationDate(Calendar creationDate) {
-        this.creationDate = Validation.validateCreatedDate(creationDate);
+        this.creationDate = CarValidation.validateCreatedDate(creationDate);
     }
 
     /**
@@ -182,7 +183,7 @@ public class Car implements CarInterface {
      * @param basePrice Der Grundpreis.
      */
     public void setBasePrice(double basePrice) {
-        this.basePrice = Validation.validateBasePrice(basePrice);
+        this.basePrice = CarValidation.validateBasePrice(basePrice);
     }
 
     /**
@@ -190,7 +191,7 @@ public class Car implements CarInterface {
      * @return Der Tagespreis.
      */
     public double getCurrentPrice() {
-        return Validation.validateCurrentPrice(currentPrice);
+        return currentPrice;
     }
 
     /**
@@ -198,7 +199,7 @@ public class Car implements CarInterface {
      * @param currentPrice Der Tagespreis.
      */
     public void setCurrentPrice(double currentPrice) {
-        this.currentPrice = Validation.validateCurrentPrice(currentPrice);
+        this.currentPrice = CarValidation.validateCurrentPrice(currentPrice);
     }
 
     /**

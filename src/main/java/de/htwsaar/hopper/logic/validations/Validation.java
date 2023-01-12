@@ -97,19 +97,8 @@ public class Validation {
     }
 
 
-    public static Calendar validateCreatedDate(Calendar date) {
-        return validateDateFutureForbidden(date);
-    }
 
-    public static double validateBasePrice(double basePrice) {
-        Utils.check(basePrice > 0.00, "Der Basispreis muss größer als 0 sein!");
-        return basePrice;
-    }
 
-    public static double validateCurrentPrice(double currentPrice) {
-        Utils.check(currentPrice > 0.00, "Der aktuelle Preis muss größer als 0 sein!");
-        return currentPrice;
-    }
 
 
     public static String validateLicensePlate(String licensePlate) {
