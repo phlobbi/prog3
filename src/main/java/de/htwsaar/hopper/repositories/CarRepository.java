@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -70,7 +69,8 @@ public class CarRepository {
             EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
             EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-            Query queryForAvailableCars = entityManager.createQuery("SELECT c FROM Car AS c WHERE NOT EXISTS (SELECT b FROM Booking AS b WHERE c.carId=b.carId)");
+            Query queryForAvailableCars = entityManager.createQuery("SELECT c FROM Car AS c WHERE " +
+                    "NOT EXISTS (SELECT b FROM Booking AS b WHERE c.carId=b.carId AND b.realDropOffDate = null)");
 
             try {
 
@@ -95,8 +95,8 @@ public class CarRepository {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        Query query = entityManager.createQuery("SELECT c FROM Car AS c, Booking AS b WHERE c.carId = b.carId");
-
+        Query query = entityManager.createQuery("SELECT c FROM Car AS c, Booking AS b WHERE " +
+                "c.carId = b.carId AND b.realDropOffDate = null");
 
         try {
             List<Car> carList = query.getResultList();
