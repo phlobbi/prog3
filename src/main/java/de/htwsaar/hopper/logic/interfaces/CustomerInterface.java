@@ -1,6 +1,6 @@
 package de.htwsaar.hopper.logic.interfaces;
 
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  * Interface für die Klasse Customer.
@@ -15,12 +15,12 @@ public interface CustomerInterface {
     String getEmail();
     String getStreet();
     String getHouseNumber();
-    int getZipCode();
+    String getZipCode();
     String getCity();
     String getPhoneNumber();
     String getIBAN();
     String getDriverLicenseNumber();
-    Date getDriverLicenseExpirationDate();
+    Calendar getDriverLicenseExpirationDate();
 
 
     /* SETTER */
@@ -30,12 +30,12 @@ public interface CustomerInterface {
     void setEmail(String email);
     void setStreet(String street);
     void setHouseNumber(String houseNumber);
-    void setZipCode(int zipCode);
+    void setZipCode(String zipCode);
     void setCity(String city);
     void setPhoneNumber(String phoneNumber);
     void setIBAN(String iban);
     void setDriverLicenseNumber(String driverLicenseNumber);
-    void setDriverLicenseExpirationDate(Date driverLicenseExpirationDate);
+    void setDriverLicenseExpirationDate(Calendar driverLicenseExpirationDate);
 
     /* toString */
     String toString();
