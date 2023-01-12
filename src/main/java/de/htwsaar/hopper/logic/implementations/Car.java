@@ -232,5 +232,4 @@ public class Car implements CarInterface {
     public void setModel(String model) {
         this.model = Validation.validateString(model,"Kein gültiges Modell!");
     }
-
 }
