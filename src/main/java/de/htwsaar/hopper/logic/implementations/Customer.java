@@ -13,7 +13,7 @@ import java.util.Calendar;
  * @author gitroba
  */
 @Entity
-@Table(name = "Customer",
+@Table(name = "Customers",
     uniqueConstraints = {
         @UniqueConstraint(columnNames = "CustomerId"),
         @UniqueConstraint(columnNames = "Email"),

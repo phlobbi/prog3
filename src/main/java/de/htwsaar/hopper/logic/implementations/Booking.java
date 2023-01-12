@@ -9,6 +9,7 @@ import java.util.Date;
  * @author Sosthene
  */
 @Entity
+@Table(name = "Bookings")
 public class Booking implements BookingInterface {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
