@@ -7,8 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
-import java.io.IOException;
-
 public class FirstViewController {
 
     @FXML
@@ -29,18 +27,26 @@ public class FirstViewController {
     @FXML
     private BorderPane root;
 
+    /*
+    Die Methode SwitchToCarRental erlaubt euch zum  Fenster CarRental zu wechseln.
+     */
     @FXML
-    void SwitchToCarRental(ActionEvent event) {
+    void SwitchToCarRental(ActionEvent event)  {
+        App.setRoot("Booking-management-view.fxml");
 
+    }
+    /*
+    Die Methode switchToCarView erlaubt euch zum Fenster Car-view wechseln.
+     */
+
+    @FXML
+    void switchToCarView(ActionEvent event) {
+      App.setRoot("Car-view.fxml");
     }
 
     @FXML
-    void switchToCarView(ActionEvent event) throws IOException {
-      App.setRoot("car-view.fxml");
-    }
-
-    @FXML
-    void switchToCustomerView(ActionEvent event) {
+    void switchToCustomerView(ActionEvent event)  {
+        App.setRoot("Customer-management-view.fxml");
 
     }
 
