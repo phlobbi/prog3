@@ -85,7 +85,7 @@ public class Car implements CarInterface {
         this.seats = Validation.validateSeats(seats);
         this.basePrice = CarValidation.validateBasePrice(basePrice);
         this.currentPrice = CarValidation.validateCurrentPrice(currentPrice);
-        this.licensePlate = Validation.validateLicensePlate(licensePlate);
+        this.licensePlate = CarValidation.validateLicensePlate(licensePlate);
         this.model = Validation.validateString(model, "Das Automodell darf nicht leer sein.");
     }
 
@@ -215,7 +215,7 @@ public class Car implements CarInterface {
      * @param licensePlate Das Kennzeichen.
      */
     public void setLicensePlate(String licensePlate) { // mit regex prüfen ob Nummernschild existiert???
-        this.licensePlate = Validation.validateLicensePlate(licensePlate);
+        this.licensePlate = CarValidation.validateLicensePlate(licensePlate);
     }
 
     /**

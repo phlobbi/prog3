@@ -101,13 +101,5 @@ public class Validation {
 
 
 
-    public static String validateLicensePlate(String licensePlate) {
-        licensePlate = validateString(licensePlate, "Die Kennzeichen dürfen nicht leer sein!");
-        licensePlate = licensePlate.toUpperCase();
-        Utils.check(licensePlate.matches(regexLicensePlate),
-                "Die Kennzeichen sind ungültig!");
-        return licensePlate;
-    }
-
 
 }

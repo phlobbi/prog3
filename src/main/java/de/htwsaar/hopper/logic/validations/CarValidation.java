@@ -1,5 +1,7 @@
 package de.htwsaar.hopper.logic.validations;
 
+import de.htwsaar.hopper.logic.enums.ValidationRegexEnum;
+
 import java.util.Calendar;
 
 public class CarValidation extends Validation{
@@ -23,6 +25,16 @@ public class CarValidation extends Validation{
      */
     public static Calendar validateCreatedDate(Calendar date) {
         return validateDateFutureForbidden(date);
+    }
+
+
+
+
+    public static String validateLicensePlate(String licensePlate) {
+        licensePlate = validateString(licensePlate, "Die Kennzeichen dürfen nicht leer sein!");
+        licensePlate = licensePlate.toUpperCase();
+        Utils.check(licensePlate.matches(ValidationRegexEnum.LICENSE_PLATE.getRegex()), "Kennezeichen ist nicht valide!");
+        return licensePlate;
     }
 
 }
