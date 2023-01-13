@@ -23,8 +23,9 @@ public class BookingManagementController {
     @FXML
     private TableView<?> tableView;
 
-    /*
-    Mit Dieser Methode geht man zum Fenster First-view zurueck .
+    /**
+     * Wechselt bei Aufruf auf die Startseite zurück.
+     * @param event
      */
     @FXML
     void switchToFirstView(ActionEvent event)  {

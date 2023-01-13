@@ -11,41 +11,33 @@ public class CustomerValidation extends Validation{
 
     /**
      * Prüft, ob eine IBAN gültig ist.
-     *
+     * Die Methode entfernt außerdem sämtliche Leerzeichen um die IBAN.
      * @param iban Zu prüfende IBAN
-     * @return IBAN als String mit Separierung nach 4 Zeichen
-     * @throws IllegalArgumentException Wenn die IBAN ungültig ist
+     * @return IBAN als String, ohne Separierung
+     * @throws IllegalArgumentException Falls die IBAN ungültig ist
+     * @throws IllegalArgumentException Falls die IBAN leer ist
+     * @throws IllegalArgumentException Falls die IBAN null ist
      */
     public static String validateIBAN(String iban) {
         IBAN ibanObject = IBAN.valueOf(validateString(iban, "Die IBAN darf nicht leer sein."));
         return ibanObject.toPlainString();
     }
 
-
     /**
      * Prüft, ob eine E-Mail gültig ist.
-     *
+     * Die Methode entfernt außerdem sämtliche Leerzeichen um die E-Mail.
      * @param email E-Mail, die überprüft werden soll
      * @return Getrimmte E-Mail, falls gültig
-     * @throws IllegalArgumentException Wenn die E-Mail ungültig ist
+     * @throws IllegalArgumentException Falls die E-Mail ungültig ist
+     * @throws IllegalArgumentException Falls die E-Mail leer ist
+     * @throws IllegalArgumentException Falls die E-Mail null ist
      */
     public static String validateEmail(String email) {
-        //disallow Localhost mails
-        boolean allowLocal = false;
-
-        /*
-        AllowTld hab ich aus Testcases geschlossen, dass es false sein muss
-        Hab nämlich bei mailWithoutTldNotWorking() gesehen, dass es mit true für ne @hotmail
-        einfach durchgewunken wird, daher müsste false gehen, falls euch noch Testcases einfallen,
-        könnt ihr die gerne hinzufügen!
-         */
-        boolean allowTld = false;
-
         //DomainValidator für den EmailValidator
-        DomainValidator domainValidator = DomainValidator.getInstance(allowLocal);
+        DomainValidator domainValidator = DomainValidator.getInstance(false);
 
         //Angaben ob Local und TLD erlaubt sind
-        EmailValidator emailValidator = new EmailValidator(allowLocal, allowTld, domainValidator);
+        EmailValidator emailValidator = new EmailValidator(false, false, domainValidator);
 
         //trimmen
         email = validateString(email, "Die E-Mail darf nicht leer sein.");
@@ -58,25 +50,31 @@ public class CustomerValidation extends Validation{
         }
     }
 
-
     /**
-     * Telefonnummer prüfen mit Fehlermeldung mitgeben
-     *
-     * @param phoneNumber Telefonnummer
-     * @param errorMessage Fehlermeldung
+     * Prüft, ob eine Telefonnummer gültig ist.
+     * Die Methode beschränkt sich ausschließlich auf deutsche Telefonnummern.
+     * Sie trimmt außerdem die Telefonnummer.
+     * Zusätzlich kann hier noch eine Fehlermeldung mitgegeben werden, falls die Telefonnummer ungültig sein sollte.
+     * @param phoneNumber Zu prüfende Telefonnummer
+     * @param errorMessage Fehlermeldung, falls die Telefonnummer ungültig ist
      * @return getrimmte Telefonnummer
-     * @throws IllegalArgumentException wenn Telefonnummer falsch
+     * @throws IllegalArgumentException Falls die Telefonnummer ungültig ist
+     * @throws IllegalArgumentException Falls die Telefonnummer leer ist
+     * @throws IllegalArgumentException Falls die Telefonnummer null ist
      */
     public static String validatePhoneNumber(String phoneNumber, String errorMessage) {
         return validateStringViaRegex(phoneNumber, ValidationRegexEnum.PHONE_NUMBER.getRegex(), errorMessage);
     }
 
     /**
-     * Telefonnummer prüfen
-     *
-     * @param phoneNumber Telefonnummer
+     * Prüft, ob eine Telefonnummer gültig ist.
+     * Die Methode beschränkt sich ausschließlich auf deutsche Telefonnummern.
+     * Sie trimmt außerdem die Telefonnummer.
+     * @param phoneNumber Zu prüfende Telefonnummer
      * @return getrimmte Telefonnummer
-     * @throws IllegalArgumentException wenn Telefonnummer falsch
+     * @throws IllegalArgumentException Falls die Telefonnummer ungültig ist
+     * @throws IllegalArgumentException Falls die Telefonnummer leer ist
+     * @throws IllegalArgumentException Falls die Telefonnummer null ist
      */
     public static String validatePhoneNumber(String phoneNumber) {
         return validateStringViaRegex(phoneNumber, ValidationRegexEnum.PHONE_NUMBER.getRegex(), "Die Telefonnummer darf nicht leer sein.");
@@ -86,10 +84,12 @@ public class CustomerValidation extends Validation{
     /**
      * Prüft, ob eine Führerscheinnummer gültig ist.
      * Es sind nur deutsche Führerscheinnummer erlaubt.
-     *
+     * Die Methode trimmt außerdem die Führerscheinnummer.
      * @param driverLicenseNumber Führerscheinnummer, die überprüft werden soll
      * @return Geprüfte Führerscheinnummer
-     * @throws IllegalArgumentException Wenn die Führerscheinnummer ungültig ist
+     * @throws IllegalArgumentException Falls die Führerscheinnummer ungültig ist
+     * @throws IllegalArgumentException Falls die Führerscheinnummer leer ist
+     * @throws IllegalArgumentException Falls die Führerscheinnummer null ist
      */
     public static String validateDriverLicenseNumber(String driverLicenseNumber) {
         //  Führerscheinnummer überprüfen
@@ -128,64 +128,75 @@ public class CustomerValidation extends Validation{
     }
 
     /**
-     * Prüft das Ablaufdatum des Führerscheins
-     *
+     * Prüft das Ablaufdatum eines Führerscheins auf Gültigkeit.
+     * Es wäre zum Beispiel ungültig, wenn das Ablaufdatum in der Vergangenheit liegt.
      * @param date Führerscheinablaufdatum
-     * @return getrimmtes Datum
+     * @return Datum, falls gültig
+     * @throws IllegalArgumentException Falls das Datum ungültig ist
+     * @throws IllegalArgumentException Falls das Datum null ist
      */
     public static Calendar validateExpirationDate(Calendar date) {
         return validateDatePastForbidden(date);
     }
 
-
     /**
-     * Hausnummer prüfen mit Fehlermeldung mitgeben
-     *
-     * @param houseNumber
-     * @param errorMessage
+     * Prüft, ob eine Hausnummer gültig ist.
+     * Dabei wären zum Beispiel 1 oder 1a erlaubt.
+     * Die Hausnummer wird ebenfalls getrimmt.
+     * Zusätzlich kann hier noch eine Fehlermeldung mitgegeben werden, falls die Hausnummer ungültig sein sollte.
+     * @param houseNumber Zu prüfende Hausnummer
+     * @param errorMessage Fehlermeldung, falls die Hausnummer ungültig ist
      * @return getrimmte Hausnummer
-     * @throws IllegalArgumentException wenn Hausnummer ungültig
+     * @throws IllegalArgumentException Falls die Hausnummer ungültig ist
+     * @throws IllegalArgumentException Falls die Hausnummer leer ist
+     * @throws IllegalArgumentException Falls die Hausnummer null ist
      */
     public static String validateHouseNumber(String houseNumber, String errorMessage) {
         return validateStringViaRegex(houseNumber, ValidationRegexEnum.HOUSE_NUMBER.getRegex(), errorMessage);
     }
 
     /**
-     * Hausnummer prüfen
-     *
-     * @param houseNumber
+     * Prüft, ob eine Hausnummer gültig ist.
+     * Dabei wären zum Beispiel 1 oder 1a erlaubt.
+     * Die Hausnummer wird ebenfalls getrimmt.
+     * @param houseNumber Zu prüfende Hausnummer
      * @return getrimmte Hausnummer
-     * @throws IllegalArgumentException wenn Hausnummer ungültig
+     * @throws IllegalArgumentException Falls die Hausnummer ungültig ist
+     * @throws IllegalArgumentException Falls die Hausnummer leer ist
+     * @throws IllegalArgumentException Falls die Hausnummer null ist
      */
     public static String validateHouseNumber(String houseNumber) {
         return validateStringViaRegex(houseNumber, ValidationRegexEnum.HOUSE_NUMBER.getRegex(), "Die Hausnummer ist ungültig");
     }
 
-
     /**
-     * Postleitzahl prüfen mit Fehlermeldung
-     *
-     * @param errorMessage Fehlermedlung
-     * @param zipCode PLZ
+     * Prüft, ob eine Postleitzahl gültig ist.
+     * Es sind nur deutsche Postleitzahlen erlaubt.
+     * Die Postleitzahl wird ebenfalls getrimmt.
+     * Zusätzlich kann hier noch eine Fehlermeldung mitgegeben werden, falls die Postleitzahl ungültig sein sollte.
+     * @param zipCode PLZ, die überprüft werden soll
+     * @param errorMessage Fehlermeldung, falls die PLZ ungültig ist
      * @return getrimmte PLZ
-     * @throws IllegalArgumentException wenn PLZ ungültig
+     * @throws IllegalArgumentException Falls die PLZ ungültig ist
+     * @throws IllegalArgumentException Falls die PLZ leer ist
+     * @throws IllegalArgumentException Falls die PLZ null ist
      */
     public static String validateZipCode(String zipCode, String errorMessage){
         return validateStringViaRegex(zipCode, ValidationRegexEnum.GERMAN_ZIP_CODE.getRegex(), errorMessage);
     }
 
     /**
-     * Postleitzahl prüfen
-     *
-     * @param zipCode PLZ
+     * Prüft, ob eine Postleitzahl gültig ist.
+     * Es sind nur deutsche Postleitzahlen erlaubt.
+     * Die Postleitzahl wird ebenfalls getrimmt.
+     * @param zipCode PLZ, die überprüft werden soll
      * @return getrimmte PLZ
-     * @throws IllegalArgumentException wenn PLZ ungültig
+     * @throws IllegalArgumentException Falls die PLZ ungültig ist
+     * @throws IllegalArgumentException Falls die PLZ leer ist
+     * @throws IllegalArgumentException Falls die PLZ null ist
      */
     public static String validateZipCode(String zipCode){
         return validateStringViaRegex(zipCode, ValidationRegexEnum.GERMAN_ZIP_CODE.getRegex(), "Die Postleitzahl ist ungültig");
     }
-
-
-
 
 }

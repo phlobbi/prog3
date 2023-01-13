@@ -1,13 +1,13 @@
 package de.htwsaar.hopper.tests.validations;
 
-import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.validations.CarValidation;
-import de.htwsaar.hopper.logic.validations.Validation;
 import org.junit.Test;
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+/**
+ * Diese Klasse überprüft die CreatedDateValidation.
+ */
 public class CreatedDateValidationTest {
 
     @Test

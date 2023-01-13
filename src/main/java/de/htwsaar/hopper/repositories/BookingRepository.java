@@ -9,28 +9,22 @@ import javax.persistence.Query;
 import java.util.List;
 
 /**
- * Repository-Klasse fuer das Booking. Dient zum Abrufbarmachen ueber die Datenbank.
- * @author roblin
+ * Repository-Klasse für das Booking. Dient zum Abrufbarmachen über die Datenbank.
+ * @author Ronny
  */
 public class BookingRepository {
 
     /**
-     * Findet ein spezielles Booking ueber seine ID.
-     * @param bookingId Die gesuchte ID.
-     * @return Das gefundene Booking; wenn keines gefunden wurde null.
+     * Findet ein Booking über seine ID.
+     * @param bookingId ID des zu findenden Bookings
+     * @return Das gefundene Booking; null, falls nicht gefunden
      */
     public static Booking find(int bookingId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         try {
-            Booking booking = entityManager.find(Booking.class, bookingId);
-
-            if (booking == null) {
-                return null;
-            } else {
-                return booking;
-            }
+            return entityManager.find(Booking.class, bookingId);
         } finally {
             entityManager.close();
             entityManagerFactory.close();
@@ -38,8 +32,8 @@ public class BookingRepository {
     }
 
     /**
-     * Geht alle gespeicherten Bookings durch und gibt sie als Liste zurueck.
-     * @return Alle Bookings in der Datenbank; null wenn (noch) keines existiert.
+     * Geht alle gespeicherten Bookings durch und gibt sie als Liste zurück.
+     * @return Alle Bookings in der Datenbank; null, falls keine existieren.
      */
     public static List<Booking> findAll() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
@@ -48,13 +42,7 @@ public class BookingRepository {
         Query query = entityManager.createQuery("SELECT b FROM Booking AS b");
 
         try {
-            List<Booking> bookingList = query.getResultList();
-
-            if (bookingList == null) {
-                return null;
-            } else {
-                return bookingList;
-            }
+            return (List<Booking>) query.getResultList();
         } finally {
             entityManager.close();
             entityManagerFactory.close();

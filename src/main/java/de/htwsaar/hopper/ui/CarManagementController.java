@@ -50,10 +50,11 @@ public class CarManagementController {
 
     }
 
-    @FXML
-    /*
-    Diese Methode ermoeglicht es Ihnen , zum Firstview Fenster zu gehen .
+    /**
+     * Wechselt bei Aufruf auf die Startseite zurück.
+     * @param event
      */
+    @FXML
     void switchToFirstView(ActionEvent event)  {
         App.setRoot("First-view.fxml");
 

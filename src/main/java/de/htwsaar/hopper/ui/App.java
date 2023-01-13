@@ -1,4 +1,5 @@
 package de.htwsaar.hopper.ui;
+
 import java.io.IOException;
 import java.net.URL;
 
@@ -19,27 +20,24 @@ public class App extends Application {
 		scene = new Scene(root) ;
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		 
-		
 	}
-	/*
-	Diese  Methode  erlaubt von einer Scene zur einer  anderen zu wechseln .
+
+	/**
+	 * Die Methode erlaubt den Wechsel zwischen Scenes.
+	 * @param fxmlfile Pfad zur FXML-Datei, die geladen werden soll
 	 */
 	public static void setRoot(String fxmlfile)   {
-		try{
+		try {
 			URL url = App.class.getResource("/"+fxmlfile+"")  ;
 			root = FXMLLoader.load(url) ;
 			scene.setRoot(root);
-		}catch (IOException exception){
+		} catch (IOException exception){
 			System.out.println("Die fxml-Datei konnte nicht geladen werden");
 		}
-
-
 	}
 	
 	public static void main(String[] args) {
 	    launch(args);	
 	}
-	
 
 }

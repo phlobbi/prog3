@@ -8,7 +8,10 @@ import static org.junit.Assert.*;
 
 import java.util.Calendar;
 
-
+/**
+ * Diese Klasse testet die Customer-Klasse.
+ * Es werden zum Beispiel alle Getter und Setter getestet, aber auch der Konstruktor.
+ */
 public class CustomerTest {
     Customer setterTestCustomer;
     Calendar cal;

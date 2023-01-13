@@ -4,24 +4,40 @@ import de.htwsaar.hopper.logic.enums.ValidationRegexEnum;
 
 import java.util.Calendar;
 
-public class CarValidation extends Validation{
+/**
+ * Validierungsklasse fuer Buchungen.
+ * @author Bennet
+ */
+public class CarValidation extends Validation {
 
+    /**
+     * Prüft, ob der übergebene Grundpreis gültig ist.
+     * @param basePrice Zu prüfender Grundpreis
+     * @return Grundpreis, falls gültig
+     * @throws IllegalArgumentException Falls der Grundpreis kleiner als 0 ist
+     */
     public static double validateBasePrice(double basePrice) {
         Utils.check(basePrice > 0.00, "Der Basispreis muss größer als 0 sein!");
         return basePrice;
     }
 
+    /**
+     * Prüft, ob der übergebene Tagespreis gültig ist.
+     * @param currentPrice Zu prüfender Tagespreis
+     * @return Tagespreis, falls gültig
+     * @throws IllegalArgumentException Falls der Tagespreis kleiner als 0 ist
+     */
     public static double validateCurrentPrice(double currentPrice) {
         Utils.check(currentPrice > 0.00, "Der aktuelle Preis muss größer als 0 sein!");
         return currentPrice;
     }
 
-
     /**
-     * Prüft ob Erstellungsdatum nicht in der Zukunft liegt
-     *
-     * @param date
-     * @return
+     * Prüft, ob das Erstellungsdatum gültig ist.
+     * Es wäre zum Beispiel ungültig, wenn es in der Zukunft liegt.
+     * @param date Zu prüfendes Erstellungsdatum
+     * @return Erstellungsdatum, falls gültig
+     * @throws IllegalArgumentException Falls das Erstellungsdatum ungültig ist
      */
     public static Calendar validateCreatedDate(Calendar date) {
         return validateDateFutureForbidden(date);
@@ -29,11 +45,12 @@ public class CarValidation extends Validation{
 
 
     /**
-     * Überprüft das Nummernschild auf Gültigkeit
-     *
-     * @param licensePlate Nummernschild
+     * Überprüft, ob das Nummernschild gültig ist.
+     * Es muss hierbei sowohl vom Format stimmen als auch die richtigen Zeichen enthalten.
+     * Die Methode trimmt den übergebenen String außerdem von jeglichen Leerzeichen.
+     * @param licensePlate Zu prüfendes Nummernschild
      * @return getrimmtes Nummernschild
-     * @throws IllegalArgumentException wenn Nummernschild nicht passt
+     * @throws IllegalArgumentException Falls ein Nummernschild nicht gültig ist
      */
     public static String validateLicensePlate(String licensePlate) {
         licensePlate = validateString(licensePlate, "Die Kennzeichen dürfen nicht leer sein!");
@@ -44,11 +61,10 @@ public class CarValidation extends Validation{
 
 
     /**
-     * Prüft ob die Anzahl Sitze stimmen kann
-     *
-     * @param seats Anzahl Sitze
-     * @return Sitze wenn gut
-     * @throws IllegalArgumentException wenn die Anzahl Sitze nicht stimmt
+     * Prüft, ob die Anzahl Sitze stimmen kann
+     * @param seats Anzahl der Sitze
+     * @return Anzahl der Sitze, falls gültig
+     * @throws IllegalArgumentException Falls die Anzahl der Sitze nicht stimmen kann
      */
     public static int validateSeats(int seats) {
         Utils.check(seats > 0, "Die Anzahl der Sitze muss größer als 0 sein!");

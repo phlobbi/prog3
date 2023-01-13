@@ -10,7 +10,7 @@ import java.util.Calendar;
 
 /**
  * Implementierung des CarInterface.
- * Annotiert fuer Datenbank.
+ * Annotiert fuer die Datenbank.
  * @author gitroba
  */
 @Entity
@@ -59,22 +59,22 @@ public class Car implements CarInterface {
     private String model;
 
     /**
-     * Standard-Konstruktor.
+     * Standard-Konstruktor
      */
     public Car() {
     }
 
     /**
      * Konstruktor mit allen Werten.
-     * @param carId Die Id.
-     * @param type Der Typ.
-     * @param brand Die Marke.
-     * @param creationDate Das Erstellungsdatum.
-     * @param seats Die Sitzanzahl.
-     * @param basePrice Der Grundpreis.
-     * @param currentPrice Der Tagespreis.
-     * @param licensePlate Das Kennzeichen.
-     * @param model Das Modell.
+     * @param carId ID des Autos.
+     * @param type Typ des Autos
+     * @param brand Marke des Autos
+     * @param creationDate Herstellungsdatum des Autos
+     * @param seats Sitzanzahl des Autos
+     * @param basePrice Grundpreis des Autos
+     * @param currentPrice Tagespreis des Autos
+     * @param licensePlate Kennzeichen des Autos
+     * @param model Modell des Autos
      */
     public Car(int carId, CarTypeEnum type, String brand, Calendar creationDate, int seats, double basePrice,
                double currentPrice, String licensePlate, String model) {
@@ -89,147 +89,94 @@ public class Car implements CarInterface {
         this.model = Validation.validateString(model, "Das Automodell darf nicht leer sein.");
     }
 
-    /**
-     * Getter für CarId.
-     *
-     * @return CarId Die ID (Schluessel).
-     */
+    /* GETTER */
+    @Override
     public int getCarId() {
         return carId;
     }
 
-    /**
-     * Setter fuer CarId.
-     * @param carId Die ID (Schluessel).
-     */
-    public void setCarId(int carId) {
-        this.carId = carId;
-    }
-
-    /**
-     * Getter fuer enum, die die Autotypen enthaelt.
-     * @return CarTypeEnum Der Typ.
-     */
+    @Override
     public CarTypeEnum getType() {
         return type;
     }
 
-    /**
-     * Setter fuer die Autotyp-enum.
-     * @param type Der Typ des Autos.
-     */
-    public void setType(CarTypeEnum type) {
-        this.type = type;
-    }
-
-    /**
-     * Getter fuer die Marke.
-     * @return Die Marke.
-     */
+    @Override
     public String getBrand() {
         return brand;
     }
 
-    /**
-     * Setter fuer die Marke.
-     * @param brand Die Marke.
-     */
-    public void setBrand(String brand) {
-        this.brand = Validation.validateString(brand, "Die Automarke darf nicht leer sein.");
-    }
-
-    /**
-     * Getter fuer das Erstellungsdatum.
-     * @return Das Erstellungsdatum.
-     */
+    @Override
     public Calendar getCreationDate() {
         return creationDate;
     }
 
-    /**
-     * Setter fuer das Erstellungsdatum.
-     * @param creationDate Das Erstellungsdatum.
-     */
-    public void setCreationDate(Calendar creationDate) {
-        this.creationDate = CarValidation.validateCreatedDate(creationDate);
-    }
-
-    /**
-     * Getter fuer die Anzahl der Sitze.
-     * @return Die Sitzanzahl.
-     */
+    @Override
     public int getSeats() {
         return seats;
     }
 
-    /**
-     * Setter fuer die Anzahl der Sitze.
-     * @param seats Die Sitzanzahl.
-     */
-    public void setSeats(int seats) {
-        this.seats = CarValidation.validateSeats(seats);
-    }
-
-    /**
-     * Getter fuer den Grundpreis.
-     * @return Der Grundpreis.
-     */
+    @Override
     public double getBasePrice() {
         return basePrice;
     }
 
-    /**
-     * Setter fuer den Grundpreis.
-     * @param basePrice Der Grundpreis.
-     */
-    public void setBasePrice(double basePrice) {
-        this.basePrice = CarValidation.validateBasePrice(basePrice);
-    }
-
-    /**
-     * Getter fuer den Tagespreis.
-     * @return Der Tagespreis.
-     */
+    @Override
     public double getCurrentPrice() {
         return currentPrice;
     }
 
-    /**
-     * Setter fuer den Tagespreis.
-     * @param currentPrice Der Tagespreis.
-     */
-    public void setCurrentPrice(double currentPrice) {
-        this.currentPrice = CarValidation.validateCurrentPrice(currentPrice);
-    }
-
-    /**
-     * Getter fuer das Kennzeichen.
-     * @return Das Kennzeichen.
-     */
+    @Override
     public String getLicensePlate() {
         return licensePlate;
     }
 
-    /**
-     * Setter fuer das Kennzeichen.
-     * @param licensePlate Das Kennzeichen.
-     */
-    public void setLicensePlate(String licensePlate) { // mit regex prüfen ob Nummernschild existiert???
-        this.licensePlate = CarValidation.validateLicensePlate(licensePlate);
-    }
-
-    /**
-     * Getter fuer das Modell.
-     * @return Das Modell.
-     */
+    @Override
     public String getModel() {
         return model;
     }
 
-    /**
-     * Setter fuer das Modell.
-     * @param model Das Modell.
-     */
+    /* SETTER */
+    @Override
+    public void setCarId(int carId) {
+        this.carId = carId;
+    }
+
+    @Override
+    public void setType(CarTypeEnum type) {
+        this.type = type;
+    }
+
+    @Override
+    public void setBrand(String brand) {
+        this.brand = Validation.validateString(brand, "Die Automarke darf nicht leer sein.");
+    }
+
+    @Override
+    public void setCreationDate(Calendar creationDate) {
+        this.creationDate = CarValidation.validateCreatedDate(creationDate);
+    }
+
+    @Override
+    public void setSeats(int seats) {
+        this.seats = CarValidation.validateSeats(seats);
+    }
+
+    @Override
+    public void setBasePrice(double basePrice) {
+        this.basePrice = CarValidation.validateBasePrice(basePrice);
+    }
+
+    @Override
+    public void setCurrentPrice(double currentPrice) {
+        this.currentPrice = CarValidation.validateCurrentPrice(currentPrice);
+    }
+
+    @Override
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = CarValidation.validateLicensePlate(licensePlate);
+    }
+
+    @Override
     public void setModel(String model) {
         this.model = Validation.validateString(model,"Kein gültiges Modell!");
     }

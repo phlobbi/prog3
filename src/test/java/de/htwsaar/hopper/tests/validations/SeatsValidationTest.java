@@ -3,6 +3,9 @@ package de.htwsaar.hopper.tests.validations;
 import de.htwsaar.hopper.logic.validations.CarValidation;
 import org.junit.Test;
 
+/**
+ * Diese Klasse überprüft die SeatsValidation.
+ */
 public class SeatsValidationTest {
 
     @Test (expected = IllegalArgumentException.class)

@@ -6,6 +6,9 @@ import org.junit.Test;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+/**
+ * Diese Klasse überprüft die ExpirationDateValidation.
+ */
 public class ExpirationDateValidationTest {
 
     @Test

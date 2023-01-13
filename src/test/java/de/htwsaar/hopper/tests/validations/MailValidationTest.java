@@ -5,6 +5,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Diese Klasse überprüft die MailValidation.
+ */
 public class MailValidationTest {
 
     @Test (expected = IllegalArgumentException.class)

@@ -27,27 +27,31 @@ public class FirstViewController {
     @FXML
     private BorderPane root;
 
-    /*
-    Die Methode SwitchToCarRental erlaubt euch zum  Fenster CarRental zu wechseln.
+    /**
+     * Wechselt bei Aufruf auf die Buchungsverwaltung.
+     * @param event
      */
     @FXML
     void SwitchToCarRental(ActionEvent event)  {
         App.setRoot("Booking-management-view.fxml");
-
     }
-    /*
-    Die Methode switchToCarView erlaubt euch zum Fenster Car-view wechseln.
-     */
 
+    /**
+     * Wechselt bei Aufruf auf die Autoverwaltung.
+     * @param event
+     */
     @FXML
     void switchToCarView(ActionEvent event) {
       App.setRoot("Car-view.fxml");
     }
 
+    /**
+     * Wechselt bei Aufruf auf die Kundenverwaltung.
+     * @param event
+     */
     @FXML
     void switchToCustomerView(ActionEvent event)  {
         App.setRoot("Customer-management-view.fxml");
 
     }
-
 }

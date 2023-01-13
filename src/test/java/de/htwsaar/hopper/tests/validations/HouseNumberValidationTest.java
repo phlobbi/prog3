@@ -5,6 +5,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Diese Klasse überprüft die HouseNumberValidation.
+ */
 public class HouseNumberValidationTest {
 
     @Test

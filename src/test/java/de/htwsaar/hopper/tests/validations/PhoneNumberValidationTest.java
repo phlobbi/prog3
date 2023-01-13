@@ -1,10 +1,13 @@
 package de.htwsaar.hopper.tests.validations;
 
-
 import de.htwsaar.hopper.logic.validations.CustomerValidation;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+
+/**
+ * Diese Klasse überprüft die PhoneNumberValidation.
+ */
 public class PhoneNumberValidationTest {
 
     @Test

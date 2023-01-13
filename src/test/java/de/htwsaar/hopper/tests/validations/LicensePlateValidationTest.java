@@ -1,10 +1,11 @@
 package de.htwsaar.hopper.tests.validations;
 
-import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.validations.CarValidation;
-import de.htwsaar.hopper.logic.validations.Validation;
 import org.junit.Test;
 
+/**
+ * Diese Klasse überprüft die LicensePlateValidation.
+ */
 public class LicensePlateValidationTest {
 
     @Test

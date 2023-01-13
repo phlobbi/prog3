@@ -9,28 +9,22 @@ import javax.persistence.Query;
 import java.util.List;
 
 /**
- * Repository-Klasse fuer das Car. Dient zum Abrufbarmachen ueber die Datenbank.
- * @author roblin
+ * Repository-Klasse für Car. Dient zum Abrufbarmachen über die Datenbank.
+ * @author Ronny
  */
 public class CarRepository {
 
     /**
-     * Findet ein spezielles Car ueber seine ID.
-     * @param carId Die gesuchte ID.
-     * @return Das gefundene Car; wenn keins gefunden wurde null.
+     * Findet ein Car über seine ID.
+     * @param carId ID des zu findenden Cars
+     * @return Gefundenes Car; null, falls nicht gefunden
      */
     public static Car find(int carId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         try {
-            Car car = entityManager.find(Car.class, carId);
-
-            if (car == null) {
-                return null;
-            } else {
-                return car;
-            }
+            return entityManager.find(Car.class, carId);
         } finally {
             entityManager.close();
             entityManagerFactory.close();
@@ -39,7 +33,7 @@ public class CarRepository {
 
     /**
      * Geht alle gespeicherten Cars durch und gibt sie als Liste zurueck.
-     * @return Alle Cars in der Datenbank; null wenn (noch) keins existiert.
+     * @return Alle Cars in der Datenbank; null, falls keine existieren.
      */
     public static List<Car> findAll() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
@@ -48,13 +42,7 @@ public class CarRepository {
         Query query = entityManager.createQuery("SELECT c FROM Car AS c");
 
         try {
-            List<Car> carList = query.getResultList();
-
-            if (carList == null) {
-                return null;
-            } else {
-                return carList;
-            }
+            return (List<Car>) query.getResultList();
         } finally {
             entityManager.close();
             entityManagerFactory.close();
@@ -62,34 +50,27 @@ public class CarRepository {
     }
 
     /**
-     * Sucht alle Cars, die noch verfuegbar sind und gibt sie als Liste aus.
-     * @return Die Car-Liste, null wenn keins mehr verfuegbar ist.
+     * Sucht alle Cars, die noch verfügbar sind und gibt sie als Liste aus.
+     * @return Die Car-Liste; null, falls keine verfügbaren Cars existieren
      */
     public static List<Car> findAvailable() {
-            EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-            EntityManager entityManager = entityManagerFactory.createEntityManager();
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-            Query queryForAvailableCars = entityManager.createQuery("SELECT c FROM Car AS c WHERE " +
-                    "NOT EXISTS (SELECT b FROM Booking AS b WHERE c.carId=b.carId AND b.realDropOffDate = null)");
+        Query queryForAvailableCars = entityManager.createQuery("SELECT c FROM Car AS c WHERE " +
+                "NOT EXISTS (SELECT b FROM Booking AS b WHERE c.carId=b.carId AND b.realDropOffDate = null)");
 
-            try {
-
-                List <Car> listOfAll = queryForAvailableCars.getResultList();
-
-                if (listOfAll == null) {
-                    return null;
-                } else {
-                    return listOfAll;
-                }
-            } finally {
-                entityManager.close();
-                entityManagerFactory.close();
-            }
+        try {
+            return (List<Car>) queryForAvailableCars.getResultList();
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
     }
 
     /**
      * Sucht alle Cars, die nicht mehr verfuegbar sind und gibt sie als Liste aus.
-     * @return Die Car-Liste, null wenn alle verfuegbar sind.
+     * @return Die Car-Liste; null, wenn keine nicht mehr verfügbaren Cars existieren.
      */
     public static List<Car> findUnavailable() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
@@ -99,13 +80,7 @@ public class CarRepository {
                 "c.carId = b.carId AND b.realDropOffDate = null");
 
         try {
-            List<Car> carList = query.getResultList();
-
-            if (carList == null) {
-                return null;
-            } else {
-                return carList;
-            }
+            return (List<Car>) query.getResultList();
         } finally {
             entityManager.close();
             entityManagerFactory.close();

@@ -9,28 +9,22 @@ import javax.persistence.Query;
 import java.util.List;
 
 /**
- * Repository-Klasse fuer den Customer. Dient zum Abrufbarmachen ueber die Datenbank.
- * @author roblin
+ * Repository-Klasse für den Customer. Dient zum Abrufbarmachen über die Datenbank.
+ * @author Ronny
  */
 public class CustomerRepository {
 
     /**
-     * Findet einen speziellen Customer ueber seine ID.
-     * @param customerId Die gesuchte ID.
-     * @return Der gefundene Customer; wenn keiner gefunden wurde null.
+     * Findet einen speziellen Customer über seine ID.
+     * @param customerId ID des zu findenden Customers
+     * @return Der gefundene Customer; null, falls nicht gefunden
      */
     public static Customer find(int customerId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         try {
-            Customer customer = entityManager.find(Customer.class, customerId);
-
-            if (customer == null) {
-                return null;
-            } else {
-                return customer;
-            }
+            return entityManager.find(Customer.class, customerId);
         } finally {
             entityManager.close();
             entityManagerFactory.close();
@@ -38,8 +32,8 @@ public class CustomerRepository {
     }
 
     /**
-     * Geht alle gespeicherten Customer durch und gibt sie als Liste zurueck.
-     * @return Alle Customer in der Datenbank; null wenn (noch) keiner existiert.
+     * Geht alle gespeicherten Customer durch und gibt sie als Liste zurück.
+     * @return Alle Customer in der Datenbank; null, falls keine existieren.
      */
     public static List<Customer> findAll() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
@@ -48,13 +42,7 @@ public class CustomerRepository {
         Query query = entityManager.createQuery("SELECT c FROM Customer AS c");
 
         try {
-            List<Customer> customerList = query.getResultList();
-
-            if (customerList == null) {
-                return null;
-            } else {
-                return customerList;
-            }
+            return query.getResultList();
         } finally {
             entityManager.close();
             entityManagerFactory.close();

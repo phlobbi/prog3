@@ -5,6 +5,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Diese Klasse überprüft die IbanValidation.
+ */
 public class IbanValidationTest {
     private final static String EXPECTED_IBAN = "DE89370400440532013000";
 

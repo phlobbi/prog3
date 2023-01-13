@@ -7,7 +7,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-
+/**
+ * Diese Klasse überprüft die StringValidation.
+ */
 public class StringValidationTest {
 
     @Test
