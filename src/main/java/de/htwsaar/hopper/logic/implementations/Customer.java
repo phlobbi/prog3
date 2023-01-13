@@ -1,6 +1,7 @@
 package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.interfaces.CustomerInterface;
+import de.htwsaar.hopper.logic.validations.CustomerValidation;
 import de.htwsaar.hopper.logic.validations.Validation;
 
 import javax.persistence.*;
@@ -81,15 +82,15 @@ public class Customer implements CustomerInterface {
         this.customerId = customerId;
         this.firstName = Validation.validateString(firstName, "Der Vorname darf nicht leer sein.");
         this.lastName = Validation.validateString(lastName, "Der Nachname darf nicht leer sein.");
-        this.email = Validation.validateEmail(email);
+        this.email = CustomerValidation.validateEmail(email);
         this.street = Validation.validateString(street, "Die Strasse darf nicht leer sein.");
-        this.houseNumber = Validation.validateHouseNumber(houseNumber);
-        this.zipCode = Validation.validateZipCode(zipCode);
+        this.houseNumber = CustomerValidation.validateHouseNumber(houseNumber);
+        this.zipCode = CustomerValidation.validateZipCode(zipCode);
         this.city = Validation.validateString(city, "Die Stadt darf nicht leer sein.");
-        this.phoneNumber = Validation.validatePhonenumber(phoneNumber);
-        this.iban = Validation.validateIBAN(iban);
-        this.driverLicenseNumber = Validation.validateDriverLicenseNumber(driverLicenseNumber);
-        this.driverLicenseExpirationDate = Validation.validateExpirationDate(driverLicenseExpirationDate);
+        this.phoneNumber = CustomerValidation.validatePhoneNumber(phoneNumber);
+        this.iban = CustomerValidation.validateIBAN(iban);
+        this.driverLicenseNumber = CustomerValidation.validateDriverLicenseNumber(driverLicenseNumber);
+        this.driverLicenseExpirationDate = CustomerValidation.validateExpirationDate(driverLicenseExpirationDate);
     }
 
     @Override
@@ -129,7 +130,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setEmail(String email) {
-        this.email = Validation.validateEmail(email);
+        this.email = CustomerValidation.validateEmail(email);
     }
 
     @Override
@@ -149,7 +150,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setHouseNumber(String houseNumber) {
-        this.houseNumber = Validation.validateHouseNumber(houseNumber);
+        this.houseNumber = CustomerValidation.validateHouseNumber(houseNumber);
     }
 
     @Override
@@ -159,7 +160,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setZipCode(String zipCode) {
-        this.zipCode = Validation.validateZipCode(zipCode);
+        this.zipCode = CustomerValidation.validateZipCode(zipCode);
     }
 
     @Override
@@ -179,7 +180,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = Validation.validatePhonenumber(phoneNumber);
+        this.phoneNumber = CustomerValidation.validatePhoneNumber(phoneNumber);
     }
 
     public String getIBAN() {
@@ -187,7 +188,7 @@ public class Customer implements CustomerInterface {
     }
 
     public void setIBAN(String iban) {
-        this.iban = Validation.validateIBAN(iban);
+        this.iban = CustomerValidation.validateIBAN(iban);
     }
 
     @Override
@@ -197,7 +198,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setDriverLicenseNumber(String driverLicenseNumber) {
-        this.driverLicenseNumber = Validation.validateDriverLicenseNumber(driverLicenseNumber);
+        this.driverLicenseNumber = CustomerValidation.validateDriverLicenseNumber(driverLicenseNumber);
     }
 
     @Override
@@ -206,6 +207,6 @@ public class Customer implements CustomerInterface {
     }
 
     public void setDriverLicenseExpirationDate(Calendar driverLicenseExpirationDate) {
-        this.driverLicenseExpirationDate = Validation.validateExpirationDate(driverLicenseExpirationDate);
+        this.driverLicenseExpirationDate = CustomerValidation.validateExpirationDate(driverLicenseExpirationDate);
     }
 }

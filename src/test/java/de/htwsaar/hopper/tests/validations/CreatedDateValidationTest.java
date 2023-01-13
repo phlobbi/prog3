@@ -1,5 +1,7 @@
 package de.htwsaar.hopper.tests.validations;
 
+import de.htwsaar.hopper.logic.implementations.Car;
+import de.htwsaar.hopper.logic.validations.CarValidation;
 import de.htwsaar.hopper.logic.validations.Validation;
 import org.junit.Test;
 
@@ -12,21 +14,21 @@ public class CreatedDateValidationTest {
     public void dateWorking(){
         Calendar current = Calendar.getInstance();
         current.add(Calendar.MONTH, -1);
-        Validation.validateCreatedDate(current);
+        CarValidation.validateCreatedDate(current);
     }
     @Test
     public void dateBefore() {
         Calendar pastDate = new GregorianCalendar(2014, Calendar.JANUARY, 1);
-        Validation.validateCreatedDate(pastDate);
+        CarValidation.validateCreatedDate(pastDate);
     }
     @Test (expected = IllegalArgumentException.class)
     public void dateFuture() {
         Calendar futureDate = new GregorianCalendar(2024, Calendar.JANUARY, 1);
-        Validation.validateCreatedDate(futureDate);
+        CarValidation.validateCreatedDate(futureDate);
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void dateNull() {
-        Validation.validateCreatedDate(null);
+        CarValidation.validateCreatedDate(null);
     }
 }
