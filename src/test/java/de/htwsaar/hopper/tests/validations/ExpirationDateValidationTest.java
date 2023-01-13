@@ -1,6 +1,6 @@
 package de.htwsaar.hopper.tests.validations;
 
-import de.htwsaar.hopper.logic.validations.Validation;
+import de.htwsaar.hopper.logic.validations.CustomerValidation;
 import org.junit.Test;
 
 import java.util.Calendar;
@@ -12,21 +12,21 @@ public class ExpirationDateValidationTest {
     public void dateWorking(){
         Calendar current = Calendar.getInstance();
         current.add(Calendar.MONTH, 1);
-        Validation.validateExpirationDate(current);
+        CustomerValidation.validateExpirationDate(current);
     }
     @Test(expected = IllegalArgumentException.class)
     public void dateBefore() {
         Calendar pastDate = new GregorianCalendar(2014, Calendar.JANUARY, 1);
-        Validation.validateExpirationDate(pastDate);
+        CustomerValidation.validateExpirationDate(pastDate);
     }
     @Test
     public void dateFuture() {
         Calendar futureDate = new GregorianCalendar(2024, Calendar.JANUARY, 1);
-        Validation.validateExpirationDate(futureDate);
+        CustomerValidation.validateExpirationDate(futureDate);
     }
 
     @Test (expected = IllegalArgumentException.class)
     public void dateNull() {
-        Validation.validateExpirationDate(null);
+        CustomerValidation.validateExpirationDate(null);
     }
 }

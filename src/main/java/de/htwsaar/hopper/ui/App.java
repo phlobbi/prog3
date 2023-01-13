@@ -14,24 +14,26 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		URL url = App.class.getResource("/firstview.fxml") ;
-		//	System.out.println(url.toString()) ;
+		URL url = App.class.getResource("/First-view.fxml") ;
 		root = FXMLLoader.load(url) ;
 		scene = new Scene(root) ;
 		primaryStage.setScene(scene);
-		
 		primaryStage.show();
 		 
 		
 	}
 	/*
-	Diese  Methode  erlaubt von einer Scene zur einer  anderer zu wechsel .
+	Diese  Methode  erlaubt von einer Scene zur einer  anderen zu wechseln .
 	 */
-	public static void setRoot(String fxmlfile) throws IOException {
-		URL url = App.class.getResource("/"+fxmlfile+"") ;
-		//	System.out.println(url.toString()) ;
-		root = FXMLLoader.load(url) ;
-		scene.setRoot(root);
+	public static void setRoot(String fxmlfile)   {
+		try{
+			URL url = App.class.getResource("/"+fxmlfile+"")  ;
+			root = FXMLLoader.load(url) ;
+			scene.setRoot(root);
+		}catch (IOException exception){
+			System.out.println("Die fxml-Datei konnte nicht geladen werden");
+		}
+
 
 	}
 	
