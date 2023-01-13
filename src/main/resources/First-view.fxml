@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,7 +19,7 @@
          <children>
             <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <GridPane fx:id="gridpane" prefHeight="392.0" prefWidth="800.0">
+                  <GridPane fx:id="gridpane" prefHeight="392.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
                     <columnConstraints>
                       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -28,15 +29,34 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="btnCarsManagement" mnemonicParsing="false" onAction="#switchToCarView" prefHeight="190.0" prefWidth="400.0" text="Autoverwaltung" />
-                        <Button fx:id="btnCustomerManagement" mnemonicParsing="false" onAction="#switchToCustomerView" prefHeight="190.0" prefWidth="400.0" text="Kundenverwaltung" GridPane.columnIndex="1" />
-                        <Button fx:id="btnBookingManagement" mnemonicParsing="false" onAction="#SwitchToCarRental" prefHeight="190.0" prefWidth="400.0" text="Buchungsverwaltung" GridPane.rowIndex="1" />
-                        <Button fx:id="btnHelp" mnemonicParsing="false" onAction="#switchToHelpView" prefHeight="190.0" prefWidth="400.0" text="Hilfe" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <VBox alignment="CENTER">
+                           <children>
+                              <Button fx:id="btnCarsManagement" mnemonicParsing="false" onAction="#switchToCarView" prefHeight="190.0" prefWidth="400.0" text="Autoverwaltung" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" GridPane.columnIndex="1">
+                           <children>
+                              <Button fx:id="btnCustomerManagement" mnemonicParsing="false" onAction="#switchToCustomerView" prefHeight="190.0" prefWidth="400.0" text="Kundenverwaltung" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" GridPane.rowIndex="1">
+                           <children>
+                              <Button fx:id="btnBookingManagement" mnemonicParsing="false" onAction="#SwitchToCarRental" prefHeight="190.0" prefWidth="400.0" text="Buchungsverwaltung" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Button fx:id="btnHelp" mnemonicParsing="false" onAction="#switchToHelpView" prefHeight="190.0" prefWidth="400.0" text="Hilfe" />
+                           </children>
+                        </VBox>
                      </children>
                   </GridPane>
                </children>
             </VBox>
          </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
       </AnchorPane>
    </center>
    <top>
