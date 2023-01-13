@@ -28,9 +28,9 @@
          <children>
             <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
               <columns>
-                <TableColumn prefWidth="171.0" text="CarId" />
-                <TableColumn prefWidth="210.0" text="Name" />
-                  <TableColumn prefWidth="456.0" text="Brand" />
+                <TableColumn prefWidth="171.0" text="AutoID" />
+                <TableColumn prefWidth="302.4000244140625" text="Type" />
+                  <TableColumn prefWidth="364.7999267578125" text="Marke" />
               </columns>
             </TableView>
             <Label prefHeight="47.0" prefWidth="283.0" text="Autoverwaltung" GridPane.columnIndex="1">
