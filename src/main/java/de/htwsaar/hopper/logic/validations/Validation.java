@@ -1,10 +1,8 @@
 package de.htwsaar.hopper.logic.validations;
 
-import de.htwsaar.hopper.logic.enums.ValidationRegexEnum;
-
 import java.util.Calendar;
 
-public class Validation {
+public abstract class Validation {
 
     /**
      * Prüft, ob ein String leer ist.
