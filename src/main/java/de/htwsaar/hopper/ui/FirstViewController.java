@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 
 public class FirstViewController {
 
@@ -22,10 +23,16 @@ public class FirstViewController {
     private Button btnCustomerManagement;
 
     @FXML
+    private Button btnHelp;
+
+    @FXML
     private Label label;
 
     @FXML
     private BorderPane root;
+
+    @FXML
+    private GridPane gridpane;
 
     /**
      * Wechselt bei Aufruf auf die Buchungsverwaltung.
@@ -52,6 +59,12 @@ public class FirstViewController {
     @FXML
     void switchToCustomerView(ActionEvent event)  {
         App.setRoot("Customer-management-view.fxml");
+
+    }
+
+    @FXML
+    void switchToHelpView(ActionEvent event)  {
+        App.setRoot("Help-view.fxml");
 
     }
 }

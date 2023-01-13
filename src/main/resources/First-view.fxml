@@ -4,18 +4,47 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.FirstViewController">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.FirstViewController">
+   <center>
+      <AnchorPane fx:id="borderpane" prefHeight="200.0" prefWidth="200.0" stylesheets="@Style.css" BorderPane.alignment="CENTER">
+         <children>
+            <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <GridPane fx:id="gridpane" prefHeight="392.0" prefWidth="800.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button fx:id="btnCarsManagement" mnemonicParsing="false" onAction="#switchToCarView" prefHeight="190.0" prefWidth="400.0" text="Autoverwaltung" />
+                        <Button fx:id="btnCustomerManagement" mnemonicParsing="false" onAction="#switchToCustomerView" prefHeight="190.0" prefWidth="400.0" text="Kundenverwaltung" GridPane.columnIndex="1" />
+                        <Button fx:id="btnBookingManagement" mnemonicParsing="false" onAction="#SwitchToCarRental" prefHeight="190.0" prefWidth="400.0" text="Buchungsverwaltung" GridPane.rowIndex="1" />
+                        <Button fx:id="btnHelp" mnemonicParsing="false" onAction="#switchToHelpView" prefHeight="190.0" prefWidth="400.0" text="Hilfe" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </center>
    <top>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" layoutX="374.0" layoutY="54.0" prefHeight="49.0" prefWidth="709.0" text="Willkommen bei der Autovermietungssoftware">
+                  <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" layoutX="47.0" layoutY="50.0" prefHeight="49.0" prefWidth="709.0" text="Willkommen bei der Autovermietungssoftware" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <textFill>
                         <RadialGradient centerX="0.292817679558011" radius="0.5">
                            <stops>
@@ -33,19 +62,10 @@
                         </RadialGradient>
                      </textFill>
                   </Label>
-                  <Label alignment="CENTER" layoutX="432.0" layoutY="142.0" prefHeight="49.0" prefWidth="460.0" text="Wählen SIe ihre Option" textFill="#f9f9f8" />
+                  <Label alignment="CENTER" layoutX="172.0" layoutY="136.0" prefHeight="49.0" prefWidth="460.0" text="Wählen SIe ihre Option" textFill="#f9f9f8" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0" />
                </children>
             </AnchorPane>
          </children>
       </VBox>
    </top>
-   <center>
-      <AnchorPane fx:id="borderpane" prefHeight="200.0" prefWidth="200.0" stylesheets="@Style.css" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="btnCarsManagement" layoutX="223.0" layoutY="244.0" mnemonicParsing="false" onAction="#switchToCarView" prefHeight="25.0" prefWidth="178.0" text="Autoverwaltung" />
-            <Button fx:id="btnCustomerManagement" layoutX="550.0" layoutY="246.0" mnemonicParsing="false" onAction="#switchToCustomerView" prefHeight="25.0" prefWidth="147.0" text="Kundenverwaltung" />
-            <Button fx:id="btnBookingManagement" layoutX="884.0" layoutY="245.0" mnemonicParsing="false" onAction="#SwitchToCarRental" prefHeight="26.0" prefWidth="142.0" text="Buchungsverwaltung" />
-         </children>
-      </AnchorPane>
-   </center>
 </BorderPane>
