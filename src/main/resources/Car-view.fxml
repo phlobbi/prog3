@@ -11,8 +11,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CarManagementController">
-   <center>
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CarManagementController">
+   <right>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="1144.0" minWidth="10.0" prefWidth="141.0" />
@@ -26,11 +26,11 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
+            <TableView fx:id="tableView" prefHeight="200.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
               <columns>
                 <TableColumn prefWidth="171.0" text="AutoID" />
-                <TableColumn prefWidth="302.4000244140625" text="Type" />
-                  <TableColumn prefWidth="364.7999267578125" text="Marke" />
+                <TableColumn prefWidth="220.79994201660156" text="Type" />
+                  <TableColumn prefWidth="255.19998168945312" text="Marke" />
               </columns>
             </TableView>
             <Label prefHeight="47.0" prefWidth="283.0" text="Autoverwaltung" GridPane.columnIndex="1">
@@ -40,15 +40,15 @@
             </Label>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                  <Button fx:id="btnCreate" layoutX="66.0" layoutY="65.0" mnemonicParsing="false" onAction="#switchToSceneAddCar" prefHeight="25.0" prefWidth="183.0" text="neuen Wagen anlegen" />
-                  <Button fx:id="btnUpdate" layoutX="70.0" layoutY="126.0" mnemonicParsing="false" onAction="#switchToSceneUpdateCar" prefHeight="25.0" prefWidth="178.0" text="Wagen  aendern" />
-                  <Button fx:id="btnRemove" layoutX="75.0" layoutY="198.0" mnemonicParsing="false" onAction="#switchToSceneRemoveCar" prefHeight="25.0" prefWidth="173.0" text="Wagen  löschen" />
-                  <Button fx:id="btnRead" layoutX="74.0" layoutY="266.0" mnemonicParsing="false" onAction="#switchToSceneReadCar" prefHeight="25.0" prefWidth="176.0" text="Wagen lesen" />
+                  <Button fx:id="btnCreate" layoutX="5.0" layoutY="54.0" mnemonicParsing="false" onAction="#switchToSceneAddCar" prefHeight="25.0" prefWidth="183.0" text="neuen Wagen anlegen" />
+                  <Button fx:id="btnUpdate" layoutX="7.0" layoutY="96.0" mnemonicParsing="false" onAction="#switchToSceneUpdateCar" prefHeight="25.0" prefWidth="178.0" text="Wagen  aendern" />
+                  <Button fx:id="btnRemove" layoutX="10.0" layoutY="141.0" mnemonicParsing="false" onAction="#switchToSceneRemoveCar" prefHeight="25.0" prefWidth="173.0" text="Wagen  löschen" />
+                  <Button fx:id="btnRead" layoutX="9.0" layoutY="180.0" mnemonicParsing="false" onAction="#switchToSceneReadCar" prefHeight="25.0" prefWidth="176.0" text="Wagen lesen" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                  <Button fx:id="btnGoBack" layoutX="14.0" layoutY="58.0" mnemonicParsing="false" onAction="#switchToFirstView" prefHeight="25.0" prefWidth="122.0" text="zurueck" />
+                  <Button fx:id="btnGoBack" layoutY="10.0" mnemonicParsing="false" onAction="#switchToFirstView" prefHeight="25.0" prefWidth="122.0" text="zurueck" />
                </children>
             </AnchorPane>
          </children>
@@ -56,5 +56,5 @@
             <Insets />
          </BorderPane.margin>
       </GridPane>
-   </center>
+   </right>
 </BorderPane>
