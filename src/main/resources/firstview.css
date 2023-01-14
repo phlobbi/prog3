@@ -1,0 +1,27 @@
+* {
+    -fx-font-family: Arial;
+}
+
+.title-bar {
+    -fx-background-color: teal;
+}
+
+.title-bar-text {
+    -fx-text-fill: white;
+    -fx-padding: 5px;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+
+.menu-tile {
+    -fx-alignment: center;
+}
+
+.menu-tile:hover {
+    -fx-background-color: #e5e5e5;
+}
+
+.menu-tile-text {
+    -fx-text-fill: teal;
+    -fx-font-size: 20px;
+}
