@@ -285,6 +285,87 @@ public class CustomerTest {
         }
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorWithBlankFirstNameShouldThrowException() {
+        new Customer(1, "   ", "Mustermann",
+                "max@mustermann.de", "Musterstraße", "1", "12345",
+                "Musterstadt", "0123456789", "DE89370400440532013000",
+                "B072RRE2I55", cal);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorWithBlankLastNameShouldThrowException() {
+        new Customer(1, "Max", "   ",
+                "max@mustermann.de", "Musterstraße", "1", "12345",
+                "Musterstadt", "0123456789", "DE89370400440532013000",
+                "B072RRE2I55", cal);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorWithBlankEmailShouldThrowException() {
+        new Customer(1, "Max", "Mustermann",
+                "   ", "Musterstraße", "1", "12345",
+                "Musterstadt", "0123456789", "DE89370400440532013000",
+                "B072RRE2I55", cal);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorWithBlankStreetShouldThrowException() {
+        new Customer(1, "Max", "Mustermann",
+                "", "   ", "1", "12345",
+                "Musterstadt", "0123456789", "DE89370400440532013000",
+                "B072RRE2I55", cal);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorWithBlankHouseNumberShouldThrowException() {
+        new Customer(1, "Max", "Mustermann",
+                "max@mustermann.de", "Musterstraße", "   ", "12345",
+                "Musterstadt", "0123456789", "DE89370400440532013000",
+                "B072RRE2I55", cal);
+    }
+
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorWithBlankZipCodeShouldThrowException() {
+        new Customer(1, "Max", "Mustermann",
+                "max@mustermann.de", "Musterstraße", "1", "   ",
+                "Musterstadt", "0123456789", "DE89370400440532013000",
+                "B072RRE2I55", cal);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorWithBlankCityShouldThrowException() {
+        new Customer(1, "Max", "Mustermann",
+                "max@mustermann.de", "Musterstraße", "1", "12345",
+                "   ", "0123456789", "DE89370400440532013000",
+                "B072RRE2I55", cal);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorWithBlankPhoneNumberShouldThrowException() {
+        new Customer(1, "Max", "Mustermann",
+                "max@mustermann.de", "Musterstraße", "1", "12345",
+                "Musterstadt", "   ", "DE89370400440532013000",
+                "B072RRE2I55", cal);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorWithBlankIbanShouldThrowException() {
+        new Customer(1, "Max", "Mustermann",
+                "max@mustermann.de", "Musterstraße", "1", "12345",
+                "Musterstadt", "0123456789", "   ",
+                "B072RRE2I55", cal);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorWithBlankDriverLicenseNumberShouldThrowException() {
+        new Customer(1, "Max", "Mustermann",
+                "max@mustermann.de", "Musterstraße", "1", "12345",
+                "Musterstadt", "0123456789", "DE89370400440532013000",
+                "   ", cal);
+    }
+
     @Test
     public void setFirstNameWithValidName() {
         setterTestCustomer.setFirstName("Martha");
@@ -624,13 +705,11 @@ public class CustomerTest {
     @Test(expected = IllegalArgumentException.class)
     public void setDriverLicenseExpirationDateWithNullShouldThrowException() {
         setterTestCustomer.setDriverLicenseExpirationDate(null);
-        assertNull(setterTestCustomer.getDriverLicenseExpirationDate());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void setDriverLicenseExpirationDateWithPastDateShouldThrowException() {
         cal.set(2010, 1, 1);
         setterTestCustomer.setDriverLicenseExpirationDate(cal);
-        assertEquals(cal, setterTestCustomer.getDriverLicenseExpirationDate());
     }
 }
