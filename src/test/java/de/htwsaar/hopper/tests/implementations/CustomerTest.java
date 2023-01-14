@@ -705,13 +705,11 @@ public class CustomerTest {
     @Test(expected = IllegalArgumentException.class)
     public void setDriverLicenseExpirationDateWithNullShouldThrowException() {
         setterTestCustomer.setDriverLicenseExpirationDate(null);
-        assertNull(setterTestCustomer.getDriverLicenseExpirationDate());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void setDriverLicenseExpirationDateWithPastDateShouldThrowException() {
         cal.set(2010, 1, 1);
         setterTestCustomer.setDriverLicenseExpirationDate(cal);
-        assertEquals(cal, setterTestCustomer.getDriverLicenseExpirationDate());
     }
 }
