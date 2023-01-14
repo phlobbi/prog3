@@ -3,6 +3,7 @@ package de.htwsaar.hopper.logic.implementations;
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.interfaces.CarInterface;
 import de.htwsaar.hopper.logic.validations.CarValidation;
+import de.htwsaar.hopper.logic.validations.PreventNullPersistForCar;
 import de.htwsaar.hopper.logic.validations.Validation;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.util.Calendar;
  * Annotiert fuer die Datenbank.
  * @author gitroba
  */
+@EntityListeners(PreventNullPersistForCar.class)
 @Entity
 @Table(name = "Cars",
         uniqueConstraints = {

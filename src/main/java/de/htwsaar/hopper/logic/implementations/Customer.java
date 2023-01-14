@@ -1,6 +1,7 @@
 package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.interfaces.CustomerInterface;
+import de.htwsaar.hopper.logic.validations.PreventNullPersistForCustomer;
 import de.htwsaar.hopper.logic.validations.CustomerValidation;
 import de.htwsaar.hopper.logic.validations.Validation;
 
@@ -12,6 +13,7 @@ import java.util.Calendar;
  * Annotiert fuer die Verwendung mit der Datenbank.
  * @author gitroba
  */
+@EntityListeners(PreventNullPersistForCustomer.class)
 @Entity
 @Table(name = "Customers",
     uniqueConstraints = {

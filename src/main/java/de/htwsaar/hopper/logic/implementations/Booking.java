@@ -1,6 +1,8 @@
 package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.interfaces.BookingInterface;
+import de.htwsaar.hopper.logic.validations.PreventNullPersistForBooking;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -8,9 +10,11 @@ import java.util.Date;
  * Buchungsklasse für die Datenbankverwaltung
  * @author Sosthene
  */
+@EntityListeners(PreventNullPersistForBooking.class)
 @Entity
 @Table(name = "Bookings")
 public class Booking implements BookingInterface {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "BookingID", unique = true)
