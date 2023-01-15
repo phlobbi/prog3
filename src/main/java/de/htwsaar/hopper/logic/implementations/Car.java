@@ -79,7 +79,7 @@ public class Car implements CarInterface {
      */
     public Car(CarTypeEnum type, String brand, Calendar creationDate, int seats, double basePrice,
                double currentPrice, String licensePlate, String model) {
-        this.type = Validation.validateCarType(type);
+        this.type = CarValidation.validateCarType(type);
         this.brand = Validation.validateString(brand, "Die Automarke darf nicht leer sein.");
         this.creationDate = CarValidation.validateCreatedDate(creationDate);
         this.seats = CarValidation.validateSeats(seats);
@@ -138,7 +138,7 @@ public class Car implements CarInterface {
     /* SETTER */
     @Override
     public void setType(CarTypeEnum type) {
-        this.type = Validation.validateCarType(type);
+        this.type = CarValidation.validateCarType(type);
     }
 
     @Override
