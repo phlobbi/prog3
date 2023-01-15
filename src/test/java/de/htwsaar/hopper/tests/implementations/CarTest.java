@@ -24,99 +24,99 @@ public class CarTest {
         futureCal = Calendar.getInstance();
         futureCal.add(Calendar.YEAR, 1);
         cal.add(Calendar.YEAR, -2);
-        setterTestCar = new Car(1, CarTypeEnum.AUTO, "BMW", cal,
+        setterTestCar = new Car(CarTypeEnum.AUTO, "BMW", cal,
                                 4, 100, 100, "AB-CD-123", "M3");
     }
 
     @Test
     public void constructorWithCorrectValues(){
-        new Car(1, CarTypeEnum.AUTO, "BMW", cal,
+        new Car(CarTypeEnum.AUTO, "BMW", cal,
                 4, 100, 100, "AB-CD-123", "M3");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithBlankBrand(){
-        new Car(1, CarTypeEnum.AUTO, " ", cal,
+        new Car(CarTypeEnum.AUTO, " ", cal,
                 4, 100, 100, "AB-CD-123", "M3");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithBlankLicensePlate(){
-        new Car(1, CarTypeEnum.AUTO, "BWM", cal,
+        new Car(CarTypeEnum.AUTO, "BWM", cal,
                 4, 100, 100, " ", "M3");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithBlankModel(){
-        new Car(1, CarTypeEnum.AUTO, "BMW", cal,
+        new Car(CarTypeEnum.AUTO, "BMW", cal,
                 4, 100, 100, "AB-CD-123", " ");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullBrand(){
-        new Car(1, CarTypeEnum.AUTO, null, cal,
+        new Car(CarTypeEnum.AUTO, null, cal,
                 4, 100, 100, "AB-CD-123", "M3");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullCreatedDate(){
-        new Car(1, CarTypeEnum.AUTO, "BMW", null,
+        new Car(CarTypeEnum.AUTO, "BMW", null,
                 4, 100, 100, "AB-CD-123", "M3");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullLicensePlate(){
-        new Car(1, CarTypeEnum.AUTO, "BMW", cal,
+        new Car(CarTypeEnum.AUTO, "BMW", cal,
                 4, 100, 100, null, "M3");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullModel(){
-        new Car(1, CarTypeEnum.AUTO, "BMW", cal,
+        new Car(CarTypeEnum.AUTO, "BMW", cal,
                 4, 100, 100, "AB-CD-123", null);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNegativeSeats(){
-        new Car(1, CarTypeEnum.AUTO, "BMW", cal,
+        new Car(CarTypeEnum.AUTO, "BMW", cal,
                 -4, 100, 100, "AB-CD-123", "M3");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNegativeBasePrice(){
-        new Car(1, CarTypeEnum.AUTO, "BMW", cal,
+        new Car(CarTypeEnum.AUTO, "BMW", cal,
                 4, -100, 100, "AB-CD-123", "M3");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithTooManySeats(){
-        new Car(1, CarTypeEnum.AUTO, "BMW", cal,
+        new Car(CarTypeEnum.AUTO, "BMW", cal,
                 400, 100, 100, "AB-CD-123", "M3");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNegativeCurrentPrice(){
-        new Car(1, CarTypeEnum.AUTO, "BMW", cal,
+        new Car(CarTypeEnum.AUTO, "BMW", cal,
                 4, 100, -100, "AB-CD-123", "M3");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithInvalidLicensePlate(){
-        new Car(1, CarTypeEnum.AUTO, "BMW", cal,
+        new Car(CarTypeEnum.AUTO, "BMW", cal,
                 4, 100, 100, "ABCD123", "M3");
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithInvalidCreatedDate(){
-        new Car(1, CarTypeEnum.AUTO, "BMW", futureCal,
+        new Car(CarTypeEnum.AUTO, "BMW", futureCal,
                 4, 100, 100, "AB-CD-123", "M3");
     }
 
     @Test
     public void constructorTrimTest(){
-        Car testCar = new Car(1, CarTypeEnum.AUTO, " BMW ", cal,
+        Car testCar = new Car(CarTypeEnum.AUTO, " BMW ", cal,
                 4, 100, 100, " AB-CD-123 ", " M3 ");
-        Car expectedCar = new Car(1, CarTypeEnum.AUTO, "BMW", cal,
+        Car expectedCar = new Car(CarTypeEnum.AUTO, "BMW", cal,
                 4, 100, 100, "AB-CD-123", "M3");
         if (testCar.getBrand().equals(expectedCar.getBrand()) &&
                 testCar.getLicensePlate().equals(expectedCar.getLicensePlate()) &&

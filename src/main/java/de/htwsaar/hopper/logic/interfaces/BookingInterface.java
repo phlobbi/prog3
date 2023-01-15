@@ -17,7 +17,6 @@ public interface BookingInterface {
     Date getRealDropOffDate();
 
     /* SETTER */
-    void setBookingId(int bookingId);
     void setCarId(int carId);
     void setCustomerId(int customerId);
     void setPickUpDate(Date startDate);

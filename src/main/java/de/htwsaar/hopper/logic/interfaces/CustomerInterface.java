@@ -24,7 +24,6 @@ public interface CustomerInterface {
 
 
     /* SETTER */
-    void setCustomerId(int customerId);
     void setFirstName(String firstName);
     void setLastName(String lastName);
     void setEmail(String email);

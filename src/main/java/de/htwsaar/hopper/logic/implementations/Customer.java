@@ -1,6 +1,7 @@
 package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.interfaces.CustomerInterface;
+import de.htwsaar.hopper.logic.validations.PreventNullPersistForCustomer;
 import de.htwsaar.hopper.logic.validations.CustomerValidation;
 import de.htwsaar.hopper.logic.validations.Validation;
 
@@ -12,6 +13,7 @@ import java.util.Calendar;
  * Annotiert fuer die Verwendung mit der Datenbank.
  * @author gitroba
  */
+@EntityListeners(PreventNullPersistForCustomer.class)
 @Entity
 @Table(name = "Customers",
     uniqueConstraints = {
@@ -78,7 +80,6 @@ public class Customer implements CustomerInterface {
 
     /**
      * Konstruktor für alle Parameter
-     * @param customerId ID des Kunden
      * @param firstName Vorname des Kunden
      * @param lastName Nachname des Kunden
      * @param email E-Mail des Kunden
@@ -91,10 +92,9 @@ public class Customer implements CustomerInterface {
      * @param driverLicenseNumber Führerscheinnnummer des Kunden
      * @param driverLicenseExpirationDate Ablaufdatum des Führerscheins des Kunden
      */
-    public Customer(int customerId, String firstName, String lastName, String email, String street,
+    public Customer(String firstName, String lastName, String email, String street,
                     String houseNumber, String zipCode, String city, String phoneNumber,
                     String iban, String driverLicenseNumber, Calendar driverLicenseExpirationDate) {
-        this.customerId = customerId;
         this.firstName = Validation.validateString(firstName, "Der Vorname darf nicht leer sein.");
         this.lastName = Validation.validateString(lastName, "Der Nachname darf nicht leer sein.");
         this.email = CustomerValidation.validateEmail(email);
@@ -170,11 +170,6 @@ public class Customer implements CustomerInterface {
     }
 
     /* SETTER */
-    @Override
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
     @Override
     public void setFirstName(String firstName) {
         this.firstName = Validation.validateString(firstName,"keine gültiger Vorname!");

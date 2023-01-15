@@ -20,7 +20,7 @@ public class CustomerTest {
     public void setUp() {
         cal = Calendar.getInstance();
         cal.add(Calendar.YEAR, 2);
-        setterTestCustomer = new Customer(1, "Max", "Mustermann",
+        setterTestCustomer = new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -28,7 +28,7 @@ public class CustomerTest {
 
     @Test
     public void constructorWithCorrectValues() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -36,7 +36,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithEmptyFirstNameShouldThrowException() {
-        new Customer(1, "", "Mustermann",
+        new Customer("", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -44,7 +44,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithEmptyLastNameShouldThrowException() {
-        new Customer(1, "Max", "",
+        new Customer("Max", "",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -52,7 +52,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithEmptyEmailShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -60,7 +60,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithInvalidEmailShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "maxmustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -68,7 +68,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithEmptyStreetShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -76,7 +76,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithEmptyHouseNumberShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -84,7 +84,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithInvalidHouseNumberShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "A", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -92,7 +92,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithEmptyZipCodeShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -100,7 +100,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithInvalidZipCodeShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "123",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -108,7 +108,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithEmptyCityShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -116,7 +116,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithEmptyPhoneNumberShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -124,7 +124,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithInvalidPhoneNumberShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "3456730", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -132,7 +132,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithEmptyIbanShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "",
                 "B072RRE2I55", cal);
@@ -140,7 +140,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithInvalidIbanShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013002",
                 "B072RRE2I55", cal);
@@ -148,7 +148,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithEmptyDriverLicenseNumberShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "", cal);
@@ -156,7 +156,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithInvalidDriverLicenseNumberShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I65", cal);
@@ -166,7 +166,7 @@ public class CustomerTest {
     public void constructorWithInvalidDriverLicenseExpirationDateThrowException() {
         cal = Calendar.getInstance();
         cal.add(Calendar.MONTH, -1);
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I56", cal);
@@ -174,7 +174,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullFirstNameShouldThrowException() {
-        new Customer(1, null, "Mustermann",
+        new Customer(null, "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -182,7 +182,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullLastNameShouldThrowException() {
-        new Customer(1, "Max", null,
+        new Customer("Max", null,
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -190,7 +190,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullEmailShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 null, "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -198,7 +198,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullStreetShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", null, "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -206,7 +206,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullHouseNumberShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", null, "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -214,7 +214,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullZipCodeShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", null,
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -222,7 +222,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullCityShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 null, "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -230,7 +230,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullPhoneNumberShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", null, "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -238,7 +238,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullIbanShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", null,
                 "B072RRE2I55", cal);
@@ -246,7 +246,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullDriverLicenseNumberShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 null, cal);
@@ -254,7 +254,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullDriverLicenseExpirationDateShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", null);
@@ -262,12 +262,12 @@ public class CustomerTest {
 
     @Test
     public void constructorTrimTest() {
-        Customer testCustomer = new Customer(1, "   Max   ", "   Mustermann   ",
+        Customer testCustomer = new Customer("   Max   ", "   Mustermann   ",
                 "   max@mustermann.de   ", "   Musterstraße   ", "   1   ", "   12345   ",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "   B072RRE2I55   ", cal);
 
-        Customer expectedCustomer = new Customer(1, "Max", "Mustermann",
+        Customer expectedCustomer = new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -287,7 +287,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithBlankFirstNameShouldThrowException() {
-        new Customer(1, "   ", "Mustermann",
+        new Customer("   ", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -295,7 +295,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithBlankLastNameShouldThrowException() {
-        new Customer(1, "Max", "   ",
+        new Customer("Max", "   ",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -303,7 +303,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithBlankEmailShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "   ", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -311,7 +311,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithBlankStreetShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "", "   ", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -319,7 +319,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithBlankHouseNumberShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "   ", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -328,7 +328,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithBlankZipCodeShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "   ",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -336,7 +336,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithBlankCityShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "   ", "0123456789", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -344,7 +344,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithBlankPhoneNumberShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "   ", "DE89370400440532013000",
                 "B072RRE2I55", cal);
@@ -352,7 +352,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithBlankIbanShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "   ",
                 "B072RRE2I55", cal);
@@ -360,7 +360,7 @@ public class CustomerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithBlankDriverLicenseNumberShouldThrowException() {
-        new Customer(1, "Max", "Mustermann",
+        new Customer("Max", "Mustermann",
                 "max@mustermann.de", "Musterstraße", "1", "12345",
                 "Musterstadt", "0123456789", "DE89370400440532013000",
                 "   ", cal);

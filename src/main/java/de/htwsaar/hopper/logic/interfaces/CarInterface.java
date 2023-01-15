@@ -23,7 +23,6 @@ public interface CarInterface {
 
 
     /*  SETTER  */
-    void setCarId(int carId);
     void setType(CarTypeEnum type);
     void setBrand(String brand);
     void setCreationDate(Calendar creationDate);

@@ -3,6 +3,7 @@ package de.htwsaar.hopper.logic.implementations;
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.interfaces.CarInterface;
 import de.htwsaar.hopper.logic.validations.CarValidation;
+import de.htwsaar.hopper.logic.validations.PreventNullPersistForCar;
 import de.htwsaar.hopper.logic.validations.Validation;
 
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.util.Calendar;
  * Annotiert fuer die Datenbank.
  * @author gitroba
  */
+@EntityListeners(PreventNullPersistForCar.class)
 @Entity
 @Table(name = "Cars",
         uniqueConstraints = {
@@ -66,7 +68,6 @@ public class Car implements CarInterface {
 
     /**
      * Konstruktor mit allen Werten.
-     * @param carId ID des Autos.
      * @param type Typ des Autos
      * @param brand Marke des Autos
      * @param creationDate Herstellungsdatum des Autos
@@ -76,9 +77,8 @@ public class Car implements CarInterface {
      * @param licensePlate Kennzeichen des Autos
      * @param model Modell des Autos
      */
-    public Car(int carId, CarTypeEnum type, String brand, Calendar creationDate, int seats, double basePrice,
+    public Car(CarTypeEnum type, String brand, Calendar creationDate, int seats, double basePrice,
                double currentPrice, String licensePlate, String model) {
-        this.carId = carId;
         this.type = type;
         this.brand = Validation.validateString(brand, "Die Automarke darf nicht leer sein.");
         this.creationDate = CarValidation.validateCreatedDate(creationDate);
@@ -136,11 +136,6 @@ public class Car implements CarInterface {
     }
 
     /* SETTER */
-    @Override
-    public void setCarId(int carId) {
-        this.carId = carId;
-    }
-
     @Override
     public void setType(CarTypeEnum type) {
         this.type = type;
