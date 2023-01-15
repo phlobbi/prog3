@@ -35,6 +35,12 @@ public class CarTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void constructorWithNullType(){
+        new Car(null, "BMW", cal,
+                4, 100, 100, "AB-CD-123", "M3");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void constructorWithBlankBrand(){
         new Car(CarTypeEnum.AUTO, " ", cal,
                 4, 100, 100, "AB-CD-123", "M3");
@@ -125,6 +131,17 @@ public class CarTest {
         } else {
             fail();
         }
+    }
+
+    @Test
+    public void setTypeWithValidValue(){
+        setterTestCar.setType(CarTypeEnum.BUS);
+        assertEquals(CarTypeEnum.BUS, setterTestCar.getType());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void setTypeWithNullValue(){
+        setterTestCar.setType(null);
     }
 
     @Test
@@ -264,9 +281,4 @@ public class CarTest {
         setterTestCar.setCurrentPrice(-100);
     }
 
-    @Test
-    public void setTypeWithValidValue(){
-        setterTestCar.setType(CarTypeEnum.SPORTWAGEN);
-        assertEquals(CarTypeEnum.SPORTWAGEN, setterTestCar.getType());
-    }
 }
