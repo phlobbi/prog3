@@ -16,7 +16,6 @@ public class CarTypeValidationTest {
 	public void carTypeIsLKW() {
 		CarTypeEnum type = CarTypeEnum.LKW;
 		CarValidation.validateCarType(type);
-
 	}
 
 	@Test
