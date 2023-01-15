@@ -38,7 +38,7 @@ public class CustomerManagementController {
      */
     @FXML
     void switchToFirstView(ActionEvent event)  {
-        App.setRoot("First-view.fxml");
+        App.setRoot("first-view.fxml");
 
     }
 
