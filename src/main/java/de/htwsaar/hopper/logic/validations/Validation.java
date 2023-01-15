@@ -1,4 +1,5 @@
 package de.htwsaar.hopper.logic.validations;
+import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import nl.garvelink.iban.IBAN;
 import org.apache.commons.validator.routines.DomainValidator;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -163,5 +164,10 @@ public class Validation {
         } else {
             return currentDate;
         }
+    }
+    public static CarTypeEnum validateCarType(CarTypeEnum type){
+            Utils.check(type !=null, "Der Auto-Typ darf nicht null sein.");
+            return type;
+
     }
 }

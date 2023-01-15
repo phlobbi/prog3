@@ -78,7 +78,7 @@ public class Car implements CarInterface {
     public Car(int carId, CarTypeEnum type, String brand, Date creationDate, int seats, double basePrice,
                double currentPrice, String licensePlate, String model) {
         this.carId = carId;
-        this.type = type;
+        this.type = Validation.validateCarType(type);
         this.brand = Validation.validateString(brand, "Die Automarke darf nicht leer sein.");
         this.creationDate = creationDate;
         this.seats = seats;
@@ -118,7 +118,7 @@ public class Car implements CarInterface {
      * @param type Der Typ des Autos.
      */
     public void setType(CarTypeEnum type) {
-        this.type = type;
+        this.type = Validation.validateCarType(type);
     }
 
     /**
