@@ -38,7 +38,7 @@ public class CustomerManagementController {
      */
     @FXML
     void switchToFirstView(ActionEvent event)  {
-        App.setRoot("first-view.fxml");
+        App.setRoot("de/htwsaar/hopper/ui/first-view.fxml");
 
     }
 

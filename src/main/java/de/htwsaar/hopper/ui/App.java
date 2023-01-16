@@ -15,11 +15,15 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		URL url = App.class.getResource("/first-view.fxml") ;
-		root = FXMLLoader.load(url) ;
-		scene = new Scene(root) ;
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		try {
+			URL url = App.class.getResource("/de/htwsaar/hopper/ui/first-view.fxml");
+			root = FXMLLoader.load(url);
+			scene = new Scene(root);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

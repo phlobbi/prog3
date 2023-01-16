@@ -36,7 +36,7 @@ public class FirstViewController {
      */
     @FXML
     void switchToCarRental(MouseEvent event)  {
-        App.setRoot("Booking-management-view.fxml");
+        App.setRoot("de/htwsaar/hopper/ui/Booking-management-view.fxml");
     }
 
     /**
@@ -45,7 +45,7 @@ public class FirstViewController {
      */
     @FXML
     void switchToCustomerView(MouseEvent event)  {
-        App.setRoot("Customer-management-view.fxml");
+        App.setRoot("de/htwsaar/hopper/ui/Customer-management-view.fxml");
     }
 
     @FXML
@@ -54,6 +54,6 @@ public class FirstViewController {
     }
     @FXML
     void switchToCarManagementView(MouseEvent event)  {
-        App.setRoot("Car-view.fxml");
+        App.setRoot("de/htwsaar/hopper/ui/Car-view.fxml");
     }
 }
