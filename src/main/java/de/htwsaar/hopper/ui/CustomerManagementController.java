@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.BorderPane;
 
 /**
  * UI-Klasse, die die CRUD-Funktionen für den Nutzer bereitstellt.
@@ -31,7 +30,7 @@ public final class CustomerManagementController {
 
     /**
      * Wechselt bei Aufruf auf die Startseite zurück.
-     * @param event
+     * @param event button click
      */
     @FXML
     void switchToFirstView(ActionEvent event)  {

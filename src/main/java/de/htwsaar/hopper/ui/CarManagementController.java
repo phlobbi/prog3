@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.BorderPane;
 
 public final class CarManagementController {
 
@@ -49,7 +48,7 @@ public final class CarManagementController {
 
     /**
      * Wechselt bei Aufruf auf die Startseite zurück.
-     * @param event
+     * @param event button click
      */
     @FXML
     void switchToFirstView(ActionEvent event)  {
