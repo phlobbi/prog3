@@ -9,17 +9,24 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class App extends Application {
+public final class App extends Application {
 	private static Parent root ;
 	private static Scene scene ;
 
+	/**
+	 * Startet die JavaFX Applikation.
+	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		URL url = App.class.getResource("/First-view.fxml") ;
-		root = FXMLLoader.load(url) ;
-		scene = new Scene(root) ;
-		primaryStage.setScene(scene);
-		primaryStage.show();
+			URL url = App.class.getResource("/de/htwsaar/hopper/ui/first-view.fxml");
+		if (url != null) {
+			root = FXMLLoader.load(url);
+			scene = new Scene(root);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} else {
+			throw new IOException("Could not load FXML file.");
+		}
 	}
 
 	/**
@@ -28,14 +35,21 @@ public class App extends Application {
 	 */
 	public static void setRoot(String fxmlfile)   {
 		try {
-			URL url = App.class.getResource("/"+fxmlfile+"")  ;
-			root = FXMLLoader.load(url) ;
-			scene.setRoot(root);
+			URL url = App.class.getResource("/"+fxmlfile);
+			if (url != null) {
+				root = FXMLLoader.load(url);
+				scene.setRoot(root);
+			} else {
+				throw new IOException("Could not load FXML file.");
+			}
 		} catch (IOException exception){
 			System.out.println("Die fxml-Datei konnte nicht geladen werden");
 		}
 	}
-	
+
+	/**
+	 * Die Methode startet die Applikation.
+	 */
 	public static void main(String[] args) {
 	    launch(args);	
 	}

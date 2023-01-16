@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CustomerManagementController">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CustomerManagementController">
     <center>
-        <GridPane  BorderPane.alignment="CENTER">
+        <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="1144.0" minWidth="10.0" prefWidth="141.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="1144.0" minWidth="10.0" prefWidth="872.0" />
@@ -29,8 +29,8 @@
                 <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2">
                     <columns>
                         <TableColumn prefWidth="168.0" text="KundenID" />
-                        <TableColumn prefWidth="340.0" text="Vorname" />
-                        <TableColumn prefWidth="329.60003662109375" text="Nachname" />
+                        <TableColumn prefWidth="260.7999725341797" text="Vorname" />
+                        <TableColumn prefWidth="267.9999084472656" text="Nachname" />
                     </columns>
                 </TableView>
                 <Label prefHeight="47.0" prefWidth="283.0" text="Kundenverwaltung" GridPane.columnIndex="1">
@@ -38,17 +38,17 @@
                         <Insets left="300.0" />
                     </GridPane.margin>
                 </Label>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <AnchorPane prefHeight="359.0" prefWidth="138.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <children>
-                        <Button fx:id="btnCreate" layoutX="66.0" layoutY="65.0" mnemonicParsing="false" onAction="#switchToSceneAddCustomer" prefHeight="25.0" prefWidth="183.0" text="neuen Kunden anlegen" />
-                        <Button fx:id="btnUpdate" layoutX="70.0" layoutY="126.0" mnemonicParsing="false" onAction="#switchToSceneUpdateCustomer" prefHeight="25.0" prefWidth="178.0" text="Kunden  aendern" />
-                        <Button fx:id="btnRemove" layoutX="75.0" layoutY="198.0" mnemonicParsing="false" onAction="#switchToSceneRemoveCustomer" prefHeight="25.0" prefWidth="173.0" text="Kunden  löschen" />
-                        <Button fx:id="btnRead" layoutX="74.0" layoutY="266.0" mnemonicParsing="false" onAction="#switchToSceneReadCustomer" prefHeight="25.0" prefWidth="176.0" text="Kunden lesen" />
+                        <Button fx:id="btnCreate" layoutX="7.0" layoutY="67.0" mnemonicParsing="false" onAction="#switchToSceneAddCustomer" prefHeight="25.0" prefWidth="183.0" text="neuen Kunden anlegen" />
+                        <Button fx:id="btnUpdate" layoutX="10.0" layoutY="100.0" mnemonicParsing="false" onAction="#switchToSceneUpdateCustomer" prefHeight="25.0" prefWidth="178.0" text="Kunden  aendern" />
+                        <Button fx:id="btnRemove" layoutX="12.0" layoutY="142.0" mnemonicParsing="false" onAction="#switchToSceneRemoveCustomer" prefHeight="25.0" prefWidth="173.0" text="Kunden  löschen" />
+                        <Button fx:id="btnRead" layoutX="11.0" layoutY="180.0" mnemonicParsing="false" onAction="#switchToSceneReadCustomer" prefHeight="25.0" prefWidth="176.0" text="Kunden lesen" />
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                     <children>
-                        <Button fx:id="btnGoBack" layoutX="14.0" layoutY="58.0" mnemonicParsing="false" onAction="#switchToFirstView" prefHeight="25.0" prefWidth="122.0" text="zurueck" />
+                        <Button fx:id="btnGoBack" layoutY="10.0" mnemonicParsing="false" onAction="#switchToFirstView" prefHeight="25.0" prefWidth="122.0" text="zurueck" />
                     </children>
                 </AnchorPane>
             </children>

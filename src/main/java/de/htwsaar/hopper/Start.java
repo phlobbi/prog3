@@ -1,10 +1,12 @@
 package de.htwsaar.hopper;
 
+import de.htwsaar.hopper.ui.App;
+
 /**
  * Hello world!
  *
  */
-public class App 
+public class Start
 {
     /**
      *
@@ -12,6 +14,6 @@ public class App
      */
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        App.main(args);
     }
 }

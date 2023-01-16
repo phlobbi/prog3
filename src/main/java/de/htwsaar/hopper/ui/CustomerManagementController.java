@@ -4,12 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.BorderPane;
 
 /**
  * UI-Klasse, die die CRUD-Funktionen für den Nutzer bereitstellt.
  */
-public class CustomerManagementController {
+public final class CustomerManagementController {
 
     @FXML
     private Button btnCreate;
@@ -27,18 +26,15 @@ public class CustomerManagementController {
     private Button btnUpdate;
 
     @FXML
-    private BorderPane root;
-
-    @FXML
     private TableView<?> tableView;
 
     /**
      * Wechselt bei Aufruf auf die Startseite zurück.
-     * @param event
+     * @param event button click
      */
     @FXML
     void switchToFirstView(ActionEvent event)  {
-        App.setRoot("First-view.fxml");
+        App.setRoot("de/htwsaar/hopper/ui/first-view.fxml");
 
     }
 

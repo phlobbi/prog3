@@ -4,9 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.BorderPane;
 
-public class BookingManagementController {
+public final class BookingManagementController {
 
     @FXML
     private Button btnBookCar;
@@ -18,18 +17,15 @@ public class BookingManagementController {
     private Button btnReturnCar;
 
     @FXML
-    private BorderPane root;
-
-    @FXML
     private TableView<?> tableView;
 
     /**
      * Wechselt bei Aufruf auf die Startseite zurück.
-     * @param event
+     * @param event button click
      */
     @FXML
     void switchToFirstView(ActionEvent event)  {
-        App.setRoot("First-view.fxml");
+        App.setRoot("de/htwsaar/hopper/ui/first-view.fxml");
 
     }
 
