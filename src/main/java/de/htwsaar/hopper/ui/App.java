@@ -35,9 +35,13 @@ public final class App extends Application {
 	 */
 	public static void setRoot(String fxmlfile)   {
 		try {
-			URL url = App.class.getResource("/"+fxmlfile+"")  ;
-			root = FXMLLoader.load(url) ;
-			scene.setRoot(root);
+			URL url = App.class.getResource("/"+fxmlfile);
+			if (url != null) {
+				root = FXMLLoader.load(url);
+				scene.setRoot(root);
+			} else {
+				throw new IOException("Could not load FXML file.");
+			}
 		} catch (IOException exception){
 			System.out.println("Die fxml-Datei konnte nicht geladen werden");
 		}
