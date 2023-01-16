@@ -712,4 +712,11 @@ public class CustomerTest {
         cal.set(2010, 1, 1);
         setterTestCustomer.setDriverLicenseExpirationDate(cal);
     }
+
+    @Test
+    public void isDriverLicenseValidYES() {
+        assertTrue(setterTestCustomer.isDriverLicenseValid());
+    }
+
+
 }

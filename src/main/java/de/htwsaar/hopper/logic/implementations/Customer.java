@@ -107,6 +107,20 @@ public class Customer implements CustomerInterface {
         this.driverLicenseExpirationDate = CustomerValidation.validateExpirationDate(driverLicenseExpirationDate);
     }
 
+    /**
+     * Prüft, ob der Führerschein noch gültig ist anhand des Datums
+     *
+     * @return true oder false, jenachdem ob das Datum in der Vergangenheit liegt oder nicht
+     */
+    public boolean isDriverLicenseValid(){
+        Calendar currentDate = Calendar.getInstance();
+        if(driverLicenseExpirationDate.before(currentDate))
+            return false;
+        else
+            return true;
+    }
+
+
     /* GETTER */
     @Override
     public int getCustomerId() {
