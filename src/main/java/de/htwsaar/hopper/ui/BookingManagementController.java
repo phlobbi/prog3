@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 
-public class BookingManagementController {
+public final class BookingManagementController {
 
     @FXML
     private Button btnBookCar;
@@ -16,9 +16,6 @@ public class BookingManagementController {
 
     @FXML
     private Button btnReturnCar;
-
-    @FXML
-    private BorderPane root;
 
     @FXML
     private TableView<?> tableView;

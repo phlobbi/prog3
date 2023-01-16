@@ -9,7 +9,7 @@ import javafx.scene.layout.BorderPane;
 /**
  * UI-Klasse, die die CRUD-Funktionen für den Nutzer bereitstellt.
  */
-public class CustomerManagementController {
+public final class CustomerManagementController {
 
     @FXML
     private Button btnCreate;
@@ -25,9 +25,6 @@ public class CustomerManagementController {
 
     @FXML
     private Button btnUpdate;
-
-    @FXML
-    private BorderPane root;
 
     @FXML
     private TableView<?> tableView;

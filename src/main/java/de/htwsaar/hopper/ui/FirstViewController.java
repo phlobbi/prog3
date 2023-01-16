@@ -7,28 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
-public class FirstViewController {
-
-    @FXML
-    private Button btnCarsManagement;
-
-    @FXML
-    private Button btnBookingManagement;
-
-    @FXML
-    private Button btnCustomerManagement;
-
-    @FXML
-    private Button btnHelp;
-
-    @FXML
-    private Label label;
-
-    @FXML
-    private BorderPane root;
-
-    @FXML
-    private GridPane gridpane;
+public final class FirstViewController {
 
     /**
      * Wechselt bei Aufruf auf die Buchungsverwaltung.

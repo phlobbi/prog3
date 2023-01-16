@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 
-public class CarManagementController {
+public final class CarManagementController {
 
     @FXML
     private Button btnRead;
@@ -23,9 +23,6 @@ public class CarManagementController {
 
     @FXML
     private Button btnUpdate;
-
-    @FXML
-    private BorderPane root;
 
     @FXML
     private TableView<?> tableView;
