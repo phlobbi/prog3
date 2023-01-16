@@ -1,6 +1,8 @@
 package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.interfaces.BookingInterface;
+import de.htwsaar.hopper.logic.validations.PreventNullPersistForBooking;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -8,9 +10,11 @@ import java.util.Date;
  * Buchungsklasse für die Datenbankverwaltung
  * @author Sosthene
  */
+@EntityListeners(PreventNullPersistForBooking.class)
 @Entity
 @Table(name = "Bookings")
 public class Booking implements BookingInterface {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "BookingID", unique = true)
@@ -47,14 +51,12 @@ public class Booking implements BookingInterface {
     
     /**
      * Konstruktor zum Anlegen von Buchungen, ohne realDropOffDate
-     * @param bookingId ID der Buchung
      * @param carId ID des gebuchten Autos
      * @param customerId ID des Kunden, der das Auto gebucht hat
      * @param pickUpDate Abholdatum eines Autos vom Kunde
      * @param dropOffDate Geplantes Rückgabedatum eines Autos vom Kunde
      */
-    public Booking(int bookingId, int carId, int customerId, Date pickUpDate, Date dropOffDate) {
-        this.bookingId = bookingId;
+    public Booking(int carId, int customerId, Date pickUpDate, Date dropOffDate) {
         this.carId = carId;
         this.customerId = customerId;
         this.pickUpDate = pickUpDate;
@@ -93,11 +95,6 @@ public class Booking implements BookingInterface {
     }
 
     /* SETTER */
-    @Override
-    public void setBookingId(int bookingId) {
-        this.bookingId = bookingId;
-    }
-
     @Override
     public void setCarId(int carId) {
         this.carId = carId;

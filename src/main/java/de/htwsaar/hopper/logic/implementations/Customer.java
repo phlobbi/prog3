@@ -1,8 +1,8 @@
 package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.interfaces.CustomerInterface;
+import de.htwsaar.hopper.logic.validations.PreventNullPersistForCustomer;
 import de.htwsaar.hopper.logic.validations.CustomerValidation;
-import de.htwsaar.hopper.logic.validations.Validation;
 
 import javax.persistence.*;
 import java.util.Calendar;
@@ -12,6 +12,7 @@ import java.util.Calendar;
  * Annotiert fuer die Verwendung mit der Datenbank.
  * @author gitroba
  */
+@EntityListeners(PreventNullPersistForCustomer.class)
 @Entity
 @Table(name = "Customers",
     uniqueConstraints = {
@@ -78,7 +79,6 @@ public class Customer implements CustomerInterface {
 
     /**
      * Konstruktor für alle Parameter
-     * @param customerId ID des Kunden
      * @param firstName Vorname des Kunden
      * @param lastName Nachname des Kunden
      * @param email E-Mail des Kunden
@@ -91,17 +91,16 @@ public class Customer implements CustomerInterface {
      * @param driverLicenseNumber Führerscheinnnummer des Kunden
      * @param driverLicenseExpirationDate Ablaufdatum des Führerscheins des Kunden
      */
-    public Customer(int customerId, String firstName, String lastName, String email, String street,
+    public Customer(String firstName, String lastName, String email, String street,
                     String houseNumber, String zipCode, String city, String phoneNumber,
                     String iban, String driverLicenseNumber, Calendar driverLicenseExpirationDate) {
-        this.customerId = customerId;
-        this.firstName = Validation.validateString(firstName, "Der Vorname darf nicht leer sein.");
-        this.lastName = Validation.validateString(lastName, "Der Nachname darf nicht leer sein.");
+        this.firstName = CustomerValidation.validateString(firstName, "Der Vorname darf nicht leer sein.");
+        this.lastName = CustomerValidation.validateString(lastName, "Der Nachname darf nicht leer sein.");
         this.email = CustomerValidation.validateEmail(email);
-        this.street = Validation.validateString(street, "Die Strasse darf nicht leer sein.");
+        this.street = CustomerValidation.validateString(street, "Die Strasse darf nicht leer sein.");
         this.houseNumber = CustomerValidation.validateHouseNumber(houseNumber);
         this.zipCode = CustomerValidation.validateZipCode(zipCode);
-        this.city = Validation.validateString(city, "Die Stadt darf nicht leer sein.");
+        this.city = CustomerValidation.validateString(city, "Die Stadt darf nicht leer sein.");
         this.phoneNumber = CustomerValidation.validatePhoneNumber(phoneNumber);
         this.iban = CustomerValidation.validateIBAN(iban);
         this.driverLicenseNumber = CustomerValidation.validateDriverLicenseNumber(driverLicenseNumber);
@@ -171,18 +170,13 @@ public class Customer implements CustomerInterface {
 
     /* SETTER */
     @Override
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
-    @Override
     public void setFirstName(String firstName) {
-        this.firstName = Validation.validateString(firstName,"keine gültiger Vorname!");
+        this.firstName = CustomerValidation.validateString(firstName,"keine gültiger Vorname!");
     }
 
     @Override
     public void setLastName(String lastName) {
-        this.lastName = Validation.validateString(lastName,"keine gültiger Nachname!");
+        this.lastName = CustomerValidation.validateString(lastName,"keine gültiger Nachname!");
     }
 
     @Override
@@ -192,7 +186,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setStreet(String street) {
-        this.street = Validation.validateString(street,"keine gültige Straße!");
+        this.street = CustomerValidation.validateString(street,"keine gültige Straße!");
     }
 
     @Override
@@ -207,7 +201,7 @@ public class Customer implements CustomerInterface {
 
     @Override
     public void setCity(String city) {
-        this.city = Validation.validateString(city,"keine gültige Stadt!");
+        this.city = CustomerValidation.validateString(city,"keine gültige Stadt!");
     }
 
     @Override

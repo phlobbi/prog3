@@ -3,7 +3,7 @@ package de.htwsaar.hopper.logic.implementations;
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.interfaces.CarInterface;
 import de.htwsaar.hopper.logic.validations.CarValidation;
-import de.htwsaar.hopper.logic.validations.Validation;
+import de.htwsaar.hopper.logic.validations.PreventNullPersistForCar;
 
 import javax.persistence.*;
 import java.util.Calendar;
@@ -13,6 +13,7 @@ import java.util.Calendar;
  * Annotiert fuer die Datenbank.
  * @author gitroba
  */
+@EntityListeners(PreventNullPersistForCar.class)
 @Entity
 @Table(name = "Cars",
         uniqueConstraints = {
@@ -66,7 +67,6 @@ public class Car implements CarInterface {
 
     /**
      * Konstruktor mit allen Werten.
-     * @param carId ID des Autos.
      * @param type Typ des Autos
      * @param brand Marke des Autos
      * @param creationDate Herstellungsdatum des Autos
@@ -76,17 +76,16 @@ public class Car implements CarInterface {
      * @param licensePlate Kennzeichen des Autos
      * @param model Modell des Autos
      */
-    public Car(int carId, CarTypeEnum type, String brand, Calendar creationDate, int seats, double basePrice,
+    public Car(CarTypeEnum type, String brand, Calendar creationDate, int seats, double basePrice,
                double currentPrice, String licensePlate, String model) {
-        this.carId = carId;
-        this.type = type;
-        this.brand = Validation.validateString(brand, "Die Automarke darf nicht leer sein.");
+        this.type = CarValidation.validateCarType(type);
+        this.brand = CarValidation.validateString(brand, "Die Automarke darf nicht leer sein.");
         this.creationDate = CarValidation.validateCreatedDate(creationDate);
         this.seats = CarValidation.validateSeats(seats);
         this.basePrice = CarValidation.validateBasePrice(basePrice);
         this.currentPrice = CarValidation.validateCurrentPrice(currentPrice);
         this.licensePlate = CarValidation.validateLicensePlate(licensePlate);
-        this.model = Validation.validateString(model, "Das Automodell darf nicht leer sein.");
+        this.model = CarValidation.validateString(model, "Das Automodell darf nicht leer sein.");
     }
 
     /* GETTER */
@@ -137,18 +136,13 @@ public class Car implements CarInterface {
 
     /* SETTER */
     @Override
-    public void setCarId(int carId) {
-        this.carId = carId;
-    }
-
-    @Override
     public void setType(CarTypeEnum type) {
-        this.type = type;
+        this.type = CarValidation.validateCarType(type);
     }
 
     @Override
     public void setBrand(String brand) {
-        this.brand = Validation.validateString(brand, "Die Automarke darf nicht leer sein.");
+        this.brand = CarValidation.validateString(brand, "Die Automarke darf nicht leer sein.");
     }
 
     @Override
@@ -178,6 +172,6 @@ public class Car implements CarInterface {
 
     @Override
     public void setModel(String model) {
-        this.model = Validation.validateString(model,"Kein gültiges Modell!");
+        this.model = CarValidation.validateString(model,"Kein gültiges Modell!");
     }
 }

@@ -1,5 +1,6 @@
 package de.htwsaar.hopper.logic.validations;
 
+import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.enums.ValidationRegexEnum;
 
 import java.util.Calendar;
@@ -73,4 +74,15 @@ public class CarValidation extends Validation {
         return seats;
     }
 
+    /**
+     * Prüft, ob der übergebene Typ gültig ist.
+     * Da es um eine Enum geht, wird hier nur geprüft, ob der übergebene Typ null ist.
+     * @param type Zu prüfender Typ
+     * @return Typ, falls gültig
+     * @throws IllegalArgumentException Falls der Typ null ist
+     */
+    public static CarTypeEnum validateCarType(CarTypeEnum type){
+        Utils.check(type !=null, "Der Auto-Typ darf nicht null sein.");
+        return type;
+    }
 }
