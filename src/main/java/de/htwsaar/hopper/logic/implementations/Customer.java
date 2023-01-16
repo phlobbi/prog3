@@ -108,18 +108,13 @@ public class Customer implements CustomerInterface {
     }
 
     /**
-     * Prüft, ob der Führerschein noch gültig ist anhand des Datums
-     *
-     * @return true oder false, jenachdem ob das Datum in der Vergangenheit liegt oder nicht
+     * Gibt zurück, ob der in der Datenbank gesetzte Führerschein noch gültig ist.
+     * @return true, falls das Datum noch nicht abgelaufen ist; sonst false
      */
     public boolean isDriverLicenseValid(){
         Calendar currentDate = Calendar.getInstance();
-        if(driverLicenseExpirationDate.before(currentDate))
-            return false;
-        else
-            return true;
+        return !driverLicenseExpirationDate.before(currentDate);
     }
-
 
     /* GETTER */
     @Override

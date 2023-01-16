@@ -714,9 +714,8 @@ public class CustomerTest {
     }
 
     @Test
-    public void isDriverLicenseValidYES() {
+    public void isDriverLicenseValidShouldReturnTrue() {
         assertTrue(setterTestCustomer.isDriverLicenseValid());
     }
-
 
 }
