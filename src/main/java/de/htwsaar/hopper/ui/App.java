@@ -18,10 +18,10 @@ public final class App extends Application {
 	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-			URL url = App.class.getResource("/de/htwsaar/hopper/ui/first-view.fxml");
+			URL url = App.class.getResource("first-view.fxml");
 		if (url != null) {
 			root = FXMLLoader.load(url);
-			scene = new Scene(root);
+			scene = new Scene(root,1000,600);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} else {
@@ -33,18 +33,27 @@ public final class App extends Application {
 	 * Die Methode erlaubt den Wechsel zwischen Scenes.
 	 * @param fxmlfile Pfad zur FXML-Datei, die geladen werden soll
 	 */
-	public static void setRoot(String fxmlfile)   {
-		try {
-			URL url = App.class.getResource("/"+fxmlfile);
+	public static void setRoot(String fxmlfile) throws IOException {
+
+			URL url = App.class.getResource(fxmlfile);
 			if (url != null) {
 				root = FXMLLoader.load(url);
 				scene.setRoot(root);
-			} else {
-				throw new IOException("Could not load FXML file.");
 			}
-		} catch (IOException exception){
-			System.out.println("Die fxml-Datei konnte nicht geladen werden");
-		}
+			/*try {
+				URL url = App.class.getResource(fxmlfile);
+				if (url != null) {
+					root = FXMLLoader.load(url);
+					scene.setRoot(root);
+				}
+				else {
+					throw new IOException("Could not load FXML file.");
+				}
+			}catch ( IOException exception){
+				System.out.println("Die fxml-Datei konnte nicht geladen werden");
+			}*/
+
+
 	}
 
 	/**

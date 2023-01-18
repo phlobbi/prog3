@@ -3,6 +3,8 @@ package de.htwsaar.hopper.ui;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
+
 public final class FirstViewController {
 
     /**
@@ -10,8 +12,8 @@ public final class FirstViewController {
      * @param event mouse click
      */
     @FXML
-    void switchToCarRental(MouseEvent event)  {
-        App.setRoot("de/htwsaar/hopper/ui/Booking-management-view.fxml");
+    void switchToCarRental(MouseEvent event) throws IOException {
+        App.setRoot("Booking-management-view.fxml");
     }
 
     /**
@@ -19,8 +21,8 @@ public final class FirstViewController {
      * @param event mouse click
      */
     @FXML
-    void switchToCustomerView(MouseEvent event)  {
-        App.setRoot("de/htwsaar/hopper/ui/Customer-management-view.fxml");
+    void switchToCustomerView(MouseEvent event) throws IOException {
+        App.setRoot("Customer-management-view.fxml");
     }
 
     /**
@@ -37,7 +39,7 @@ public final class FirstViewController {
      * @param event mouse click
      */
     @FXML
-    void switchToCarManagementView(MouseEvent event)  {
-        App.setRoot("de/htwsaar/hopper/ui/Car-view.fxml");
+    void switchToCarManagementView(MouseEvent event) throws IOException {
+        App.setRoot("Car-view.fxml");
     }
 }

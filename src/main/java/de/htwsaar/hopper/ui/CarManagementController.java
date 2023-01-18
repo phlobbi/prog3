@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 
+import java.io.IOException;
+
 public final class CarManagementController {
 
     @FXML
@@ -51,8 +53,8 @@ public final class CarManagementController {
      * @param event button click
      */
     @FXML
-    void switchToFirstView(ActionEvent event)  {
-        App.setRoot("de/htwsaar/hopper/ui/first-view.fxml");
+    void switchToFirstView(ActionEvent event) throws IOException {
+        App.setRoot("first-view.fxml");
 
     }
 
