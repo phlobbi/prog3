@@ -91,6 +91,7 @@ public class CarRepository {
      * Nimmt ein Car entgegen und loescht dieses aus der DB.
      * Wird dieses Car nicht in der DB gefunden, wird eine IllegalArgumentException geworfen.
      * @param car Die uebergebene / zu loeschende Entitaet.
+     * @throws IllegalArgumentException wenn Objekt nicht in DB
      */
     public static void delete(Car car) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
@@ -102,8 +103,6 @@ public class CarRepository {
             entityManager.remove(entityManager.contains(car) ? car : entityManager.merge(car));
 
             entityManager.getTransaction().commit();
-        } catch (IllegalArgumentException e) {
-            System.out.println("Das zu loeschende Objekt existiert nicht in der Datenbank.");
         } finally {
             entityManager.close();
             entityManagerFactory.close();
