@@ -32,5 +32,6 @@ public class PreventNullPersistForCar {
             car.getModel())
             .allMatch(Objects::nonNull),"Null-Wert erkannt -> unzulaessig");
     }
+
 }
 
