@@ -48,4 +48,27 @@ public class CustomerRepository {
             entityManagerFactory.close();
         }
     }
+
+    /**
+     * Nimmt einen Customer entgegen und loescht diesen aus der DB.
+     * Wird dieser Customer nicht in der DB gefunden, wird eine IllegalArgumentException geworfen.
+     * @param customer Die uebergebene / zu loeschende Entitaet.
+     */
+    public static void delete(Customer customer) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+
+            entityManager.remove(entityManager.contains(customer) ? customer : entityManager.merge(customer));
+
+            entityManager.getTransaction().commit();
+        } catch (IllegalArgumentException e) {
+            System.out.println("Das zu loeschende Objekt existiert nicht in der Datenbank.");
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
+    }
 }
