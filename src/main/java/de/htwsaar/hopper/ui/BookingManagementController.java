@@ -2,8 +2,6 @@ package de.htwsaar.hopper.ui;
 
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.repositories.BookingRepository;
-import de.htwsaar.hopper.repositories.CarRepository;
-import de.htwsaar.hopper.repositories.CustomerRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,7 +13,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -31,17 +28,15 @@ public final class BookingManagementController implements Initializable {
     private Button btnReturnCar;
 
     @FXML
-    private TableView<BookingTableInformation> tableView;
+    private TableView<Booking> tableView;
     @FXML
-    private TableColumn<BookingTableInformation, String> BrandColumn;
-
-    @FXML
-    private TableColumn<BookingTableInformation, Integer> bookingIDColumn;
-
-
+    private TableColumn<Booking, Integer> carIdColumn;
 
     @FXML
-    private TableColumn<BookingTableInformation, String> customerNameColumn;
+    private TableColumn<Booking, Integer> bookingIdColumn;
+
+    @FXML
+    private TableColumn<Booking, Integer> customerIdColumn;
 
 
     //private ObservableList<BookingTableInformation>  list ;
@@ -73,21 +68,16 @@ public final class BookingManagementController implements Initializable {
      */
     void showBookingList(){
 
-        customerNameColumn.setCellValueFactory(new PropertyValueFactory<>("customerName"));
-        bookingIDColumn.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
-        BrandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
-        List<Booking> bookingList = BookingRepository.findAll() ;
-        ObservableList<BookingTableInformation> list = FXCollections.observableArrayList();
-        bookingList.forEach(x->{
-            int customerId = x.getCustomerId() ;
-            int carId = x.getCarId() ;
-            int bookingId = x.getBookingId() ;
-            String customerName = CustomerRepository.find(customerId).getFirstName() +"\t"+ CustomerRepository.find(customerId).getLastName() ;
-            String  brand = CarRepository.find(carId).getBrand() ;
-            list.add(new BookingTableInformation(bookingId ,customerName ,brand)) ;
-        });
-        tableView.getItems().addAll( list) ;
+        customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        bookingIdColumn.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
+        carIdColumn.setCellValueFactory(new PropertyValueFactory<>("carId"));
 
+        tableView.getColumns().addAll(customerIdColumn,bookingIdColumn,carIdColumn);
+
+        ObservableList<Booking> list = FXCollections.observableArrayList();
+        list.addAll(BookingRepository.findAll());
+
+        tableView.setItems(list);
     }
 
 

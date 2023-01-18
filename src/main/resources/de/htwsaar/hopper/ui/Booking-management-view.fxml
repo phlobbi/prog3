@@ -28,9 +28,9 @@
             <children>
                 <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <columns>
-                        <TableColumn fx:id="bookingIDColumn" prefWidth="201.0" text="BuchungID" />
-                        <TableColumn fx:id="customerNameColumn" prefWidth="239.199951171875" text="KundenName" />
-                        <TableColumn fx:id="BrandColumn" prefWidth="256.0000244140625" text="Marke" />
+                        <TableColumn fx:id="bookingIdColumn" prefWidth="201.0" text="BuchungID" />
+                        <TableColumn fx:id="customerIdColumn" prefWidth="239.199951171875" text="KundenID" />
+                        <TableColumn fx:id="carIdColumn" prefWidth="256.0000244140625" text="carID" />
                     </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
