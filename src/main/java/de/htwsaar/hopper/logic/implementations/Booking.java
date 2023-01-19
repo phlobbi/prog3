@@ -2,6 +2,8 @@ package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.interfaces.BookingInterface;
 import de.htwsaar.hopper.logic.validations.PreventNullPersistForBooking;
+import de.htwsaar.hopper.repositories.CarRepository;
+import de.htwsaar.hopper.repositories.CustomerRepository;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -61,6 +63,28 @@ public class Booking implements BookingInterface {
         this.customerId = customerId;
         this.pickUpDate = pickUpDate;
         this.dropOffDate = dropOffDate;
+    }
+
+    /**
+     * Nutzt das CustomerRepository, um ueber die customerID des aktuellen Booking-Objekts
+     * den zugeordneten Customer aus der DB herauszusuchen.
+     * Ueberfuehrt ausgewaehlte Felder des Customers dann in einen Ausgabestring.
+     * @return Der Ausgabestring.
+     */
+    public String getCustomerShowField() {
+        Customer customer = CustomerRepository.find(this.customerId);
+        return String.format("%s %s (ID: %d)",customer.getFirstName(),customer.getLastName(),customer.getCustomerId());
+    }
+
+    /**
+     * Nutzt das CarRepository, um ueber die carID des aktuellen Booking-Objekts
+     * das zugeordnete Car aus der DB herauszusuchen.
+     * Ueberfuehrt ausgewaehlte Felder des Cars dann in einen Ausgabestring.
+     * @return Der Ausgabestring.
+     */
+    public String getCarShowField() {
+        Car car = CarRepository.find(this.carId);
+        return String.format("%s %s (ID: %d)",car.getBrand(),car.getModel(),car.getCarId());
     }
 
     /* GETTER */
