@@ -1,6 +1,6 @@
 package de.htwsaar.hopper.logic.interfaces;
 
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  * Interface für die Klasse Booking.
@@ -12,17 +12,21 @@ public interface BookingInterface {
     int getBookingId();
     int getCarId();
     int getCustomerId();
-    Date getPickUpDate();
-    Date getDropOffDate();
-    Date getRealDropOffDate();
+    Calendar getPickUpDate();
+    Calendar getDropOffDate();
+    Calendar getRealDropOffDate();
 
     /* SETTER */
     void setCarId(int carId);
     void setCustomerId(int customerId);
-    void setPickUpDate(Date startDate);
-    void setDropOffDate(Date returnDate);
-    void setRealDropOffDate(Date realReturnDate);
+    void setPickUpDate(Calendar startDate);
+    void setDropOffDate(Calendar returnDate);
+    void setRealDropOffDate(Calendar realReturnDate);
 
     /* toString */
     String toString();
+
+    double calculatePrice(int carId);
+
+    double calculateFinalPrice(int carId);
 }

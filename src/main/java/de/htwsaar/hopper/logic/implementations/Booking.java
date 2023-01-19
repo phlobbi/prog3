@@ -6,7 +6,7 @@ import de.htwsaar.hopper.repositories.CarRepository;
 import de.htwsaar.hopper.repositories.CustomerRepository;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  * Buchungsklasse für die Datenbankverwaltung
@@ -33,17 +33,17 @@ public class Booking implements BookingInterface {
     @Basic
     @Column(name = "PickUpDate")
     @Temporal(TemporalType.DATE)
-    private Date pickUpDate;
+    private Calendar pickUpDate;
     
     @Basic
     @Column(name = "DropOffDate")
     @Temporal(TemporalType.DATE)
-    private Date dropOffDate;
+    private Calendar dropOffDate;
     
     @Basic
     @Column(name = "RealDropOffDate")
     @Temporal(TemporalType.DATE)
-    private Date realDropOffDate;
+    private Calendar realDropOffDate;
 
     /**
     * Standard-Konstruktor
@@ -58,7 +58,7 @@ public class Booking implements BookingInterface {
      * @param pickUpDate Abholdatum eines Autos vom Kunde
      * @param dropOffDate Geplantes Rückgabedatum eines Autos vom Kunde
      */
-    public Booking(int carId, int customerId, Date pickUpDate, Date dropOffDate) {
+    public Booking(int carId, int customerId, Calendar pickUpDate, Calendar dropOffDate) {
         this.carId = carId;
         this.customerId = customerId;
         this.pickUpDate = pickUpDate;
@@ -104,17 +104,17 @@ public class Booking implements BookingInterface {
     }
 
     @Override
-    public Date getPickUpDate() {
+    public Calendar getPickUpDate() {
         return pickUpDate;
     }
 
     @Override
-    public Date getDropOffDate() {
+    public Calendar getDropOffDate() {
         return dropOffDate;
     }
 
     @Override
-    public Date getRealDropOffDate() {
+    public Calendar getRealDropOffDate() {
         return realDropOffDate;
     }
 
@@ -130,17 +130,54 @@ public class Booking implements BookingInterface {
     }
 
     @Override
-    public void setPickUpDate(Date pickUpDate) {
+    public void setPickUpDate(Calendar pickUpDate) {
         this.pickUpDate = pickUpDate;
     }
 
     @Override
-    public void setDropOffDate(Date dropOffDate) {
+    public void setDropOffDate(Calendar dropOffDate) {
         this.dropOffDate = dropOffDate;
     }
 
     @Override
-    public void setRealDropOffDate(Date realDropOffDate) {
+    public void setRealDropOffDate(Calendar realDropOffDate) {
         this.realDropOffDate = realDropOffDate;
+    }
+
+    /**
+     * Methode zur Berechnung des Preises einer Buchung, wenn der Rückgabetermin eingehalten wird.
+     * @param carId - ID des Autos, das gebucht wurde
+     * @return - Preis der Buchung
+     */
+    @Override
+    public double calculatePrice(int carId) {
+        Car car = CarRepository.find(carId);
+
+        double calculatedPrice = 0;
+        double basePrice = car.getBasePrice();
+        double pricePerDay = car.getCurrentPrice();
+
+        int diffDay = dropOffDate.get(Calendar.DAY_OF_YEAR) - pickUpDate.get(Calendar.DAY_OF_YEAR) + 1;
+        calculatedPrice = basePrice + (diffDay * pricePerDay);
+
+        return calculatedPrice;
+    }
+
+    /**
+     * Methode zur Berechnung des Preises einer Buchung, wenn der Rückgabetermin nicht eingehalten wird.
+     * @param carId - ID des Autos, das gebucht wurde
+     * @return - Preis der Buchung mit erhöhtem Tagessatz
+     */
+    @Override
+    public double calculateFinalPrice(int carId){
+        Car car = CarRepository.find(carId);
+
+        double calculatedFinalPrice = calculatePrice(carId);
+        double newPreisPerDay = car.getCurrentPrice() * 1.2;
+
+        int diffDay = realDropOffDate.get(Calendar.DAY_OF_YEAR) - dropOffDate.get(Calendar.DAY_OF_YEAR) + 1;
+        calculatedFinalPrice = calculatedFinalPrice + (diffDay * newPreisPerDay);
+
+        return calculatedFinalPrice;
     }
 }
