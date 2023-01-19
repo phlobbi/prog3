@@ -65,6 +65,28 @@ public class Booking implements BookingInterface {
         this.dropOffDate = dropOffDate;
     }
 
+    /**
+     * Nutzt das CustomerRepository, um ueber die customerID des aktuellen Booking-Objekts
+     * den zugeordneten Customer aus der DB herauszusuchen.
+     * Ueberfuehrt ausgewaehlte Felder des Customers dann in einen Ausgabestring.
+     * @return Der Ausgabestring.
+     */
+    public String getCustomerShowField() {
+        Customer customer = CustomerRepository.find(this.customerId);
+        return String.format("%s %s (ID: %s)",customer.getFirstName(),customer.getLastName(),customer.getCustomerId());
+    }
+
+    /**
+     * Nutzt das CarRepository, um ueber die carID des aktuellen Booking-Objekts
+     * das zugeordnete Car aus der DB herauszusuchen.
+     * Ueberfuehrt ausgewaehlte Felder des Cars dann in einen Ausgabestring.
+     * @return Der Ausgabestring.
+     */
+    public String getCarShowField() {
+        Car car = CarRepository.find(this.carId);
+        return String.format("%s %s (ID: %s)",car.getBrand(),car.getModel(),car.getCarId());
+    }
+
     /* GETTER */
     @Override
     public int getBookingId() {
@@ -120,31 +142,5 @@ public class Booking implements BookingInterface {
     @Override
     public void setRealDropOffDate(Date realDropOffDate) {
         this.realDropOffDate = realDropOffDate;
-    }
-
-    /**
-     * Nutzt das CustomerRepository, um ueber die customerID des aktuellen Booking-Objekts
-     * den zugeordneten Customer aus der DB herauszusuchen.
-     * Ueberfuehrt ausgewaehlte Felder des Customers dann in einen Ausgabestring.
-     * @return Der Ausgabestring.
-     */
-    public String getCustomerShowField() {
-        Customer customer = CustomerRepository.find(this.customerId);
-        String outputString = "[" + customer.getFirstName() + "] [" + customer.getLastName() +
-                "] (ID: [" + customer.getCustomerId() + "])";
-        return outputString;
-    }
-
-    /**
-     * Nutzt das CarRepository, um ueber die carID des aktuellen Booking-Objekts
-     * das zugeordnete Car aus der DB herauszusuchen.
-     * Ueberfuehrt ausgewaehlte Felder des Cars dann in einen Ausgabestring.
-     * @return Der Ausgabestring.
-     */
-    public String getCarShowField() {
-        Car car = CarRepository.find(this.carId);
-        String outputString = "[" + car.getBrand() + "] [" + car.getModel() +
-                "] (ID: [" + car.getCarId() + "])";
-        return outputString;
     }
 }
