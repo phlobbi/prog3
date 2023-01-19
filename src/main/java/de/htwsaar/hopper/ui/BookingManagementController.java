@@ -67,11 +67,11 @@ public final class BookingManagementController implements Initializable {
      *  sowie die Marke des reservierten Autos anzeigen.
      */
     void showBookingList(){
-
         customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         bookingIdColumn.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
         carIdColumn.setCellValueFactory(new PropertyValueFactory<>("carId"));
 
+        tableView.getColumns().clear();
         tableView.getColumns().addAll(customerIdColumn,bookingIdColumn,carIdColumn);
 
         ObservableList<Booking> list = FXCollections.observableArrayList();
