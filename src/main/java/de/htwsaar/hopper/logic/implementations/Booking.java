@@ -153,14 +153,12 @@ public class Booking implements BookingInterface {
     public double calculatePrice(int carId) {
         Car car = CarRepository.find(carId);
 
-        double calculatedPrice = 0;
         double basePrice = car.getBasePrice();
         double pricePerDay = car.getCurrentPrice();
 
         int diffDay = dropOffDate.get(Calendar.DAY_OF_YEAR) - pickUpDate.get(Calendar.DAY_OF_YEAR) + 1;
-        calculatedPrice = basePrice + (diffDay * pricePerDay);
 
-        return calculatedPrice;
+        return basePrice + (diffDay * pricePerDay);
     }
 
     /**
