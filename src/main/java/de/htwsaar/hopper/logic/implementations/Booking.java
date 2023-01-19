@@ -73,7 +73,7 @@ public class Booking implements BookingInterface {
      */
     public String getCustomerShowField() {
         Customer customer = CustomerRepository.find(this.customerId);
-        return String.format("%s %s (ID: %s)",customer.getFirstName(),customer.getLastName(),customer.getCustomerId());
+        return String.format("%s %s (ID: %d)",customer.getFirstName(),customer.getLastName(),customer.getCustomerId());
     }
 
     /**
@@ -84,7 +84,7 @@ public class Booking implements BookingInterface {
      */
     public String getCarShowField() {
         Car car = CarRepository.find(this.carId);
-        return String.format("%s %s (ID: %s)",car.getBrand(),car.getModel(),car.getCarId());
+        return String.format("%s %s (ID: %d)",car.getBrand(),car.getModel(),car.getCarId());
     }
 
     /* GETTER */
