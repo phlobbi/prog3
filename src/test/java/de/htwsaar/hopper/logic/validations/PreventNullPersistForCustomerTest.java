@@ -1,6 +1,7 @@
 package de.htwsaar.hopper.logic.validations;
 
 import de.htwsaar.hopper.logic.implementations.Customer;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,12 +31,13 @@ public class PreventNullPersistForCustomerTest {
         calendar.add(Calendar.YEAR, 5);
 
         customer = new Customer();
-        
     }
-
-
+    @After
+    public  void closePersistenceUnit(){
+        entityManager.close();
+        entityManagerFactory.close();
+    }
     public void setUpPersistenceUnit(Customer customer){
-        customer = this.customer;
         try{
             entityTransaction.begin();
 
@@ -48,8 +50,6 @@ public class PreventNullPersistForCustomerTest {
             }
         }
     }
-
-
     @Test(expected = IllegalArgumentException.class)
     public void persistWithAllValuesNullThrowsException(){
         preventNullPersist.testAttributesOnNull(customer);
@@ -67,7 +67,6 @@ public class PreventNullPersistForCustomerTest {
         customer.setLastName("Mustermann");
         preventNullPersist.testAttributesOnNull(customer);
     }
-
     @Test(expected = IllegalArgumentException.class)
     public void persistWithEmailSetNotNullThrowsException(){
         customer.setFirstName("Max");
@@ -75,7 +74,6 @@ public class PreventNullPersistForCustomerTest {
         customer.setEmail("max@mustermann.de");
         preventNullPersist.testAttributesOnNull(customer);
     }
-
     @Test(expected = IllegalArgumentException.class)
     public void persistWithStreetSetNotNullThrowsException(){
         customer.setFirstName("Max");
@@ -84,7 +82,6 @@ public class PreventNullPersistForCustomerTest {
         customer.setStreet("Musterstraße");
         preventNullPersist.testAttributesOnNull(customer);
     }
-
     @Test(expected = IllegalArgumentException.class)
     public void persistWithHouseNumberSetNotNullThrowsException(){
         customer.setFirstName("Max");
@@ -94,7 +91,6 @@ public class PreventNullPersistForCustomerTest {
         customer.setHouseNumber("10");
         preventNullPersist.testAttributesOnNull(customer);
     }
-
     @Test(expected = IllegalArgumentException.class)
     public void persistWithZipCodeSetNotNullThrowsException(){
         customer.setFirstName("Max");
@@ -105,7 +101,6 @@ public class PreventNullPersistForCustomerTest {
         customer.setZipCode("54321");
         preventNullPersist.testAttributesOnNull(customer);
     }
-
     @Test(expected = IllegalArgumentException.class)
     public void persistWithCitySetNotNullThrowsException(){
         customer.setFirstName("Max");
@@ -117,7 +112,6 @@ public class PreventNullPersistForCustomerTest {
         customer.setCity("Musterstadt");
         preventNullPersist.testAttributesOnNull(customer);
     }
-
     @Test(expected = IllegalArgumentException.class)
     public void persistWithPhoneNumberSetNotNullThrowsException(){
         customer.setFirstName("Max");
@@ -130,7 +124,6 @@ public class PreventNullPersistForCustomerTest {
         customer.setPhoneNumber("0987654321");
         preventNullPersist.testAttributesOnNull(customer);
     }
-
     @Test(expected = IllegalArgumentException.class)
     public void persistWithIBANSetNotNullThrowsException(){
         customer.setFirstName("Max");
@@ -144,7 +137,6 @@ public class PreventNullPersistForCustomerTest {
         customer.setIBAN("DE89370400440532013000");
         preventNullPersist.testAttributesOnNull(customer);
     }
-
     @Test(expected = IllegalArgumentException.class)
     public void persistWithDriverLicenseNumberSetNotNullThrowsException(){
         customer.setFirstName("Max");
@@ -159,7 +151,6 @@ public class PreventNullPersistForCustomerTest {
         customer.setDriverLicenseNumber("B072RRE2I55");
         preventNullPersist.testAttributesOnNull(customer);
     }
-
     @Test
     public void persistWithDriverLicenseExpirationDateSetNotNullThrowsNoException(){
         customer.setFirstName("Max");
@@ -175,7 +166,6 @@ public class PreventNullPersistForCustomerTest {
         customer.setDriverLicenseExpirationDate(calendar);
         preventNullPersist.testAttributesOnNull(customer);
     }
-
     @Test
     public void persistWithAllValuesCorrect(){
         customer.setFirstName("Max");
@@ -191,15 +181,5 @@ public class PreventNullPersistForCustomerTest {
         customer.setDriverLicenseExpirationDate(calendar);
         preventNullPersist.testAttributesOnNull(customer);
         setUpPersistenceUnit(customer);
-
     }
-
-
-
-
-
-
-
-
-
 }
