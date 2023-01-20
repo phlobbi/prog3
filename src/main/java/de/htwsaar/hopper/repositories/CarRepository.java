@@ -108,4 +108,24 @@ public class CarRepository {
             entityManagerFactory.close();
         }
     }
+
+    /**
+     * Nimmt ein Car-Objekt entgegen und persistiert es in der Datenbank.
+     * @param car Das uebergebene Objekt.
+     */
+    public static void persist(Car car) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+
+            entityManager.persist(car);
+
+            entityManager.getTransaction().commit();
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
+    }
 }
