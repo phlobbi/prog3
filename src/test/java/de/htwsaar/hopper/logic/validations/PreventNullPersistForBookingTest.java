@@ -10,7 +10,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.Calendar;
-import java.util.Date;
 
 
 public class PreventNullPersistForBookingTest {
@@ -18,9 +17,9 @@ public class PreventNullPersistForBookingTest {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
     private EntityTransaction entityTransaction;
-    private Date pickUpDate;
-    private Date dropOffDate;
-    private Date realDropOffDate;
+    private Calendar pickUpDate;
+    private Calendar dropOffDate;
+    private Calendar realDropOffDate;
     private Booking booking;
 
     @Before
@@ -34,9 +33,9 @@ public class PreventNullPersistForBookingTest {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MONTH, 1);
 
-        pickUpDate = calendar.getTime();
-        dropOffDate = calendar.getTime();
-        realDropOffDate = calendar.getTime();
+        pickUpDate = calendar;
+        dropOffDate = calendar;
+        realDropOffDate = calendar;
 
         booking = new Booking();
     }
