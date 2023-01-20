@@ -70,4 +70,24 @@ public class BookingRepository {
             entityManagerFactory.close();
         }
     }
+
+    /**
+     * Nimmt ein Booking-Objekt entgegen und persistiert es in der Datenbank.
+     * @param booking Das uebergebene Objekt.
+     */
+    public static void persist(Booking booking) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+
+            entityManager.persist(booking);
+
+            entityManager.getTransaction().commit();
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
+    }
 }

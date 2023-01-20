@@ -28,6 +28,7 @@ public class Car implements CarInterface {
 
     @Basic
     @Column(name = "Type")
+    @Enumerated(EnumType.STRING)
     private CarTypeEnum type;
 
     @Basic
