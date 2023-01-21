@@ -48,4 +48,46 @@ public class BookingRepository {
             entityManagerFactory.close();
         }
     }
+
+    /**
+     * Nimmt ein Booking entgegen und loescht dieses aus der DB.
+     * Wird dieses Booking nicht in der DB gefunden, wird eine IllegalArgumentException geworfen.
+     * @param booking Die uebergebene / zu loeschende Entitaet.
+     * @throws IllegalArgumentException wenn Objekt nicht in DB
+     */
+    public static void delete(Booking booking) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+
+            entityManager.remove(entityManager.contains(booking) ? booking : entityManager.merge(booking));
+
+            entityManager.getTransaction().commit();
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
+    }
+
+    /**
+     * Nimmt ein Booking-Objekt entgegen und persistiert es in der Datenbank.
+     * @param booking Das uebergebene Objekt.
+     */
+    public static void persist(Booking booking) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+
+            entityManager.persist(booking);
+
+            entityManager.getTransaction().commit();
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
+    }
 }
