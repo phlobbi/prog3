@@ -2,58 +2,20 @@ package de.htwsaar.hopper.logic.validations;
 
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.implementations.Car;
-import de.htwsaar.hopper.logic.implementations.Customer;
-import org.junit.After;
-import org.junit.Before;
+import de.htwsaar.hopper.repositories.CarRepository;
 import org.junit.Test;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import java.util.Calendar;
-
 
 public class PreventNullPersistForCarTest {
     private PreventNullPersistForCar preventNullPersist;
-    private EntityManagerFactory entityManagerFactory;
-    private EntityManager entityManager;
-    private EntityTransaction entityTransaction;
     private Calendar calendar;
     private Car car;
-
-    @Before
-    public void initializeValues() {
+    public PreventNullPersistForCarTest() {
         preventNullPersist = new PreventNullPersistForCar();
-
-        entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        entityManager = entityManagerFactory.createEntityManager();
-        entityTransaction = entityManager.getTransaction();
+        car = new Car();
 
         calendar = Calendar.getInstance();
         calendar.add(Calendar.YEAR, -3);
-
-        car = new Car();
-    }
-
-    @After
-    public  void closePersistenceUnit(){
-        entityManager.close();
-        entityManagerFactory.close();
-    }
-
-    public void setUpPersistenceUnit(Car car){
-        try{
-            entityTransaction.begin();
-
-            entityManager.persist(car);
-            entityTransaction.commit();
-
-        } finally {
-            if(entityTransaction.isActive()){
-                entityTransaction.rollback();
-            }
-        }
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -74,7 +36,7 @@ public class PreventNullPersistForCarTest {
         preventNullPersist.testAttributesOnNull(car);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test (expected = IllegalArgumentException.class)
     public void persistWithCreationDateNotNullThrowsException(){
         car.setType(CarTypeEnum.AUTO);
         car.setBrand("Infinity");
@@ -148,7 +110,7 @@ public class PreventNullPersistForCarTest {
         car.setLicensePlate("NT-RL-1791");
         car.setModel("Alpha");
         preventNullPersist.testAttributesOnNull(car);
-        setUpPersistenceUnit(car);
+        CarRepository.persist(car);
     }
 
 }

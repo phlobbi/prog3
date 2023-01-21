@@ -1,55 +1,22 @@
 package de.htwsaar.hopper.logic.validations;
 
 import de.htwsaar.hopper.logic.implementations.Customer;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import javax.persistence.*;
-
+import de.htwsaar.hopper.repositories.CustomerRepository;
+import org.junit.*;
 import java.util.Calendar;
 
-
 public class PreventNullPersistForCustomerTest {
-
     private PreventNullPersistForCustomer preventNullPersist;
-    private EntityManagerFactory entityManagerFactory;
-    private EntityManager entityManager;
-    private EntityTransaction entityTransaction;
     private Calendar calendar;
     private Customer customer;
-
-    @Before
-    public void initializeValues() {
+    public PreventNullPersistForCustomerTest() {
         preventNullPersist = new PreventNullPersistForCustomer();
-
-        entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        entityManager = entityManagerFactory.createEntityManager();
-        entityTransaction = entityManager.getTransaction();
+        customer = new Customer();
 
         calendar = Calendar.getInstance();
         calendar.add(Calendar.YEAR, 5);
-
-        customer = new Customer();
     }
-    @After
-    public  void closePersistenceUnit(){
-        entityManager.close();
-        entityManagerFactory.close();
-    }
-    public void setUpPersistenceUnit(Customer customer){
-        try{
-            entityTransaction.begin();
 
-            entityManager.persist(customer);
-            entityTransaction.commit();
-
-        } finally {
-            if(entityTransaction.isActive()){
-                entityTransaction.rollback();
-            }
-        }
-    }
     @Test(expected = IllegalArgumentException.class)
     public void persistWithAllValuesNullThrowsException(){
         preventNullPersist.testAttributesOnNull(customer);
@@ -180,6 +147,6 @@ public class PreventNullPersistForCustomerTest {
         customer.setDriverLicenseNumber("B072RRE2I55");
         customer.setDriverLicenseExpirationDate(calendar);
         preventNullPersist.testAttributesOnNull(customer);
-        setUpPersistenceUnit(customer);
+        CustomerRepository.persist(customer);
     }
 }

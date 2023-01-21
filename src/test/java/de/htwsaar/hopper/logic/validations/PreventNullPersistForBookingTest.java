@@ -1,34 +1,21 @@
 package de.htwsaar.hopper.logic.validations;
 
 import de.htwsaar.hopper.logic.implementations.Booking;
-import org.junit.After;
-import org.junit.Before;
+import de.htwsaar.hopper.repositories.BookingRepository;
 import org.junit.Test;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import java.util.Calendar;
 
 
 public class PreventNullPersistForBookingTest {
     private PreventNullPersistForBooking preventNullPersist;
-    private EntityManagerFactory entityManagerFactory;
-    private EntityManager entityManager;
-    private EntityTransaction entityTransaction;
     private Calendar pickUpDate;
     private Calendar dropOffDate;
     private Calendar realDropOffDate;
     private Booking booking;
 
-    @Before
-    public void initializeValues() {
+    public PreventNullPersistForBookingTest() {
         preventNullPersist = new PreventNullPersistForBooking();
-
-        entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        entityManager = entityManagerFactory.createEntityManager();
-        entityTransaction = entityManager.getTransaction();
+        booking = new Booking();
 
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MONTH, 1);
@@ -36,28 +23,6 @@ public class PreventNullPersistForBookingTest {
         pickUpDate = calendar;
         dropOffDate = calendar;
         realDropOffDate = calendar;
-
-        booking = new Booking();
-    }
-
-    @After
-    public  void closePersistenceUnit(){
-        entityManager.close();
-        entityManagerFactory.close();
-    }
-    public void setUpPersistenceUnit(Booking booking) {
-        try {
-            entityTransaction.begin();
-
-            entityManager.persist(booking);
-            entityTransaction.commit();
-
-        } finally {
-            if(entityTransaction.isActive()){
-                entityTransaction.rollback();
-            }
-        }
-
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -113,7 +78,7 @@ public class PreventNullPersistForBookingTest {
         booking.setDropOffDate(dropOffDate);
         booking.setRealDropOffDate(realDropOffDate);
         preventNullPersist.testAttributesOnNull(booking);
-        setUpPersistenceUnit(booking);
+        BookingRepository.persist(booking);
     }
 
 }
