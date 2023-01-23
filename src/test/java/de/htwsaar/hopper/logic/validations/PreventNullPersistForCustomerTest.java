@@ -6,15 +6,21 @@ import org.junit.*;
 import java.util.Calendar;
 
 public class PreventNullPersistForCustomerTest {
-    private PreventNullPersistForCustomer preventNullPersist;
-    private Calendar calendar;
+    private static PreventNullPersistForCustomer preventNullPersist;
+    private static Calendar calendar;
     private Customer customer;
-    public PreventNullPersistForCustomerTest() {
+
+    @BeforeClass
+    public static void setUpClass() {
         preventNullPersist = new PreventNullPersistForCustomer();
-        customer = new Customer();
 
         calendar = Calendar.getInstance();
         calendar.add(Calendar.YEAR, 5);
+    }
+
+    @Before
+    public void setUpCustomer() {
+        customer = new Customer();
     }
 
     @Test(expected = IllegalArgumentException.class)

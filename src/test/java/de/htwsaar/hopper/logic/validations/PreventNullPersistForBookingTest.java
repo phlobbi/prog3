@@ -2,20 +2,22 @@ package de.htwsaar.hopper.logic.validations;
 
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.repositories.BookingRepository;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import java.util.Calendar;
 
 
 public class PreventNullPersistForBookingTest {
-    private PreventNullPersistForBooking preventNullPersist;
-    private Calendar pickUpDate;
-    private Calendar dropOffDate;
-    private Calendar realDropOffDate;
-    private Booking booking;
+    private static PreventNullPersistForBooking preventNullPersist;
+    private static Calendar pickUpDate;
+    private static Calendar dropOffDate;
+    private static Calendar realDropOffDate;
+    private static Booking booking;
 
-    public PreventNullPersistForBookingTest() {
+    @BeforeClass
+    public static void setUpClass() {
         preventNullPersist = new PreventNullPersistForBooking();
-        booking = new Booking();
 
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MONTH, 1);
@@ -23,6 +25,11 @@ public class PreventNullPersistForBookingTest {
         pickUpDate = calendar;
         dropOffDate = calendar;
         realDropOffDate = calendar;
+    }
+
+    @Before
+    public void setUpBooking() {
+        booking = new Booking();
     }
 
     @Test(expected = IllegalArgumentException.class)

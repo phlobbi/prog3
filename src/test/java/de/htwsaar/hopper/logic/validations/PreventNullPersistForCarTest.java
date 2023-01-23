@@ -3,19 +3,27 @@ package de.htwsaar.hopper.logic.validations;
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.repositories.CarRepository;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import java.util.Calendar;
 
 public class PreventNullPersistForCarTest {
-    private PreventNullPersistForCar preventNullPersist;
-    private Calendar calendar;
+    private static PreventNullPersistForCar preventNullPersist;
+    private static Calendar calendar;
     private Car car;
-    public PreventNullPersistForCarTest() {
+
+    @BeforeClass
+    public static void setUpClass() {
         preventNullPersist = new PreventNullPersistForCar();
-        car = new Car();
 
         calendar = Calendar.getInstance();
         calendar.add(Calendar.YEAR, -3);
+    }
+
+    @Before
+    public void setUpCar() {
+        car = new Car();
     }
 
     @Test(expected = IllegalArgumentException.class)
