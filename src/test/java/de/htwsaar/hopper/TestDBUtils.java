@@ -16,6 +16,7 @@ public class TestDBUtils {
     /**
      * Macht die Datenbank bereit für Tests.
      * Die Methode kopiert dazu die aktuelle Datenbank und legt sie unter anderem Namen ab.
+     * Diese Methode ist nur in einer Setup-Methode mit der Annotation @BeforeClass zu verwenden.
      * @throws IOException Falls es beim Einlesen der Datei zu einem Fehler kommt.
      * @throws IllegalStateException Falls bereits eine Kopie der Datenbank existiert.
      */
@@ -33,6 +34,7 @@ public class TestDBUtils {
     /**
      * Setzt die Datenbank auf ihren Ausgangszustand zurück.
      * Dazu wird die Testdatenbank gelöscht und die ursprüngliche Datenbank wieder hergestellt.
+     * Diese Methode ist nur in einer Setup-Methode mit der Annotation @AfterClass zu verwenden.
      * @throws IOException Falls es beim Einlesen der Dateien zu einem Fehler kommt.
      * @throws IllegalStateException Falls die Backup-Datei nicht gefunden werden kann, um einen Datenverlust zu vermeiden.
      */
