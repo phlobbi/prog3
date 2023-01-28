@@ -20,8 +20,8 @@ public class TestDBUtils {
      * @throws IllegalStateException Falls bereits eine Kopie der Datenbank existiert.
      */
     public static void prepareTestDB() throws IOException {
-        File originalDB = new File("src/test/resources/AutovermietungDB.sqlite");
-        File copyDestination = new File("src/test/resources/AutovermietungDB_copy.sqlite");
+        File originalDB = new File("src/main/resources/AutovermietungDB.sqlite");
+        File copyDestination = new File("src/main/resources/AutovermietungDB_copy.sqlite");
 
         if(copyDestination.exists()) {
             throw new IllegalStateException("Es existiert bereits eine Kopie der Datenbank, die nicht zurückgesetzt wurde.");
@@ -37,12 +37,13 @@ public class TestDBUtils {
      * @throws IllegalStateException Falls die Backup-Datei nicht gefunden werden kann, um einen Datenverlust zu vermeiden.
      */
     public static void loadBackupDB() throws IOException {
-        File testDB = new File("src/test/resources/AutovermietungDB.sqlite");
-        File copyDB = new File("src/test/resources/AutovermietungDB_copy.sqlite");
+        File testDB = new File("src/main/resources/AutovermietungDB.sqlite");
+        File copyDB = new File("src/main/resources/AutovermietungDB_copy.sqlite");
 
         if(copyDB.exists()) {
             FileUtils.delete(testDB);
             FileUtils.copyFile(copyDB, testDB);
+            FileUtils.delete(copyDB);
         } else {
             throw new IllegalStateException("BackupDB not found, unsafe operation aborted");
         }
