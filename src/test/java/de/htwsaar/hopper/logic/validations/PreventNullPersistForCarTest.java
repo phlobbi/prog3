@@ -1,11 +1,15 @@
 package de.htwsaar.hopper.logic.validations;
 
+import de.htwsaar.hopper.TestDBUtils;
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.repositories.CarRepository;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import java.io.IOException;
 import java.util.Calendar;
 
 public class PreventNullPersistForCarTest {
@@ -14,16 +18,23 @@ public class PreventNullPersistForCarTest {
     private Car car;
 
     @BeforeClass
-    public static void setUpClass() {
+    public static void setUpClass() throws IOException {
         preventNullPersist = new PreventNullPersistForCar();
 
         calendar = Calendar.getInstance();
         calendar.add(Calendar.YEAR, -3);
+
+        TestDBUtils.prepareTestDB();
     }
 
     @Before
     public void setUpCar() {
         car = new Car();
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws IOException {
+        TestDBUtils.loadBackupDB();
     }
 
     @Test(expected = IllegalArgumentException.class)
