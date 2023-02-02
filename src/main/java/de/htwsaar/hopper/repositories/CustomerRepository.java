@@ -70,4 +70,24 @@ public class CustomerRepository {
             entityManagerFactory.close();
         }
     }
+
+    /**
+     * Nimmt ein Customer-Objekt entgegen und persistiert es in der Datenbank.
+     * @param customer Das uebergebene Objekt.
+     */
+    public static void persist(Customer customer) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+
+            entityManager.persist(customer);
+
+            entityManager.getTransaction().commit();
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
+    }
 }

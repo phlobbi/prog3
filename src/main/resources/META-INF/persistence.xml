@@ -9,6 +9,7 @@
 
             <property name="hibernate.connection.url" value="jdbc:sqlite:./src/main/resources/AutovermietungDB.sqlite"/>
             <property name="hibernate.connection.driver_class" value="org.sqlite.JDBC"/>
+            <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.dialect" value="org.sqlite.hibernate.dialect.SQLiteDialect"/>
         </properties>
     </persistence-unit>

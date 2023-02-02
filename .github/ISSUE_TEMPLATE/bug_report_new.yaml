@@ -1,0 +1,44 @@
+name: Bug-Report (neu)
+description: Melde einen Bug
+title: "[BUG] <title>"
+labels: [bug]
+body:
+- type: checkboxes
+  attributes:
+    label: Gibt es schon ein Issue dafür?
+    description: Bitte prüfe, ob es für diesen Bug bereits ein Issue gibt.
+    options:
+    - label: Ich habe die Issues durchsucht
+      required: true
+- type: textarea
+  attributes:
+    label: Aktuelles Verhalten
+    description: Beschreibe hier, was genau passiert.
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Erwartetes Verhalten
+    description: Beschreibe hier kurz, welches Verhalten du erwartet hast.
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Schritte zum Reproduzieren
+    description: Beschreibe hier, wie man den Fehler reproduzieren kann.
+    placeholder: |
+      1. Kompiliere das Projekt
+      2. Starte das Programm
+      3. Klicke auf ...
+      4. ...
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Noch was?
+    description: |
+      Gibts Links oder sonstige Referenzen? Alles was helfen kann, das Problem zu verstehen, kommt hier rein.
+
+      Tipp: Bilder, Log-Files oder sonstige Dateien können eingebunden werden, in dem du diesen Bereich auswählst und die Datei hineinziehst.
+  validations:
+    required: false

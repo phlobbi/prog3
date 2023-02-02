@@ -28,6 +28,7 @@ public class Car implements CarInterface {
 
     @Basic
     @Column(name = "Type")
+    @Enumerated(EnumType.STRING)
     private CarTypeEnum type;
 
     @Basic
@@ -173,5 +174,20 @@ public class Car implements CarInterface {
     @Override
     public void setModel(String model) {
         this.model = CarValidation.validateString(model,"Kein gültiges Modell!");
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carId=" + carId +
+                ", type=" + type +
+                ", brand='" + brand + '\'' +
+                ", creationDate=" + creationDate +
+                ", seats=" + seats +
+                ", basePrice=" + basePrice +
+                ", currentPrice=" + currentPrice +
+                ", licensePlate='" + licensePlate + '\'' +
+                ", model='" + model + '\'' +
+                '}';
     }
 }
