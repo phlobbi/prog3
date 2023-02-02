@@ -31,6 +31,7 @@ jobs:
       run: mvn -B -e package --file pom.xml
     - name: 'Qodana Scan'
       uses: JetBrains/qodana-action@main
+      timeout-minutes: 15
       env:
         QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
 
