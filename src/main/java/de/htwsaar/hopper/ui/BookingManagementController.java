@@ -30,13 +30,13 @@ public final class BookingManagementController implements Initializable {
     @FXML
     private TableView<Booking> tableView;
     @FXML
-    private TableColumn<Booking, Integer> carIdColumn;
+    private TableColumn<Booking, String> carIdColumn;
 
     @FXML
     private TableColumn<Booking, Integer> bookingIdColumn;
 
     @FXML
-    private TableColumn<Booking, Integer> customerIdColumn;
+    private TableColumn<Booking, String> customerIdColumn;
 
 
     //private ObservableList<BookingTableInformation>  list ;
@@ -67,9 +67,9 @@ public final class BookingManagementController implements Initializable {
      *  sowie die Marke des reservierten Autos anzeigen.
      */
     void showBookingList(){
-        customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerShowField"));
         bookingIdColumn.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
-        carIdColumn.setCellValueFactory(new PropertyValueFactory<>("carId"));
+        carIdColumn.setCellValueFactory(new PropertyValueFactory<>("carShowField"));
 
         tableView.getColumns().clear();
         tableView.getColumns().addAll(customerIdColumn,bookingIdColumn,carIdColumn);
