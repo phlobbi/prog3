@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 
+import java.io.IOException;
+
 /**
  * UI-Klasse, die die CRUD-Funktionen für den Nutzer bereitstellt.
  */
@@ -33,8 +35,8 @@ public final class CustomerManagementController {
      * @param event button click
      */
     @FXML
-    void switchToFirstView(ActionEvent event)  {
-        App.setRoot("de/htwsaar/hopper/ui/first-view.fxml");
+    void switchToFirstView(ActionEvent event) throws IOException {
+        App.setRoot("first-view.fxml");
 
     }
 
