@@ -19,7 +19,6 @@ public class CarRepository {
      * @param carId ID des zu findenden Cars
      * @return Gefundenes Car; null, falls nicht gefunden
      */
-
     public static Car find(int carId) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -98,7 +97,6 @@ public class CarRepository {
     public static void delete(Car car) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        List<Booking> bookings = BookingRepository.findAll();
 
         try {
             entityManager.getTransaction().begin();
