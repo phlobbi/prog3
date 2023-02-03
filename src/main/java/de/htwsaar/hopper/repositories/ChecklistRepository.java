@@ -26,6 +26,28 @@ public class ChecklistRepository {
     }
 
     /**
+     * Nimmt eine Checklist entgegen und loescht diese aus der DB.
+     * Wird diese Checklist nicht in der DB gefunden, wird eine IllegalArgumentException geworfen.
+     * @param checklist Die uebergebene / zu loeschende Entitaet.
+     * @throws IllegalArgumentException wenn Objekt nicht in DB
+     */
+    public static void delete(Checklist checklist) {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+
+            entityManager.remove(entityManager.contains(checklist) ? checklist : entityManager.merge(checklist));
+
+            entityManager.getTransaction().commit();
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
+    }
+
+    /**
      * Nimmt ein Checklist-Objekt entgegen und persistiert es in der Datenbank.
      * @param checklist Das übergebene Objekt.
      */
@@ -35,7 +57,7 @@ public class ChecklistRepository {
 
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(checklist);
+            entityManager.persist(entityManager.contains(checklist) ? checklist : entityManager.merge(checklist));
             entityManager.getTransaction().commit();
         } finally {
             entityManager.close();

@@ -126,7 +126,7 @@ public class CarRepository {
         try {
             entityManager.getTransaction().begin();
 
-            entityManager.persist(car);
+            entityManager.persist(entityManager.contains(car) ? car : entityManager.merge(car));
 
             entityManager.getTransaction().commit();
         } finally {

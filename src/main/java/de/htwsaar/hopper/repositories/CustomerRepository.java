@@ -1,7 +1,6 @@
 package de.htwsaar.hopper.repositories;
 
 import de.htwsaar.hopper.logic.implementations.Booking;
-import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.implementations.Customer;
 
 import javax.persistence.EntityManager;
@@ -86,7 +85,7 @@ public class CustomerRepository {
         try {
             entityManager.getTransaction().begin();
 
-            entityManager.persist(customer);
+            entityManager.persist(entityManager.contains(customer) ? customer : entityManager.merge(customer));
 
             entityManager.getTransaction().commit();
         } finally {
