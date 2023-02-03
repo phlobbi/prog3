@@ -1,5 +1,7 @@
 package de.htwsaar.hopper.repositories;
 
+import de.htwsaar.hopper.logic.implementations.Booking;
+import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.implementations.Customer;
 
 import javax.persistence.EntityManager;
@@ -52,6 +54,7 @@ public class CustomerRepository {
     /**
      * Nimmt einen Customer entgegen und loescht diesen aus der DB.
      * Wird dieser Customer nicht in der DB gefunden, wird eine IllegalArgumentException geworfen.
+     * Nach dem Löschen werden ggf. vorhandene orphaned records entfernt.
      * @param customer Die uebergebene / zu loeschende Entitaet.
      * @throws IllegalArgumentException wenn Objekt nicht in DB
      */
@@ -69,6 +72,7 @@ public class CustomerRepository {
             entityManager.close();
             entityManagerFactory.close();
         }
+        removeOrphan(customer);
     }
 
     /**
@@ -88,6 +92,23 @@ public class CustomerRepository {
         } finally {
             entityManager.close();
             entityManagerFactory.close();
+        }
+    }
+
+    /**
+     * Wird nach dem Löschen eines Customers automatisch aufgerufen und durchsucht alle vorhandenen Bookings.
+     * Taucht der gelöschte Customer in einem Booking auf, wird auch das korrespondierende Booking entfernt.
+     * @param customer Der gelöschte Customer.
+     */
+    public static void removeOrphan(Customer customer) {
+        List<Booking> bookings = BookingRepository.findAll();
+
+        if (bookings != null) {
+            for (Booking booking : bookings) {
+                if (booking.getCustomerId() == customer.getCustomerId()) {
+                    BookingRepository.delete(booking);
+                }
+            }
         }
     }
 }

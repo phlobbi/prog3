@@ -147,7 +147,6 @@ public class CarRepository {
             for (Booking booking : bookings) {
                 if (booking.getCarId() == car.getCarId()) {
                     BookingRepository.delete(booking);
-                    break;
                 }
             }
         }
