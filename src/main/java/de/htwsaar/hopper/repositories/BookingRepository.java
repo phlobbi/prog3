@@ -100,7 +100,7 @@ public class BookingRepository {
      * löscht – wenn vorhanden – die zugeordnete Checklist.
      * @param booking
      */
-    public static void removeOrphan(Booking booking) {
+    private static void removeOrphan(Booking booking) {
         Checklist checklist = ChecklistRepository.find(booking.getChecklistId());
         if (checklist != null)
             ChecklistRepository.delete(checklist);

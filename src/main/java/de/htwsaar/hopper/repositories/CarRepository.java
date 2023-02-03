@@ -136,7 +136,7 @@ public class CarRepository {
      * Taucht das gelöschte Car in einem Booking auf, wird auch das korrespondierende Booking entfernt.
      * @param car Das gelöschte Car.
      */
-    public static void removeOrphan(Car car) {
+    private static void removeOrphan(Car car) {
         List<Booking> bookings = BookingRepository.findAll();
 
         if (bookings != null) {
