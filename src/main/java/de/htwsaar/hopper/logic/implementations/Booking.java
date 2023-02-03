@@ -45,6 +45,10 @@ public class Booking implements BookingInterface {
     @Temporal(TemporalType.DATE)
     private Calendar realDropOffDate;
 
+    @Basic
+    @Column(name = "ChecklistID")
+    private int checklistId;
+
     /**
     * Standard-Konstruktor
     */
@@ -71,17 +75,19 @@ public class Booking implements BookingInterface {
      * Ueberfuehrt ausgewaehlte Felder des Customers dann in einen Ausgabestring.
      * @return Der Ausgabestring.
      */
+    @Override
     public String getCustomerShowField() {
         Customer customer = CustomerRepository.find(this.customerId);
         return String.format("%s %s (ID: %d)",customer.getFirstName(),customer.getLastName(),customer.getCustomerId());
     }
 
     /**
-     * Nutzt das CarRepository, um ueber die carID des aktuellen Booking-Objekts
+     * Nutzt das CarRepository, um über die carID des aktuellen Booking-Objekts
      * das zugeordnete Car aus der DB herauszusuchen.
-     * Ueberfuehrt ausgewaehlte Felder des Cars dann in einen Ausgabestring.
+     * Überfuehrt ausgewählte Felder des Cars dann in einen Ausgabestring.
      * @return Der Ausgabestring.
      */
+    @Override
     public String getCarShowField() {
         Car car = CarRepository.find(this.carId);
         return String.format("%s %s (ID: %d)",car.getBrand(),car.getModel(),car.getCarId());
@@ -118,6 +124,11 @@ public class Booking implements BookingInterface {
         return realDropOffDate;
     }
 
+    @Override
+    public int getChecklistId() {
+        return checklistId;
+    }
+
     /* SETTER */
     @Override
     public void setCarId(int carId) {
@@ -142,6 +153,11 @@ public class Booking implements BookingInterface {
     @Override
     public void setRealDropOffDate(Calendar realDropOffDate) {
         this.realDropOffDate = realDropOffDate;
+    }
+
+    @Override
+    public void setChecklistId(int checklistId) {
+        this.checklistId = checklistId;
     }
 
     /**

@@ -8,6 +8,14 @@ import java.util.Calendar;
  */
 public interface BookingInterface {
 
+    /* UI-METHODEN */
+    String getCustomerShowField();
+    String getCarShowField();
+
+    /* PREISBERECHNUNG */
+    double calculatePrice(int carId);
+    double calculateFinalPrice(int carId);
+
     /* GETTER */
     int getBookingId();
     int getCarId();
@@ -15,6 +23,7 @@ public interface BookingInterface {
     Calendar getPickUpDate();
     Calendar getDropOffDate();
     Calendar getRealDropOffDate();
+    int getChecklistId();
 
     /* SETTER */
     void setCarId(int carId);
@@ -22,11 +31,8 @@ public interface BookingInterface {
     void setPickUpDate(Calendar startDate);
     void setDropOffDate(Calendar returnDate);
     void setRealDropOffDate(Calendar realReturnDate);
+    void setChecklistId(int checklistId);
 
     /* toString */
     String toString();
-
-    double calculatePrice(int carId);
-
-    double calculateFinalPrice(int carId);
 }
