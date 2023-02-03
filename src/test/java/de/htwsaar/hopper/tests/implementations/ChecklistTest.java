@@ -3,8 +3,12 @@ package de.htwsaar.hopper.tests.implementations;
 import de.htwsaar.hopper.logic.implementations.Checklist;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+/**
+ * Testklasse für die Klasse {@link Checklist}.
+ * @author Philip
+ */
 public class ChecklistTest {
     private final static String CHECKLIST_TOSTRING = "Checklist (ID: %d):\n"
             + "hasFullTank: %b\n"
