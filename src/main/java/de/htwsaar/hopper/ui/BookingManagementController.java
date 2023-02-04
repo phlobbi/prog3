@@ -16,6 +16,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
+
 public final class BookingManagementController implements Initializable {
 
     @FXML
@@ -63,7 +64,7 @@ public final class BookingManagementController implements Initializable {
 
     /**
      * Mit der Methode showBookingList können Sie in der Tabelle ID der Buchung eines Autos,
-     * den Vor und Nachnamen der Person,die das Auto reserviert hat
+     * den Vor und Nachnamen der Person, die das Auto reserviert hat.
      *  sowie die Marke des reservierten Autos anzeigen.
      */
     void showBookingList(){
