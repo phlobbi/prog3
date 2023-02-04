@@ -47,7 +47,7 @@ public class Booking implements BookingInterface {
 
     @Basic
     @Column(name = "ChecklistID")
-    private int checklistId;
+    private Integer checklistId;
 
     /**
     * Standard-Konstruktor

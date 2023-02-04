@@ -1,5 +1,6 @@
 package de.htwsaar.hopper.repositories;
 
+import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.logic.implementations.Car;
 
 import javax.persistence.EntityManager;
@@ -13,7 +14,6 @@ import java.util.List;
  * @author Ronny
  */
 public class CarRepository {
-
     /**
      * Findet ein Car über seine ID.
      * @param carId ID des zu findenden Cars
@@ -90,6 +90,7 @@ public class CarRepository {
     /**
      * Nimmt ein Car entgegen und loescht dieses aus der DB.
      * Wird dieses Car nicht in der DB gefunden, wird eine IllegalArgumentException geworfen.
+     * Nach dem Löschen werden ggf. vorhandene orphaned records entfernt.
      * @param car Die uebergebene / zu loeschende Entitaet.
      * @throws IllegalArgumentException wenn Objekt nicht in DB
      */
@@ -107,6 +108,7 @@ public class CarRepository {
             entityManager.close();
             entityManagerFactory.close();
         }
+        removeOrphan(car);
     }
 
     /**
@@ -120,12 +122,29 @@ public class CarRepository {
         try {
             entityManager.getTransaction().begin();
 
-            entityManager.persist(car);
+            entityManager.persist(entityManager.contains(car) ? car : entityManager.merge(car));
 
             entityManager.getTransaction().commit();
         } finally {
             entityManager.close();
             entityManagerFactory.close();
+        }
+    }
+
+    /**
+     * Wird nach dem Löschen eines Cars automatisch aufgerufen und durchsucht alle vorhandenen Bookings.
+     * Taucht das gelöschte Car in einem Booking auf, wird auch das korrespondierende Booking entfernt.
+     * @param car Das gelöschte Car.
+     */
+    private static void removeOrphan(Car car) {
+        List<Booking> bookings = BookingRepository.findAll();
+
+        if (bookings != null) {
+            for (Booking booking : bookings) {
+                if (booking.getCarId() == car.getCarId()) {
+                    BookingRepository.delete(booking);
+                }
+            }
         }
     }
 }

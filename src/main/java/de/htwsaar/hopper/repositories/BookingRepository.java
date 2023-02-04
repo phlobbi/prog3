@@ -1,6 +1,7 @@
 package de.htwsaar.hopper.repositories;
 
 import de.htwsaar.hopper.logic.implementations.Booking;
+import de.htwsaar.hopper.logic.implementations.Checklist;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -71,6 +72,7 @@ public class BookingRepository {
             entityManager.close();
             entityManagerFactory.close();
         }
+        removeOrphan(booking);
     }
 
     /**
@@ -84,12 +86,23 @@ public class BookingRepository {
         try {
             entityManager.getTransaction().begin();
 
-            entityManager.persist(booking);
+            entityManager.persist(entityManager.contains(booking) ? booking : entityManager.merge(booking));
 
             entityManager.getTransaction().commit();
         } finally {
             entityManager.close();
             entityManagerFactory.close();
         }
+    }
+
+    /**
+     * Wird nach dem Löschen eines Bookings automatisch aufgerufen und
+     * löscht – wenn vorhanden – die zugeordnete Checklist.
+     * @param booking
+     */
+    private static void removeOrphan(Booking booking) {
+        Checklist checklist = ChecklistRepository.find(booking.getChecklistId());
+        if (checklist != null)
+            ChecklistRepository.delete(checklist);
     }
 }
