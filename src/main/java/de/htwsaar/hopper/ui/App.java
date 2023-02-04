@@ -55,6 +55,22 @@ public final class App extends Application {
 
 
 	}
+	/*
+	Diese Methode erlaubt es, ein neues Fenster zu öffnen, ohne das Hauptfenster zu schliessen.
+	 */
+	public static void loadWindow( String fxmlfile) throws IOException {
+		Stage stage = new Stage() ;
+		URL url = App.class.getResource(fxmlfile);
+		if (url != null) {
+			root = FXMLLoader.load(url);
+			Scene scene1 = new Scene( root ) ;
+			stage.setScene(scene1);
+			stage.show();
+
+		}
+
+	}
+
 
 	/**
 	 * Die Methode startet die Applikation.
