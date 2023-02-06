@@ -1,24 +1,18 @@
 package de.htwsaar.hopper.ui;
 
 
-import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.repositories.CarRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextInputDialog;
-
 import java.io.IOException;
-import java.util.Optional;
 
-import static de.htwsaar.hopper.repositories.CarRepository.find;
 
 public final class CarManagementController {
 
-    private  static int input ;
-    private int carId  ;
+    private static int input;
 
     @FXML
     private Button btnRead;
@@ -48,23 +42,24 @@ public final class CarManagementController {
     }
 
     /**
-     Diese Methode ermöglicht es Ihnen, ein genaues Auto zu lesen.
-     Ein Dialog wird angezeigt, in dem Sie die Informationen über das Auto eingeben können,
-     das gelesen werden soll.
+     * Diese Methode ermöglicht es Ihnen, ein genaues Auto zu lesen.
+     * Ein Dialog wird angezeigt, in dem Sie die Informationen über das Auto eingeben können,
+     * das gelesen werden soll.
+     * @param event button click
      */
     @FXML
-    void switchToSceneReadCar(ActionEvent event)   {
-        TextInputDialog inputDialog = new TextInputDialog() ;
+    void switchToSceneReadCar(ActionEvent event) {
+        TextInputDialog inputDialog = new TextInputDialog();
         inputDialog.setHeaderText("ID".toUpperCase());
         inputDialog.setContentText("Geben Sie bitte ein CarID ein");
-        inputDialog.showAndWait().ifPresent( response ->{
+        inputDialog.showAndWait().ifPresent(response -> {
 
             try {
-                input = Integer.valueOf(inputDialog.getEditor().getText());
-                if(CarRepository.find(input) != null){
+                input = Integer.parseInt(inputDialog.getEditor().getText());
+                if (CarRepository.find(input) != null) {
                     App.loadWindow("carshow.fxml");
                 }
-            }catch(IllegalArgumentException | IOException ex){
+            } catch (IllegalArgumentException | IOException ex) {
                 System.out.println("Falsche eingabe");
             }
 
@@ -84,6 +79,7 @@ public final class CarManagementController {
 
     /**
      * Wechselt bei Aufruf auf die Startseite zurück.
+     *
      * @param event button click
      */
     @FXML

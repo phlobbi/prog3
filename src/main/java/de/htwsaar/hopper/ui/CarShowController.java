@@ -8,10 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
-import de.htwsaar.hopper.repositories.CarRepository ;
+import de.htwsaar.hopper.repositories.CarRepository;
 
 
-public class CarShowController  implements Initializable {
+public class CarShowController implements Initializable {
 
     @FXML
     private Button btnGoBack;
@@ -23,7 +23,7 @@ public class CarShowController  implements Initializable {
     private Button btnUpdate;
 
     @FXML
-    private Label labelCarBasePrise ;
+    private Label labelCarBasePrise;
 
     @FXML
     private Label labelCarModel;
@@ -56,14 +56,13 @@ public class CarShowController  implements Initializable {
 
 
     /**
-     * @param url
-     * @param resourceBundle
-     * Diese Methode initialisiert die Informationen über das ausgewählte Auto
+     * @param url Der Ort, an dem relative Pfade für das Root-Objekt aufgelöst werden
+     * @param resourceBundle Diese Methode initialisiert die Informationen über das ausgewählte Auto
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        int id = CarManagementController.getInput() ;
-        Car car = CarRepository.find(id) ;
+        int id = CarManagementController.getInput();
+        Car car = CarRepository.find(id);
         labelCarBasePrise.setText(String.valueOf(car.getBasePrice()));
         labelCarModel.setText(String.valueOf(car.getModel()));
         labelCarCreationDate.setText(String.valueOf(car.getCreationDate()));
