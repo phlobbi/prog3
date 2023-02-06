@@ -1,5 +1,6 @@
 package de.htwsaar.hopper.repositories;
 
+import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.logic.implementations.Customer;
 
 import javax.persistence.EntityManager;
@@ -52,7 +53,8 @@ public class CustomerRepository {
     /**
      * Nimmt einen Customer entgegen und loescht diesen aus der DB.
      * Wird dieser Customer nicht in der DB gefunden, wird eine IllegalArgumentException geworfen.
-     * @param customer Die uebergebene / zu loeschende Entitaet.
+     * Nach dem Löschen werden ggf. vorhandene orphaned records entfernt.
+     * @param customer Die übergebene / zu löschende Entität.
      * @throws IllegalArgumentException wenn Objekt nicht in DB
      */
     public static void delete(Customer customer) {
@@ -69,11 +71,12 @@ public class CustomerRepository {
             entityManager.close();
             entityManagerFactory.close();
         }
+        removeOrphan(customer);
     }
 
     /**
      * Nimmt ein Customer-Objekt entgegen und persistiert es in der Datenbank.
-     * @param customer Das uebergebene Objekt.
+     * @param customer Das übergebene Objekt.
      */
     public static void persist(Customer customer) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
@@ -82,12 +85,29 @@ public class CustomerRepository {
         try {
             entityManager.getTransaction().begin();
 
-            entityManager.persist(customer);
+            entityManager.persist(entityManager.contains(customer) ? customer : entityManager.merge(customer));
 
             entityManager.getTransaction().commit();
         } finally {
             entityManager.close();
             entityManagerFactory.close();
+        }
+    }
+
+    /**
+     * Wird nach dem Löschen eines Customers automatisch aufgerufen und durchsucht alle vorhandenen Bookings.
+     * Taucht der gelöschte Customer in einem Booking auf, wird auch das korrespondierende Booking entfernt.
+     * @param customer Der gelöschte Customer.
+     */
+    private static void removeOrphan(Customer customer) {
+        List<Booking> bookings = BookingRepository.findAll();
+
+        if (bookings != null) {
+            for (Booking booking : bookings) {
+                if (booking.getCustomerId() == customer.getCustomerId()) {
+                    BookingRepository.delete(booking);
+                }
+            }
         }
     }
 }
