@@ -1,6 +1,7 @@
 package de.htwsaar.hopper.ui;
 
 
+import de.htwsaar.hopper.logic.implementations.Car;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,6 +10,7 @@ import javafx.scene.control.TableView;
 import java.io.IOException;
 
 public final class CarManagementController {
+    private static Car selectedCar ;
 
     @FXML
     private Button btnRead;
@@ -31,6 +33,7 @@ public final class CarManagementController {
     @FXML
     void switchToSceneAddCar(ActionEvent event) {
 
+
     }
 
     @FXML
@@ -46,6 +49,10 @@ public final class CarManagementController {
     @FXML
     void switchToSceneUpdateCar(ActionEvent event) {
 
+    }
+
+    public static Car getSelectedCar() {
+        return selectedCar;
     }
 
     /**
