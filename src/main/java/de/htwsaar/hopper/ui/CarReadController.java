@@ -12,7 +12,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class CarShowController implements Initializable {
+public class CarReadController implements Initializable {
 
     @FXML
     private Button btnGoBack;
@@ -58,17 +58,19 @@ public class CarShowController implements Initializable {
 
 
     /**
-     * @param url Der Ort, an dem relative Pfade für das Root-Objekt aufgelöst werden
+     * @param url            Der Ort, an dem relative Pfade für das Root-Objekt aufgelöst werden
      * @param resourceBundle Diese Methode initialisiert die Informationen über das ausgewählte Auto
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Car car = CarManagementController.getSelectedCar() ;
+
+        Car car = CarManagementController.getSelectedCar();
         labelCarBasePrise.setText(String.valueOf(car.getBasePrice()));
         labelCarBrand.setText(String.valueOf(car.getBrand()));
-        labelCarCreationDate.setText(String.valueOf(car.getCreationDate()));
+        labelCarCreationDate.setText(String.valueOf(car.getCreationDate().getTime()));
         labelCarCurrentPrise.setText(String.valueOf(car.getCurrentPrice()));
         labelCarSeats.setText(String.valueOf(car.getSeats()));
         labelCarType.setText(car.getType().getLabel());
+
     }
 }
