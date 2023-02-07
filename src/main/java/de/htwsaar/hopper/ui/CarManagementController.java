@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 public final class CarManagementController implements Initializable {
     private static Car selectedCar;
 
@@ -50,6 +51,10 @@ public final class CarManagementController implements Initializable {
 
     }
 
+    /**
+     * Wechselt bei Aufruf auf das Fenster Car-read-view.
+     * @param event button click
+     */
     @FXML
     void switchToSceneReadCar(ActionEvent event) throws IOException {
         Car car = tableView.getSelectionModel().getSelectedItem();

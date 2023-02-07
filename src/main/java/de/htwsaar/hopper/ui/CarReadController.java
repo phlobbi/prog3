@@ -24,7 +24,7 @@ public class CarReadController implements Initializable {
     private Button btnUpdate;
 
     @FXML
-    private Label labelCarBasePrise;
+    private Label labelCarBasePrice;
 
     @FXML
     private Label labelCarBrand;
@@ -45,6 +45,11 @@ public class CarReadController implements Initializable {
 
     }
 
+    /**
+     * zeigt das gewaehlte Auto beim Aufruf.
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void switchToCarView(ActionEvent event) throws IOException {
         App.setRoot("Car-view.fxml");
@@ -58,14 +63,14 @@ public class CarReadController implements Initializable {
 
 
     /**
-     * @param url            Der Ort, an dem relative Pfade für das Root-Objekt aufgelöst werden
+     * @param url Der Ort, an dem relative Pfade für das Root-Objekt aufgelöst werden
      * @param resourceBundle Diese Methode initialisiert die Informationen über das ausgewählte Auto
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         Car car = CarManagementController.getSelectedCar();
-        labelCarBasePrise.setText(String.valueOf(car.getBasePrice()));
+        labelCarBasePrice.setText(String.valueOf(car.getBasePrice()));
         labelCarBrand.setText(String.valueOf(car.getBrand()));
         labelCarCreationDate.setText(String.valueOf(car.getCreationDate().getTime()));
         labelCarCurrentPrise.setText(String.valueOf(car.getCurrentPrice()));
