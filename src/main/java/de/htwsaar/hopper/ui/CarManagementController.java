@@ -36,6 +36,7 @@ public final class CarManagementController implements Initializable {
 
     @FXML
     private TableView<Car> tableView;
+
     @FXML
     private TableColumn<Car, String> carBrandColumn;
 
@@ -48,7 +49,6 @@ public final class CarManagementController implements Initializable {
     @FXML
     void switchToSceneAddCar(ActionEvent event) {
 
-
     }
 
     /**
@@ -57,8 +57,7 @@ public final class CarManagementController implements Initializable {
      */
     @FXML
     void switchToSceneReadCar(ActionEvent event) throws IOException {
-        Car car = tableView.getSelectionModel().getSelectedItem();
-        selectedCar = car;
+        setSelectedCar(tableView.getSelectionModel().getSelectedItem());
         App.setRoot("Car-read-view.fxml");
     }
 
@@ -84,18 +83,16 @@ public final class CarManagementController implements Initializable {
     @FXML
     void switchToFirstView(ActionEvent event) throws IOException {
         App.setRoot("first-view.fxml");
-
     }
 
-
     /**
+     * Wird beim Aufruf der View ausgeführt und bereitet die View entsprechend vor.
      * @param url Der Ort, an dem relative Pfade für das Root-Objekt aufgelöst werden, oder
      * {@code null}, wenn der Speicherort nicht bekannt ist.
-     *  @param resourceBundle Die Ressourcen, die zum Lokalisieren des Root-Objekts verwendet werden, oder {@code null}
+     * @param resourceBundle Die Ressourcen, die zum Lokalisieren des Root-Objekts verwendet werden, oder {@code null}
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         carBrandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
         carTypeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         carIdColumn.setCellValueFactory(new PropertyValueFactory<>("carId"));
@@ -107,9 +104,15 @@ public final class CarManagementController implements Initializable {
             btnRead.setDisable(true);
             btnRemove.setDisable(true);
             btnUpdate.setDisable(true);
-
         }
+    }
 
+    /**
+     * Setzt die Variable selectedCar auf ein angegebenes Car-Objekt.
+     * @param car Zu setzendes Car-Objekt
+     */
+    public static void setSelectedCar(Car car) {
+        selectedCar = car;
     }
 }
 
