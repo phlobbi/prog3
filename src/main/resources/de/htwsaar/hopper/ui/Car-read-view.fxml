@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CarReadController">
+    <top>
+        <HBox prefHeight="44.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Autoverwaltung" wrappingWidth="211.13671875">
+                    <font>
+                        <Font size="21.0" />
+                    </font>
+                </Text>
+        </HBox>
+    </top>
+    <center>
+        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <ToolBar prefHeight="40.0" prefWidth="200.0">
+                    <items>
+                        <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#switchToCarView" text="zurueck" />
+                        <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#updateCar" text="bearbeiten" />
+                        <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#removeCar" text="loeschen" />
+                    </items>
+                </ToolBar>
+                <Label text="Eigenschaften">
+                    <font>
+                        <Font size="25.0" />
+                    </font>
+                </Label>
+                <HBox prefHeight="25.0" prefWidth="200.0" spacing="124.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Typ:" />
+                        <Label fx:id="labelCarType" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" spacing="119.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sitze:" />
+                        <Label fx:id="labelCarSeats" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" spacing="50.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Herstellungdatum:" />
+                        <Label fx:id="labelCarCreationDate" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" spacing="77.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kennzeichen:" />
+                        <Label fx:id="labelCarBrand" />
+                    </children>
+                </HBox>
+                <Label text="Preise">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <HBox prefHeight="25.0" prefWidth="200.0" spacing="92.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Grundpeis:" />
+                        <Label fx:id="labelCarBasePrice" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="221.0" prefHeight="25.0" prefWidth="200.0" spacing="90.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tagespreis:" />
+                        <Label fx:id="labelCarCurrentPrise" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
