@@ -38,7 +38,7 @@ public final class CustomerManagementController implements Initializable {
     private Button btnUpdate;
 
     @FXML
-    private TableView<?> tableView;
+    private TableView<Customer> tableView;
 
     private static Customer selectedCustomer;
 
@@ -60,6 +60,28 @@ public final class CustomerManagementController implements Initializable {
         App.setRoot("first-view.fxml");
     }
 
+
+
+    @FXML
+    void switchToSceneAddCustomer(ActionEvent event) {
+
+    }
+
+    @FXML
+    void switchToSceneReadCustomer(ActionEvent event) {
+
+    }
+
+    @FXML
+    void switchToSceneRemoveCustomer(ActionEvent event) {
+
+    }
+
+    @FXML
+    void switchToSceneUpdateCustomer(ActionEvent event) {
+
+    }
+
         public static Customer getSelectedCustomer() {
             return selectedCustomer;
         }
@@ -72,8 +94,8 @@ public final class CustomerManagementController implements Initializable {
          */
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
-            customerSurnameColumn.setCellValueFactory(new PropertyValueFactory<>("vorname"));
-            customerNameColumn.setCellValueFactory(new PropertyValueFactory<>("nachname"));
+            customerSurnameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+            customerNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
             customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
             ObservableList<Customer> observableList = FXCollections.observableArrayList();
             observableList.addAll(CustomerRepository.findAll());
