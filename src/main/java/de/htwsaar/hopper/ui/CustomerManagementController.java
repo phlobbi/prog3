@@ -1,6 +1,5 @@
 package de.htwsaar.hopper.ui;
 
-import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.implementations.Customer;
 import de.htwsaar.hopper.repositories.CustomerRepository;
 import javafx.collections.FXCollections;
@@ -68,8 +67,9 @@ public final class CustomerManagementController implements Initializable {
     }
 
     @FXML
-    void switchToSceneReadCustomer(ActionEvent event) {
-
+    void switchToSceneReadCustomer(ActionEvent event) throws IOException {
+        setSelectedCustomer(tableView.getSelectionModel().getSelectedItem());
+        App.setRoot("Customer-read-view.fxml");
     }
 
     @FXML

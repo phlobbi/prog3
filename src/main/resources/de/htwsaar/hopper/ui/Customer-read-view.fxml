@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CustomerReadController">
+    <top>
+        <HBox prefHeight="44.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kundenverwaltung" wrappingWidth="600.7366790771484">
+                <font>
+                    <Font size="21.0" />
+                </font>
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+            </Text>
+        </HBox>
+    </top>
+    <center>
+        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <ToolBar prefHeight="40.0" prefWidth="200.0">
+                    <items>
+                        <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#switchToCustomerView" text="zurueck" />
+                        <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#updateCustomer" text="bearbeiten" />
+                        <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#removeCustomer" text="loeschen" />
+                    </items>
+                </ToolBar>
+            <HBox prefHeight="30.0" prefWidth="600.0">
+               <children>
+                      <Label prefHeight="33.0" prefWidth="600.0" text="Eigenschaften">
+                          <font>
+                              <Font size="25.0" />
+                          </font>
+                      </Label>
+               </children>
+            </HBox>
+                <HBox prefHeight="25.0" prefWidth="200.0" spacing="124.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vorname:" />
+                        <Label fx:id="labelSurname" prefHeight="18.0" prefWidth="0.0" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" spacing="119.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nachname:" />
+                        <Label fx:id="labelName" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" spacing="50.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse:" />
+                        <Label fx:id="labelAdress" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" spacing="77.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="E-Mail:" />
+                        <Label fx:id="labelEMail" />
+                    </children>
+                </HBox>
+                <HBox prefHeight="25.0" prefWidth="200.0" spacing="92.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Telefonnummer:" />
+                        <Label fx:id="labelTelephoneNumber" />
+                    </children>
+                </HBox>
+                <HBox layoutX="10.0" layoutY="221.0" prefHeight="25.0" prefWidth="200.0" spacing="90.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Führerscheinnummer:" />
+                        <Label fx:id="labelDriverLicenseNumber" />
+                    </children>
+                </HBox>
+            <HBox prefHeight="23.0" prefWidth="600.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Führerschein-Gültigkeitsdatum:" />
+                  <Label fx:id="labelDriverLicenseExpirationDate" alignment="CENTER_RIGHT" contentDisplay="CENTER" />
+               </children>
+            </HBox>
+            <HBox prefHeight="23.0" prefWidth="600.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IBAN:" />
+                  <Label fx:id="labelIBAN" />
+               </children>
+            </HBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
