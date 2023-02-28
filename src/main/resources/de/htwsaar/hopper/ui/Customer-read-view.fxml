@@ -42,52 +42,84 @@
                       </Label>
                </children>
             </HBox>
-                <HBox prefHeight="25.0" prefWidth="200.0" spacing="124.0">
+                <HBox prefHeight="25.0" prefWidth="200.0" spacing="200.0">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vorname:" />
-                        <Label fx:id="labelSurname" prefHeight="18.0" prefWidth="0.0" />
+                  <HBox prefHeight="26.0" prefWidth="414.0">
+                     <children>
+                              <Label fx:id="labelSurname" />
+                     </children>
+                  </HBox>
                     </children>
                 </HBox>
-                <HBox layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" spacing="119.0">
+                <HBox layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" spacing="200.0">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nachname:" />
-                        <Label fx:id="labelName" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                              <Label fx:id="labelName" />
+                     </children>
+                  </HBox>
                     </children>
                 </HBox>
-                <HBox layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" spacing="50.0">
+                <HBox layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" spacing="200.0">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse:" />
-                        <Label fx:id="labelAdress" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                              <Label fx:id="labelAdress" />
+                     </children>
+                  </HBox>
                     </children>
                 </HBox>
-                <HBox layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" spacing="77.0">
+                <HBox layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" spacing="200.0">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="E-Mail:" />
-                        <Label fx:id="labelEMail" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                              <Label fx:id="labelEMail" />
+                     </children>
+                  </HBox>
                     </children>
                 </HBox>
-                <HBox prefHeight="25.0" prefWidth="200.0" spacing="92.0">
+                <HBox prefHeight="25.0" prefWidth="200.0" spacing="200.0">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Telefonnummer:" />
-                        <Label fx:id="labelTelephoneNumber" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                              <Label fx:id="labelTelephoneNumber" />
+                     </children>
+                  </HBox>
                     </children>
                 </HBox>
-                <HBox layoutX="10.0" layoutY="221.0" prefHeight="25.0" prefWidth="200.0" spacing="90.0">
+                <HBox layoutX="10.0" layoutY="221.0" prefHeight="25.0" prefWidth="200.0" spacing="200.0">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Führerscheinnummer:" />
-                        <Label fx:id="labelDriverLicenseNumber" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                              <Label fx:id="labelDriverLicenseNumber" />
+                     </children>
+                  </HBox>
                     </children>
                 </HBox>
-            <HBox prefHeight="23.0" prefWidth="600.0">
+            <HBox prefHeight="23.0" prefWidth="600.0" spacing="200.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Führerschein-Gültigkeitsdatum:" />
-                  <Label fx:id="labelDriverLicenseExpirationDate" alignment="CENTER_RIGHT" contentDisplay="CENTER" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="labelDriverLicenseExpirationDate" alignment="CENTER_RIGHT" contentDisplay="CENTER" />
+                     </children>
+                  </HBox>
                </children>
             </HBox>
-            <HBox prefHeight="23.0" prefWidth="600.0">
+            <HBox prefHeight="23.0" prefWidth="600.0" spacing="200.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IBAN:" />
-                  <Label fx:id="labelIBAN" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="labelIBAN" />
+                     </children>
+                  </HBox>
                </children>
             </HBox>
             </children>
