@@ -94,8 +94,8 @@ public final class CustomerManagementController implements Initializable {
          */
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
-            customerSurnameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-            customerNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+            customerLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+            customerFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
             customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
             ObservableList<Customer> observableList = FXCollections.observableArrayList();
             observableList.addAll(CustomerRepository.findAll());
