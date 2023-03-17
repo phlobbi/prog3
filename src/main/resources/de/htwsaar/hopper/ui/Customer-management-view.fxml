@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="100.0" minWidth="100.0" prefHeight="600.0" prefWidth="900.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CustomerManagementController">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="100.0" minWidth="100.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: teal;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CustomerManagementController">
     <center>
         <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>
@@ -44,10 +46,38 @@
                 </Label>
             <VBox prefHeight="200.0" prefWidth="100.0" spacing="25.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <children>
-                        <Button fx:id="btnCreate" mnemonicParsing="false" onAction="#switchToSceneAddCustomer" prefHeight="25.0" prefWidth="170.0" text="neuen Kunden anlegen" />
-                        <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#switchToSceneUpdateCustomer" prefHeight="25.0" prefWidth="170.0" text="Kunden  aendern" />
-                        <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#switchToSceneRemoveCustomer" prefHeight="25.0" prefWidth="170.0" text="Kunden  löschen" />
-                        <Button fx:id="btnRead" mnemonicParsing="false" onAction="#switchToSceneReadCustomer" prefHeight="25.0" prefWidth="170.0" text="Kunden lesen" />
+                        <Button fx:id="btnCreate" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#switchToSceneAddCustomer" prefHeight="25.0" prefWidth="170.0" text="neuen Kunden anlegen">
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@add_circle_FILL0_wght400_GRAD0_opsz48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                        <Button fx:id="btnUpdate" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#switchToSceneUpdateCustomer" prefHeight="25.0" prefWidth="170.0" text="Kunden  aendern">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@edit_FILL0_wght400_GRAD0_opsz48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                        <Button fx:id="btnRemove" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#switchToSceneRemoveCustomer" prefHeight="38.0" prefWidth="170.0" text="Kunden  löschen">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@delete_FILL0_wght400_GRAD0_opsz48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                        <Button fx:id="btnRead" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#switchToSceneReadCustomer" prefHeight="25.0" prefWidth="170.0" text="Kunden lesen">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@search_FILL0_wght400_GRAD0_opsz48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                </children>
                <GridPane.margin>
                   <Insets left="10.0" />
@@ -55,7 +85,14 @@
             </VBox>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
-                        <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#switchToFirstView" prefHeight="25.0" prefWidth="122.0" text="zurueck" />
+                        <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#switchToFirstView" prefHeight="25.0" prefWidth="122.0" text="zurueck">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                </children>
                <padding>
                   <Insets top="10.0" />

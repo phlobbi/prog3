@@ -47,7 +47,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@car-icon.png" />
+                        <Image url="@person_FILL0_wght400_GRAD0_opsz48.png" />
                      </image>
                   </ImageView>
                   <Label styleClass="menu-tile-text" stylesheets="@firstview.css" text="Kundenverwaltung" />
@@ -56,7 +56,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@car-icon.png" />
+                        <Image url="@wysiwyg_FILL0_wght400_GRAD0_opsz48.png" />
                      </image>
                   </ImageView>
                   <Label styleClass="menu-tile-text" text="Buchungsverwaltung" />
@@ -66,7 +66,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@car-icon.png" />
+                        <Image url="@help_FILL0_wght400_GRAD0_opsz48.png" />
                      </image></ImageView>
                   <Label styleClass="menu-tile-text" text="Hilfe" />
                </children></VBox>
