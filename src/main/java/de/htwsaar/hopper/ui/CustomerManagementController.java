@@ -42,10 +42,10 @@ public final class CustomerManagementController implements Initializable {
     private static Customer selectedCustomer;
 
     @FXML
-    private TableColumn<Customer, String> customerSurnameColumn;
+    private TableColumn<Customer, String> customerFirstNameColumn;
 
     @FXML
-    private TableColumn<Customer, String> customerNameColumn;
+    private TableColumn<Customer, String> customerLastNameColumn;
 
     @FXML
     private TableColumn<Customer, String> customerIdColumn;
@@ -56,7 +56,7 @@ public final class CustomerManagementController implements Initializable {
      */
     @FXML
     void switchToFirstView(ActionEvent event) throws IOException {
-        App.setRoot("first-view.fxml");
+        App.setRoot("fxml/first-view.fxml");
     }
 
 
@@ -69,7 +69,7 @@ public final class CustomerManagementController implements Initializable {
     @FXML
     void switchToSceneReadCustomer(ActionEvent event) throws IOException {
         setSelectedCustomer(tableView.getSelectionModel().getSelectedItem());
-        App.setRoot("Customer-read-view.fxml");
+        App.setRoot("fxml/Customer-read-view.fxml");
     }
 
     @FXML

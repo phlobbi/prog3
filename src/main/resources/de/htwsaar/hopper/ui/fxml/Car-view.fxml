@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="100.0" minWidth="100.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: teal;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CarManagementController">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="100.0" minWidth="100.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: teal;" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CarManagementController">
     <right>
         <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>
@@ -50,7 +50,7 @@
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@add_circle_FILL0_wght400_GRAD0_opsz48.png" />
+                              <Image url="@../icons/add_circle_FILL0_wght400_GRAD0_opsz48.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
@@ -58,7 +58,7 @@
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@edit_FILL0_wght400_GRAD0_opsz48.png" />
+                              <Image url="@../icons/edit_FILL0_wght400_GRAD0_opsz48.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
@@ -66,7 +66,7 @@
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@delete_FILL0_wght400_GRAD0_opsz48.png" />
+                              <Image url="@../icons/delete_FILL0_wght400_GRAD0_opsz48.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
@@ -74,7 +74,7 @@
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@search_FILL0_wght400_GRAD0_opsz48.png" />
+                              <Image url="@../icons/search_FILL0_wght400_GRAD0_opsz48.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
@@ -92,7 +92,7 @@
                      <graphic>
                         <ImageView fitHeight="17.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png" />
+                              <Image url="@../icons/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>

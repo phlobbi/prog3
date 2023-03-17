@@ -52,7 +52,7 @@ public final class CustomerReadController implements Initializable {
      */
     @FXML
     void switchToCustomerView(ActionEvent event) throws IOException {
-        App.setRoot("Customer-management-view.fxml");
+        App.setRoot("fxml/Customer-management-view.fxml");
     }
 
     @FXML

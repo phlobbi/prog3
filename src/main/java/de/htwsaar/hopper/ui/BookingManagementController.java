@@ -47,7 +47,7 @@ public final class BookingManagementController implements Initializable {
      */
     @FXML
     void switchToFirstView(ActionEvent event) throws IOException {
-        App.setRoot("first-view.fxml");
+        App.setRoot("fxml/first-view.fxml");
 
     }
 

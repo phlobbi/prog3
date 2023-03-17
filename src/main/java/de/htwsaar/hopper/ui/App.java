@@ -18,7 +18,7 @@ public final class App extends Application {
 	 */
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-			URL url = App.class.getResource("first-view.fxml");
+			URL url = App.class.getResource("fxml/first-view.fxml");
 		if (url != null) {
 			root = FXMLLoader.load(url);
 			scene = new Scene(root,1000,600);

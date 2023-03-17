@@ -13,7 +13,7 @@ public final class FirstViewController {
      */
     @FXML
     void switchToCarRental(MouseEvent event) throws IOException {
-        App.setRoot("Booking-management-view.fxml");
+        App.setRoot("fxml/Booking-management-view.fxml");
     }
 
     /**
@@ -22,7 +22,7 @@ public final class FirstViewController {
      */
     @FXML
     void switchToCustomerView(MouseEvent event) throws IOException {
-        App.setRoot("Customer-management-view.fxml");
+        App.setRoot("fxml/Customer-management-view.fxml");
     }
 
     /**
@@ -40,6 +40,6 @@ public final class FirstViewController {
      */
     @FXML
     void switchToCarManagementView(MouseEvent event) throws IOException {
-        App.setRoot("Car-view.fxml");
+        App.setRoot("fxml/Car-view.fxml");
     }
 }

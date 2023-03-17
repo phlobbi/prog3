@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@firstview.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.FirstViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/firstview.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.FirstViewController">
    <top>
       <HBox prefHeight="21.0" prefWidth="600.0" styleClass="title-bar" BorderPane.alignment="CENTER">
          <children>
@@ -38,7 +38,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@car-icon.png" />
+                        <Image url="@../icons/car-icon.png" />
                      </image></ImageView>
                   <Label styleClass="menu-tile-text" text="Autoverwaltung" />
                </children>
@@ -47,16 +47,16 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@person_FILL0_wght400_GRAD0_opsz48.png" />
+                        <Image url="@../icons/person_FILL0_wght400_GRAD0_opsz48.png" />
                      </image>
                   </ImageView>
-                  <Label styleClass="menu-tile-text" stylesheets="@firstview.css" text="Kundenverwaltung" />
+                  <Label styleClass="menu-tile-text" stylesheets="@../css/firstview.css" text="Kundenverwaltung" />
                </children></VBox>
             <VBox onMouseClicked="#switchToCarRental" prefHeight="200.0" prefWidth="100.0" styleClass="menu-tile" GridPane.rowIndex="1">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@wysiwyg_FILL0_wght400_GRAD0_opsz48.png" />
+                        <Image url="@../icons/wysiwyg_FILL0_wght400_GRAD0_opsz48.png" />
                      </image>
                   </ImageView>
                   <Label styleClass="menu-tile-text" text="Buchungsverwaltung" />
@@ -66,7 +66,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@help_FILL0_wght400_GRAD0_opsz48.png" />
+                        <Image url="@../icons/help_FILL0_wght400_GRAD0_opsz48.png" />
                      </image></ImageView>
                   <Label styleClass="menu-tile-text" text="Hilfe" />
                </children></VBox>
