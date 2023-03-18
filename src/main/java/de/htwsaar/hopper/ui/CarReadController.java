@@ -52,7 +52,7 @@ public class CarReadController implements Initializable {
      */
     @FXML
     void switchToCarView(ActionEvent event) throws IOException {
-        App.setRoot("Car-view.fxml");
+        App.setRoot("fxml/Car-view.fxml");
 
     }
 

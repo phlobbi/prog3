@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="100.0" minWidth="100.0" prefHeight="600.0" prefWidth="900.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CarManagementController">
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="100.0" minWidth="100.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: teal;" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CarManagementController">
     <right>
         <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>
@@ -44,10 +46,38 @@
                 </Label>
                 <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <children>
-                        <Button fx:id="btnCreate" mnemonicParsing="false" onAction="#switchToSceneAddCar" prefHeight="25.0" prefWidth="150.0" text="neuen Wagen anlegen" />
-                        <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#switchToSceneUpdateCar" prefHeight="25.0" prefWidth="150.0" text="Wagen  aendern" />
-                        <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#switchToSceneRemoveCar" prefHeight="25.0" prefWidth="150.0" text="Wagen  löschen" />
-                        <Button fx:id="btnRead" mnemonicParsing="false" onAction="#switchToSceneReadCar" prefHeight="25.0" prefWidth="150.0" text="Wagen lesen" />
+                        <Button fx:id="btnCreate" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#switchToSceneAddCar" prefHeight="25.0" prefWidth="150.0" text="neuen Wagen anlegen">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/add_circle_FILL0_wght400_GRAD0_opsz48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                        <Button fx:id="btnUpdate" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#switchToSceneUpdateCar" prefHeight="25.0" prefWidth="150.0" text="Wagen  aendern">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/edit_FILL0_wght400_GRAD0_opsz48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                        <Button fx:id="btnRemove" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#switchToSceneRemoveCar" prefHeight="25.0" prefWidth="150.0" text="Wagen  löschen">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/delete_FILL0_wght400_GRAD0_opsz48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                        <Button fx:id="btnRead" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#switchToSceneReadCar" prefHeight="25.0" prefWidth="150.0" text="Wagen lesen">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/search_FILL0_wght400_GRAD0_opsz48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                     </children>
                     <padding>
                         <Insets left="10.0" />
@@ -58,7 +88,14 @@
                         <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#switchToFirstView" prefHeight="25.0" prefWidth="122.0" text="zurueck">
                             <HBox.margin>
                                 <Insets top="10.0" />
-                            </HBox.margin></Button>
+                            </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                     </children>
                 </HBox>
             </children>

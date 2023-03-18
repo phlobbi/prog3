@@ -58,7 +58,7 @@ public final class CarManagementController implements Initializable {
     @FXML
     void switchToSceneReadCar(ActionEvent event) throws IOException {
         setSelectedCar(tableView.getSelectionModel().getSelectedItem());
-        App.setRoot("Car-read-view.fxml");
+        App.setRoot("fxml/Car-read-view.fxml");
     }
 
     @FXML
@@ -82,7 +82,7 @@ public final class CarManagementController implements Initializable {
      */
     @FXML
     void switchToFirstView(ActionEvent event) throws IOException {
-        App.setRoot("first-view.fxml");
+        App.setRoot("fxml/first-view.fxml");
     }
 
     /**
