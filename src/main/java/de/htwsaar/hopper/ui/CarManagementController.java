@@ -47,8 +47,8 @@ public final class CarManagementController implements Initializable {
     private TableColumn<Car, String> carTypeColumn;
 
     @FXML
-    void switchToSceneAddCar(ActionEvent event) {
-
+    void switchToSceneAddCar(ActionEvent event) throws IOException {
+        App.setRoot("fxml/Car-creation-view.fxml");
     }
 
     /**
