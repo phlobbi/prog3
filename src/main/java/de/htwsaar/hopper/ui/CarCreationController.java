@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.Stage; /** */
 
 import java.io.IOException;
 import java.net.URL;
@@ -75,44 +76,71 @@ public class CarCreationController implements Initializable{
 
     @FXML
     void cancelCreation(ActionEvent event) throws IOException {
-        //  Fenster schließen oder zur CarView zurück
-        App.setRoot("fxml/Car-view.fxml");
+        Stage stage = (Stage) btnCancel.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
     void createCar(ActionEvent event) {
 
-        String brand = textFieldBrand.getText();
-        int seats = Integer.parseInt(textFieldSeats.getText());
-        LocalDate creationDateLocal = datePickCreationDate.getValue();
-        String model = textFieldModel.getText();
-        double curPrice = Double.parseDouble(textFieldCurrentPrice.getText());
-        double basePrice = Double.parseDouble(textFieldBasePrice.getText());
-        String licensePlate = textFieldLicensePlate.getText();
-
-        // Enum bekommen vom Menü
-        CarTypeEnum concreteType = CarTypeEnum.ANDERE;
-
-        for (CarTypeEnum type : CarTypeEnum.values()){
-            if (type.getLabel().equals(carTypeStr)){
-                concreteType = type;
-            }
-        }
-
-        // LocalDate vom DatePicker zu Calender-Format
-        Date creationDate = Date.from(creationDateLocal.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        Calendar creationDateCal = Calendar.getInstance();
-        creationDateCal.setTime(creationDate);
+        Car car = null;
 
         try {
-            Car car = new Car(concreteType,brand,creationDateCal,seats,basePrice,curPrice,licensePlate,model);
-            System.out.println(car.toString());
-        } catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            validateTextField(textFieldBrand, labelBrand.getText() + " leer");
+            validateTextField(textFieldSeats, labelSeats.getText() + " leer");
+            validateTextField(textFieldModel, labelModel.getText() + " leer");
+            validateTextField(textFieldCurrentPrice, labelCurrentPrice.getText() + " leer");
+            validateTextField(textFieldBasePrice, labelBasePrice.getText() + " leer");
+            validateTextField(textFieldLicensePlate, labelLicensePlate.getText() + " leer");
+            if (datePickCreationDate.getValue() == null){
+                throw new IllegalArgumentException(labelCreationDate.getText() + " leer");
+            }
+
+            String brand = textFieldBrand.getText();
+            int seats = Integer.parseInt(textFieldSeats.getText());
+            LocalDate creationDateLocal = datePickCreationDate.getValue();
+            String model = textFieldModel.getText();
+            double curPrice = Double.parseDouble(textFieldCurrentPrice.getText());
+            double basePrice = Double.parseDouble(textFieldBasePrice.getText());
+            String licensePlate = textFieldLicensePlate.getText();
+
+            // Enum bekommen vom Menü
+            CarTypeEnum concreteType = CarTypeEnum.ANDERE;
+
+            for (CarTypeEnum type : CarTypeEnum.values()){
+                if (type.getLabel().equals(carTypeStr)){
+                    concreteType = type;
+                }
+            }
+
+            // LocalDate vom DatePicker zu Calender-Format
+            Date creationDate = Date.from(creationDateLocal.atStartOfDay(ZoneId.systemDefault()).toInstant());
+            Calendar creationDateCal = Calendar.getInstance();
+            creationDateCal.setTime(creationDate);
+
+            try {
+                car = new Car(concreteType,brand,creationDateCal,seats,basePrice,curPrice,licensePlate,model);
+                System.out.println(car.toString());
+            } catch (Exception e){
+                Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
+                alert.setTitle("Fehler");
+                alert.showAndWait();
+            }
+
+            if (car != null){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Auto erfolgreich erstellt");
+                Stage stage = (Stage) btnSave.getScene().getWindow();
+                stage.close();
+            }
+
+
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fehler");
+            alert.setHeaderText("Fehler beim Erstellen des Autos");
+            alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
-
     }
 
     @Override
@@ -138,6 +166,12 @@ public class CarCreationController implements Initializable{
                 menuType.setText(item.getText());
                 carTypeStr = item.getText();
             });
+        }
+    }
+
+    private void validateTextField(TextField textField, String errorMessage){
+        if(textField.getText() == null || textField.getText().isEmpty()){
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 }
