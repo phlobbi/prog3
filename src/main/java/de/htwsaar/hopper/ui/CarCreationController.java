@@ -2,6 +2,7 @@ package de.htwsaar.hopper.ui;
 
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.implementations.Car;
+import de.htwsaar.hopper.repositories.CarRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -128,6 +129,8 @@ public class CarCreationController implements Initializable{
             }
 
             if (car != null){
+                CarRepository.persist(car);
+
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Auto erfolgreich erstellt");
                 Stage stage = (Stage) btnSave.getScene().getWindow();
                 stage.close();
@@ -156,6 +159,7 @@ public class CarCreationController implements Initializable{
     private void setChosenCarType(){
         // basistyp, falls kein Typ ausgewählt
         carTypeStr = CarTypeEnum.ANDERE.getLabel();
+        menuType.setText(carTypeStr);
 
         // Iteration über alle Enums und für jedes 1 Menü-Item erstellen
         for (CarTypeEnum type : CarTypeEnum.values()){
@@ -169,6 +173,11 @@ public class CarCreationController implements Initializable{
         }
     }
 
+    /**
+     * Überprüft Textfelder auf Gültigkeit
+     * @param textField betreffendes Textfeld
+     * @param errorMessage Fehlermeldung
+     */
     private void validateTextField(TextField textField, String errorMessage){
         if(textField.getText() == null || textField.getText().isEmpty()){
             throw new IllegalArgumentException(errorMessage);
