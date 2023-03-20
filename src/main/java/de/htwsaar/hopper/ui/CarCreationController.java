@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.stage.Stage; /** */
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
