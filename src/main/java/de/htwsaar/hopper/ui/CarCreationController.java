@@ -123,8 +123,10 @@ public class CarCreationController implements Initializable{
                 car = new Car(concreteType,brand,creationDateCal,seats,basePrice,curPrice,licensePlate,model);
                 System.out.println(car.toString());
             } catch (Exception e){
-                Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
+                Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Fehler");
+                alert.setHeaderText("Fehler beim Erstellen des Autos");
+                alert.setContentText(e.getMessage());
                 alert.showAndWait();
             }
 
