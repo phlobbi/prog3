@@ -176,6 +176,8 @@ public final class CarManagementController implements Initializable {
         {
         CarRepository.delete(selectedCar);
         reloadTable();
+        Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Wagen wurde gelöscht.");
+        alert2.show();
         } else {
         Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Wagen wurde nicht gelöscht.");
         alert2.show();

@@ -96,6 +96,8 @@ public final class CustomerManagementController implements Initializable {
         if (alert.getResult().getText().equals("OK")) {
             CustomerRepository.delete(selectedCustomer);
             reloadTable();
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Kunde wurde gelöscht.");
+            alert2.show();
         } else {
             Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Kunde wurde nicht gelöscht.");
             alert2.show();
