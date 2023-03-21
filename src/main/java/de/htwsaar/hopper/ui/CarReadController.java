@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 
@@ -39,6 +40,8 @@ public class CarReadController implements Initializable {
 
     @FXML
     private Label labelCarType;
+    @FXML
+    private Label labelcarLicensePlate;
 
     @FXML
     void removeCar(ActionEvent event) {
@@ -72,10 +75,13 @@ public class CarReadController implements Initializable {
         Car car = CarManagementController.getSelectedCar();
         labelCarBasePrice.setText(String.valueOf(car.getBasePrice()));
         labelCarBrand.setText(String.valueOf(car.getBrand()));
-        labelCarCreationDate.setText(String.valueOf(car.getCreationDate().getTime()));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/mm/yyyy") ;
+        String date = simpleDateFormat.format(car.getCreationDate().getTime()) ;
+        labelCarCreationDate.setText((date));
         labelCarCurrentPrise.setText(String.valueOf(car.getCurrentPrice()));
         labelCarSeats.setText(String.valueOf(car.getSeats()));
         labelCarType.setText(car.getType().getLabel());
+        labelcarLicensePlate.setText(car.getLicensePlate());
 
     }
 }

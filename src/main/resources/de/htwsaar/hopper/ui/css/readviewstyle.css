@@ -1,0 +1,10 @@
+.label{
+    -fx-text-fill:#ffff
+
+}
+.root{
+    -fx-background-color: teal;
+}
+.text{
+    -fx-text-fill:#ffff
+}
