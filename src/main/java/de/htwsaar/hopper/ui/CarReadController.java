@@ -1,6 +1,7 @@
 package de.htwsaar.hopper.ui;
 
 import de.htwsaar.hopper.logic.implementations.Car;
+import de.htwsaar.hopper.repositories.CarRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -45,6 +46,8 @@ public class CarReadController implements Initializable {
 
     @FXML
     void removeCar(ActionEvent event) {
+       /* Car car = CarManagementController.getSelectedCar() ;
+        CarRepository*/
 
     }
 
@@ -75,7 +78,7 @@ public class CarReadController implements Initializable {
         Car car = CarManagementController.getSelectedCar();
         labelCarBasePrice.setText(String.valueOf(car.getBasePrice()));
         labelCarBrand.setText(String.valueOf(car.getBrand()));
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/mm/yyyy") ;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy") ;
         String date = simpleDateFormat.format(car.getCreationDate().getTime()) ;
         labelCarCreationDate.setText((date));
         labelCarCurrentPrise.setText(String.valueOf(car.getCurrentPrice()));
