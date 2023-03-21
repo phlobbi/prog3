@@ -119,6 +119,7 @@ public class CarCreationController implements Initializable{
             Calendar creationDateCal = Calendar.getInstance();
             creationDateCal.setTime(creationDate);
             
+            car = new Car(concreteType,brand,creationDateCal,seats,basePrice,curPrice,licensePlate,model);
             
             if (car != null){
                 CarRepository.persist(car);
@@ -129,8 +130,6 @@ public class CarCreationController implements Initializable{
                 stage.close();
             }
             
-            car = new Car(concreteType,brand,creationDateCal,seats,basePrice,curPrice,licensePlate,model);
-
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fehler");
