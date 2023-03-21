@@ -61,11 +61,12 @@ public final class CarManagementController implements Initializable {
             Parent root1 = (Parent) fxmlLoader.load();
             stage = new Stage();
             stage.setScene(new Scene(root1));
-            stage.show();
+            stage.showAndWait();
         } catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.showAndWait();
         }
+        reloadTable();
     }
 
     /**
@@ -110,6 +111,15 @@ public final class CarManagementController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        reloadTable();
+    }
+
+    /**
+     * Quasi wie Initialisierung,
+     */
+    public void reloadTable(){
+        tableView.getItems().clear();
+
         carBrandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
         carTypeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         carIdColumn.setCellValueFactory(new PropertyValueFactory<>("carId"));
@@ -124,6 +134,7 @@ public final class CarManagementController implements Initializable {
         }
     }
 
+
     /**
      * Setzt die Variable selectedCar auf ein angegebenes Car-Objekt.
      * @param car Zu setzendes Car-Objekt
@@ -132,5 +143,6 @@ public final class CarManagementController implements Initializable {
         selectedCar = car;
     }
 }
+
 
 
