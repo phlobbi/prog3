@@ -1,81 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: teal;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CarReadController">
-    <top>
-        <HBox prefHeight="44.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Autoverwaltung" wrappingWidth="211.13671875">
-                    <font>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/readviewstyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CarReadController">
+   <top>
+      <HBox alignment="CENTER" prefHeight="56.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="35.0" prefWidth="180.0" text="Autoverwaltung" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0">
+               <children>
+                  <Button fx:id="btnGoBack" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#switchToCarView" prefHeight="79.0" prefWidth="112.0" text="zurueck" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#updateCar" prefHeight="79.0" prefWidth="122.0" text="bearbeiten">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/manage_accounts_FILL0_wght400_GRAD0_opsz48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btnRemove" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#removeCar" prefHeight="79.0" prefWidth="114.0" text="loeschen">
+                     <graphic>
+                        <ImageView fitHeight="45.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/delete_FILL0_wght400_GRAD0_opsz48.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" stylesheets="@../css/firstview.css">
+               <children>
+                  <Label prefHeight="31.0" prefWidth="119.0" text="Eigenschaft" textFill="WHITE">
+                     <font>
                         <Font size="21.0" />
-                    </font>
-                </Text>
-        </HBox>
-    </top>
-    <center>
-        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-            <children>
-                <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: teal;">
-                    <items>
-                        <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#switchToCarView" text="zurueck" />
-                        <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#updateCar" text="bearbeiten" />
-                        <Button fx:id="btnRemove" mnemonicParsing="false" onAction="#removeCar" text="loeschen" />
-                    </items>
-                </ToolBar>
-                <Label text="Eigenschaften">
-                    <font>
-                        <Font size="25.0" />
-                    </font>
-                </Label>
-                <HBox prefHeight="25.0" prefWidth="200.0" spacing="124.0">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Typ:" />
-                        <Label fx:id="labelCarType" />
-                    </children>
-                </HBox>
-                <HBox layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" spacing="119.0">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sitze:" />
-                        <Label fx:id="labelCarSeats" />
-                    </children>
-                </HBox>
-                <HBox layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" spacing="50.0">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Herstellungdatum:" />
-                        <Label fx:id="labelCarCreationDate" />
-                    </children>
-                </HBox>
-                <HBox layoutX="10.0" layoutY="50.0" prefHeight="25.0" prefWidth="200.0" spacing="77.0">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kennzeichen:" />
-                        <Label fx:id="labelCarBrand" />
-                    </children>
-                </HBox>
-                <Label text="Preise">
-                    <font>
-                        <Font size="24.0" />
-                    </font>
-                </Label>
-                <HBox prefHeight="25.0" prefWidth="200.0" spacing="92.0">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Grundpeis:" />
-                        <Label fx:id="labelCarBasePrice" />
-                    </children>
-                </HBox>
-                <HBox layoutX="10.0" layoutY="221.0" prefHeight="25.0" prefWidth="200.0" spacing="90.0">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tagespreis:" />
-                        <Label fx:id="labelCarCurrentPrise" />
-                    </children>
-                </HBox>
-            </children>
-        </VBox>
-    </center>
+                     </font>
+                     <HBox.margin>
+                        <Insets left="12.0" />
+                     </HBox.margin></Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" stylesheets="@../css/readviewstyle.css">
+               <VBox.margin>
+                  <Insets right="150.0" />
+               </VBox.margin>
+               <children>
+                  <GridPane alignment="CENTER_RIGHT">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="124.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="76.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Typ:" wrappingWidth="28.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kennzeichen:" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Marke:" GridPane.rowIndex="2" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Herstellungsdatum:" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sitze:" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="labelCarType" GridPane.columnIndex="1" />
+                        <Label fx:id="labelcarLicensePlate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="labelCarBrand" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="labelCarSeats" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label fx:id="labelCarCreationDate" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="98.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="77.0" text="Preise">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin></Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" stylesheets="@../css/readviewstyle.css">
+               <VBox.margin>
+                  <Insets right="150.0" />
+               </VBox.margin>
+               <children>
+                  <GridPane alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="180.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="124.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="10.0" prefWidth="56.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Grundpreis:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tagespreis:" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="labelCarBasePrice" GridPane.columnIndex="1" />
+                        <Label fx:id="labelCarCurrentPrise" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     </children>
+                     <HBox.margin>
+                        <Insets right="15.0" />
+                     </HBox.margin>
+                  </GridPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
 </BorderPane>
