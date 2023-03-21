@@ -10,12 +10,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.io.IOException;
 import java.net.URL;
@@ -61,12 +59,41 @@ public final class CarManagementController implements Initializable {
             Parent root1 = (Parent) fxmlLoader.load();
             stage = new Stage();
             stage.setScene(new Scene(root1));
+            disableWindow();
             stage.showAndWait();
         } catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.showAndWait();
         }
+        enableWindow();
         reloadTable();
+    }
+
+    void disableWindow(){
+        btnCreate.setDisable(true);
+        btnRead.setDisable(true);
+        btnRemove.setDisable(true);
+        btnUpdate.setDisable(true);
+        btnGoBack.setDisable(true);
+
+        Stage primaryStage = (Stage) btnCreate.getScene().getWindow();
+        primaryStage.onCloseRequestProperty().set(e -> {
+            e.consume();
+        });
+    }
+
+    void enableWindow(){
+        btnCreate.setDisable(false);
+        btnRead.setDisable(false);
+        btnRemove.setDisable(false);
+        btnUpdate.setDisable(false);
+        btnGoBack.setDisable(false);
+
+        // Roten Kreuz Button wieder aktivieren
+        Stage primaryStage = (Stage) btnCreate.getScene().getWindow();
+        primaryStage.onCloseRequestProperty().set(e -> {
+            primaryStage.close();
+        });
     }
 
     /**
