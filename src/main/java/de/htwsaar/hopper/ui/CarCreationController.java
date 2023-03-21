@@ -118,18 +118,8 @@ public class CarCreationController implements Initializable{
             Date creationDate = Date.from(creationDateLocal.atStartOfDay(ZoneId.systemDefault()).toInstant());
             Calendar creationDateCal = Calendar.getInstance();
             creationDateCal.setTime(creationDate);
-
-            try {
-                car = new Car(concreteType,brand,creationDateCal,seats,basePrice,curPrice,licensePlate,model);
-                System.out.println(car.toString());
-            } catch (Exception e){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Fehler");
-                alert.setHeaderText("Fehler beim Erstellen des Autos");
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
-            }
-
+            
+            
             if (car != null){
                 CarRepository.persist(car);
 
@@ -138,7 +128,8 @@ public class CarCreationController implements Initializable{
                 Stage stage = (Stage) btnSave.getScene().getWindow();
                 stage.close();
             }
-
+            
+            car = new Car(concreteType,brand,creationDateCal,seats,basePrice,curPrice,licensePlate,model);
 
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
