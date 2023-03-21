@@ -3,6 +3,7 @@ package de.htwsaar.hopper.logic.implementations;
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.interfaces.BookingInterface;
 import de.htwsaar.hopper.logic.interfaces.CarInterface;
+import de.htwsaar.hopper.logic.interfaces.ChecklistInterface;
 import de.htwsaar.hopper.logic.interfaces.CustomerInterface;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -23,13 +24,15 @@ import java.util.Calendar;
  * @author philipdausend
  */
 public class Invoice {
-    private static final double STRAFZUSCHLAG = 0.5;
+    private static final double MAENGELSATZ = 0.5;
+    private static final double VERSPAETUNGSZUSCHLAG = 0.5;
     private static final double STEUERSATZ = 0.19;
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
     private final BookingInterface booking;
     private final CarInterface associatedCar;
     private final CustomerInterface associatedCustomer;
+    private final ChecklistInterface associatedChecklist;
     private int linePosition;
     private double total;
 
@@ -52,6 +55,7 @@ public class Invoice {
         this.booking.setRealDropOffDate(realDropOffDay);
         this.associatedCar = new Car(CarTypeEnum.AUTO, "Audi", productionDate, 5, 100, 20, "SB-AB-23", "A4");
         this.associatedCustomer = new Customer("Max", "Mustermann", "max@muster.de", "Musterstraße", "1", "66130", "Saarbrücken", "0176/12345678", "DE06500105177825353352", "L01C0097Z31", expirationDate);
+        this.associatedChecklist = new Checklist(false, false, false, false);
         this.linePosition = 0;
         this.total = 0.0;
     }
@@ -91,8 +95,9 @@ public class Invoice {
                             String.format("%s %s - Strafzuschlag \"Überzogene Miete\" (Anzahl Tage: %d)",
                                     associatedCar.getBrand(), associatedCar.getModel(),
                                     lateDays - 1),
-                            associatedCar.getCurrentPrice() * (lateDays - 1) * STRAFZUSCHLAG);
+                            associatedCar.getCurrentPrice() * (lateDays - 1) * VERSPAETUNGSZUSCHLAG);
                 }
+                writeFaults(contentStream);
                 contentStream.close();
                 doc.save(new File("generated-invoice.pdf"));
 
@@ -143,7 +148,23 @@ public class Invoice {
     }
 
     /**
-     * Schreibt eine Zeile in die PDF-Rechnung.
+     * Schreibt eine Zeile in die PDF-Rechnung, ohne einen Betrag.
+     * @see #writeBillingLine(PDPageContentStream, String, double) writeBillingLine
+     * @param contentStream Contentstream der PDF-Rechnung
+     * @param description Beschreibung der Zeile
+     * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
+     */
+    private void writeDescriptiveLine(PDPageContentStream contentStream, String description) throws IOException {
+        contentStream.beginText();
+        contentStream.newLineAtOffset(52, calculateLinePosition());
+        contentStream.showText(description);
+        contentStream.endText();
+        linePosition++;
+    }
+
+    /**
+     * Schreibt eine Zeile mit Betrag in die PDF-Rechnung.
+     * Der Betrag wird auf zwei Nachkommastellen gerundet und zum Gesamtbetrag addiert.
      * @param contentStream Contentstream der PDF-Rechnung
      * @param description Beschreibung der Zeile
      * @param amount Betrag der Zeile
@@ -159,6 +180,21 @@ public class Invoice {
         contentStream.endText();
         linePosition++;
         total += rounded;
+    }
+
+    /**
+     * Schreibt Mängel in die PDF-Rechnung.
+     * @param contentStream Contentstream der PDF-Rechnung
+     * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
+     */
+    private void writeFaults(PDPageContentStream contentStream) throws IOException {
+        if(associatedChecklist.getProblemCount() > 0) {
+            writeDescriptiveLine(contentStream, "Folgende Mängel wurden festgestellt:");
+            if (!associatedChecklist.isClean()) writeBillingLine(contentStream, "Fahrzeug nicht sauber", associatedCar.getBasePrice() * MAENGELSATZ);
+            if (!associatedChecklist.isFueledUp()) writeBillingLine(contentStream, "Tank nicht voll", associatedCar.getBasePrice() * MAENGELSATZ);
+            if (!associatedChecklist.isUndamaged()) writeBillingLine(contentStream, "Fahrzeug ist beschädigt", associatedCar.getBasePrice() * MAENGELSATZ);
+            if (!associatedChecklist.isKeyDroppedOff()) writeBillingLine(contentStream, "Schlüssel nicht abgegeben", associatedCar.getBasePrice() * MAENGELSATZ);
+        }
     }
 
     /**
