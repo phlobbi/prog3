@@ -56,7 +56,7 @@ public class CarValidation extends Validation {
     public static String validateLicensePlate(String licensePlate) {
         licensePlate = validateString(licensePlate, "Die Kennzeichen dürfen nicht leer sein!");
         licensePlate = licensePlate.toUpperCase();
-        Utils.check(licensePlate.matches(ValidationRegexEnum.LICENSE_PLATE.getRegex()), "Kennezeichen ist nicht valide!");
+        Utils.check(licensePlate.matches(ValidationRegexEnum.LICENSE_PLATE.getRegex()), "Kennzeichen ist nicht valide!");
         return licensePlate;
     }
 
