@@ -94,8 +94,8 @@ public final class CustomerManagementController implements Initializable {
         alert.setContentText("Kunde: " + selectedCustomer.getCustomerId() + " " + selectedCustomer.getFirstName() + " " + selectedCustomer.getLastName());
         alert.showAndWait();
         if (alert.getResult().getText().equals("OK")) {
-            tableView.getItems().remove(selectedCustomer);
             CustomerRepository.delete(selectedCustomer);
+            reloadTable();
         } else {
             Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Kunde wurde nicht gelöscht.");
             alert2.show();
