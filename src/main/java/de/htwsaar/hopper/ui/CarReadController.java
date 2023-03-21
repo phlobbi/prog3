@@ -1,9 +1,11 @@
 package de.htwsaar.hopper.ui;
 
 import de.htwsaar.hopper.logic.implementations.Car;
+import de.htwsaar.hopper.repositories.CarRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
@@ -42,7 +44,22 @@ public class CarReadController implements Initializable {
 
     @FXML
     void removeCar(ActionEvent event) {
+        Car selectedCar = CarManagementController.getSelectedCar();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wollen Sie den Wagen wirklich löschen?");
+        alert.setHeaderText("Wagen wirklich löschen?");
+        alert.setContentText("Wagen: " + selectedCar.getCarId() + " " + selectedCar.getBrand() + " " + selectedCar.getType());
+        alert.showAndWait();
+        if (alert.getResult().getText().equals("OK")) {
+            CarRepository.delete(selectedCar);
+            reloadTable();
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Wagen wurde gelöscht.");
+            alert2.show();
+        } else {
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Wagen wurde nicht gelöscht.");
+            alert2.show();
+            alert.close();
 
+        }
     }
 
     /**
@@ -68,7 +85,9 @@ public class CarReadController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        reloadTable() ;
+    }
+    public void reloadTable(){
         Car car = CarManagementController.getSelectedCar();
         labelCarBasePrice.setText(String.valueOf(car.getBasePrice()));
         labelCarBrand.setText(String.valueOf(car.getBrand()));
@@ -76,6 +95,5 @@ public class CarReadController implements Initializable {
         labelCarCurrentPrise.setText(String.valueOf(car.getCurrentPrice()));
         labelCarSeats.setText(String.valueOf(car.getSeats()));
         labelCarType.setText(car.getType().getLabel());
-
     }
 }
