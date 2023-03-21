@@ -30,11 +30,11 @@
                   <Label fx:id="labelType" text="Typ" />
                   <Label fx:id="labelBrand" text="Marke" />
                   <Label fx:id="labelModel" text="Modell" />
-                  <Label fx:id="labelCreationDate" text="Erstellungdatum" />
+                  <Label fx:id="labelCreationDate" text="Herstellungsdatum" />
                   <Label fx:id="labelSeats" text="Sitze" />
                   <Label fx:id="labelLicensePlate" text="Kennzeichen" />
                   <Label fx:id="labelBasePrice" text="Basispreis" />
-                  <Label fx:id="labelCurrentPrice" text="Momentaner Preis" />
+                  <Label fx:id="labelCurrentPrice" text="Tagespreis" />
                </children>
                <HBox.margin>
                   <Insets />
