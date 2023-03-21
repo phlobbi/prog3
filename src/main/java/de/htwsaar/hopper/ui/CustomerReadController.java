@@ -1,6 +1,7 @@
 package de.htwsaar.hopper.ui;
 
 import de.htwsaar.hopper.logic.implementations.Customer;
+import de.htwsaar.hopper.repositories.CustomerRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,11 +40,7 @@ public final class CustomerReadController implements Initializable {
     private Label labelIBAN;
     @FXML
     private Button btnGoBack;
-    
-    @FXML
-    void removeCustomer(ActionEvent event) {
 
-    }
 
     /**
      * zeigt den gewahlten Kunden beim Aufruf.

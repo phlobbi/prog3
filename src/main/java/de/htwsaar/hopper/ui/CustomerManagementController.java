@@ -1,16 +1,23 @@
 package de.htwsaar.hopper.ui;
 
+import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.implementations.Customer;
+import de.htwsaar.hopper.repositories.CarRepository;
 import de.htwsaar.hopper.repositories.CustomerRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -62,8 +69,82 @@ public final class CustomerManagementController implements Initializable {
 
 
     @FXML
-    void switchToSceneAddCustomer(ActionEvent event) {
+    void switchToSceneAddCustomer(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
 
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Customer-creation-view.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            stage = new Stage();
+            stage.setScene(new Scene(root1));
+            disableWindow();
+            stage.showAndWait();
+        } catch(Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            alert.showAndWait();
+        }
+        enableWindow();
+        reloadTable();
+    }
+
+    public void deleteCustomer(){
+        setSelectedCustomer(tableView.getSelectionModel().getSelectedItem());
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wollen Sie den Kunden wirklich löschen?");
+        alert.setHeaderText("Kunde wirklich löschen?");
+        alert.setContentText("Kunde: " + selectedCustomer.getCustomerId() + " " + selectedCustomer.getFirstName() + " " + selectedCustomer.getLastName());
+        alert.showAndWait();
+        if (alert.getResult().getText().equals("OK")) {
+            tableView.getItems().remove(selectedCustomer);
+            CustomerRepository.delete(selectedCustomer);
+        } else {
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Kunde wurde nicht gelöscht.");
+            alert2.show();
+            alert.close();
+        }
+    }
+
+    public void reloadTable(){
+        tableView.getItems().clear();
+
+        customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        customerFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        customerLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        ObservableList<Customer> observableList = FXCollections.observableArrayList();
+        observableList.addAll(CustomerRepository.findAll());
+        tableView.getItems().addAll(observableList);
+        tableView.getSelectionModel().selectFirst();
+        if (tableView.getSelectionModel().isEmpty()) {
+            btnRead.setDisable(true);
+            btnRemove.setDisable(true);
+            btnUpdate.setDisable(true);
+        }
+    }
+
+    void disableWindow(){
+        btnCreate.setDisable(true);
+        btnRead.setDisable(true);
+        btnRemove.setDisable(true);
+        btnUpdate.setDisable(true);
+        btnGoBack.setDisable(true);
+
+        Stage primaryStage = (Stage) btnCreate.getScene().getWindow();
+        primaryStage.onCloseRequestProperty().set(e -> {
+            e.consume();
+        });
+    }
+
+    void enableWindow(){
+        btnCreate.setDisable(false);
+        btnRead.setDisable(false);
+        btnRemove.setDisable(false);
+        btnUpdate.setDisable(false);
+        btnGoBack.setDisable(false);
+
+        // Roten Kreuz Button wieder aktivieren
+        Stage primaryStage = (Stage) btnCreate.getScene().getWindow();
+        primaryStage.onCloseRequestProperty().set(e -> {
+            primaryStage.close();
+        });
     }
 
     @FXML
