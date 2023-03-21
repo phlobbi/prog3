@@ -83,9 +83,6 @@ public class CarCreationController implements Initializable{
 
     @FXML
     void createCar(ActionEvent event) {
-
-        Car car = null;
-
         try {
             validateTextField(textFieldBrand, labelBrand.getText() + " leer");
             validateTextField(textFieldSeats, labelSeats.getText() + " leer");
@@ -119,17 +116,14 @@ public class CarCreationController implements Initializable{
             Calendar creationDateCal = Calendar.getInstance();
             creationDateCal.setTime(creationDate);
             
-            car = new Car(concreteType,brand,creationDateCal,seats,basePrice,curPrice,licensePlate,model);
-            
-            if (car != null){
-                CarRepository.persist(car);
+            Car car = new Car(concreteType,brand,creationDateCal,seats,basePrice,curPrice,licensePlate,model);
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Auto erfolgreich erstellt");
-                alert.showAndWait();
-                Stage stage = (Stage) btnSave.getScene().getWindow();
-                stage.close();
-            }
-            
+            CarRepository.persist(car);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Auto erfolgreich erstellt");
+            alert.showAndWait();
+            Stage stage = (Stage) btnSave.getScene().getWindow();
+            stage.close();
+
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fehler");
