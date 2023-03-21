@@ -240,6 +240,12 @@ public class Invoice {
         date.set(Calendar.MILLISECOND, 0);
     }
 
+    /**
+     * Prüft, ob zwei Calendar-Objekte das gleiche Datum darstellen.
+     * @param date1 Kalenderdatum 1
+     * @param date2 Kalenderdatum 2
+     * @return true, wenn die beiden Kalenderdaten das gleiche Datum darstellen, sonst false
+     */
     private boolean isSameDate(Calendar date1, Calendar date2) {
         return date1.get(Calendar.YEAR) == date2.get(Calendar.YEAR) &&
                 date1.get(Calendar.DAY_OF_YEAR) == date2.get(Calendar.DAY_OF_YEAR);
