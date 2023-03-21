@@ -134,6 +134,7 @@ public class CarCreationController implements Initializable{
                 CarRepository.persist(car);
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, "Auto erfolgreich erstellt");
+                alert.showAndWait();
                 Stage stage = (Stage) btnSave.getScene().getWindow();
                 stage.close();
             }
