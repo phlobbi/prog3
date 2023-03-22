@@ -235,7 +235,8 @@ public class Customer implements CustomerInterface {
         this.driverLicenseExpirationDate = CustomerValidation.validateExpirationDate(driverLicenseExpirationDate);
     }
 
-    public boolean compare(Customer customer2){
+
+    public boolean equals(Customer customer2){
         Customer customer1 = this;
         boolean isSame = Objects.equals(customer1.getFirstName(), customer2.getFirstName()) && Objects.equals(customer1.getLastName(), customer2.getLastName()) &&
                 Objects.equals(customer1.getEmail(), customer2.getEmail()) && Objects.equals(customer1.getStreet(), customer2.getStreet()) &&

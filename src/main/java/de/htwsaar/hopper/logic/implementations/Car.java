@@ -192,7 +192,8 @@ public class Car implements CarInterface {
     }
 
 
-    public boolean compare(Car car2){
+
+    public boolean equals(Car car2){
         Car car = this;
         boolean b = car.getType() == car2.getType() && car.getBrand().equals(car2.getBrand()) &&
                 car.getSeats() == car2.getSeats() && car.getCreationDate().equals(car2.getCreationDate()) &&

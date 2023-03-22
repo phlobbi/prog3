@@ -100,8 +100,7 @@ public class CustomerEditController implements Initializable{
     @FXML
     void loadCustomer(){
         try{
-        CustomerManagementController customerManagementController = new CustomerManagementController();
-        Customer customer = customerManagementController.getSelectedCustomer();
+        Customer customer = CustomerManagementController.getSelectedCustomer();
         textFieldFirstName.setText(customer.getFirstName());
         textFieldLastName.setText(customer.getLastName());
         textFieldEmail.setText(customer.getEmail());
@@ -160,9 +159,8 @@ public class CustomerEditController implements Initializable{
             Customer customer = new Customer(firstName, lastName, email, street,
                     streetNumber, zipCode, city, phoneNumber,
                     iban, dlNumber, expirationDateCal);
-            CustomerManagementController customerManagementController = new CustomerManagementController();
-            Customer customer2 = customerManagementController.getSelectedCustomer();
-            if (customer.compare(customer2)){
+            Customer customer2 = CustomerManagementController.getSelectedCustomer();
+            if (customer.equals(customer2)){
                 throw new IllegalArgumentException("Keine Änderungen vorgenommen");
             } else {
                 CustomerRepository.delete(customer2);

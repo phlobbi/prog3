@@ -117,9 +117,8 @@ public class CarEditController implements Initializable{
             creationDateCal.setTime(creationDate);
 
             Car car = new Car(concreteType,brand,creationDateCal,seats,basePrice,curPrice,licensePlate,model);
-            CarManagementController carManagementController = new CarManagementController();
-            Car car2 = carManagementController.getSelectedCar();
-            if (car.compare(car2)){
+            Car car2 = CarManagementController.getSelectedCar();
+            if (car.equals(car2)){
                 throw new IllegalArgumentException("Keine Änderungen vorgenommen");
             } else {
                 CarRepository.delete(CarManagementController.getSelectedCar());
