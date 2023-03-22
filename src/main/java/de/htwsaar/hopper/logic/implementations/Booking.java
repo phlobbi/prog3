@@ -66,6 +66,9 @@ public class Booking implements BookingInterface {
     public Booking(int carId, int customerId, Calendar pickUpDate, Calendar dropOffDate) {
         this.carId = BookingValidation.validateCarId(carId);
         this.customerId = BookingValidation.validateCustomerId(customerId);
+
+        BookingValidation.validatePickUpDateBeforeDropOffDate(pickUpDate, dropOffDate);
+
         this.pickUpDate = BookingValidation.validatePickUpDate(pickUpDate);
         this.dropOffDate = BookingValidation.validateDropOffDate(dropOffDate);
     }
@@ -143,11 +146,13 @@ public class Booking implements BookingInterface {
 
     @Override
     public void setPickUpDate(Calendar pickUpDate) {
+        BookingValidation.validatePickUpDateBeforeDropOffDate(pickUpDate, this.dropOffDate);
         this.pickUpDate = BookingValidation.validatePickUpDate(pickUpDate);
     }
 
     @Override
     public void setDropOffDate(Calendar dropOffDate) {
+        BookingValidation.validatePickUpDateBeforeDropOffDate(this.pickUpDate, dropOffDate);
         this.dropOffDate = BookingValidation.validateDropOffDate(dropOffDate);
     }
 

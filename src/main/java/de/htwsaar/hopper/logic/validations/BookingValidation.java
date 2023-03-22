@@ -63,5 +63,16 @@ public class BookingValidation extends Validation {
         return validateDatePastForbidden(dropOffDate);
     }
 
+    /**
+     * Prüft, ob das PickUpDate vor dem DropOffDate liegt
+     * @param pickUpDate Abholtermin
+     * @param dropOffDate Abgabetermin
+     * @throws IllegalArgumentException Falls das PickUpDate nach dem DropOffDate liegt
+     */
+    public static void validatePickUpDateBeforeDropOffDate(Calendar pickUpDate, Calendar dropOffDate) {
+        if(!pickUpDate.before(dropOffDate)){
+            throw new IllegalArgumentException("Abholtermin liegt nach Abgabetermin.");
+        }
+    }
 
 }
