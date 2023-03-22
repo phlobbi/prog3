@@ -2,6 +2,7 @@ package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.interfaces.BookingInterface;
 import de.htwsaar.hopper.logic.validations.PreventNullPersistForBooking;
+import de.htwsaar.hopper.logic.validations.BookingValidation;
 import de.htwsaar.hopper.repositories.CarRepository;
 import de.htwsaar.hopper.repositories.CustomerRepository;
 
@@ -63,10 +64,10 @@ public class Booking implements BookingInterface {
      * @param dropOffDate Geplantes Rückgabedatum eines Autos vom Kunde
      */
     public Booking(int carId, int customerId, Calendar pickUpDate, Calendar dropOffDate) {
-        this.carId = carId;
-        this.customerId = customerId;
-        this.pickUpDate = pickUpDate;
-        this.dropOffDate = dropOffDate;
+        this.carId = BookingValidation.validateCarId(carId);
+        this.customerId = BookingValidation.validateCustomerId(customerId);
+        this.pickUpDate = BookingValidation.validatePickUpDate(pickUpDate);
+        this.dropOffDate = BookingValidation.validateDropOffDate(dropOffDate);
     }
 
     /**
@@ -132,27 +133,27 @@ public class Booking implements BookingInterface {
     /* SETTER */
     @Override
     public void setCarId(int carId) {
-        this.carId = carId;
+        this.carId = BookingValidation.validateCarId(carId);
     }
 
     @Override
     public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+        this.customerId = BookingValidation.validateCustomerId(customerId);
     }
 
     @Override
     public void setPickUpDate(Calendar pickUpDate) {
-        this.pickUpDate = pickUpDate;
+        this.pickUpDate = BookingValidation.validatePickUpDate(pickUpDate);
     }
 
     @Override
     public void setDropOffDate(Calendar dropOffDate) {
-        this.dropOffDate = dropOffDate;
+        this.dropOffDate = BookingValidation.validateDropOffDate(dropOffDate);
     }
 
     @Override
     public void setRealDropOffDate(Calendar realDropOffDate) {
-        this.realDropOffDate = realDropOffDate;
+        this.realDropOffDate = BookingValidation.validateDropOffDate(realDropOffDate);
     }
 
     @Override
