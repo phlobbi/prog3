@@ -10,18 +10,6 @@ import java.util.List;
 public class BookingValidation extends Validation {
 
     /**
-     * Prueft ob die BookingId existiert
-     *
-     * @param bookingId Die zu pruefende BookingId
-     * @return bookingId, falls gültig
-     * @throws IllegalArgumentException Falls die bookingId existiert
-     */
-    public static int validateBookingId(int bookingId) {
-        Utils.check(BookingRepository.find(bookingId) == null, "BookingId existiert schon");
-        return bookingId;
-    }
-
-    /**
      * Prueft ob die CarId existiert und ob das Auto bereits vergeben ist
      *
      * @param carId Die zu pruefende CarId
