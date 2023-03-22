@@ -190,4 +190,14 @@ public class Car implements CarInterface {
                 ", model='" + model + '\'' +
                 '}';
     }
+
+
+    public boolean compare(Car car2){
+        Car car = this;
+        boolean b = car.getType() == car2.getType() && car.getBrand().equals(car2.getBrand()) &&
+                car.getSeats() == car2.getSeats() && car.getCreationDate().equals(car2.getCreationDate()) &&
+                car.getModel().equals(car2.getModel()) && car.getCurrentPrice() == car2.getCurrentPrice() &&
+                car.getBasePrice() == car2.getBasePrice() && car.getLicensePlate().equals(car2.getLicensePlate());
+        return b;
+    }
 }
