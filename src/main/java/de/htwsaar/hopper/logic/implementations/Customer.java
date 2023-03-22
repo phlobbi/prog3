@@ -3,11 +3,9 @@ package de.htwsaar.hopper.logic.implementations;
 import de.htwsaar.hopper.logic.interfaces.CustomerInterface;
 import de.htwsaar.hopper.logic.validations.PreventNullPersistForCustomer;
 import de.htwsaar.hopper.logic.validations.CustomerValidation;
-import de.htwsaar.hopper.repositories.CustomerRepository;
 
 import javax.persistence.*;
 import java.util.Calendar;
-import java.util.Objects;
 
 /**
  * Implementierung des Customer-Interface.
@@ -235,15 +233,41 @@ public class Customer implements CustomerInterface {
         this.driverLicenseExpirationDate = CustomerValidation.validateExpirationDate(driverLicenseExpirationDate);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-    public boolean equals(Customer customer2){
-        Customer customer1 = this;
-        boolean isSame = Objects.equals(customer1.getFirstName(), customer2.getFirstName()) && Objects.equals(customer1.getLastName(), customer2.getLastName()) &&
-                Objects.equals(customer1.getEmail(), customer2.getEmail()) && Objects.equals(customer1.getStreet(), customer2.getStreet()) &&
-                Objects.equals(customer1.getHouseNumber(), customer2.getHouseNumber()) && Objects.equals(customer1.getZipCode(), customer2.getZipCode()) &&
-                Objects.equals(customer1.getCity(), customer2.getCity()) && Objects.equals(customer1.getPhoneNumber(), customer2.getPhoneNumber()) &&
-                Objects.equals(customer1.getIBAN(), customer2.getIBAN()) && Objects.equals(customer1.getDriverLicenseNumber(), customer2.getDriverLicenseNumber()) &&
-                Objects.equals(customer1.getDriverLicenseExpirationDate(), customer2.getDriverLicenseExpirationDate());
-        return isSame;
+        Customer customer = (Customer) o;
+
+        if (getCustomerId() != customer.getCustomerId()) return false;
+        if (!getFirstName().equals(customer.getFirstName())) return false;
+        if (!getLastName().equals(customer.getLastName())) return false;
+        if (!getEmail().equals(customer.getEmail())) return false;
+        if (!getStreet().equals(customer.getStreet())) return false;
+        if (!getHouseNumber().equals(customer.getHouseNumber())) return false;
+        if (!getZipCode().equals(customer.getZipCode())) return false;
+        if (!getCity().equals(customer.getCity())) return false;
+        if (!getPhoneNumber().equals(customer.getPhoneNumber())) return false;
+        if (!iban.equals(customer.iban)) return false;
+        if (!getDriverLicenseNumber().equals(customer.getDriverLicenseNumber())) return false;
+        return getDriverLicenseExpirationDate().equals(customer.getDriverLicenseExpirationDate());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getCustomerId();
+        result = 31 * result + getFirstName().hashCode();
+        result = 31 * result + getLastName().hashCode();
+        result = 31 * result + getEmail().hashCode();
+        result = 31 * result + getStreet().hashCode();
+        result = 31 * result + getHouseNumber().hashCode();
+        result = 31 * result + getZipCode().hashCode();
+        result = 31 * result + getCity().hashCode();
+        result = 31 * result + getPhoneNumber().hashCode();
+        result = 31 * result + iban.hashCode();
+        result = 31 * result + getDriverLicenseNumber().hashCode();
+        result = 31 * result + getDriverLicenseExpirationDate().hashCode();
+        return result;
     }
 }
