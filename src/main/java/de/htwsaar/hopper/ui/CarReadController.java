@@ -101,6 +101,5 @@ public class CarReadController implements Initializable {
         labelCarSeats.setText(String.valueOf(car.getSeats()));
         labelCarType.setText(car.getType().getLabel());
         labelcarLicensePlate.setText(car.getLicensePlate());
-
     }
 }
