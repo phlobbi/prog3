@@ -90,6 +90,9 @@ public class Invoice {
         if (associatedChecklist == null) {
             throw new IllegalStateException("Checkliste nicht gesetzt");
         }
+        if (booking.getRealDropOffDate() == null) {
+            throw new IllegalStateException("Rückgabe-Datum nicht gesetzt");
+        }
     }
 
     /**
