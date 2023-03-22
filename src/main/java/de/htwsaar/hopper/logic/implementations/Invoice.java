@@ -68,7 +68,28 @@ public class Invoice {
         } else {
             instance.reset(booking);
         }
+        instance.checkAttributes();
         instance.generatePDF();
+    }
+
+    /**
+     * Überprüft, ob die benötigten Attribute gesetzt sind.
+     *
+     * @throws IllegalStateException Wenn ein Attribut nicht gesetzt ist
+     */
+    private void checkAttributes() {
+        if (booking == null) {
+            throw new IllegalStateException("Buchung nicht gesetzt");
+        }
+        if (associatedCar == null) {
+            throw new IllegalStateException("Auto nicht gesetzt");
+        }
+        if (associatedCustomer == null) {
+            throw new IllegalStateException("Kunde nicht gesetzt");
+        }
+        if (associatedChecklist == null) {
+            throw new IllegalStateException("Checkliste nicht gesetzt");
+        }
     }
 
     /**
@@ -163,9 +184,7 @@ public class Invoice {
         contentStream.newLineAtOffset(340, 735);
         contentStream.showText(formatDate(Calendar.getInstance()));
         contentStream.newLineAtOffset(0, -12);
-        // TODO Zeile entkommentieren, sobald das Testen abgeschlossen ist
-        // contentstream.showText(String.valueOf(booking.getBookingId()));
-        contentStream.showText("123");
+        contentStream.showText(String.valueOf(booking.getBookingId()));
         contentStream.newLineAtOffset(0, -38);
         contentStream.showText(associatedCustomer.getFirstName() + " " + associatedCustomer.getLastName());
         contentStream.newLineAtOffset(0, -12);
@@ -206,7 +225,7 @@ public class Invoice {
         contentStream.beginText();
         contentStream.newLineAtOffset(52, calculateLinePosition());
         contentStream.showText(description);
-        contentStream.newLineAtOffset(467, 0);
+        contentStream.newLineAtOffset(458, 0);
         contentStream.showText(df.format(amount) + "€");
         contentStream.endText();
         linePosition++;
