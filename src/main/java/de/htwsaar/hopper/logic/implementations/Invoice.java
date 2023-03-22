@@ -98,6 +98,7 @@ public class Invoice {
                             associatedCar.getCurrentPrice() * (lateDays - 1) * VERSPAETUNGSZUSCHLAG);
                 }
                 writeFaults(contentStream);
+                writeTaxAndTotal(contentStream);
                 contentStream.close();
                 doc.save(new File("generated-invoice.pdf"));
 
@@ -165,6 +166,7 @@ public class Invoice {
     /**
      * Schreibt eine Zeile mit Betrag in die PDF-Rechnung.
      * Der Betrag wird auf zwei Nachkommastellen gerundet und zum Gesamtbetrag addiert.
+     * @see #writeDescriptiveLine(PDPageContentStream, String) writeDescriptiveLine
      * @param contentStream Contentstream der PDF-Rechnung
      * @param description Beschreibung der Zeile
      * @param amount Betrag der Zeile
@@ -176,7 +178,7 @@ public class Invoice {
         contentStream.newLineAtOffset(52, calculateLinePosition());
         contentStream.showText(description);
         contentStream.newLineAtOffset(467, 0);
-        contentStream.showText(df.format(amount));
+        contentStream.showText(df.format(amount) + "€");
         contentStream.endText();
         linePosition++;
         total += rounded;
@@ -195,6 +197,27 @@ public class Invoice {
             if (!associatedChecklist.isUndamaged()) writeBillingLine(contentStream, "Fahrzeug ist beschädigt", associatedCar.getBasePrice() * MAENGELSATZ);
             if (!associatedChecklist.isKeyDroppedOff()) writeBillingLine(contentStream, "Schlüssel nicht abgegeben", associatedCar.getBasePrice() * MAENGELSATZ);
         }
+    }
+
+    /**
+     * Schreibt die letzten Zeilen in die Rechnung.
+     * Diese sind: Bruttobetrag, Steuersatz, berechnete Steuer und Gesamtbetrag.
+     * @param contentStream Contentstream der PDF-Rechnung
+     * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
+     */
+    private void writeTaxAndTotal(PDPageContentStream contentStream) throws IOException {
+        double tax = total * STEUERSATZ;
+        double beforeTax = total - tax;
+        contentStream.beginText();
+        contentStream.newLineAtOffset(510, 316);
+        contentStream.showText(df.format(beforeTax) + "€");
+        contentStream.newLineAtOffset(0, -26);
+        contentStream.showText(df.format(STEUERSATZ * 100) + "%");
+        contentStream.newLineAtOffset(0, -26);
+        contentStream.showText(df.format(tax) + "€");
+        contentStream.newLineAtOffset(0, -50);
+        contentStream.showText(df.format(total) + "€");
+        contentStream.endText();
     }
 
     /**
