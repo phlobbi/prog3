@@ -112,7 +112,7 @@ public class Invoice {
     /**
      * Erstellt eine neue PDF-Rechnung.
      */
-    public void generatePDF() {
+    private void generatePDF() {
         URL url = Invoice.class.getResource("invoice-template.pdf");
         File file;
         try {
