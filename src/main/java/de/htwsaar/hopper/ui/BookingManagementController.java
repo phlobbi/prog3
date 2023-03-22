@@ -1,9 +1,7 @@
 package de.htwsaar.hopper.ui;
 
 import de.htwsaar.hopper.logic.implementations.Booking;
-import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.repositories.BookingRepository;
-import de.htwsaar.hopper.repositories.CarRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

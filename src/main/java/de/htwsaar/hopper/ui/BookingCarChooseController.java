@@ -1,4 +1,5 @@
 package de.htwsaar.hopper.ui;
+
 import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.repositories.CarRepository;
 import javafx.collections.FXCollections;
@@ -12,14 +13,17 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class BookingCarChooseController implements Initializable {
 
     private Car chosenCar;
+
     @FXML
     private Button btnCancel;
+
+    @FXML
+    private Button btnResetSearch;
 
     @FXML
     private Button btnSave;
@@ -70,6 +74,10 @@ public class BookingCarChooseController implements Initializable {
         stage.close();
     }
 
+    /**
+     * Speichert das ausgeählte Auto
+     * @param event Event
+     */
     @FXML
     void saveChosenCar(ActionEvent event) {
         chosenCar = tableView.getSelectionModel().getSelectedItem();
@@ -77,37 +85,47 @@ public class BookingCarChooseController implements Initializable {
         stage.close();
     }
 
+    /**
+     * Sucht nach ausgewählten Autos anhand der Filterkriterien
+     * @param event Event
+     */
     @FXML
     void searchForCar(ActionEvent event) {
         try{
             String searchCriteria = textFieldSearch.getText();
 
-            ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
-            checkMenuItems.addAll(Arrays.asList(searchCritBrand, searchCritModel, searchCritType));
+            if(searchCriteria.trim().isEmpty()){
+                throw new IllegalArgumentException("Kein Suchkriterium eingegeben");
+            }
 
-            for(CheckMenuItem item : checkMenuItems)
-                if(!item.isSelected())
-                    checkMenuItems.remove(item);
+            ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
+            checkMenuItems = getAllSelectedCriteria();
 
             if (checkMenuItems.isEmpty())
                 throw new IllegalArgumentException("Kein Kriterium ausgewählt");
 
+
             tableView.getItems().clear();
             for (Car car : CarRepository.findAvailable()) {
                 for (CheckMenuItem item : checkMenuItems) {
+                    boolean allowedToInsert = false;
                     if (item.equals(searchCritBrand)) {
                         if (car.getBrand().toLowerCase().contains(searchCriteria.toLowerCase()))
-                            tableView.getItems().add(car);
+                            allowedToInsert = true;
                     } else if (item.equals(searchCritModel)) {
                         if (car.getModel().toLowerCase().contains(searchCriteria.toLowerCase()))
-                            tableView.getItems().add(car);
+                            allowedToInsert = true;
                     } else if (item.equals(searchCritType)) {
                         if (car.getType().getLabel().toLowerCase().contains(searchCriteria.toLowerCase()))
+                            allowedToInsert = true;
+                    }
+                    if (!IsCarAlreadyInTable(car)){
+                        if (allowedToInsert)
                             tableView.getItems().add(car);
                     }
+
                 }
             }
-
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fehler");
@@ -115,10 +133,12 @@ public class BookingCarChooseController implements Initializable {
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
-
-
     }
 
+    /**
+     * Sucht nach Autos, wenn die Enter-Taste gedrückt wird
+     * @param event Event
+     */
     @FXML
     void searchForCarViaEnter(KeyEvent event) {
         if(event.getCode().toString().equals("ENTER")){
@@ -126,7 +146,10 @@ public class BookingCarChooseController implements Initializable {
         }
     }
 
-
+    /**
+     * Entfernt die Auswahl aller Filterkriterien
+     * @param event Event
+     */
     @FXML
     void uncheckCriteria(ActionEvent event) {
         searchCritBrand.setSelected(false);
@@ -134,6 +157,21 @@ public class BookingCarChooseController implements Initializable {
         searchCritType.setSelected(false);
     }
 
+    /**
+     * Setzt die Suche zurück, sodass keine Filterkriterien mehr aktiviert sind,
+     * die Tabelle wieder auf original zurückgesetzt wird und das Suchfeld geleert wird
+     * @param event Event
+     */
+    @FXML
+    void resetSearch(ActionEvent event) {
+        uncheckCriteria(new ActionEvent());
+        reloadTable();
+        textFieldSearch.clear();
+    }
+
+    /**
+     * Lädt die Tabelle mit allen verfügbaren Autos
+     */
     public void reloadTable(){
         tableView.getItems().clear();
 
@@ -161,6 +199,32 @@ public class BookingCarChooseController implements Initializable {
 
     public Car getChosenCar(){
         return chosenCar;
+    }
+
+    /**
+     * Gibt eine Liste aus mit allen Suchkriterien, die ausgewählt sind
+     * @return Liste mit allen ausgewählten Suchkriterien
+     */
+    private ObservableList<CheckMenuItem> getAllSelectedCriteria(){
+        ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
+
+        if (searchCritBrand.isSelected())
+            checkMenuItems.add(searchCritBrand);
+        if (searchCritModel.isSelected())
+            checkMenuItems.add(searchCritModel);
+        if (searchCritType.isSelected())
+            checkMenuItems.add(searchCritType);
+
+       return checkMenuItems;
+    }
+
+    /**
+     * Prüft ob das Auto bereits in der Liste ist
+     * @param car Auto was zu prüfen ist
+     * @return true wenn Auto bereits in der Liste ist, sonst false
+     */
+    private boolean IsCarAlreadyInTable(Car car){
+        return tableView.getItems().contains(car);
     }
 
 }

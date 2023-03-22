@@ -50,12 +50,13 @@
                   <CheckMenuItem fx:id="searchCritType" mnemonicParsing="false" text="Typ" />
                   <CheckMenuItem fx:id="searchCritBrand" mnemonicParsing="false" text="Marke" />
                   <CheckMenuItem fx:id="searchCritModel" mnemonicParsing="false" text="Modell" />
-                <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckCriteria" text="Haken entfernen" />
+                <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckCriteria" text="Kriterien entfernen" />
               </items>
                <padding>
                   <Insets left="2.0" />
                </padding>
             </MenuButton>
+            <Button fx:id="btnResetSearch" mnemonicParsing="false" onAction="#resetSearch" prefHeight="25.0" prefWidth="90.0" text="Zurücksetzen" />
          </children>
       </HBox>
    </top>
