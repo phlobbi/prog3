@@ -1,10 +1,12 @@
 package de.htwsaar.hopper.logic.implementations;
 
-import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.interfaces.BookingInterface;
 import de.htwsaar.hopper.logic.interfaces.CarInterface;
 import de.htwsaar.hopper.logic.interfaces.ChecklistInterface;
 import de.htwsaar.hopper.logic.interfaces.CustomerInterface;
+import de.htwsaar.hopper.repositories.CarRepository;
+import de.htwsaar.hopper.repositories.ChecklistRepository;
+import de.htwsaar.hopper.repositories.CustomerRepository;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -24,38 +26,61 @@ import java.util.Calendar;
  * @author philipdausend
  */
 public class Invoice {
-    private static final double MAENGELSATZ = 0.5;
-    private static final double VERSPAETUNGSZUSCHLAG = 0.5;
-    private static final double STEUERSATZ = 0.19;
+    private static final double DEFECT_RATE = 0.5;
+    private static final double LATENESS_RATE = 0.5;
+    private static final double TAX_RATE = 0.19;
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
-    private final BookingInterface booking;
-    private final CarInterface associatedCar;
-    private final CustomerInterface associatedCustomer;
-    private final ChecklistInterface associatedChecklist;
+    private BookingInterface booking;
+    private CarInterface associatedCar;
+    private CustomerInterface associatedCustomer;
+    private ChecklistInterface associatedChecklist;
     private int linePosition;
     private double total;
 
+    private static Invoice instance;
+
     /**
      * Konstruktor, der eine neue Rechnung erstellt.
+     *
      * @param booking Buchung, für die die Rechnung erstellt werden soll
      */
-    public Invoice(BookingInterface booking) {
-        Calendar expirationDate = Calendar.getInstance();
-        Calendar productionDate = Calendar.getInstance();
-        Calendar pickUpDay = Calendar.getInstance();
-        Calendar dropOffDay = Calendar.getInstance();
-        Calendar realDropOffDay = Calendar.getInstance();
-        expirationDate.add(Calendar.YEAR, 1);
-        productionDate.add(Calendar.YEAR, -2);
-        pickUpDay.set(2023, Calendar.JANUARY, 1);
-        dropOffDay.set(2023, Calendar.JANUARY, 3);
-        realDropOffDay.set(2023, Calendar.JANUARY, 5);
-        this.booking = new Booking(5, 5, pickUpDay, dropOffDay);
-        this.booking.setRealDropOffDate(realDropOffDay);
-        this.associatedCar = new Car(CarTypeEnum.AUTO, "Audi", productionDate, 5, 100, 20, "SB-AB-23", "A4");
-        this.associatedCustomer = new Customer("Max", "Mustermann", "max@muster.de", "Musterstraße", "1", "66130", "Saarbrücken", "0176/12345678", "DE06500105177825353352", "L01C0097Z31", expirationDate);
-        this.associatedChecklist = new Checklist(false, false, false, false);
+    private Invoice(BookingInterface booking) {
+        this.booking = booking;
+        this.associatedCar = CarRepository.find(booking.getCarId());
+        this.associatedCustomer = CustomerRepository.find(booking.getCustomerId());
+        this.associatedChecklist = ChecklistRepository.find(booking.getChecklistId());
+        this.linePosition = 0;
+        this.total = 0.0;
+    }
+
+    /**
+     * Singleton-Methode zum Generieren einer neuen Rechnung.
+     * Die Methode prüft, ob bereits eine Instanz von Invoice existiert. Wenn ja, wird diese zurückgesetzt.
+     * Dadurch kann eine neue Rechnung erstellt werden, ohne eine neue Instanz zu erzeugen.
+     * Der gesamte Aufwand für die Erstellung einer Rechnung beschränkt sich also nur auf den Aufruf dieser Methode.
+     *
+     * @param booking Buchung, für die die Rechnung erstellt werden soll
+     */
+    public static void generate(BookingInterface booking) {
+        if (instance == null) {
+            instance = new Invoice(booking);
+        } else {
+            instance.reset(booking);
+        }
+        instance.generatePDF();
+    }
+
+    /**
+     * Setzt die Invoice-Instanz zurück.
+     *
+     * @param booking Buchung, für die die Rechnung erstellt werden soll
+     */
+    private void reset(BookingInterface booking) {
+        this.booking = booking;
+        this.associatedCar = CarRepository.find(booking.getCarId());
+        this.associatedCustomer = CustomerRepository.find(booking.getCustomerId());
+        this.associatedChecklist = ChecklistRepository.find(booking.getChecklistId());
         this.linePosition = 0;
         this.total = 0.0;
     }
@@ -87,15 +112,15 @@ public class Invoice {
                         String.format("%s %s - Tagespreis Miete (Anzahl Tage: %d)",
                                 associatedCar.getBrand(), associatedCar.getModel(),
                                 bookedDays),
-                associatedCar.getCurrentPrice() * bookedDays);
-                if(!isSameDate(booking.getDropOffDate(), booking.getRealDropOffDate())) {
+                        associatedCar.getCurrentPrice() * bookedDays);
+                if (!isSameDate(booking.getDropOffDate(), booking.getRealDropOffDate())) {
                     int lateDays = calculateDaysBetween(booking.getDropOffDate(), booking.getRealDropOffDate());
                     writeBillingLine(
                             contentStream,
                             String.format("%s %s - Strafzuschlag \"Überzogene Miete\" (Anzahl Tage: %d)",
                                     associatedCar.getBrand(), associatedCar.getModel(),
                                     lateDays - 1),
-                            associatedCar.getCurrentPrice() * (lateDays - 1) * VERSPAETUNGSZUSCHLAG);
+                            associatedCar.getCurrentPrice() * (lateDays - 1) * LATENESS_RATE);
                 }
                 writeFaults(contentStream);
                 writeTaxAndTotal(contentStream);
@@ -112,6 +137,7 @@ public class Invoice {
 
     /**
      * Schreibt die Adresse des Autovermieters in die PDF-Rechnung.
+     *
      * @param contentStream Contentstream der PDF-Rechnung
      * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
      */
@@ -128,6 +154,7 @@ public class Invoice {
 
     /**
      * Schreibt die Rechnungsdaten in die PDF-Rechnung.
+     *
      * @param contentStream Contentstream der PDF-Rechnung
      * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
      */
@@ -150,10 +177,11 @@ public class Invoice {
 
     /**
      * Schreibt eine Zeile in die PDF-Rechnung, ohne einen Betrag.
-     * @see #writeBillingLine(PDPageContentStream, String, double) writeBillingLine
+     *
      * @param contentStream Contentstream der PDF-Rechnung
-     * @param description Beschreibung der Zeile
+     * @param description   Beschreibung der Zeile
      * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
+     * @see #writeBillingLine(PDPageContentStream, String, double) writeBillingLine
      */
     private void writeDescriptiveLine(PDPageContentStream contentStream, String description) throws IOException {
         contentStream.beginText();
@@ -166,11 +194,12 @@ public class Invoice {
     /**
      * Schreibt eine Zeile mit Betrag in die PDF-Rechnung.
      * Der Betrag wird auf zwei Nachkommastellen gerundet und zum Gesamtbetrag addiert.
-     * @see #writeDescriptiveLine(PDPageContentStream, String) writeDescriptiveLine
+     *
      * @param contentStream Contentstream der PDF-Rechnung
-     * @param description Beschreibung der Zeile
-     * @param amount Betrag der Zeile
+     * @param description   Beschreibung der Zeile
+     * @param amount        Betrag der Zeile
      * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
+     * @see #writeDescriptiveLine(PDPageContentStream, String) writeDescriptiveLine
      */
     private void writeBillingLine(PDPageContentStream contentStream, String description, double amount) throws IOException {
         double rounded = Math.round(amount * 100.0) / 100.0;
@@ -186,33 +215,39 @@ public class Invoice {
 
     /**
      * Schreibt Mängel in die PDF-Rechnung.
+     *
      * @param contentStream Contentstream der PDF-Rechnung
      * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
      */
     private void writeFaults(PDPageContentStream contentStream) throws IOException {
-        if(associatedChecklist.getProblemCount() > 0) {
+        if (associatedChecklist.getProblemCount() > 0) {
             writeDescriptiveLine(contentStream, "Folgende Mängel wurden festgestellt:");
-            if (!associatedChecklist.isClean()) writeBillingLine(contentStream, "Fahrzeug nicht sauber", associatedCar.getBasePrice() * MAENGELSATZ);
-            if (!associatedChecklist.isFueledUp()) writeBillingLine(contentStream, "Tank nicht voll", associatedCar.getBasePrice() * MAENGELSATZ);
-            if (!associatedChecklist.isUndamaged()) writeBillingLine(contentStream, "Fahrzeug ist beschädigt", associatedCar.getBasePrice() * MAENGELSATZ);
-            if (!associatedChecklist.isKeyDroppedOff()) writeBillingLine(contentStream, "Schlüssel nicht abgegeben", associatedCar.getBasePrice() * MAENGELSATZ);
+            if (!associatedChecklist.isClean())
+                writeBillingLine(contentStream, "Fahrzeug nicht sauber", associatedCar.getBasePrice() * DEFECT_RATE);
+            if (!associatedChecklist.isFueledUp())
+                writeBillingLine(contentStream, "Tank nicht voll", associatedCar.getBasePrice() * DEFECT_RATE);
+            if (!associatedChecklist.isUndamaged())
+                writeBillingLine(contentStream, "Fahrzeug ist beschädigt", associatedCar.getBasePrice() * DEFECT_RATE);
+            if (!associatedChecklist.isKeyDroppedOff())
+                writeBillingLine(contentStream, "Schlüssel nicht abgegeben", associatedCar.getBasePrice() * DEFECT_RATE);
         }
     }
 
     /**
      * Schreibt die letzten Zeilen in die Rechnung.
      * Diese sind: Bruttobetrag, Steuersatz, berechnete Steuer und Gesamtbetrag.
+     *
      * @param contentStream Contentstream der PDF-Rechnung
      * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
      */
     private void writeTaxAndTotal(PDPageContentStream contentStream) throws IOException {
-        double tax = total * STEUERSATZ;
+        double tax = total * TAX_RATE;
         double beforeTax = total - tax;
         contentStream.beginText();
         contentStream.newLineAtOffset(510, 316);
         contentStream.showText(df.format(beforeTax) + "€");
         contentStream.newLineAtOffset(0, -26);
-        contentStream.showText(df.format(STEUERSATZ * 100) + "%");
+        contentStream.showText(df.format(TAX_RATE * 100) + "%");
         contentStream.newLineAtOffset(0, -26);
         contentStream.showText(df.format(tax) + "€");
         contentStream.newLineAtOffset(0, -50);
@@ -222,6 +257,7 @@ public class Invoice {
 
     /**
      * Formatiert ein Datum in das Format "dd.MM.yyyy".
+     *
      * @param date Datum, das formatiert werden soll
      * @return Formatiertes Datum
      */
@@ -232,6 +268,7 @@ public class Invoice {
 
     /**
      * Berechnet die Position der nächsten Zeile in der PDF-Rechnung.
+     *
      * @return Y-Position der nächsten Zeile
      */
     private int calculateLinePosition() {
@@ -242,8 +279,9 @@ public class Invoice {
      * Berechnet die Anzahl der Tage zwischen zwei Kalenderdaten.
      * Die Methode berücksichtigt dabei, dass das Enddatum inklusive ist.
      * Beispiel: 01.01.2020 - 03.01.2020 = 3 Tage
+     *
      * @param start Startdatum
-     * @param end Enddatum
+     * @param end   Enddatum
      * @return Anzahl der Tage zwischen den beiden Kalenderdaten
      */
     private int calculateDaysBetween(Calendar start, Calendar end) {
@@ -254,6 +292,7 @@ public class Invoice {
 
     /**
      * Setzt die Stunden, Minuten und Sekunden eines Kalenderdatums auf 0.
+     *
      * @param date Kalenderdatum, das bereinigt werden soll
      */
     private void clearHourMinuteSecond(Calendar date) {
@@ -265,6 +304,7 @@ public class Invoice {
 
     /**
      * Prüft, ob zwei Calendar-Objekte das gleiche Datum darstellen.
+     *
      * @param date1 Kalenderdatum 1
      * @param date2 Kalenderdatum 2
      * @return true, wenn die beiden Kalenderdaten das gleiche Datum darstellen, sonst false
@@ -272,15 +312,5 @@ public class Invoice {
     private boolean isSameDate(Calendar date1, Calendar date2) {
         return date1.get(Calendar.YEAR) == date2.get(Calendar.YEAR) &&
                 date1.get(Calendar.DAY_OF_YEAR) == date2.get(Calendar.DAY_OF_YEAR);
-    }
-
-    /**
-     * Main-Methode zum Testen der Klasse.
-     * @param args Kommandozeilenargumente
-     * @deprecated Wird vorerst zum Testen der Klasse verwendet und danach entfernt. Nicht für Produktivsysteme verwenden.
-     */
-    public static void main(String[] args) {
-        Invoice invoice = new Invoice(null);
-        invoice.generatePDF();
     }
 }
