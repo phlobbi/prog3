@@ -1,7 +1,10 @@
 package de.htwsaar.hopper.ui;
 
+import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.implementations.Customer;
+import de.htwsaar.hopper.repositories.BookingRepository;
+import de.htwsaar.hopper.repositories.CarRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -80,14 +83,15 @@ public class BookingCreationController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Booking-car-choose-view.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
 
-            BookingCarChooseController controller = fxmlLoader.getController();
-            chosenCar = controller.getChosenCar();
-
             stage = new Stage();
             stage.setTitle("Auto auswählen");
             stage.setScene(new Scene(root1));
             disableWindow();
             stage.showAndWait();
+
+            BookingCarChooseController controller = fxmlLoader.getController();
+            chosenCar = controller.getChosenCar();
+
         } catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.showAndWait();
@@ -118,14 +122,15 @@ public class BookingCreationController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Booking-customer-choose-view.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
 
-            BookingCustomerChooseController controller = fxmlLoader.getController();
-            chosenCustomer = controller.getChosenCustomer();
-
             stage = new Stage();
             stage.setTitle("Kunde auswählen");
             stage.setScene(new Scene(root1));
             disableWindow();
             stage.showAndWait();
+
+            BookingCustomerChooseController controller = fxmlLoader.getController();
+            chosenCustomer = controller.getChosenCustomer();
+
         } catch(Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.showAndWait();
@@ -172,7 +177,18 @@ public class BookingCreationController {
             Calendar dropOffDateCal = Calendar.getInstance();
             dropOffDateCal.setTime(dropOffDate);
 
+            Booking booking = new Booking();
+            booking.setCarId(chosenCar.getCarId());
+            booking.setCustomerId(chosenCustomer.getCustomerId());
+            booking.setPickUpDate(pickUpDateCal);
+            booking.setDropOffDate(dropOffDateCal);
 
+            BookingRepository.persist(booking);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Buchung erfolgreich erstellt");
+            alert.showAndWait();
+            Stage stage = (Stage) btnSave.getScene().getWindow();
+            stage.close();
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fehler");
