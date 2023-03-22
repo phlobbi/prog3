@@ -1,16 +1,24 @@
 package de.htwsaar.hopper.ui;
 
 import de.htwsaar.hopper.logic.implementations.Booking;
+import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.repositories.BookingRepository;
+import de.htwsaar.hopper.repositories.CarRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,13 +60,50 @@ public final class BookingManagementController implements Initializable {
     }
 
     @FXML
-    void switchToScene(ActionEvent event) {
+    void switchToSceneReturnCar(ActionEvent event) {
 
     }
 
     @FXML
     void switchToSceneCarBooking(ActionEvent event) {
+        Stage stage = new Stage();
 
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Booking-creation-view.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            stage = new Stage();
+            stage.setScene(new Scene(root1));
+            disableWindow();
+            stage.showAndWait();
+        } catch(Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            alert.showAndWait();
+        }
+        enableWindow();
+        showBookingList();
+    }
+
+    void disableWindow(){
+        btnBookCar.setDisable(true);
+        btnReturnCar.setDisable(true);
+        btnGoBack.setDisable(true);
+
+        Stage primaryStage = (Stage) btnBookCar.getScene().getWindow();
+        primaryStage.onCloseRequestProperty().set(e -> {
+            e.consume();
+        });
+    }
+
+    void enableWindow(){
+        btnBookCar.setDisable(false);
+        btnReturnCar.setDisable(false);
+        btnGoBack.setDisable(false);
+
+        // Roten Kreuz Button wieder aktivieren
+        Stage primaryStage = (Stage) btnBookCar.getScene().getWindow();
+        primaryStage.onCloseRequestProperty().set(e -> {
+            primaryStage.close();
+        });
     }
 
     /**
@@ -67,6 +112,8 @@ public final class BookingManagementController implements Initializable {
      *  sowie die Marke des reservierten Autos anzeigen.
      */
     void showBookingList(){
+        tableView.getItems().clear();
+
         customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerShowField"));
         bookingIdColumn.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
         carIdColumn.setCellValueFactory(new PropertyValueFactory<>("carShowField"));
@@ -79,7 +126,6 @@ public final class BookingManagementController implements Initializable {
 
         tableView.setItems(list);
     }
-
 
     /**
      * @param location Der Ort, an dem relative Pfade für das Root-Objekt aufgelöst werden, oder
