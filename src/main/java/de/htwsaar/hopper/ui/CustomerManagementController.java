@@ -162,7 +162,21 @@ public final class CustomerManagementController implements Initializable {
 
     @FXML
     void switchToSceneUpdateCustomer(ActionEvent event) {
-
+        setSelectedCustomer(tableView.getSelectionModel().getSelectedItem());
+        Stage stage = new Stage();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Customer-edit-view.fxml"));
+            Parent root1 = fxmlLoader.load();
+            stage = new Stage();
+            stage.setScene(new Scene(root1));
+            disableWindow();
+            stage.showAndWait();
+        } catch(Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            alert.showAndWait();
+        }
+        enableWindow();
+        reloadTable();
     }
 
         public static Customer getSelectedCustomer() {
