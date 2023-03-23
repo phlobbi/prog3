@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+            stylesheets="@../css/firstview.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.SettingsViewController">
+    <top>
+        <HBox prefHeight="21.0" prefWidth="600.0" styleClass="title-bar" BorderPane.alignment="CENTER">
+            <children>
+                <Label styleClass="title-bar-text" text="Autovermietung">
+                    <font>
+                        <Font name="System Bold" size="13.0"/>
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+    </top>
+    <center>
+        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <ToolBar prefHeight="40.0" prefWidth="200.0">
+                    <items>
+                        <Button fx:id="saveButton" onAction="#saveButtonAction" mnemonicParsing="false" text="Speichern und Zurück"/>
+                    </items>
+                </ToolBar>
+                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-padding: 5px;">
+                    <children>
+                        <Label text="Einstellungen">
+                            <font>
+                                <Font name="System Font" size="25.0"/>
+                            </font>
+                        </Label>
+                        <Separator prefWidth="200.0"/>
+                        <GridPane>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            </rowConstraints>
+                            <children>
+                                <Label text="Sprache" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                                <ChoiceBox fx:id="languageSelection" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                                <Label text="Test" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                                <ToggleButton text="Test" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                            </children>
+                        </GridPane>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

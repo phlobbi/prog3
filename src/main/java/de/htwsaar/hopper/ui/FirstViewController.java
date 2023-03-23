@@ -4,14 +4,12 @@ import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 public final class FirstViewController {
-    boolean isEnglish = false;
 
     /**
      * Wechselt bei Aufruf auf die Buchungsverwaltung.
+     *
      * @param event mouse click
      */
     @FXML
@@ -21,6 +19,7 @@ public final class FirstViewController {
 
     /**
      * Wechselt bei Aufruf auf die Kundenverwaltung.
+     *
      * @param event mouse click
      */
     @FXML
@@ -30,15 +29,17 @@ public final class FirstViewController {
 
     /**
      * Wechselt bei Aufruf auf die Hilfesektion.
+     *
      * @param event mouse click
      */
     @FXML
-    void switchToHelpView(MouseEvent event)  {
+    void switchToHelpView(MouseEvent event) {
         System.out.println("Help");
     }
 
     /**
      * Wechselt bei Aufruf auf die Autoverwaltung.
+     *
      * @param event mouse click
      */
     @FXML
@@ -46,18 +47,8 @@ public final class FirstViewController {
         App.setRoot("fxml/Car-view.fxml");
     }
 
-    /**
-     * Wechselt bei Aufruf die Sprache.
-     * @param event mouse click
-     */
     @FXML
-    void changeLanguage(MouseEvent event) throws IOException {
-        //Locale locale = isEnglish ? new Locale("de") : new Locale("en");
-
-        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n", Locale.ENGLISH);
-
-        System.out.println(bundle.getString("Sprache"));
-
-        isEnglish = !isEnglish;
+    void switchToSettingsView(MouseEvent event) throws IOException {
+        App.setRoot("fxml/settings-view.fxml");
     }
 }
