@@ -10,9 +10,9 @@ import java.util.List;
 public class BookingValidation extends Validation {
 
     /**
-     * Prueft ob die CarId existiert und ob das Auto bereits vergeben ist
+     * Prüft, ob die CarId existiert und ob das Auto bereits vergeben ist
      *
-     * @param carId Die zu pruefende CarId
+     * @param carId Die zu prüfende CarId
      * @return carId, falls gültig
      * @throws IllegalArgumentException Falls die carId nicht existiert
      */
@@ -20,15 +20,15 @@ public class BookingValidation extends Validation {
         Utils.check(CarRepository.find(carId) != null, "CarId existiert nicht");
         List<Booking> bookings = BookingRepository.findAll();
         for (Booking booking : bookings) {
-            Utils.check(booking.getCarId() != carId, "Das Auto ist bereits vergeben");
+            Utils.check(booking.getRealDropOffDate() != null && booking.getCarId() != carId, "Das Auto ist bereits vergeben");
         }
         return carId;
     }
 
     /**
-     * Prueft ob die CustomerId existiert und ob der Kunde bereits ein Auto gebucht hat
+     * Prüft, ob die CustomerId existiert und ob der Kunde bereits ein Auto gebucht hat
      *
-     * @param customerId Die zu pruefende CustomerId
+     * @param customerId Die zu prüfende CustomerId
      * @return customerId, falls gültig
      * @throws IllegalArgumentException Falls die customerId nicht existiert
      */
@@ -36,16 +36,16 @@ public class BookingValidation extends Validation {
         Utils.check(CustomerRepository.find(customerId) != null, "CustomerId existiert nicht");
         List<Booking> bookings = BookingRepository.findAll();
         for (Booking booking : bookings) {
-            Utils.check(booking.getCustomerId() != customerId, "Der Kunde hat bereits ein Auto gebucht");
+            Utils.check(booking.getRealDropOffDate() != null && booking.getCustomerId() != customerId, "Der Kunde hat bereits ein Auto gebucht");
         }
         return customerId;
     }
 
     /**
-     * Prueft ob das PickUpDate in der Zukunft liegt
+     * Prüft, ob das PickUpDate in der Zukunft liegt
      *
-     * @param pickUpDate Die zupruefende PickUpDate
-     * @return Abholtermin, falls gültig
+     * @param pickUpDate Das zu prüfende PickUpDate
+     * @return pickUpDate, falls gültig
      * @throws IllegalArgumentException Falls das Datum in der Zukunft liegt
      */
     public static Calendar validatePickUpDate(Calendar pickUpDate) {
@@ -53,10 +53,10 @@ public class BookingValidation extends Validation {
     }
 
     /**
-     * Prueft ob das DropOffDate in der Vergangenheit liegt
+     * Prüft, ob das DropOffDate in der Vergangenheit liegt
      *
-     * @param dropOffDate Die zupruefende DropOffDate
-     * @return Abgabetermin, falls gültig
+     * @param dropOffDate Das zu prüfende DropOffDate
+     * @return dropOffDate, falls gültig
      * @throws IllegalArgumentException Falls das Datum in der Vergangenheit liegt
      */
     public static Calendar validateDropOffDate(Calendar dropOffDate) {
