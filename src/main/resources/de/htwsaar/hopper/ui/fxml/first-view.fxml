@@ -43,7 +43,7 @@
                      <image>
                         <Image url="@../icons/car-icon.png" />
                      </image></ImageView>
-                  <Label styleClass="menu-tile-text" text="Autoverwaltung" />
+                  <Label styleClass="menu-tile-text" text="%CAR_MANAGEMENT" />
                </children>
             </VBox>
             <VBox onMouseClicked="#switchToCustomerView" prefHeight="200.0" prefWidth="100.0" styleClass="menu-tile" GridPane.columnIndex="1">
@@ -53,7 +53,7 @@
                         <Image url="@../icons/person_FILL0_wght400_GRAD0_opsz48.png" />
                      </image>
                   </ImageView>
-                  <Label styleClass="menu-tile-text" stylesheets="@../css/firstview.css" text="Kundenverwaltung" />
+                  <Label styleClass="menu-tile-text" stylesheets="@../css/firstview.css" text="%CUSTOMER_MANAGEMENT" />
                </children></VBox>
             <VBox onMouseClicked="#switchToCarRental" prefHeight="200.0" prefWidth="100.0" styleClass="menu-tile" GridPane.rowIndex="1">
                <children>
@@ -62,7 +62,7 @@
                         <Image url="@../icons/wysiwyg_FILL0_wght400_GRAD0_opsz48.png" />
                      </image>
                   </ImageView>
-                  <Label styleClass="menu-tile-text" text="Buchungsverwaltung" />
+                  <Label styleClass="menu-tile-text" text="%BOOKING_MANAGEMENT" />
                </children>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" styleClass="menu-tile" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -71,7 +71,7 @@
                      <image>
                         <Image url="@../icons/help_FILL0_wght400_GRAD0_opsz48.png" />
                      </image></ImageView>
-                  <Label styleClass="menu-tile-text" text="Hilfe" />
+                  <Label styleClass="menu-tile-text" text="%HELP" />
                </children></VBox>
          </children>
       </GridPane>
