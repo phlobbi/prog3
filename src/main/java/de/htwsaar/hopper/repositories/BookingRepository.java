@@ -131,7 +131,7 @@ public class BookingRepository {
             oldBooking.setPickUpDate(booking.getPickUpDate());
             oldBooking.setDropOffDate(booking.getDropOffDate());
             oldBooking.setRealDropOffDate(booking.getRealDropOffDate());
-            oldBooking.setChecklistId(booking.getChecklistId());
+            entityManager.merge(oldBooking);
             transaction.commit();
         } finally {
             if (transaction.isActive()) {
