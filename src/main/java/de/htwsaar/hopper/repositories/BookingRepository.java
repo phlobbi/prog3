@@ -2,6 +2,7 @@ package de.htwsaar.hopper.repositories;
 
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.logic.implementations.Checklist;
+import org.hibernate.Transaction;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -104,5 +105,33 @@ public class BookingRepository {
         Checklist checklist = ChecklistRepository.find(booking.getChecklistId());
         if (checklist != null)
             ChecklistRepository.delete(checklist);
+    }
+
+    /**
+     * wird beim Ändern der Buchung aufgerufen
+     * @param id Das Id von der Buchung, die geändert wird
+     * @param booking die neue Buchung.
+     */
+    public  static void updateBooking( int id , Booking booking){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default") ;
+        EntityManager entityManager = entityManagerFactory.createEntityManager() ;
+        Transaction transaction = (Transaction) entityManager.getTransaction();
+
+        try {
+            transaction.begin();
+            Booking oldBooking = find(id) ;
+            oldBooking.setCustomerId(booking.getCustomerId());
+            oldBooking.setCarId(booking.getCarId());
+            oldBooking.setPickUpDate(booking.getPickUpDate());
+            oldBooking.setDropOffDate(booking.getDropOffDate());
+            oldBooking.setRealDropOffDate(booking.getRealDropOffDate());
+            oldBooking.setChecklistId(booking.getChecklistId());
+            transaction.commit();
+        }finally {
+            if(transaction.isActive()){
+                transaction.rollback();
+            }
+
+        }
     }
 }

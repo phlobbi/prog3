@@ -2,6 +2,7 @@ package de.htwsaar.hopper.repositories;
 
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.logic.implementations.Customer;
+import org.hibernate.Transaction;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -108,6 +109,38 @@ public class CustomerRepository {
                     BookingRepository.delete(booking);
                 }
             }
+        }
+    }
+
+    /**
+     * Wird beim Ändern von eimen Auto automatisch aufgerufen.
+     * @param customerId ist das Id von dem Auto, das geändert werden soll.
+     * @param customer ist das neue Auto
+     */
+    public static void updateCustomer(int customerId , Customer customer){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default") ;
+        EntityManager entityManager = entityManagerFactory.createEntityManager() ;
+        Transaction transaction = (Transaction) entityManager.getTransaction();
+        try{
+            transaction.begin();
+            Customer oldCustomer = find(customerId) ;
+            oldCustomer.setFirstName(customer.getFirstName());
+            oldCustomer.setEmail(customer.getEmail());
+            oldCustomer.setLastName(customer.getLastName());
+            oldCustomer.setStreet(customer.getStreet());
+            oldCustomer.setIBAN(customer.getIBAN());
+            oldCustomer.setPhoneNumber(customer.getPhoneNumber());
+            oldCustomer.setZipCode(customer.getZipCode());
+            oldCustomer.setHouseNumber(customer.getHouseNumber());
+            oldCustomer.setCity(customer.getCity());
+            oldCustomer.setDriverLicenseNumber(customer.getDriverLicenseNumber());
+            oldCustomer.setDriverLicenseExpirationDate(customer.getDriverLicenseExpirationDate());
+            entityManager.merge(oldCustomer);
+            transaction.commit();
+
+        }finally {
+            if(transaction.isActive())
+                transaction.rollback();
         }
     }
 }
