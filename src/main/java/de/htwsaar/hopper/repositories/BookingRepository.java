@@ -116,17 +116,16 @@ public class BookingRepository {
     /**
      * wird beim Ändern der Buchung aufgerufen
      *
-     * @param id      Das Id von der Buchung, die geändert wird
      * @param booking die neue Buchung.
      */
-    public static void updateBooking(int id, Booking booking) {
+    public static void update(Booking booking) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Transaction transaction = (Transaction) entityManager.getTransaction();
 
         try {
             transaction.begin();
-            Booking oldBooking = find(id);
+            Booking oldBooking = find(booking.getBookingId());
             oldBooking.setCustomerId(booking.getCustomerId());
             oldBooking.setCarId(booking.getCarId());
             oldBooking.setPickUpDate(booking.getPickUpDate());

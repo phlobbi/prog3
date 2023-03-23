@@ -121,16 +121,15 @@ public class CustomerRepository {
     /**
      * Wird beim Ändern von eimen Auto automatisch aufgerufen.
      *
-     * @param customerId ist das Id von dem Auto, das geändert werden soll.
      * @param customer   ist das neue Auto
      */
-    public static void updateCustomer(int customerId, Customer customer) {
+    public static void update(Customer customer) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Transaction transaction = (Transaction) entityManager.getTransaction();
         try {
             transaction.begin();
-            Customer oldCustomer = find(customerId);
+            Customer oldCustomer = find(customer.getCustomerId());
             oldCustomer.setFirstName(customer.getFirstName());
             oldCustomer.setEmail(customer.getEmail());
             oldCustomer.setLastName(customer.getLastName());

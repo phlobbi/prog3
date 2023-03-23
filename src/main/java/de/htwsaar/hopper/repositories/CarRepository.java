@@ -160,16 +160,15 @@ public class CarRepository {
     /**
      * Wird beim Ändern von eimen Auto automatisch aufgerufen.
      *
-     * @param id  ist das Id von dem Auto, das geändert werden soll.
      * @param car ist das neue Auto
      */
-    public static void updateCar(int id, Car car) {
+    public static void update(Car car) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         Transaction transaction = (Transaction) entityManager.getTransaction();
         try {
             transaction.begin();
-            Car oldcar = find(id);
+            Car oldcar = find(car.getCarId());
             oldcar.setBrand(car.getBrand());
             oldcar.setType(car.getType());
             oldcar.setModel(car.getModel());
