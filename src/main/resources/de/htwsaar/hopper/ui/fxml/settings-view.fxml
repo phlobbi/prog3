@@ -10,7 +10,7 @@
     <top>
         <HBox prefHeight="21.0" prefWidth="600.0" styleClass="title-bar" BorderPane.alignment="CENTER">
             <children>
-                <Label styleClass="title-bar-text" text="Autovermietung">
+                <Label styleClass="title-bar-text" text="%CAR_RENTAL">
                     <font>
                         <Font name="System Bold" size="13.0"/>
                     </font>
@@ -23,12 +23,12 @@
             <children>
                 <ToolBar prefHeight="40.0" prefWidth="200.0">
                     <items>
-                        <Button fx:id="saveButton" onAction="#saveButtonAction" mnemonicParsing="false" text="Speichern und Zurück"/>
+                        <Button fx:id="saveButton" onAction="#saveButtonAction" mnemonicParsing="false" text="%SAVE_AND_GO_BACK"/>
                     </items>
                 </ToolBar>
                 <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-padding: 5px;">
                     <children>
-                        <Label text="Einstellungen">
+                        <Label text="%SETTINGS">
                             <font>
                                 <Font name="System Font" size="25.0"/>
                             </font>
@@ -45,7 +45,7 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
-                                <Label text="Sprache" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                                <Label text="%LANGUAGE" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
                                 <ChoiceBox fx:id="languageSelection" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
                                 <Label text="Test" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
                                 <ToggleButton text="Test" GridPane.columnIndex="1" GridPane.rowIndex="1"/>

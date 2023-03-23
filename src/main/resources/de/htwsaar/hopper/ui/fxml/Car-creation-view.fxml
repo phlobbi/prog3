@@ -15,8 +15,8 @@
    <bottom>
       <HBox alignment="CENTER_LEFT" prefHeight="93.0" prefWidth="1000.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#createCar" prefHeight="25.0" prefWidth="90.0" text="Speichern" />
-            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelCreation" prefHeight="25.0" prefWidth="90.0" text="Abbrechen" />
+            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#createCar" prefHeight="25.0" prefWidth="90.0" text="%MENU_SAVE" />
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelCreation" prefHeight="25.0" prefWidth="90.0" text="%MENU_CANCEL" />
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" top="20.0" />
@@ -27,14 +27,14 @@
          <children>
             <VBox prefHeight="642.0" prefWidth="143.0" spacing="27.0">
                <children>
-                  <Label fx:id="labelType" text="Typ" />
-                  <Label fx:id="labelBrand" text="Marke" />
-                  <Label fx:id="labelModel" text="Modell" />
-                  <Label fx:id="labelCreationDate" text="Herstellungsdatum" />
-                  <Label fx:id="labelSeats" text="Sitze" />
-                  <Label fx:id="labelLicensePlate" text="Kennzeichen" />
-                  <Label fx:id="labelBasePrice" text="Basispreis" />
-                  <Label fx:id="labelCurrentPrice" text="Tagespreis" />
+                  <Label fx:id="labelType" text="%CAR_CARTYPE" />
+                  <Label fx:id="labelBrand" text="%CAR_CARBRAND" />
+                  <Label fx:id="labelModel" text="%CAR_CARMODEL" />
+                  <Label fx:id="labelCreationDate" text="%CAR_CREATION_DATE" />
+                  <Label fx:id="labelSeats" text="%CAR_SEATS" />
+                  <Label fx:id="labelLicensePlate" text="%CAR_LICENSE_PLATE" />
+                  <Label fx:id="labelBasePrice" text="%CAR_BASE_PRICE" />
+                  <Label fx:id="labelCurrentPrice" text="%CAR_CURRENT_PRICE" />
                </children>
                <HBox.margin>
                   <Insets />
@@ -45,7 +45,7 @@
             </VBox>
             <VBox prefHeight="742.0" prefWidth="242.0" spacing="20.0">
                <children>
-                  <MenuButton fx:id="menuType" mnemonicParsing="false" prefHeight="25.0" prefWidth="222.0" text="Typ auswählen" />
+                  <MenuButton fx:id="menuType" mnemonicParsing="false" prefHeight="25.0" prefWidth="222.0" text="%CAR_CHOOSE_TYPE" />
                   <TextField fx:id="textFieldBrand" />
                   <TextField fx:id="textFieldModel" />
                   <DatePicker fx:id="datePickCreationDate" prefHeight="25.0" prefWidth="222.0" />
@@ -76,7 +76,7 @@
             <Insets left="20.0" top="20.0" />
          </padding>
          <children>
-            <Label text="Legen Sie die notwendigen Informationen für das neue Auto an.">
+            <Label text="%NECESSARY_INFORMATIONS">
                <font>
                   <Font size="14.0" />
                </font>

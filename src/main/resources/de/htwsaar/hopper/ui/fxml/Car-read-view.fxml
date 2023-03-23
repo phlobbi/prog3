@@ -18,7 +18,7 @@
    <top>
       <HBox alignment="CENTER" prefHeight="56.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="35.0" prefWidth="180.0" text="Autoverwaltung" textFill="WHITE">
+            <Label prefHeight="35.0" prefWidth="180.0" text="%CAR_MANAGEMENT" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font></Label>
@@ -30,7 +30,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0">
                <children>
-                  <Button fx:id="btnGoBack" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#switchToCarView" prefHeight="79.0" prefWidth="112.0" text="zurueck" textAlignment="CENTER">
+                  <Button fx:id="btnGoBack" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#switchToCarView" prefHeight="79.0" prefWidth="112.0" text="%MENU_GO_BACK" textAlignment="CENTER">
                      <graphic>
                         <ImageView fitHeight="29.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -39,7 +39,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#updateCar" prefHeight="79.0" prefWidth="122.0" text="bearbeiten">
+                  <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#updateCar" prefHeight="79.0" prefWidth="122.0" text="%MENU_EDIT">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -48,7 +48,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="btnRemove" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#removeCar" prefHeight="79.0" prefWidth="114.0" text="loeschen">
+                  <Button fx:id="btnRemove" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#removeCar" prefHeight="79.0" prefWidth="114.0" text="%MENU_DELETE">
                      <graphic>
                         <ImageView fitHeight="45.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -61,7 +61,7 @@
             </HBox>
             <HBox alignment="CENTER" stylesheets="@../css/firstview.css">
                <children>
-                  <Label prefHeight="31.0" prefWidth="119.0" text="Eigenschaft" textFill="WHITE">
+                  <Label prefHeight="31.0" prefWidth="119.0" text="%PROPERTIES" textFill="WHITE">
                      <font>
                         <Font size="21.0" />
                      </font>
@@ -88,23 +88,23 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Typ:" wrappingWidth="28.0">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CARTYPE" wrappingWidth="28.0">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kennzeichen:" GridPane.rowIndex="1">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_LICENSE_PLATE" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Marke:" GridPane.rowIndex="2" />
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Herstellungsdatum:" GridPane.rowIndex="4">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CARBRAND" GridPane.rowIndex="2" />
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CREATION_DATE" GridPane.rowIndex="4">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sitze:" GridPane.rowIndex="3">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_SEATS" GridPane.rowIndex="3">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -120,7 +120,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="98.0">
                <children>
-                  <Label prefHeight="17.0" prefWidth="77.0" text="Preise">
+                  <Label prefHeight="17.0" prefWidth="77.0" text="%CAR_PRICES">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -144,12 +144,12 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Grundpreis:">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_BASE_PRICE">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tagespreis:" GridPane.rowIndex="1">
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CURRENT_PRICE" GridPane.rowIndex="1">
                            <font>
                               <Font size="14.0" />
                            </font>
