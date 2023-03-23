@@ -54,11 +54,9 @@ public final class FirstViewController {
     void changeLanguage(MouseEvent event) throws IOException {
         //Locale locale = isEnglish ? new Locale("de") : new Locale("en");
 
-        ResourceBundle bundle = ResourceBundle.getBundle("bundles/resource_bundle", new Locale("en"));
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n", Locale.ENGLISH);
 
         System.out.println(bundle.getString("Sprache"));
-
-
 
         isEnglish = !isEnglish;
     }
