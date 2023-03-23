@@ -147,6 +147,17 @@ public class BookingCarChooseController implements Initializable {
     }
 
     /**
+     * Speichert das ausgewählte Auto durch Drücken der Enter-Taste
+     * @param event
+     */
+    @FXML
+    void saveCarViaEnter(KeyEvent event) {
+        if(event.getCode().toString().equals("ENTER")){
+            saveChosenCar(new ActionEvent());
+        }
+    }
+
+    /**
      * Entfernt die Auswahl aller Filterkriterien
      * @param event Event
      */

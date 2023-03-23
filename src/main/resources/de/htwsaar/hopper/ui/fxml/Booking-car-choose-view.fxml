@@ -28,7 +28,7 @@
       </HBox>
    </bottom>
    <center>
-      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="tableView" onKeyPressed="#saveCarViaEnter" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <columns>
             <TableColumn fx:id="carIdColumn" prefWidth="106.0" text="ID" />
             <TableColumn fx:id="carTypeColumn" prefWidth="153.0" text="Typ" />

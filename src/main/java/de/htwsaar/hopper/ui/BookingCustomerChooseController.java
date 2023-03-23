@@ -144,6 +144,17 @@ public class BookingCustomerChooseController implements Initializable {
     }
 
     /**
+     * Speichert den ausgewählten Kunden durch Drücken der Enter-Taste
+     * @param event
+     */
+    @FXML
+    void saveCustomerViaEnter(KeyEvent event) {
+        if(event.getCode().toString().equals("ENTER")){
+            saveChosenCustomer(new ActionEvent());
+        }
+    }
+
+    /**
      * Entfernt die Auswahl aller Filterkriterien
      * @param event Event
      */

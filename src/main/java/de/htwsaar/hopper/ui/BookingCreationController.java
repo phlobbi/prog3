@@ -138,8 +138,8 @@ public class BookingCreationController {
         if(chosenCustomer != null){
             textFieldChosenCustomer.setText(chosenCustomer.getFirstName() + " " + chosenCustomer.getLastName());
         } else {
-            textFieldChosenCar.setText("");
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Kein Auto ausgewählt");
+            textFieldChosenCustomer.setText("");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Kein Kunde ausgewählt");
             alert.setHeaderText("Fehler bei der Auswahl");
             alert.showAndWait();
         }
