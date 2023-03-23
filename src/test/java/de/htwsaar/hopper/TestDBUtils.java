@@ -32,6 +32,18 @@ public class TestDBUtils {
     }
 
     /**
+     * Lädt die TestDB bzw. setzt sie auf den Ausgangszustand zurück.
+     * Die Methode ist nur in einer Setup-Methode mit der Annotation @Before zu verwenden.
+     * @throws IOException Falls es beim Einlesen der Dateien zu einem Fehler kommt.
+     */
+    public static void reloadTestDB() throws IOException {
+        File originalDB = new File("src/main/resources/AutovermietungDB.sqlite");
+        File testDB = new File("src/main/resources/TestDB.sqlite");
+
+        FileUtils.copyFile(testDB, originalDB);
+    }
+
+    /**
      * Setzt die Datenbank auf ihren Ausgangszustand zurück.
      * Dazu wird die Testdatenbank gelöscht und die ursprüngliche Datenbank wieder hergestellt.
      * Diese Methode ist nur in einer Setup-Methode mit der Annotation @AfterClass zu verwenden.
