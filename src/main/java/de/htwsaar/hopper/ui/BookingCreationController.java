@@ -150,18 +150,19 @@ public class BookingCreationController {
     void createBooking(ActionEvent event) {
         try{
 
-            if(chosenCar == null){
-                throw new IllegalArgumentException("Kein Auto ausgewählt");
-            }
-            if(chosenCustomer == null){
-                throw new IllegalArgumentException("Kein Kunde ausgewählt");
-            }
             if (datePickerPickUpDate.getValue() == null){
                 throw new IllegalArgumentException(labelPickUpDate.getText() + " leer");
             }
             if (datePickerDropOffDate.getValue() == null){
                 throw new IllegalArgumentException(labelDropOffDate.getText() + " leer");
             }
+            if(chosenCar == null){
+                throw new IllegalArgumentException("Kein Auto ausgewählt");
+            }
+            if(chosenCustomer == null){
+                throw new IllegalArgumentException("Kein Kunde ausgewählt");
+            }
+
 
             LocalDate pickUpDateLocal = datePickerPickUpDate.getValue();
             // LocalDate vom DatePicker zu Calender-Format
