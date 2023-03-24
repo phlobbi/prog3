@@ -160,7 +160,7 @@ public class Booking implements BookingInterface {
 
     @Override
     public void setRealDropOffDate(Calendar realDropOffDate) {
-        this.realDropOffDate = BookingValidation.validateDropOffDate(realDropOffDate);
+        this.realDropOffDate = BookingValidation.validateRealDropOffDate(realDropOffDate);
     }
 
     @Override
