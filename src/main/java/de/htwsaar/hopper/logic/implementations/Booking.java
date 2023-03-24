@@ -2,6 +2,8 @@ package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.interfaces.BookingInterface;
 import de.htwsaar.hopper.logic.validations.PreventNullPersistForBooking;
+import de.htwsaar.hopper.logic.validations.BookingValidation;
+import de.htwsaar.hopper.logic.validations.Utils;
 import de.htwsaar.hopper.repositories.CarRepository;
 import de.htwsaar.hopper.repositories.CustomerRepository;
 
@@ -63,10 +65,14 @@ public class Booking implements BookingInterface {
      * @param dropOffDate Geplantes Rückgabedatum eines Autos vom Kunde
      */
     public Booking(int carId, int customerId, Calendar pickUpDate, Calendar dropOffDate) {
-        this.carId = carId;
-        this.customerId = customerId;
-        this.pickUpDate = pickUpDate;
-        this.dropOffDate = dropOffDate;
+        this.carId = BookingValidation.validateCarId(carId);
+        this.customerId = BookingValidation.validateCustomerId(customerId);
+
+        BookingValidation.validatePickUpDateBeforeDropOffDate(pickUpDate, dropOffDate);
+
+        this.pickUpDate = BookingValidation.validatePickUpDate(pickUpDate);
+        this.dropOffDate = BookingValidation.validateDropOffDate(dropOffDate);
+        this.checklistId = BookingValidation.CHECKLIST_NULL;
     }
 
     /**
@@ -132,41 +138,42 @@ public class Booking implements BookingInterface {
     /* SETTER */
     @Override
     public void setCarId(int carId) {
-        this.carId = carId;
+        this.carId = BookingValidation.validateCarId(carId);
     }
 
     @Override
     public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+        this.customerId = BookingValidation.validateCustomerId(customerId);
     }
 
     @Override
     public void setPickUpDate(Calendar pickUpDate) {
-        this.pickUpDate = pickUpDate;
+        BookingValidation.validatePickUpDateBeforeDropOffDate(pickUpDate, this.dropOffDate);
+        this.pickUpDate = BookingValidation.validatePickUpDate(pickUpDate);
     }
 
     @Override
     public void setDropOffDate(Calendar dropOffDate) {
-        this.dropOffDate = dropOffDate;
+        BookingValidation.validatePickUpDateBeforeDropOffDate(this.pickUpDate, dropOffDate);
+        this.dropOffDate = BookingValidation.validateDropOffDate(dropOffDate);
     }
 
     @Override
     public void setRealDropOffDate(Calendar realDropOffDate) {
-        this.realDropOffDate = realDropOffDate;
+        this.realDropOffDate = BookingValidation.validateDropOffDate(realDropOffDate);
     }
 
     @Override
     public void setChecklistId(int checklistId) {
-        this.checklistId = checklistId;
+        this.checklistId = BookingValidation.validateChecklistId(checklistId);
     }
 
     /**
      * Methode zur Berechnung des Preises einer Buchung, wenn der Rückgabetermin eingehalten wird.
-     * @param carId - ID des Autos, das gebucht wurde
      * @return - Preis der Buchung
      */
     @Override
-    public double calculatePrice(int carId) {
+    public double calculatePrice() {
         Car car = CarRepository.find(carId);
 
         double basePrice = car.getBasePrice();
@@ -179,19 +186,19 @@ public class Booking implements BookingInterface {
 
     /**
      * Methode zur Berechnung des Preises einer Buchung, wenn der Rückgabetermin nicht eingehalten wird.
-     * @param carId - ID des Autos, das gebucht wurde
      * @return - Preis der Buchung mit erhöhtem Tagessatz
      */
     @Override
-    public double calculateFinalPrice(int carId){
+    public double calculateFinalPrice(){
         Car car = CarRepository.find(carId);
 
-        double calculatedFinalPrice = calculatePrice(carId);
+        double calculatedFinalPrice = calculatePrice();
         double newPreisPerDay = car.getCurrentPrice() * 1.2;
 
-        int diffDay = realDropOffDate.get(Calendar.DAY_OF_YEAR) - dropOffDate.get(Calendar.DAY_OF_YEAR) + 1;
-        calculatedFinalPrice = calculatedFinalPrice + (diffDay * newPreisPerDay);
-
+        if(!Utils.isSameDate(dropOffDate, realDropOffDate)) {
+            int lateDays = Utils.calculateDaysBetween(dropOffDate, realDropOffDate);
+            return calculatedFinalPrice + (lateDays - 1) * newPreisPerDay;
+        }
         return calculatedFinalPrice;
     }
 }
