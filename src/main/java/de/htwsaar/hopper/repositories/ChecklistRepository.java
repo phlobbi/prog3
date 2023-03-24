@@ -5,6 +5,7 @@ import de.htwsaar.hopper.logic.implementations.Checklist;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class ChecklistRepository {
 
@@ -24,6 +25,20 @@ public class ChecklistRepository {
             entityManagerFactory.close();
         }
     }
+
+    public static Checklist findLastChecklist (){
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            List<Checklist> checklistList = entityManager.createQuery("SELECT C from  Checklist AS C").getResultList() ;
+            return checklistList.get(checklistList.size() -1) ;
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
+    }
+
 
     /**
      * Nimmt eine Checklist entgegen und loescht diese aus der DB.
