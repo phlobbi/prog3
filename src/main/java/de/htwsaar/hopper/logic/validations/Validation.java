@@ -51,6 +51,83 @@ public abstract class Validation {
      * Prüft, ob ein Datum gültig ist.
      * Es darf nicht in der Vergangenheit liegen.
      * @param date Zu prüfendes Datum
+     * @param errorMessage Fehlermeldung, die ausgegeben werden soll
+     * @return Datum, falls gültig
+     * @throws IllegalArgumentException Falls das Datum in der Vergangenheit liegt
+     * @throws IllegalArgumentException Falls das Datum null ist
+     */
+    public static Calendar validateDatePastForbiddenMinute(Calendar date, String errorMessage) {
+        Utils.check(date != null, "Das Datum darf nicht leer sein!");
+        Calendar currentCalendar = Calendar.getInstance();
+
+        boolean isTimeValid = true;
+        boolean isDayValid = true;
+        if (date.get(Calendar.MINUTE) < (currentCalendar.get(Calendar.MINUTE))
+                && date.get(Calendar.HOUR_OF_DAY) == (currentCalendar.get(Calendar.HOUR_OF_DAY))) {
+            isTimeValid = false;
+        }
+        if (date.get(Calendar.DAY_OF_YEAR) < (currentCalendar.get(Calendar.DAY_OF_YEAR))
+                && date.get(Calendar.YEAR) == (currentCalendar.get(Calendar.YEAR))) {
+            isDayValid = false;
+        }
+        if(date.get(Calendar.YEAR) < (currentCalendar.get(Calendar.YEAR))) {
+            isDayValid = false;
+        }
+        if (isDayValid && isTimeValid) {
+            return date;
+        } else {
+            throw new IllegalArgumentException(errorMessage);
+        }
+    }
+
+    public static Calendar validateDatePastForbiddenMinute(Calendar date){
+        return validateDatePastForbiddenMinute(date, "Das Datum darf nicht in der Vergangenheit liegen!");
+    }
+
+
+    /**
+     * Prüft, ob ein Datum gültig ist.
+     * Es darf nicht in der Zukunft liegen.
+     * @param date Zu prüfendes Datum
+     * @param errorMessage Fehlermeldung, die ausgegeben werden soll
+     * @return Datum, falls gültig
+     * @throws IllegalArgumentException Falls das Datum in der Zukunft liegt
+     * @throws IllegalArgumentException Falls das Datum null ist
+     */
+    public static Calendar validateDateFutureForbiddenMinute(Calendar date, String errorMessage) {
+        Utils.check(date != null, "Das Datum darf nicht leer sein!");
+        Calendar currentCalendar = Calendar.getInstance();
+
+        boolean isTimeValid = true;
+        boolean isDayValid = true;
+        if (date.get(Calendar.MINUTE) > (currentCalendar.get(Calendar.MINUTE))
+                && date.get(Calendar.HOUR_OF_DAY) == (currentCalendar.get(Calendar.HOUR_OF_DAY))) {
+            isTimeValid = false;
+        }
+        if (date.get(Calendar.DAY_OF_YEAR) > (currentCalendar.get(Calendar.DAY_OF_YEAR))
+                && date.get(Calendar.YEAR) == (currentCalendar.get(Calendar.YEAR))) {
+            isDayValid = false;
+        }
+        if(date.get(Calendar.YEAR) > (currentCalendar.get(Calendar.YEAR))) {
+            isDayValid = false;
+        }
+
+        if (isDayValid && isTimeValid) {
+            return date;
+        } else {
+            throw new IllegalArgumentException(errorMessage);
+        }
+    }
+
+    public static Calendar validateDateFutureForbiddenMinute(Calendar date){
+        return validateDatePastForbiddenMinute(date, "Das Datum darf nicht in der Vergangenheit liegen!");
+    }
+
+
+    /**
+     * Prüft, ob ein Datum gültig ist.
+     * Es darf nicht in der Vergangenheit liegen.
+     * @param date Zu prüfendes Datum
      * @return Datum, falls gültig
      * @throws IllegalArgumentException Falls das Datum in der Vergangenheit liegt
      * @throws IllegalArgumentException Falls das Datum null ist
@@ -82,5 +159,6 @@ public abstract class Validation {
             throw new IllegalArgumentException("Das Datum darf nicht in der Zukunft liegen!");
         }
     }
+
 
 }

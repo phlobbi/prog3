@@ -56,7 +56,8 @@ public class BookingValidation extends Validation {
      * @throws IllegalArgumentException Falls das Datum in der Zukunft liegt
      */
     public static Calendar validatePickUpDate(Calendar pickUpDate) {
-        return validateDateFutureForbidden(pickUpDate);
+        return validateDatePastForbiddenMinute(pickUpDate, "Das Abholdatum liegt in der Vergangenheit.");
+
     }
 
     /**
@@ -67,7 +68,7 @@ public class BookingValidation extends Validation {
      * @throws IllegalArgumentException Falls das Datum in der Vergangenheit liegt
      */
     public static Calendar validateDropOffDate(Calendar dropOffDate) {
-        return validateDatePastForbidden(dropOffDate);
+        return validateDatePastForbiddenMinute(dropOffDate, "Das Abgabedatum liegt in der Vergangenheit.");
     }
 
     /**
@@ -77,8 +78,25 @@ public class BookingValidation extends Validation {
      * @throws IllegalArgumentException Falls das PickUpDate nach dem DropOffDate liegt
      */
     public static void validatePickUpDateBeforeDropOffDate(Calendar pickUpDate, Calendar dropOffDate) {
-        if(!pickUpDate.before(dropOffDate)){
-            throw new IllegalArgumentException("Abholtermin liegt nach Abgabetermin.");
+        boolean isMinuteValid = true;
+        boolean isHourValid = true;
+        boolean isDayValid = true;
+
+        if (pickUpDate.get(Calendar.MINUTE) < (dropOffDate.get(Calendar.MINUTE))
+                && pickUpDate.get(Calendar.HOUR_OF_DAY) == (dropOffDate.get(Calendar.HOUR_OF_DAY))) {
+            isMinuteValid = false;
+        }
+        if (pickUpDate.get(Calendar.HOUR_OF_DAY) < (dropOffDate.get(Calendar.HOUR_OF_DAY))) {
+            isHourValid = false;
+        }
+        if (pickUpDate.after(dropOffDate)) {
+            isDayValid = false;
+        }
+
+        if (isDayValid && isHourValid && isMinuteValid) {
+            // passt
+        } else {
+            throw new IllegalArgumentException("Das Abgabedatum liegt vor dem Abholdatum.");
         }
     }
 

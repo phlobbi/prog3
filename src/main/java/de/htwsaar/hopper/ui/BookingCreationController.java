@@ -17,6 +17,8 @@ import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
+import static java.util.Calendar.*;
+
 public class BookingCreationController {
 
     private Car chosenCar;
@@ -60,6 +62,19 @@ public class BookingCreationController {
 
     @FXML
     private TextField textFieldChosenCustomer;
+
+    @FXML
+    private TextField textFieldDropOffHour;
+
+    @FXML
+    private TextField textFieldDropOffMinute;
+
+    @FXML
+    private TextField textFieldPickUpHour;
+
+    @FXML
+    private TextField textFieldPickUpMinute;
+
 
     @FXML
     void cancelCreation(ActionEvent event) {
@@ -167,14 +182,18 @@ public class BookingCreationController {
             LocalDate pickUpDateLocal = datePickerPickUpDate.getValue();
             // LocalDate vom DatePicker zu Calender-Format
             Date pickUpDate = Date.from(pickUpDateLocal.atStartOfDay(ZoneId.systemDefault()).toInstant());
-            Calendar pickUpDateCal = Calendar.getInstance();
+            Calendar pickUpDateCal = getInstance();
             pickUpDateCal.setTime(pickUpDate);
+            pickUpDateCal.set(HOUR_OF_DAY, Integer.parseInt(textFieldPickUpHour.getText()));
+            pickUpDateCal.set(MINUTE, Integer.parseInt(textFieldPickUpMinute.getText()));
 
             LocalDate dropOffDateLocal = datePickerDropOffDate.getValue();
             // LocalDate vom DatePicker zu Calender-Format
             Date dropOffDate = Date.from(dropOffDateLocal.atStartOfDay(ZoneId.systemDefault()).toInstant());
-            Calendar dropOffDateCal = Calendar.getInstance();
+            Calendar dropOffDateCal = getInstance();
             dropOffDateCal.setTime(dropOffDate);
+            dropOffDateCal.set(HOUR_OF_DAY, Integer.parseInt(textFieldDropOffHour.getText()));
+            dropOffDateCal.set(MINUTE, Integer.parseInt(textFieldDropOffMinute.getText()));
 
             Booking booking = new Booking(chosenCar.getCarId(), chosenCustomer.getCustomerId(), pickUpDateCal, dropOffDateCal);
 
