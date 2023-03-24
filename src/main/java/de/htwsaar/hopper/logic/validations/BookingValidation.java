@@ -23,7 +23,9 @@ public class BookingValidation extends Validation {
         Utils.check(CarRepository.find(carId) != null, "CarId existiert nicht");
         List<Booking> bookings = BookingRepository.findAll();
         for (Booking booking : bookings) {
-            Utils.check(booking.getRealDropOffDate() != null && booking.getCarId() != carId, "Das Auto ist bereits vergeben");
+            if(booking.getCarId() == carId) {
+                Utils.check(booking.getRealDropOffDate() != null, "Das Auto ist bereits vergeben");
+            }
         }
         return carId;
     }
@@ -39,7 +41,9 @@ public class BookingValidation extends Validation {
         Utils.check(CustomerRepository.find(customerId) != null, "CustomerId existiert nicht");
         List<Booking> bookings = BookingRepository.findAll();
         for (Booking booking : bookings) {
-            Utils.check(booking.getRealDropOffDate() != null && booking.getCustomerId() != customerId, "Der Kunde hat bereits ein Auto gebucht");
+            if(booking.getCustomerId() == customerId) {
+                Utils.check(booking.getRealDropOffDate() != null, "Der Kunde hat bereits ein Auto gebucht");
+            }
         }
         return customerId;
     }

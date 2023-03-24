@@ -176,11 +176,7 @@ public class BookingCreationController {
             Calendar dropOffDateCal = Calendar.getInstance();
             dropOffDateCal.setTime(dropOffDate);
 
-            Booking booking = new Booking();
-            booking.setCarId(chosenCar.getCarId());
-            booking.setCustomerId(chosenCustomer.getCustomerId());
-            booking.setPickUpDate(pickUpDateCal);
-            booking.setDropOffDate(dropOffDateCal);
+            Booking booking = new Booking(chosenCar.getCarId(), chosenCustomer.getCustomerId(), pickUpDateCal, dropOffDateCal);
 
             BookingRepository.persist(booking);
 
