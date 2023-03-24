@@ -116,13 +116,26 @@ public class CarEditController implements Initializable{
             Calendar creationDateCal = Calendar.getInstance();
             creationDateCal.setTime(creationDate);
 
-            Car car = new Car(concreteType,brand,creationDateCal,seats,basePrice,curPrice,licensePlate,model);
-            Car car2 = CarManagementController.getSelectedCar();
-            if (car.equals(car2)){
+            Car car = CarManagementController.getSelectedCar();
+
+            Car temp = new Car(car.getType(), car.getBrand(), car.getCreationDate(), car.getSeats(),
+                    car.getBasePrice(), car.getCurrentPrice(), car.getLicensePlate(), car.getModel());
+
+
+            car.setBrand(brand);
+            car.setSeats(seats);
+            car.setCreationDate(creationDateCal);
+            car.setModel(model);
+            car.setCurrentPrice(curPrice);
+            car.setBasePrice(basePrice);
+            car.setLicensePlate(licensePlate);
+            car.setType(concreteType);
+            System.out.println(car.equals(temp));
+
+                if (car.equals(temp)){
                 throw new IllegalArgumentException("Keine Änderungen vorgenommen");
             } else {
-                CarRepository.delete(CarManagementController.getSelectedCar());
-                CarRepository.persist(car);
+                CarRepository.update(car);
             }
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Auto erfolgreich geandert!");
             alert.showAndWait();

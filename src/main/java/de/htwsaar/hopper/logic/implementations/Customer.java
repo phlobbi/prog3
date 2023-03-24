@@ -240,7 +240,7 @@ public class Customer implements CustomerInterface {
 
         Customer customer = (Customer) o;
 
-        if (getCustomerId() != customer.getCustomerId()) return false;
+        //if (getCustomerId() != customer.getCustomerId()) return false;
         if (!getFirstName().equals(customer.getFirstName())) return false;
         if (!getLastName().equals(customer.getLastName())) return false;
         if (!getEmail().equals(customer.getEmail())) return false;

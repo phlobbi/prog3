@@ -156,15 +156,29 @@ public class CustomerEditController implements Initializable{
             Calendar expirationDateCal = Calendar.getInstance();
             expirationDateCal.setTime(expirationDate);
 
-            Customer customer = new Customer(firstName, lastName, email, street,
-                    streetNumber, zipCode, city, phoneNumber,
-                    iban, dlNumber, expirationDateCal);
-            Customer customer2 = CustomerManagementController.getSelectedCustomer();
-            if (customer.equals(customer2)){
+            Customer customer = CustomerManagementController.getSelectedCustomer();
+
+            Customer temp = new Customer(customer.getFirstName(), customer.getLastName(), customer.getEmail(), customer.getStreet(),
+                    customer.getHouseNumber(), customer.getZipCode(), customer.getCity(), customer.getPhoneNumber(),
+                    customer.getIBAN(), customer.getDriverLicenseNumber(),
+                    customer.getDriverLicenseExpirationDate());
+
+            customer.setFirstName(firstName);
+            customer.setLastName(lastName);
+            customer.setEmail(email);
+            customer.setStreet(street);
+            customer.setHouseNumber(streetNumber);
+            customer.setZipCode(zipCode);
+            customer.setCity(city);
+            customer.setPhoneNumber(phoneNumber);
+            customer.setDriverLicenseNumber(dlNumber);
+            customer.setIBAN(iban);
+            customer.setDriverLicenseExpirationDate(expirationDateCal);
+
+            if (customer.equals(temp)){
                 throw new IllegalArgumentException("Keine Änderungen vorgenommen");
             } else {
-                CustomerRepository.delete(customer2);
-                CustomerRepository.persist(customer);
+                CustomerRepository.update(customer);
             }
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Kunde erfolgreich geandert");
             alert.showAndWait();

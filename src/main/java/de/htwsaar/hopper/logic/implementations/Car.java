@@ -198,7 +198,7 @@ public class Car implements CarInterface {
 
         Car car = (Car) o;
 
-        if (getCarId() != car.getCarId()) return false;
+        //if (getCarId() != car.getCarId()) return false;
         if (getSeats() != car.getSeats()) return false;
         if (Double.compare(car.getBasePrice(), getBasePrice()) != 0) return false;
         if (Double.compare(car.getCurrentPrice(), getCurrentPrice()) != 0) return false;
