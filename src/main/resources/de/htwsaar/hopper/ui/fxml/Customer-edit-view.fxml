@@ -6,11 +6,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="704.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CustomerEditController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="639.0" prefWidth="704.0" style="-fx-background-color: teal;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CustomerEditController">
     <bottom>
         <HBox alignment="CENTER_LEFT" prefHeight="93.0" prefWidth="1000.0" spacing="20.0" BorderPane.alignment="CENTER">
             <children>
@@ -21,78 +24,84 @@
                 <Insets bottom="20.0" left="20.0" top="20.0" />
             </padding></HBox>
     </bottom>
-    <center>
-        <HBox prefHeight="596.0" prefWidth="939.0" spacing="50.0" BorderPane.alignment="CENTER">
-            <children>
-                <VBox alignment="CENTER" prefHeight="478.0" prefWidth="202.0" spacing="27.0">
-                    <children>
-                        <Label fx:id="labelFirstName" text="Vorname" />
-                        <Label fx:id="labelLastName" text="Nachname" />
-                        <Label fx:id="labelPhoneNumber" text="Telefonnummer" />
-                        <Label fx:id="labelEmail" text="E-Mail" />
-                        <Label fx:id="labelIBAN" text="IBAN" />
-                        <Label fx:id="labelAdressHouseNumber" text="Adresse, Hausnummer" />
-                        <Label fx:id="labelZipCode" text="Postleitzahl" />
-                        <Label fx:id="labelCity" text="Ort" />
-                        <Label fx:id="labelDLNumber" text="Fuehrerscheinnummer" />
-                        <Label fx:id="labelDLExpirationDate" prefHeight="18.0" prefWidth="150.0" text="Fuehrerschein-Ablaufdatum" />
-                    </children>
-                    <HBox.margin>
-                        <Insets />
-                    </HBox.margin>
-                    <padding>
-                        <Insets left="20.0" top="20.0" />
-                    </padding>
-                </VBox>
-                <VBox alignment="CENTER" prefHeight="478.0" prefWidth="238.0" spacing="20.0">
-                    <children>
-                        <TextField fx:id="textFieldFirstName" />
-                        <TextField fx:id="textFieldLastName" />
-                        <TextField fx:id="textFieldPhoneNumber" />
-                        <TextField fx:id="textFieldEmail" />
-                        <TextField fx:id="textFieldIBAN" />
-                        <TextField fx:id="textFieldStreet" />
-                        <TextField fx:id="textFieldZipCode" />
-                        <TextField fx:id="textFieldCity" />
-                        <TextField fx:id="textFieldDLNumber" />
-                        <DatePicker fx:id="datePickDLExpirationDate" prefHeight="25.0" prefWidth="222.0" />
-                    </children>
-                    <padding>
-                        <Insets left="10.0" right="10.0" top="10.0" />
-                    </padding>
-                    <HBox.margin>
-                        <Insets />
-                    </HBox.margin>
-                </VBox>
-                <VBox alignment="CENTER" prefHeight="478.0" prefWidth="90.0">
-                    <padding>
-                        <Insets left="10.0" right="10.0" top="55.0" />
-                    </padding>
-                    <children>
-                        <TextField fx:id="textFieldStreetNumber" alignment="CENTER" prefHeight="22.0" prefWidth="150.0" />
-                    </children>
-                </VBox>
-            </children>
-        </HBox>
-    </center>
-    <left>
-        <VBox prefHeight="489.0" prefWidth="61.0" BorderPane.alignment="CENTER" />
-    </left>
     <top>
-        <HBox prefHeight="67.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
-            <BorderPane.margin>
-                <Insets />
-            </BorderPane.margin>
+        <HBox alignment="CENTER" prefHeight="67.0" prefWidth="307.0" BorderPane.alignment="CENTER">
             <padding>
                 <Insets left="20.0" top="20.0" />
             </padding>
             <children>
-                <Label text="Legen Sie die notwendigen Informationen für den neuen Kunden an.">
+                <Label contentDisplay="CENTER" prefHeight="26.0" prefWidth="614.0" text="Legen Sie die notwendigen Informationen für den neuen Kunden an." textFill="WHITE" underline="true">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="20.0" />
                     </font>
                 </Label>
             </children>
         </HBox>
     </top>
+    <center>
+        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER" prefHeight="500.0" prefWidth="704.0">
+                    <children>
+                        <VBox alignment="CENTER" prefHeight="323.0" prefWidth="705.0" spacing="27.0" style="-fx-background-color: teal;">
+                            <children>
+                                <GridPane alignment="CENTER">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="287.20001220703125" minWidth="10.0" prefWidth="200.800048828125" />
+                                        <ColumnConstraints maxWidth="411.1999816894531" minWidth="10.0" prefWidth="253.6" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="353.60003662109375" minWidth="10.0" prefWidth="199.39999999999998" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints />
+                                        <RowConstraints />
+                                        <RowConstraints maxHeight="28.80002441406249" minHeight="10.0" prefHeight="28.80002441406249" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="31.999975585937506" minHeight="10.0" prefHeight="31.999975585937506" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    </rowConstraints>
+                                    <children>
+                                        <Label fx:id="labelDLExpirationDate" prefHeight="18.0" prefWidth="150.0" text="Fuehrerschein-Ablaufdatum" textFill="WHITE" GridPane.rowIndex="9" />
+                                        <Label fx:id="labelFirstName" text="Vorname" textFill="WHITE" />
+                                        <Label fx:id="labelLastName" text="Nachname" textFill="WHITE" GridPane.rowIndex="1" />
+                                        <Label fx:id="labelPhoneNumber" text="Telefonnummer" textFill="WHITE" GridPane.rowIndex="2" />
+                                        <Label fx:id="labelEmail" text="E-Mail" textFill="WHITE" GridPane.rowIndex="3" />
+                                        <Label fx:id="labelIBAN" text="IBAN" textFill="WHITE" GridPane.rowIndex="4" />
+                                        <Label fx:id="labelAdressHouseNumber" text="Adresse, Hausnummer" textFill="WHITE" GridPane.rowIndex="5" />
+                                        <Label fx:id="labelZipCode" text="Postleitzahl" textFill="WHITE" GridPane.rowIndex="6" />
+                                        <Label fx:id="labelCity" text="Ort" textFill="WHITE" GridPane.rowIndex="7" />
+                                        <Label fx:id="labelDLNumber" text="Fuehrerscheinnummer" textFill="WHITE" GridPane.rowIndex="8" />
+                                        <TextField fx:id="textFieldStreetNumber" alignment="CENTER" prefHeight="0.0" prefWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                            <GridPane.margin>
+                                                <Insets left="50.0" right="80.0" />
+                                            </GridPane.margin>
+                                        </TextField>
+                                        <TextField fx:id="textFieldStreet" prefHeight="59.0" prefWidth="228.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                        <TextField fx:id="textFieldEmail" prefHeight="54.0" prefWidth="228.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                        <TextField fx:id="textFieldPhoneNumber" prefHeight="51.0" prefWidth="228.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                        <TextField fx:id="textFieldFirstName" prefHeight="6.0" prefWidth="228.0" GridPane.columnIndex="1" />
+                                        <TextField fx:id="textFieldLastName" prefHeight="22.0" prefWidth="228.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                        <TextField fx:id="textFieldIBAN" prefHeight="63.0" prefWidth="228.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                        <TextField fx:id="textFieldZipCode" prefHeight="97.0" prefWidth="228.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                        <TextField fx:id="textFieldCity" prefHeight="58.0" prefWidth="228.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                        <TextField fx:id="textFieldDLNumber" prefHeight="80.0" prefWidth="228.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                        <DatePicker fx:id="datePickDLExpirationDate" prefHeight="30.0" prefWidth="276.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                    </children>
+                                    <VBox.margin>
+                                        <Insets left="50.0" right="50.0" />
+                                    </VBox.margin>
+                                </GridPane>
+                            </children>
+                            <padding>
+                                <Insets left="20.0" top="20.0" />
+                            </padding>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
 </BorderPane>

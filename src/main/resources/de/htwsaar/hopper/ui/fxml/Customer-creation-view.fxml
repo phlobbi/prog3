@@ -30,7 +30,7 @@
                 <Insets left="20.0" top="20.0" />
             </padding>
             <children>
-                <Label contentDisplay="CENTER" prefHeight="26.0" prefWidth="614.0" text="Legen Sie die notwendigen Informationen für den neuen Kunden an." underline="true">
+                <Label contentDisplay="CENTER" prefHeight="26.0" prefWidth="614.0" text="Legen Sie die notwendigen Informationen für den neuen Kunden an." textFill="WHITE" underline="true">
                     <font>
                         <Font size="20.0" />
                     </font>
@@ -64,16 +64,16 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                                    <Label fx:id="labelDLExpirationDate" prefHeight="18.0" prefWidth="150.0" text="Fuehrerschein-Ablaufdatum" GridPane.rowIndex="9" />
-                                    <Label fx:id="labelFirstName" text="Vorname" />
-                                    <Label fx:id="labelLastName" text="Nachname" GridPane.rowIndex="1" />
-                                    <Label fx:id="labelPhoneNumber" text="Telefonnummer" GridPane.rowIndex="2" />
-                              <Label fx:id="labelEmail" text="E-Mail" GridPane.rowIndex="3" />
-                              <Label fx:id="labelIBAN" text="IBAN" GridPane.rowIndex="4" />
-                                    <Label fx:id="labelAdressHouseNumber" text="Adresse, Hausnummer" GridPane.rowIndex="5" />
-                                    <Label fx:id="labelZipCode" text="Postleitzahl" GridPane.rowIndex="6" />
-                                    <Label fx:id="labelCity" text="Ort" GridPane.rowIndex="7" />
-                                    <Label fx:id="labelDLNumber" text="Fuehrerscheinnummer" GridPane.rowIndex="8" />
+                                    <Label fx:id="labelDLExpirationDate" prefHeight="18.0" prefWidth="150.0" text="Fuehrerschein-Ablaufdatum" textFill="WHITE" GridPane.rowIndex="9" />
+                                    <Label fx:id="labelFirstName" text="Vorname" textFill="WHITE" />
+                                    <Label fx:id="labelLastName" text="Nachname" textFill="WHITE" GridPane.rowIndex="1" />
+                                    <Label fx:id="labelPhoneNumber" text="Telefonnummer" textFill="WHITE" GridPane.rowIndex="2" />
+                              <Label fx:id="labelEmail" text="E-Mail" textFill="WHITE" GridPane.rowIndex="3" />
+                              <Label fx:id="labelIBAN" text="IBAN" textFill="WHITE" GridPane.rowIndex="4" />
+                                    <Label fx:id="labelAdressHouseNumber" text="Adresse, Hausnummer" textFill="WHITE" GridPane.rowIndex="5" />
+                                    <Label fx:id="labelZipCode" text="Postleitzahl" textFill="WHITE" GridPane.rowIndex="6" />
+                                    <Label fx:id="labelCity" text="Ort" textFill="WHITE" GridPane.rowIndex="7" />
+                                    <Label fx:id="labelDLNumber" text="Fuehrerscheinnummer" textFill="WHITE" GridPane.rowIndex="8" />
                               <TextField fx:id="textFieldStreetNumber" alignment="CENTER" prefHeight="0.0" prefWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                  <GridPane.margin>
                                     <Insets left="50.0" right="80.0" />
