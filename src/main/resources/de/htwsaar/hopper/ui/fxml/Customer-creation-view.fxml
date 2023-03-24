@@ -43,7 +43,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="500.0" prefWidth="704.0">
                <children>
-                      <VBox alignment="CENTER" prefHeight="323.0" prefWidth="705.0" spacing="27.0" style="-fx-background-color: teal;">
+                      <VBox alignment="CENTER" prefHeight="323.0" prefWidth="705.0" spacing="27.0">
                           <children>
                         <GridPane alignment="CENTER">
                           <columnConstraints>

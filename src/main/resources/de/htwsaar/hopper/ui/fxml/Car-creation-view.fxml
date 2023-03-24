@@ -26,11 +26,11 @@
          </padding></HBox>
    </bottom>
    <center>
-      <VBox alignment="CENTER" prefHeight="446.0" prefWidth="482.0" BorderPane.alignment="CENTER">
+      <VBox alignment="CENTER" prefHeight="602.0" prefWidth="544.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="518.0" prefWidth="642.0">
+            <HBox alignment="CENTER" prefHeight="478.0" prefWidth="682.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="431.0" prefWidth="642.0">
+                  <VBox alignment="CENTER" prefHeight="594.0" prefWidth="474.0">
                      <children>
                         <GridPane prefHeight="378.0" prefWidth="642.0">
                           <columnConstraints>
