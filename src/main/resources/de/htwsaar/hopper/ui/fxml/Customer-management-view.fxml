@@ -62,7 +62,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                        <Button fx:id="btnRemove" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#switchToSceneRemoveCustomer" prefHeight="38.0" prefWidth="170.0" text="Kunden  löschen">
+                        <Button fx:id="btnRemove" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#deleteCustomer" prefHeight="38.0" prefWidth="170.0" text="Kunden  löschen">
                      <graphic>
                         <ImageView fitHeight="23.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>

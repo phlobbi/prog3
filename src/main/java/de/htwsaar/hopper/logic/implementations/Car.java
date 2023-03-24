@@ -190,4 +190,40 @@ public class Car implements CarInterface {
                 ", model='" + model + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Car car = (Car) o;
+
+        //if (getCarId() != car.getCarId()) return false;
+        if (getSeats() != car.getSeats()) return false;
+        if (Double.compare(car.getBasePrice(), getBasePrice()) != 0) return false;
+        if (Double.compare(car.getCurrentPrice(), getCurrentPrice()) != 0) return false;
+        if (getType() != car.getType()) return false;
+        if (!getBrand().equals(car.getBrand())) return false;
+        if (!getCreationDate().equals(car.getCreationDate())) return false;
+        if (!getLicensePlate().equals(car.getLicensePlate())) return false;
+        return getModel().equals(car.getModel());
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = getCarId();
+        result = 31 * result + getType().hashCode();
+        result = 31 * result + getBrand().hashCode();
+        result = 31 * result + getCreationDate().hashCode();
+        result = 31 * result + getSeats();
+        temp = Double.doubleToLongBits(getBasePrice());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getCurrentPrice());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + getLicensePlate().hashCode();
+        result = 31 * result + getModel().hashCode();
+        return result;
+    }
 }

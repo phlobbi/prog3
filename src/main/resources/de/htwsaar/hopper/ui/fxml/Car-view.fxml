@@ -62,7 +62,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                        <Button fx:id="btnRemove" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#switchToSceneRemoveCar" prefHeight="25.0" prefWidth="150.0" text="Wagen  löschen">
+                        <Button fx:id="btnRemove" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#deleteCar" prefHeight="25.0" prefWidth="150.0" text="Wagen  löschen">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
