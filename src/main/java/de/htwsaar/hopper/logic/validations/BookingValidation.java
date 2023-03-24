@@ -2,12 +2,15 @@ package de.htwsaar.hopper.logic.validations;
 
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.repositories.CarRepository;
+import de.htwsaar.hopper.repositories.ChecklistRepository;
 import de.htwsaar.hopper.repositories.CustomerRepository;
 import de.htwsaar.hopper.repositories.BookingRepository;
 import java.util.Calendar;
 import java.util.List;
 
 public class BookingValidation extends Validation {
+    public static final int CHECKLIST_NULL = -1;
+
 
     /**
      * Prüft, ob die CarId existiert und ob das Auto bereits vergeben ist
@@ -75,4 +78,15 @@ public class BookingValidation extends Validation {
         }
     }
 
+    /**
+     * Prüft, ob eine Checkliste zur angegebenen ID existiert
+     * @param checklistId Die zu prüfende ID
+     * @return checklistId, falls gültig
+     */
+    public static int validateChecklistId(int checklistId) {
+        if(checklistId != CHECKLIST_NULL) {
+            Utils.check(ChecklistRepository.find(checklistId) != null, "Checkliste existiert nicht");
+        }
+        return checklistId;
+    }
 }

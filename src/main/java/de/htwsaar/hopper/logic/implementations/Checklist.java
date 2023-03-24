@@ -1,6 +1,9 @@
 package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.interfaces.ChecklistInterface;
+import de.htwsaar.hopper.logic.validations.BookingValidation;
+import de.htwsaar.hopper.logic.validations.Utils;
+import de.htwsaar.hopper.repositories.BookingRepository;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -69,6 +72,19 @@ public class Checklist implements ChecklistInterface {
         if (!clean) count++;
         if (!keyDroppedOff) count++;
         return count;
+    }
+
+    /**
+     * Fügt diese Checkliste zu einem Booking hinzu, sofern nicht bereits eine gesetzt ist.
+     * @param bookingId ID des Booking, dem die Checkliste hinzugefügt werden soll
+     * @throws IllegalArgumentException Falls bereits eine Checkliste gesetzt ist
+     */
+    @Override
+    public void addToBooking(int bookingId) {
+        Booking booking = BookingRepository.find(bookingId);
+        Utils.check(booking.getChecklistId() == BookingValidation.CHECKLIST_NULL, "Checkliste bereits gesetzt");
+        booking.setChecklistId(checklistId);
+        BookingRepository.update(booking);
     }
 
     /* GETTER */

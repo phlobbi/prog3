@@ -13,8 +13,8 @@ public interface BookingInterface {
     String getCarShowField();
 
     /* PREISBERECHNUNG */
-    double calculatePrice(int carId);
-    double calculateFinalPrice(int carId);
+    double calculatePrice();
+    double calculateFinalPrice();
 
     /* GETTER */
     int getBookingId();
