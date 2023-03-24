@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -44,6 +45,18 @@ public final class BookingManagementController implements Initializable {
     @FXML
     private TableColumn<Booking, String> customerIdColumn;
 
+    public static Booking getSeletedBooking() {
+        return seletedBooking;
+    }
+
+    public  void setSeletedBooking(Booking seletedBooking) {
+        this.seletedBooking = seletedBooking;
+    }
+
+    private static Booking seletedBooking ;
+
+
+
 
     //private ObservableList<BookingTableInformation>  list ;
 
@@ -57,8 +70,22 @@ public final class BookingManagementController implements Initializable {
 
     }
 
+    /**
+     * Wechsel zum Fenster ReturnCar.
+     * @param event
+     * @throws IOException
+     */
     @FXML
-    void switchToSceneReturnCar(ActionEvent event) {
+    void switchToSceneReturnCar(ActionEvent event) throws IOException {
+        Booking booking = tableView.getSelectionModel().getSelectedItem();
+        setSeletedBooking(booking);
+        Parent root = FXMLLoader.load(App.class.getResource("fxml/ReturnCar.fxml")) ;
+        Scene scene = new Scene(root) ;
+        Stage stage = new Stage() ;
+        //Die Actionevent von anderen Fenster sind blockiert.
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
 
     }
 
@@ -121,8 +148,12 @@ public final class BookingManagementController implements Initializable {
 
         ObservableList<Booking> list = FXCollections.observableArrayList();
         list.addAll(BookingRepository.findAll());
-
         tableView.setItems(list);
+        if(list.isEmpty()){
+            btnReturnCar.setDisable(true);
+        }else {
+            tableView.getSelectionModel().selectFirst();
+        }
     }
 
     /**
