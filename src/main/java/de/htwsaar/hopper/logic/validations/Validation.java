@@ -60,24 +60,38 @@ public abstract class Validation {
         Utils.check(date != null, "Das Datum darf nicht leer sein!");
         Calendar currentCalendar = Calendar.getInstance();
 
-        boolean isTimeValid = true;
-        boolean isDayValid = true;
+        /* Fall: Minute und Stunde gleich, Sekunde kleiner als jetzt
+        if (date.get(Calendar.MINUTE) == (currentCalendar.get(Calendar.MINUTE))
+                && date.get(Calendar.HOUR_OF_DAY) == (currentCalendar.get(Calendar.HOUR_OF_DAY))) {
+            if(date.get(Calendar.SECOND) < (currentCalendar.get(Calendar.SECOND))){
+                throw new IllegalArgumentException(errorMessage);
+            }
+        }*/
+
+        // Fall: Stunde gleich, Minute kleiner als jetzt
         if (date.get(Calendar.MINUTE) < (currentCalendar.get(Calendar.MINUTE))
                 && date.get(Calendar.HOUR_OF_DAY) == (currentCalendar.get(Calendar.HOUR_OF_DAY))) {
-            isTimeValid = false;
-        }
-        if (date.get(Calendar.DAY_OF_YEAR) < (currentCalendar.get(Calendar.DAY_OF_YEAR))
-                && date.get(Calendar.YEAR) == (currentCalendar.get(Calendar.YEAR))) {
-            isDayValid = false;
-        }
-        if(date.get(Calendar.YEAR) < (currentCalendar.get(Calendar.YEAR))) {
-            isDayValid = false;
-        }
-        if (isDayValid && isTimeValid) {
-            return date;
-        } else {
             throw new IllegalArgumentException(errorMessage);
         }
+
+        // Fall: Tag gleich, Stunde kleiner als jetzt
+        if(date.get(Calendar.HOUR_OF_DAY) < (currentCalendar.get(Calendar.HOUR_OF_DAY))
+                && date.get(Calendar.DAY_OF_YEAR) == (currentCalendar.get(Calendar.DAY_OF_YEAR))){
+            throw new IllegalArgumentException(errorMessage);
+        }
+
+        // Fall: Jahr gleich, Tag kleiner als jetzt
+        if (date.get(Calendar.DAY_OF_YEAR) < (currentCalendar.get(Calendar.DAY_OF_YEAR))
+                && date.get(Calendar.YEAR) == (currentCalendar.get(Calendar.YEAR))) {
+            throw new IllegalArgumentException(errorMessage);
+        }
+
+        // Fall: Jahr kleiner als jetzt
+        if(date.get(Calendar.YEAR) < (currentCalendar.get(Calendar.YEAR))) {
+            throw new IllegalArgumentException(errorMessage);
+        }
+
+        return date;
     }
 
     public static Calendar validateDatePastForbiddenMinute(Calendar date){
@@ -98,25 +112,38 @@ public abstract class Validation {
         Utils.check(date != null, "Das Datum darf nicht leer sein!");
         Calendar currentCalendar = Calendar.getInstance();
 
-        boolean isTimeValid = true;
-        boolean isDayValid = true;
+        /* Fall: Minute und Stunde gleich, Sekunde später als jetzt
+        if (date.get(Calendar.MINUTE) == (currentCalendar.get(Calendar.MINUTE))
+                && date.get(Calendar.HOUR_OF_DAY) == (currentCalendar.get(Calendar.HOUR_OF_DAY))) {
+            if(date.get(Calendar.SECOND) > (currentCalendar.get(Calendar.SECOND))){
+                throw new IllegalArgumentException(errorMessage);
+            }
+        }*/
+
+        // Fall: Stunde gleich, Minute später als jetzt
         if (date.get(Calendar.MINUTE) > (currentCalendar.get(Calendar.MINUTE))
                 && date.get(Calendar.HOUR_OF_DAY) == (currentCalendar.get(Calendar.HOUR_OF_DAY))) {
-            isTimeValid = false;
-        }
-        if (date.get(Calendar.DAY_OF_YEAR) > (currentCalendar.get(Calendar.DAY_OF_YEAR))
-                && date.get(Calendar.YEAR) == (currentCalendar.get(Calendar.YEAR))) {
-            isDayValid = false;
-        }
-        if(date.get(Calendar.YEAR) > (currentCalendar.get(Calendar.YEAR))) {
-            isDayValid = false;
-        }
-
-        if (isDayValid && isTimeValid) {
-            return date;
-        } else {
             throw new IllegalArgumentException(errorMessage);
         }
+
+        // Fall: Tag gleich, Stunde später als jetzt
+        if(date.get(Calendar.HOUR_OF_DAY) > (currentCalendar.get(Calendar.HOUR_OF_DAY))
+                && date.get(Calendar.DAY_OF_YEAR) == (currentCalendar.get(Calendar.DAY_OF_YEAR))){
+            throw new IllegalArgumentException(errorMessage);
+        }
+
+        // Fall: Jahr gleich, Tag später als jetzt
+        if (date.get(Calendar.DAY_OF_YEAR) > (currentCalendar.get(Calendar.DAY_OF_YEAR))
+                && date.get(Calendar.YEAR) == (currentCalendar.get(Calendar.YEAR))) {
+            throw new IllegalArgumentException(errorMessage);
+        }
+
+        // Fall: Jahr später als jetzt
+        if(date.get(Calendar.YEAR) > (currentCalendar.get(Calendar.YEAR))) {
+            throw new IllegalArgumentException(errorMessage);
+        }
+
+        return date;
     }
 
     public static Calendar validateDateFutureForbiddenMinute(Calendar date){

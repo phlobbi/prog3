@@ -182,13 +182,12 @@ public class BookingTest {
         booking.setCustomerId(3);
     }
 
-    @Test
-    public void testSetPickUpDateWithValidDate() {
+    @Test (expected = IllegalArgumentException.class)
+    public void testSetPickUpDateWithDateFromThePast() {
         Calendar newPickUpDate = Calendar.getInstance();
         newPickUpDate.add(Calendar.DAY_OF_YEAR, -2);
         booking.setPickUpDate(newPickUpDate);
-        Calendar result = booking.getPickUpDate();
-        assertEquals(newPickUpDate.get(Calendar.DAY_OF_MONTH), result.get(Calendar.DAY_OF_MONTH));
+
     }
 
     @Test

@@ -31,7 +31,7 @@ public class Utils {
     public static int calculateDaysBetween(Calendar start, Calendar end) {
         clearHourMinuteSecond(start);
         clearHourMinuteSecond(end);
-        return (int) (ChronoUnit.DAYS.between(start.toInstant(), end.toInstant()) + 1);
+        return (int) (ChronoUnit.DAYS.between(start.toInstant(), end.toInstant()));
     }
 
     /**

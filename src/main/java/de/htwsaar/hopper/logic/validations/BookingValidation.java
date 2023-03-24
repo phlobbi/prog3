@@ -82,7 +82,7 @@ public class BookingValidation extends Validation {
         boolean isHourValid = true;
         boolean isDayValid = true;
 
-        if (pickUpDate.get(Calendar.MINUTE) < (dropOffDate.get(Calendar.MINUTE))
+        if (pickUpDate.get(Calendar.MINUTE) > (dropOffDate.get(Calendar.MINUTE))
                 && pickUpDate.get(Calendar.HOUR_OF_DAY) == (dropOffDate.get(Calendar.HOUR_OF_DAY))) {
             isMinuteValid = false;
         }
