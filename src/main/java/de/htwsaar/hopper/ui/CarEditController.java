@@ -135,7 +135,7 @@ public class CarEditController implements Initializable{
                 if (car.equals(temp)){
                 throw new IllegalArgumentException("Keine Änderungen vorgenommen");
             } else {
-                CarRepository.update(car);
+                CarRepository.persist(car);
             }
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Auto erfolgreich geandert!");
             alert.showAndWait();
