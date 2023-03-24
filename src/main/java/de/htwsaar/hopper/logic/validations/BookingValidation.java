@@ -78,25 +78,29 @@ public class BookingValidation extends Validation {
      * @throws IllegalArgumentException Falls das PickUpDate nach dem DropOffDate liegt
      */
     public static void validatePickUpDateBeforeDropOffDate(Calendar pickUpDate, Calendar dropOffDate) {
-        boolean isMinuteValid = true;
-        boolean isHourValid = true;
-        boolean isDayValid = true;
+        String errorMessage = "Das Abgabedatum liegt vor dem Abholdatum.";
 
+        // Fall: Stunde gleich, Minute pickUp nach Minute dropOff
         if (pickUpDate.get(Calendar.MINUTE) > (dropOffDate.get(Calendar.MINUTE))
                 && pickUpDate.get(Calendar.HOUR_OF_DAY) == (dropOffDate.get(Calendar.HOUR_OF_DAY))) {
-            isMinuteValid = false;
-        }
-        if (pickUpDate.get(Calendar.HOUR_OF_DAY) < (dropOffDate.get(Calendar.HOUR_OF_DAY))) {
-            isHourValid = false;
-        }
-        if (pickUpDate.after(dropOffDate)) {
-            isDayValid = false;
+            throw new IllegalArgumentException(errorMessage);
         }
 
-        if (isDayValid && isHourValid && isMinuteValid) {
-            // passt
-        } else {
-            throw new IllegalArgumentException("Das Abgabedatum liegt vor dem Abholdatum.");
+        // Fall: Tag gleich, Stunde später als jetzt
+        if(pickUpDate.get(Calendar.HOUR_OF_DAY) > (dropOffDate.get(Calendar.HOUR_OF_DAY))
+                && pickUpDate.get(Calendar.DAY_OF_YEAR) == (dropOffDate.get(Calendar.DAY_OF_YEAR))){
+            throw new IllegalArgumentException(errorMessage);
+        }
+
+        // Fall: Jahr gleich, Tag später als jetzt
+        if (pickUpDate.get(Calendar.DAY_OF_YEAR) > (dropOffDate.get(Calendar.DAY_OF_YEAR))
+                && pickUpDate.get(Calendar.YEAR) == (dropOffDate.get(Calendar.YEAR))) {
+            throw new IllegalArgumentException(errorMessage);
+        }
+
+        // Fall: Jahr später als jetzt
+        if(pickUpDate.get(Calendar.YEAR) > (dropOffDate.get(Calendar.YEAR))) {
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 
