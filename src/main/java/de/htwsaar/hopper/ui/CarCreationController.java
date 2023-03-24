@@ -85,14 +85,14 @@ public class CarCreationController implements Initializable{
     void createCar(ActionEvent event) {
         try {
             validateTextField(textFieldBrand, labelBrand.getText() + " leer");
-            validateTextField(textFieldSeats, labelSeats.getText() + " leer");
             validateTextField(textFieldModel, labelModel.getText() + " leer");
-            validateTextField(textFieldCurrentPrice, labelCurrentPrice.getText() + " leer");
-            validateTextField(textFieldBasePrice, labelBasePrice.getText() + " leer");
-            validateTextField(textFieldLicensePlate, labelLicensePlate.getText() + " leer");
             if (datePickCreationDate.getValue() == null){
                 throw new IllegalArgumentException(labelCreationDate.getText() + " leer");
             }
+            validateTextField(textFieldSeats, labelSeats.getText() + " leer");
+            validateTextField(textFieldLicensePlate, labelLicensePlate.getText() + " leer");
+            validateTextField(textFieldBasePrice, labelBasePrice.getText() + " leer");
+            validateTextField(textFieldCurrentPrice, labelCurrentPrice.getText() + " leer");
 
             String brand = textFieldBrand.getText();
             int seats = Integer.parseInt(textFieldSeats.getText());
@@ -119,6 +119,7 @@ public class CarCreationController implements Initializable{
             Car car = new Car(concreteType,brand,creationDateCal,seats,basePrice,curPrice,licensePlate,model);
 
             CarRepository.persist(car);
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Auto erfolgreich erstellt");
             alert.showAndWait();
             Stage stage = (Stage) btnSave.getScene().getWindow();
