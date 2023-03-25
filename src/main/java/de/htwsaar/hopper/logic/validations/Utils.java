@@ -31,7 +31,27 @@ public class Utils {
     public static int calculateDaysBetween(Calendar start, Calendar end) {
         clearHourMinuteSecond(start);
         clearHourMinuteSecond(end);
-        return (int) (ChronoUnit.DAYS.between(start.toInstant(), end.toInstant()));
+        if (start.get(Calendar.YEAR) == end.get(Calendar.YEAR)){
+            int endDay = end.get(Calendar.DAY_OF_YEAR);
+            int startDay = start.get(Calendar.DAY_OF_YEAR);
+            return (int) (endDay - startDay);
+        }
+        if (start.get(Calendar.YEAR) < end.get(Calendar.YEAR)){
+            int yearDifference = end.get(Calendar.YEAR) - start.get(Calendar.YEAR);
+            int daysBetween = 0;
+            int daysBeforeYearChange = 365 - start.get(Calendar.DAY_OF_YEAR);
+            int daysAfterYearChange = end.get(Calendar.DAY_OF_YEAR);
+            daysBetween = daysBeforeYearChange + daysAfterYearChange;
+
+            while (yearDifference > 1){
+                daysBetween += 365;
+                yearDifference--;
+            }
+
+            return daysBetween;
+        } else {
+            return (int) (ChronoUnit.DAYS.between(start.toInstant(), end.toInstant()));
+        }
     }
 
     /**

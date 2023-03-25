@@ -318,6 +318,26 @@ public class BookingTest {
     }
 
     @Test
+    public void testCalculateFinalPriceWithDaysInDifferentYears() {
+        Calendar pickUpDate = Calendar.getInstance();
+        pickUpDate.set(Calendar.DAY_OF_YEAR, 363);
+
+        Calendar dropOffDate = Calendar.getInstance();
+        dropOffDate.set(Calendar.DAY_OF_YEAR, 364);
+
+        booking.setDropOffDate(dropOffDate);
+        booking.setPickUpDate(pickUpDate);
+
+        Calendar realDropOffDate = Calendar.getInstance();
+        realDropOffDate.add(Calendar.YEAR, 1);
+        realDropOffDate.set(Calendar.DAY_OF_YEAR, 2);
+
+        booking.setRealDropOffDate(realDropOffDate);
+        double result = booking.calculateFinalPrice();
+        assertEquals(380, result, 0.001);
+    }
+
+    @Test
     public void testCalculateFinalPriceWithSameDayDropOff() {
         booking.setRealDropOffDate(dropOffDate);
         double result = booking.calculateFinalPrice();
