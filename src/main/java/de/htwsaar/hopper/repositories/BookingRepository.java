@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -111,4 +112,24 @@ public class BookingRepository {
         if (checklist != null)
             ChecklistRepository.delete(checklist);
     }
+
+    /**
+     * Gibt als Liste alle Buchungen, die noch nicht abgeschlossen sind (wo realDropOffDate ist null)
+     *
+     * @return Liste der nicht-absgeschlossenen Buchungen. Ansonsten null.
+     */
+    public static List<Booking> getUncompletedBookings(){
+        List<Booking> uncompletedBookings = new ArrayList<>();
+        List<Booking> bookingsList = findAll();
+
+        for(Booking booking : bookingsList){
+            if(booking.getRealDropOffDate() == null){
+                uncompletedBookings.add(booking);
+            } else {
+                return null;
+            }
+        }
+        return uncompletedBookings;
+    }
+
 }
