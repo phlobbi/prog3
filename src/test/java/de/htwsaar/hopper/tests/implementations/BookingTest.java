@@ -296,7 +296,7 @@ public class BookingTest {
         assertEquals(150, result, 0.001);
     }
 
-    @Test @Ignore
+    @Test
     public void testCalculateFinalPriceWithOneDayDelay() {
         Calendar realDropOffDate = Calendar.getInstance();
         realDropOffDate.add(Calendar.DAY_OF_YEAR, 2);
@@ -305,7 +305,7 @@ public class BookingTest {
         assertEquals(260, result, 0.001);
     }
 
-    @Test @Ignore
+    @Test
     public void testCalculateFinalPriceWithTwoDaysDelay() {
         Calendar realDropOffDate = Calendar.getInstance();
         realDropOffDate.add(Calendar.DAY_OF_YEAR, 3);
