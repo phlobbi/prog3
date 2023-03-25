@@ -116,20 +116,17 @@ public class BookingRepository {
     /**
      * Gibt als Liste alle Buchungen, die noch nicht abgeschlossen sind (wo realDropOffDate ist null)
      *
-     * @return Liste der nicht-absgeschlossenen Buchungen. Ansonsten null.
+     * @return Liste der nicht-abgeschlossenen Buchungen
      */
-    public static List<Booking> getUncompletedBookings(){
+    public static List<Booking> findUncompleted(){
         List<Booking> uncompletedBookings = new ArrayList<>();
         List<Booking> bookingsList = findAll();
 
         for(Booking booking : bookingsList){
-            if(booking.getRealDropOffDate() == null){
+            if(booking.getRealDropOffDate() == null) {
                 uncompletedBookings.add(booking);
-            } else {
-                return null;
             }
         }
         return uncompletedBookings;
     }
-
 }
