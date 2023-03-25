@@ -288,9 +288,4 @@ public class BookingRepositoryTest {
         List<Booking> result = BookingRepository.findUncompleted();
         assertTrue(result.isEmpty());
     }
-
-    @AfterClass
-    public static void tearDownClass() throws IOException {
-        TestDBUtils.loadBackupDB();
-    }
 }
