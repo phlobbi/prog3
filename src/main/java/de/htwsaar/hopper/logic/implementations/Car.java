@@ -1,6 +1,9 @@
 package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
+import de.htwsaar.hopper.logic.enums.FuelTypeEnum;
+import de.htwsaar.hopper.logic.enums.SatNavEnum;
+import de.htwsaar.hopper.logic.enums.TransmissionTypeEnum;
 import de.htwsaar.hopper.logic.interfaces.CarInterface;
 import de.htwsaar.hopper.logic.validations.CarValidation;
 import de.htwsaar.hopper.logic.validations.PreventNullPersistForCar;
@@ -60,6 +63,26 @@ public class Car implements CarInterface {
     @Column(name = "Model")
     private String model;
 
+    @Basic
+    @Column(name = "Horsepower")
+    private int horsepower;
+
+    @Basic
+    @Column(name = "TransmissionType")
+    private TransmissionTypeEnum transmissionType;
+
+    @Basic
+    @Column(name = "FuelType")
+    private FuelTypeEnum fuelType;
+
+    @Basic
+    @Column(name = "SatNav")
+    private SatNavEnum satNav;
+
+    @Basic
+    @Column(name = "Mileage")
+    private int mileage;
+
     /**
      * Standard-Konstruktor
      */
@@ -76,9 +99,15 @@ public class Car implements CarInterface {
      * @param currentPrice Tagespreis des Autos
      * @param licensePlate Kennzeichen des Autos
      * @param model Modell des Autos
+     * @param horsepower Pferdstärke des Autos
+     * @param transmissionType Schaltgetriebe des Autos
+     * @param fuelType Kraftstoff des Autos
+     * @param satNav integriertes Navi im Autos
+     * @param mileage Kilometerstand des Autos
      */
     public Car(CarTypeEnum type, String brand, Calendar creationDate, int seats, double basePrice,
-               double currentPrice, String licensePlate, String model) {
+               double currentPrice, String licensePlate, String model, int horsepower, TransmissionTypeEnum transmissionType,
+               FuelTypeEnum fuelType, SatNavEnum satNav, int mileage) {
         this.type = CarValidation.validateCarType(type);
         this.brand = CarValidation.validateString(brand, "Die Automarke darf nicht leer sein.");
         this.creationDate = CarValidation.validateCreatedDate(creationDate);
