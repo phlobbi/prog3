@@ -18,6 +18,8 @@ import static org.junit.Assert.*;
 public class CarRepositoryTest {
 
     private static Calendar creationDate;
+    private static Calendar pickUpDate;
+    private static Calendar dropOffDate;
 
     private static Car testCar;
 
@@ -27,6 +29,11 @@ public class CarRepositoryTest {
 
         creationDate = Calendar.getInstance();
         creationDate.add(Calendar.YEAR, -1);
+
+        pickUpDate = Calendar.getInstance();
+
+        dropOffDate = Calendar.getInstance();
+        dropOffDate.add(Calendar.DAY_OF_MONTH, 1);
     }
 
     @Before
@@ -40,6 +47,11 @@ public class CarRepositoryTest {
 
         Customer customer = new Customer("Max", "Mustermann", "max@muster.de", "Musterstraße", "1", "66111", "Saarbrücken", "068192001", "DE74500105174514856976", "B072RRE2I55", driverLicenseExpiration);
         CustomerRepository.persist(customer);
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws IOException {
+        TestDBUtils.loadBackupDB();
     }
 
     @Test
@@ -60,6 +72,10 @@ public class CarRepositoryTest {
         testCar.setBrand("Audi");
         testCar.setModel("A4");
         CarRepository.persist(testCar);
+        
+        if(CarRepository.find(2) != null) {
+            fail("Car with id 2 should not exist");
+        }
 
         Car result = CarRepository.find(1);
         assertTrue(testCar.getCarId() == result.getCarId()
@@ -177,12 +193,7 @@ public class CarRepositoryTest {
         testCar.setModel("A4");
         CarRepository.persist(testCar);
 
-        Calendar pickupDate = Calendar.getInstance();
-
-        Calendar dropOffDate = Calendar.getInstance();
-        dropOffDate.add(Calendar.DAY_OF_MONTH, 1);
-
-        Booking booking = new Booking(1, 1, pickupDate, dropOffDate);
+        Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
         BookingRepository.persist(booking);
 
         assertEquals(1, CarRepository.findAvailable().size());
@@ -192,12 +203,7 @@ public class CarRepositoryTest {
     public void testFindAvailableWithOneUnavailableEntry() {
         CarRepository.persist(testCar);
 
-        Calendar pickupDate = Calendar.getInstance();
-
-        Calendar dropOffDate = Calendar.getInstance();
-        dropOffDate.add(Calendar.DAY_OF_MONTH, 1);
-
-        Booking booking = new Booking(1, 1, pickupDate, dropOffDate);
+        Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
         BookingRepository.persist(booking);
 
         assertEquals(0, CarRepository.findAvailable().size());
@@ -207,12 +213,7 @@ public class CarRepositoryTest {
     public void testFindAvailableWithOneReturnedEntry() {
         CarRepository.persist(testCar);
 
-        Calendar pickupDate = Calendar.getInstance();
-
-        Calendar dropOffDate = Calendar.getInstance();
-        dropOffDate.add(Calendar.DAY_OF_MONTH, 1);
-
-        Booking booking = new Booking(1, 1, pickupDate, dropOffDate);
+        Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
         BookingRepository.persist(booking);
 
         booking = BookingRepository.find(1);
@@ -230,12 +231,7 @@ public class CarRepositoryTest {
         testCar.setModel("A4");
         CarRepository.persist(testCar);
 
-        Calendar pickupDate = Calendar.getInstance();
-
-        Calendar dropOffDate = Calendar.getInstance();
-        dropOffDate.add(Calendar.DAY_OF_MONTH, 1);
-
-        Booking booking = new Booking(1, 1, pickupDate, dropOffDate);
+        Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
         BookingRepository.persist(booking);
 
         booking = BookingRepository.find(1);
@@ -254,12 +250,7 @@ public class CarRepositoryTest {
     public void testFindUnavailableWithOneEntry() {
         CarRepository.persist(testCar);
 
-        Calendar pickupDate = Calendar.getInstance();
-
-        Calendar dropOffDate = Calendar.getInstance();
-        dropOffDate.add(Calendar.DAY_OF_MONTH, 1);
-
-        Booking booking = new Booking(1, 1, pickupDate, dropOffDate);
+        Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
         BookingRepository.persist(booking);
 
         assertEquals(1, CarRepository.findUnavailable().size());
@@ -273,12 +264,7 @@ public class CarRepositoryTest {
         testCar.setModel("A4");
         CarRepository.persist(testCar);
 
-        Calendar pickupDate = Calendar.getInstance();
-
-        Calendar dropOffDate = Calendar.getInstance();
-        dropOffDate.add(Calendar.DAY_OF_MONTH, 1);
-
-        Booking booking = new Booking(1, 1, pickupDate, dropOffDate);
+        Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
         BookingRepository.persist(booking);
 
         assertEquals(1, CarRepository.findUnavailable().size());
@@ -292,12 +278,7 @@ public class CarRepositoryTest {
         testCar.setModel("A4");
         CarRepository.persist(testCar);
 
-        Calendar pickupDate = Calendar.getInstance();
-
-        Calendar dropOffDate = Calendar.getInstance();
-        dropOffDate.add(Calendar.DAY_OF_MONTH, 1);
-
-        Booking booking = new Booking(1, 1, pickupDate, dropOffDate);
+        Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
         BookingRepository.persist(booking);
 
         assertEquals(1, CarRepository.findUnavailable().size());
@@ -314,12 +295,7 @@ public class CarRepositoryTest {
     public void testFindUnavailableWithOneReturnedEntry() {
         CarRepository.persist(testCar);
 
-        Calendar pickupDate = Calendar.getInstance();
-
-        Calendar dropOffDate = Calendar.getInstance();
-        dropOffDate.add(Calendar.DAY_OF_MONTH, 1);
-
-        Booking booking = new Booking(1, 1, pickupDate, dropOffDate);
+        Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
         BookingRepository.persist(booking);
 
         booking = BookingRepository.find(1);
@@ -337,12 +313,7 @@ public class CarRepositoryTest {
         testCar.setModel("A4");
         CarRepository.persist(testCar);
 
-        Calendar pickupDate = Calendar.getInstance();
-
-        Calendar dropOffDate = Calendar.getInstance();
-        dropOffDate.add(Calendar.DAY_OF_MONTH, 1);
-
-        Booking booking = new Booking(1, 1, pickupDate, dropOffDate);
+        Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
         BookingRepository.persist(booking);
 
         booking = BookingRepository.find(1);
@@ -356,12 +327,7 @@ public class CarRepositoryTest {
     public void testRemoveOrphan() {
         CarRepository.persist(testCar);
 
-        Calendar pickupDate = Calendar.getInstance();
-
-        Calendar dropOffDate = Calendar.getInstance();
-        dropOffDate.add(Calendar.DAY_OF_MONTH, 1);
-
-        Booking booking = new Booking(1, 1, pickupDate, dropOffDate);
+        Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
         BookingRepository.persist(booking);
 
         testCar = CarRepository.find(1);
@@ -370,6 +336,7 @@ public class CarRepositoryTest {
 
         assertNull(CarRepository.find(1));
         assertNull(BookingRepository.find(1));
+        assertNotNull(CustomerRepository.find(1));
     }
 
     @Test
@@ -379,13 +346,8 @@ public class CarRepositoryTest {
         testCar.setBrand("Audi");
         testCar.setModel("A4");
         CarRepository.persist(testCar);
-
-        Calendar pickupDate = Calendar.getInstance();
-
-        Calendar dropOffDate = Calendar.getInstance();
-        dropOffDate.add(Calendar.DAY_OF_MONTH, 1);
-
-        Booking booking = new Booking(1, 1, pickupDate, dropOffDate);
+        
+        Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
         BookingRepository.persist(booking);
 
         testCar = CarRepository.find(2);
@@ -396,10 +358,6 @@ public class CarRepositoryTest {
         assertNull(CarRepository.find(2));
         assertNotNull(BookingRepository.find(1));
         assertNull(BookingRepository.find(2));
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws IOException {
-        TestDBUtils.loadBackupDB();
+        assertNotNull(CustomerRepository.find(1));
     }
 }

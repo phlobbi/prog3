@@ -60,6 +60,11 @@ public class BookingRepositoryTest {
         CustomerRepository.persist(customer);
     }
 
+    @AfterClass
+    public static void tearDownClass() throws IOException {
+        TestDBUtils.loadBackupDB();
+    }
+
     @Test
     public void testPersist() {
         Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
@@ -222,10 +227,5 @@ public class BookingRepositoryTest {
 
         Checklist result = ChecklistRepository.find(1);
         assertNull(result);
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws IOException {
-        TestDBUtils.loadBackupDB();
     }
 }
