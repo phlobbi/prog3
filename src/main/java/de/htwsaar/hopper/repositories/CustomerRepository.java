@@ -1,6 +1,7 @@
 package de.htwsaar.hopper.repositories;
 
 import de.htwsaar.hopper.logic.implementations.Booking;
+import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.implementations.Customer;
 import org.hibernate.Transaction;
 
@@ -48,6 +49,26 @@ public class CustomerRepository {
 
         try {
             return query.getResultList();
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
+    }
+
+    /**
+     * Sucht alle Customers, die keine Buchung am Laufen haben.
+     *
+     * @return Die Customer-Liste; null, falls keine verfuegbaren Customer existieren
+     */
+    public static List<Customer> findAvailable() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        Query queryForAvailableCustomer = entityManager.createQuery("SELECT c FROM Customer AS c WHERE " +
+                "NOT EXISTS (SELECT b FROM Booking AS b WHERE c.customerId=b.customerId AND b.realDropOffDate = null)");
+
+        try {
+            return (List<Customer>) queryForAvailableCustomer.getResultList();
         } finally {
             entityManager.close();
             entityManagerFactory.close();
