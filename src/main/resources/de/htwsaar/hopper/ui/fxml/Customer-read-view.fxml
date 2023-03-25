@@ -30,7 +30,7 @@
     <center>
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
             <children>
-            <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="86.0" prefWidth="620.0" style="-fx-background-color: teal;">
+            <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: teal;">
                <children>
                         <Button fx:id="btnGoBack" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#switchToCustomerView" prefHeight="79.0" prefWidth="112.0" text="zurueck" textAlignment="CENTER">
                      <graphic>
@@ -80,14 +80,14 @@
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="200.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
-                            <RowConstraints />
-                            <RowConstraints />
-                            <RowConstraints />
-                              <RowConstraints />
-                              <RowConstraints />
-                              <RowConstraints />
-                              <RowConstraints />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" />
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" />
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" />
+                              <RowConstraints maxHeight="20.0" minHeight="20.0" />
+                              <RowConstraints maxHeight="20.0" minHeight="20.0" />
+                              <RowConstraints maxHeight="20.0" minHeight="20.0" />
+                              <RowConstraints maxHeight="20.0" minHeight="20.0" />
+                              <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Vorname:">
@@ -126,7 +126,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="IBAN:" GridPane.rowIndex="7">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="IBAN:" wrappingWidth="34.2890625" GridPane.rowIndex="7">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

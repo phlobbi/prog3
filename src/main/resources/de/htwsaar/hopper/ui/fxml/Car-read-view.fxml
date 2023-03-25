@@ -83,13 +83,13 @@
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="180.0" prefWidth="76.0" />
                           </columnConstraints>
                           <rowConstraints>
-                              <RowConstraints maxHeight="29.19998779296875" minHeight="10.0" prefHeight="26.799993896484374" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="28.4" minHeight="10.0" prefHeight="20.59998168945312" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="25.799997711181632" minHeight="10.0" prefHeight="22.600016021728514" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="29.799999999999997" minHeight="10.0" prefHeight="25.799999999999997" vgrow="SOMETIMES" />
-                            <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="29.20001220703125" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="29.399987792968744" minHeight="10.0" prefHeight="22.19996337890626" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="33.400048828124994" minHeight="10.0" prefHeight="26.200036621093744" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
                               <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Typ:" wrappingWidth="28.0">
