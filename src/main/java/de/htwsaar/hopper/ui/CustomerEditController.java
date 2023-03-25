@@ -178,7 +178,7 @@ public class CustomerEditController implements Initializable{
             if (customer.equals(temp)){
                 throw new IllegalArgumentException("Keine Änderungen vorgenommen");
             } else {
-                CustomerRepository.update(customer);
+                CustomerRepository.persist(customer);
             }
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Kunde erfolgreich geandert");
             alert.showAndWait();
