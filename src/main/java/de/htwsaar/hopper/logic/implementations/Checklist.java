@@ -84,7 +84,7 @@ public class Checklist implements ChecklistInterface {
         Booking booking = BookingRepository.find(bookingId);
         Utils.check(booking.getChecklistId() == BookingValidation.CHECKLIST_NULL, "Checkliste bereits gesetzt");
         booking.setChecklistId(checklistId);
-        BookingRepository.update(booking);
+        BookingRepository.persist(booking);
     }
 
     /* GETTER */
