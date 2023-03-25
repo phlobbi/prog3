@@ -86,8 +86,10 @@ public final class BookingManagementController implements Initializable {
     @FXML
     void switchToSceneCarBooking(ActionEvent event) {
         Stage stage;
+        URL url = getClass().getResource("fxml/Booking-creation-view.fxml");
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Booking-creation-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(url, bundle);
             Parent root1 = (Parent) fxmlLoader.load();
             stage = new Stage();
             stage.setScene(new Scene(root1));

@@ -17,8 +17,8 @@
             <Insets bottom="20.0" left="20.0" top="20.0" />
          </padding>
          <children>
-            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#createBooking" prefHeight="25.0" prefWidth="90.0" text="Speichern" />
-            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelCreation" prefHeight="25.0" prefWidth="90.0" text="Abbrechen" />
+            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#createBooking" prefHeight="25.0" prefWidth="90.0" text="%MENU_SAVE" />
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelCreation" prefHeight="25.0" prefWidth="90.0" text="%MENU_CANCEL" />
          </children>
       </HBox>
    </bottom>
@@ -27,10 +27,10 @@
          <children>
             <VBox prefHeight="294.0" prefWidth="170.0" spacing="28.0">
                <children>
-                  <Label fx:id="labelPickUpDate" text="Abholdatum" />
-                  <Label fx:id="labelDropOffDate" text="Rückgabedatum" />
-                  <Label fx:id="labelChosenCar" text="Ausgewähltes Auto" />
-                  <Label fx:id="labelChosenCustomer" text="Ausgewählter Kunde" />
+                  <Label fx:id="labelPickUpDate" text="%BOOKING_PICK_UP_DATE" />
+                  <Label fx:id="labelDropOffDate" text="%BOOKING_RETURN_DATE" />
+                  <Label fx:id="labelChosenCar" text="%CHOSEN_CAR" />
+                  <Label fx:id="labelChosenCustomer" text="%CHOSEN_CUSTOMER" />
                </children>
                <padding>
                   <Insets bottom="20.0" left="20.0" top="25.0" />
@@ -52,8 +52,8 @@
                   <Insets bottom="20.0" left="20.0" right="20.0" top="110.0" />
                </padding>
                <children>
-                  <Button fx:id="btnChooseCar" mnemonicParsing="false" onAction="#chooseCar" prefHeight="25.0" prefWidth="90.0" text="Auswählen" />
-                  <Button fx:id="btnChooseCustomer" mnemonicParsing="false" onAction="#chooseCustomer" prefHeight="25.0" prefWidth="90.0" text="Auswählen" />
+                  <Button fx:id="btnChooseCar" mnemonicParsing="false" onAction="#chooseCar" prefHeight="25.0" prefWidth="90.0" text="%MENU_CHOOSE" />
+                  <Button fx:id="btnChooseCustomer" mnemonicParsing="false" onAction="#chooseCustomer" prefHeight="25.0" prefWidth="90.0" text="%MENU_CHOOSE" />
                </children>
             </VBox>
          </children>
@@ -65,7 +65,7 @@
    <top>
       <HBox prefHeight="79.0" prefWidth="704.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="labelExplanation" text="Legen Sie hier den Kunden und das Auto für die Buchung fest sowie den Buchungszeitraum.">
+            <Label fx:id="labelExplanation" text="%BOOKING_EXPLANATION">
                <font>
                   <Font size="14.0" />
                </font>
