@@ -60,13 +60,8 @@ public abstract class Validation {
         Utils.check(date != null, "Das Datum darf nicht leer sein!");
         Calendar currentCalendar = Calendar.getInstance();
 
-        /* Fall: Minute und Stunde gleich, Sekunde kleiner als jetzt
-        if (date.get(Calendar.MINUTE) == (currentCalendar.get(Calendar.MINUTE))
-                && date.get(Calendar.HOUR_OF_DAY) == (currentCalendar.get(Calendar.HOUR_OF_DAY))) {
-            if(date.get(Calendar.SECOND) < (currentCalendar.get(Calendar.SECOND))){
-                throw new IllegalArgumentException(errorMessage);
-            }
-        }*/
+        validateHour(date.get(Calendar.HOUR_OF_DAY));
+        validateMinute(date.get(Calendar.MINUTE));
 
         // Fall: Stunde gleich, Minute kleiner als jetzt
         if (date.get(Calendar.MINUTE) < (currentCalendar.get(Calendar.MINUTE))
@@ -112,13 +107,8 @@ public abstract class Validation {
         Utils.check(date != null, "Das Datum darf nicht leer sein!");
         Calendar currentCalendar = Calendar.getInstance();
 
-        /* Fall: Minute und Stunde gleich, Sekunde später als jetzt
-        if (date.get(Calendar.MINUTE) == (currentCalendar.get(Calendar.MINUTE))
-                && date.get(Calendar.HOUR_OF_DAY) == (currentCalendar.get(Calendar.HOUR_OF_DAY))) {
-            if(date.get(Calendar.SECOND) > (currentCalendar.get(Calendar.SECOND))){
-                throw new IllegalArgumentException(errorMessage);
-            }
-        }*/
+        validateHour(date.get(Calendar.HOUR_OF_DAY));
+        validateMinute(date.get(Calendar.MINUTE));
 
         // Fall: Stunde gleich, Minute später als jetzt
         if (date.get(Calendar.MINUTE) > (currentCalendar.get(Calendar.MINUTE))
@@ -187,5 +177,30 @@ public abstract class Validation {
         }
     }
 
+    /**
+     * Prüft, ob eine Stunde gültig ist.
+     * @param hour Stunde
+     * @return Stunde, falls gültig
+     * @throws IllegalArgumentException Falls die Stunde nicht zwischen 0 und 23 liegt
+     */
+    public static int validateHour(int hour){
+        if(hour < 0 || hour > 23){
+            throw new IllegalArgumentException("Die Stunde muss zwischen 0 und 23 liegen!");
+        }
+        return hour;
+    }
 
+    /**
+     * Prüft, ob eine Minute gültig ist.
+     * @param minute Minute
+     * @return Minute, falls gültig
+     * @throws IllegalArgumentException Falls die Minute nicht zwischen 0 und 59 liegt
+     */
+    public static int validateMinute(int minute) {
+        if (minute < 0 || minute > 59) {
+            throw new IllegalArgumentException("Die Minute muss zwischen 0 und 59 liegen!");
+        }
+        return minute;
+
+    }
 }

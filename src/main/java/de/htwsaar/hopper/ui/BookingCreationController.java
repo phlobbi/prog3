@@ -3,6 +3,7 @@ package de.htwsaar.hopper.ui;
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.implementations.Customer;
+import de.htwsaar.hopper.logic.validations.Validation;
 import de.htwsaar.hopper.repositories.BookingRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -184,16 +185,30 @@ public class BookingCreationController {
             Date pickUpDate = Date.from(pickUpDateLocal.atStartOfDay(ZoneId.systemDefault()).toInstant());
             Calendar pickUpDateCal = getInstance();
             pickUpDateCal.setTime(pickUpDate);
-            pickUpDateCal.set(HOUR_OF_DAY, Integer.parseInt(textFieldPickUpHour.getText()));
-            pickUpDateCal.set(MINUTE, Integer.parseInt(textFieldPickUpMinute.getText()));
+
+            int pickUpHour = Integer.parseInt(textFieldPickUpHour.getText());
+            Validation.validateHour(pickUpHour);
+
+            int pickUpMinute = Integer.parseInt(textFieldPickUpMinute.getText());
+            Validation.validateMinute(pickUpMinute);
+
+            pickUpDateCal.set(HOUR_OF_DAY, pickUpHour);
+            pickUpDateCal.set(MINUTE, pickUpMinute);
 
             LocalDate dropOffDateLocal = datePickerDropOffDate.getValue();
             // LocalDate vom DatePicker zu Calender-Format
             Date dropOffDate = Date.from(dropOffDateLocal.atStartOfDay(ZoneId.systemDefault()).toInstant());
             Calendar dropOffDateCal = getInstance();
             dropOffDateCal.setTime(dropOffDate);
-            dropOffDateCal.set(HOUR_OF_DAY, Integer.parseInt(textFieldDropOffHour.getText()));
-            dropOffDateCal.set(MINUTE, Integer.parseInt(textFieldDropOffMinute.getText()));
+
+            int dropOffHour = Integer.parseInt(textFieldDropOffHour.getText());
+            Validation.validateHour(dropOffHour);
+
+            int dropOffMinute = Integer.parseInt(textFieldDropOffMinute.getText());
+            Validation.validateMinute(dropOffMinute);
+
+            dropOffDateCal.set(HOUR_OF_DAY, dropOffHour);
+            dropOffDateCal.set(MINUTE, dropOffMinute);
 
             Booking booking = new Booking(chosenCar.getCarId(), chosenCustomer.getCustomerId(), pickUpDateCal, dropOffDateCal);
 
