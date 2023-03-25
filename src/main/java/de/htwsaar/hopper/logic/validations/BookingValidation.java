@@ -72,6 +72,21 @@ public class BookingValidation extends Validation {
     }
 
     /**
+     * Prüft, ob das RealDropOffDate in der Vergangenheit liegt.
+     * Da das RealDropOffDate optional ist, wird null zurückgegeben, falls es null ist.
+     *
+     * @param realDropOffDate Das zu prüfende RealDropOffDate
+     * @return realDropOffDate, falls gültig
+     * @throws IllegalArgumentException Falls das Datum in der Vergangenheit liegt
+     */
+    public static Calendar validateRealDropOffDate(Calendar realDropOffDate) {
+        if (realDropOffDate != null) {
+            return validateDatePastForbidden(realDropOffDate);
+        }
+        return null;
+    }
+
+    /**
      * Prüft, ob das PickUpDate vor dem DropOffDate liegt
      * @param pickUpDate Abholtermin
      * @param dropOffDate Abgabetermin
