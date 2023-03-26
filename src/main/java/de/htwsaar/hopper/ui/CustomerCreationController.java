@@ -4,6 +4,7 @@ import de.htwsaar.hopper.logic.implementations.Customer;
 import de.htwsaar.hopper.repositories.CustomerRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 

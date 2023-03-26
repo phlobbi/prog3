@@ -4,14 +4,10 @@ import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.repositories.CarRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -50,9 +46,8 @@ public class CarReadController implements Initializable {
     private Label labelcarLicensePlate;
 
     @FXML
-    void removeCar(ActionEvent event) throws IOException {
+    void removeCar(ActionEvent event) {
         Car selectedCar = CarManagementController.getSelectedCar();
-        CarManagementController.setSelectedCar(selectedCar);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wollen Sie den Wagen wirklich löschen?");
         alert.setHeaderText("Wagen wirklich löschen?");
         alert.setContentText("Wagen: " + selectedCar.getCarId() + " " + selectedCar.getBrand() + " " + selectedCar.getType());
@@ -66,8 +61,8 @@ public class CarReadController implements Initializable {
             Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Wagen wurde nicht gelöscht.");
             alert2.show();
             alert.close();
+
         }
-        App.setRoot("fxml/Car-view.fxml");
     }
 
     /**
@@ -83,45 +78,7 @@ public class CarReadController implements Initializable {
 
     @FXML
     void updateCar(ActionEvent event) {
-        Stage stage;
-        try {
-            Car selectedCar = CarManagementController.getSelectedCar();
-            CarManagementController.setSelectedCar(selectedCar);
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Car-edit-view.fxml"));
-            Parent root1 = fxmlLoader.load();
-            stage = new Stage();
-            stage.setScene(new Scene(root1));
-            disableWindow();
-            stage.showAndWait();
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
-            alert.showAndWait();
-        }
-        enableWindow();
-        reloadTable();
-    }
 
-    void disableWindow() {
-        btnRemove.setDisable(true);
-        btnUpdate.setDisable(true);
-        btnGoBack.setDisable(true);
-
-        Stage primaryStage = (Stage) btnUpdate.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            e.consume();
-        });
-    }
-
-    void enableWindow() {
-        btnRemove.setDisable(false);
-        btnUpdate.setDisable(false);
-        btnGoBack.setDisable(false);
-
-        // Roten Kreuz Button wieder aktivieren
-        Stage primaryStage = (Stage) btnUpdate.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            primaryStage.close();
-        });
     }
 
 
