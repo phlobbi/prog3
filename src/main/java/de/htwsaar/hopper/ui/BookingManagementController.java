@@ -299,8 +299,9 @@ public class BookingManagementController implements Initializable {
     }
 
     @FXML
-    void switchToSceneReadBooking(ActionEvent event) {
-
+    void switchToSceneReadBooking(ActionEvent event) throws IOException {
+        setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
+        App.setRoot("fxml/Booking-read-view.fxml");
     }
 
     /**
