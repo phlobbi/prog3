@@ -179,13 +179,12 @@ public class BookingTest {
         booking.setCustomerId(3);
     }
 
-    @Test
-    public void testSetPickUpDateWithValidDate() {
+    @Test (expected = IllegalArgumentException.class)
+    public void testSetPickUpDateWithDateFromThePast() {
         Calendar newPickUpDate = Calendar.getInstance();
         newPickUpDate.add(Calendar.DAY_OF_YEAR, -2);
         booking.setPickUpDate(newPickUpDate);
-        Calendar result = booking.getPickUpDate();
-        assertEquals(newPickUpDate.get(Calendar.DAY_OF_MONTH), result.get(Calendar.DAY_OF_MONTH));
+
     }
 
     @Test
@@ -297,7 +296,7 @@ public class BookingTest {
         assertEquals(150, result, 0.001);
     }
 
-    @Test @Ignore
+    @Test
     public void testCalculateFinalPriceWithOneDayDelay() {
         Calendar realDropOffDate = Calendar.getInstance();
         realDropOffDate.add(Calendar.DAY_OF_YEAR, 2);
@@ -306,13 +305,33 @@ public class BookingTest {
         assertEquals(260, result, 0.001);
     }
 
-    @Test @Ignore
+    @Test
     public void testCalculateFinalPriceWithTwoDaysDelay() {
         Calendar realDropOffDate = Calendar.getInstance();
         realDropOffDate.add(Calendar.DAY_OF_YEAR, 3);
         booking.setRealDropOffDate(realDropOffDate);
         double result = booking.calculateFinalPrice();
         assertEquals(320, result, 0.001);
+    }
+
+    @Test
+    public void testCalculateFinalPriceWithDaysInDifferentYears() {
+        Calendar pickUpDate = Calendar.getInstance();
+        pickUpDate.set(Calendar.DAY_OF_YEAR, 363);
+
+        Calendar dropOffDate = Calendar.getInstance();
+        dropOffDate.set(Calendar.DAY_OF_YEAR, 364);
+
+        booking.setDropOffDate(dropOffDate);
+        booking.setPickUpDate(pickUpDate);
+
+        Calendar realDropOffDate = Calendar.getInstance();
+        realDropOffDate.add(Calendar.YEAR, 1);
+        realDropOffDate.set(Calendar.DAY_OF_YEAR, 2);
+
+        booking.setRealDropOffDate(realDropOffDate);
+        double result = booking.calculateFinalPrice();
+        assertEquals(380, result, 0.001);
     }
 
     @Test

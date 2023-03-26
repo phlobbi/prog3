@@ -6,7 +6,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -22,43 +25,6 @@
          </children>
       </HBox>
    </bottom>
-   <center>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <VBox prefHeight="294.0" prefWidth="170.0" spacing="28.0">
-               <children>
-                  <Label fx:id="labelPickUpDate" text="Abholdatum" />
-                  <Label fx:id="labelDropOffDate" text="Rückgabedatum" />
-                  <Label fx:id="labelChosenCar" text="Ausgewähltes Auto" />
-                  <Label fx:id="labelChosenCustomer" text="Ausgewählter Kunde" />
-               </children>
-               <padding>
-                  <Insets bottom="20.0" left="20.0" top="25.0" />
-               </padding>
-            </VBox>
-            <VBox prefHeight="300.0" prefWidth="207.0" spacing="20.0">
-               <padding>
-                  <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
-               </padding>
-               <children>
-                  <DatePicker fx:id="datePickerPickUpDate" prefWidth="187.0" />
-                  <DatePicker fx:id="datePickerDropOffDate" prefWidth="187.0" />
-                  <TextField fx:id="textFieldChosenCar" editable="false" prefWidth="187.0" />
-                  <TextField fx:id="textFieldChosenCustomer" editable="false" prefWidth="187.0" />
-               </children>
-            </VBox>
-            <VBox prefHeight="421.0" prefWidth="135.0" spacing="20.0">
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="110.0" />
-               </padding>
-               <children>
-                  <Button fx:id="btnChooseCar" mnemonicParsing="false" onAction="#chooseCar" prefHeight="25.0" prefWidth="90.0" text="Auswählen" />
-                  <Button fx:id="btnChooseCustomer" mnemonicParsing="false" onAction="#chooseCustomer" prefHeight="25.0" prefWidth="90.0" text="Auswählen" />
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-   </center>
    <left>
       <VBox prefHeight="461.0" prefWidth="57.0" BorderPane.alignment="CENTER" />
    </left>
@@ -76,4 +42,72 @@
          </padding>
       </HBox>
    </top>
+   <center>
+      <GridPane hgap="20.0" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.0" minWidth="10.0" prefWidth="132.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="276.0" minWidth="10.0" prefWidth="221.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="287.0" minWidth="10.0" prefWidth="266.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="labelChosenCar" text="Ausgewähltes Auto" />
+            <Label fx:id="labelChosenCustomer" text="Ausgewählter Kunde" GridPane.rowIndex="1" />
+            <Label fx:id="labelPickUpDate" text="Abholdatum" GridPane.rowIndex="2" />
+            <Label fx:id="labelDropOffDate" text="Rückgabedatum" GridPane.rowIndex="3" />
+            <DatePicker fx:id="datePickerPickUpDate" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <DatePicker fx:id="datePickerDropOffDate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="textFieldChosenCustomer" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="textFieldChosenCar" editable="false" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <Button fx:id="btnChooseCar" mnemonicParsing="false" onAction="#chooseCar" prefHeight="25.0" prefWidth="90.0" text="Auswählen" GridPane.columnIndex="2" />
+            <Button fx:id="btnChooseCustomer" mnemonicParsing="false" onAction="#chooseCustomer" prefHeight="25.0" prefWidth="90.0" text="Auswählen" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField fx:id="textFieldPickUpHour" prefHeight="25.0" prefWidth="90.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets right="210.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="textFieldPickUpMinute" prefHeight="25.0" prefWidth="90.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="50.0" right="160.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text=":" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="44.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="textFieldDropOffHour" prefHeight="25.0" prefWidth="90.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets right="210.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="textFieldDropOffMinute" prefHeight="25.0" prefWidth="90.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="50.0" right="160.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text=":" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="44.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </GridPane>
+   </center>
 </BorderPane>
