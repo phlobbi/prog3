@@ -196,7 +196,7 @@ public class BookingManagementController implements Initializable {
     @FXML
     void switchToSceneReturnCar(ActionEvent event) throws IOException {
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
-        Parent root = FXMLLoader.load(App.class.getResource("fxml/ReturnCar.fxml"));
+        Parent root = FXMLLoader.load(App.class.getResource("fxml/Booking-car-return-view.fxml"));
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         //Die Actionevent von anderen Fenster sind blockiert.
