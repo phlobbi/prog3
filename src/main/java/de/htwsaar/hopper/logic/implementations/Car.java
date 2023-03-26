@@ -70,14 +70,17 @@ public class Car implements CarInterface {
 
     @Basic
     @Column(name = "TransmissionType")
+    @Enumerated(EnumType.STRING)
     private TransmissionTypeEnum transmissionType;
 
     @Basic
     @Column(name = "FuelType")
+    @Enumerated(EnumType.STRING)
     private FuelTypeEnum fuelType;
 
     @Basic
     @Column(name = "SatNav")
+    @Enumerated(EnumType.STRING)
     private SatNavEnum satNav;
 
     @Basic
