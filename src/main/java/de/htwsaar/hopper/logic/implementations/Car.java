@@ -240,28 +240,26 @@ public class Car implements CarInterface {
     }
 
     @Override
-    public void setHorsepower(int horsepower) {
-        this.horsepower = horsepower;
-    }
+    public void setHorsepower(int horsepower) { this.horsepower = CarValidation.validateHorsepower(horsepower); }
 
     @Override
     public void setTransmissionType(TransmissionTypeEnum transmissionType) {
-        this.transmissionType = transmissionType;
+        this.transmissionType = CarValidation.validateTransmissionType(transmissionType);
     }
 
     @Override
     public void setFuelType(FuelTypeEnum fuelType) {
-        this.fuelType = fuelType;
+        this.fuelType = CarValidation.validateFuelType(fuelType);
     }
 
     @Override
     public void setSatNav(SatNavEnum satNav) {
-        this.satNav = satNav;
+        this.satNav = CarValidation.validateSatNav(satNav);
     }
 
     @Override
     public void setMileage(int mileage) {
-        this.mileage = mileage;
+        this.mileage = CarValidation.validateMileage(mileage);
     }
 
     @Override
