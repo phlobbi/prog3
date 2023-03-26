@@ -123,7 +123,7 @@ public class CarValidation extends Validation {
     /**
      * Prüft, ob der übergebene Typ gültig ist.
      * Da es um eine Enum geht, wird hier nur geprüft, ob der übergebene Typ null ist.
-     * @param type Zu prüfender Typ
+     * @param naviAvailability Zu prüfender Typ
      * @return Typ, falls gültig
      * @throws IllegalArgumentException Falls der Typ null ist
      */
