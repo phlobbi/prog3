@@ -45,7 +45,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                        <Button fx:id="btnRemove" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="79.0" prefWidth="114.0" text="loeschen">
+                        <Button fx:id="btnRemove" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#deleteCustomer" prefHeight="79.0" prefWidth="114.0" text="loeschen">
                      <graphic>
                         <ImageView fitHeight="45.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
                            <image>

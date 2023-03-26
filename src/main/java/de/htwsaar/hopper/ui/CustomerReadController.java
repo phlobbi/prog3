@@ -4,9 +4,14 @@ import de.htwsaar.hopper.logic.implementations.Customer;
 import de.htwsaar.hopper.repositories.CustomerRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -54,7 +59,43 @@ public final class CustomerReadController implements Initializable {
 
     @FXML
     void updateCustomer(ActionEvent event) {
+        Stage stage;
+        try {
+            Customer selectedCustomer = CustomerManagementController.getSelectedCustomer();
+            CustomerManagementController.setSelectedCustomer(selectedCustomer);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Customer-edit-view.fxml"));
+            Parent root1 = fxmlLoader.load();
+            stage = new Stage();
+            stage.setScene(new Scene(root1));
+            disableWindow();
+            stage.showAndWait();
+        } catch(Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            alert.showAndWait();
+        }
+        enableWindow();
+        reloadTable();
+    }
 
+    @FXML
+    void deleteCustomer(ActionEvent event) throws IOException {
+        Customer selectedCustomer = CustomerManagementController.getSelectedCustomer();
+        CustomerManagementController.setSelectedCustomer(selectedCustomer);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wollen Sie den Kunden wirklich löschen?");
+        alert.setHeaderText("Kunde wirklich löschen?");
+        alert.setContentText("Kunde: " + selectedCustomer.getCustomerId() + " " + selectedCustomer.getFirstName() + " " + selectedCustomer.getLastName());
+        alert.showAndWait();
+        if (alert.getResult().getText().equals("OK")) {
+            CustomerRepository.delete(selectedCustomer);
+            reloadTable();
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Kunde wurde gelöscht.");
+            alert2.show();
+        } else {
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Kunde wurde nicht gelöscht.");
+            alert2.show();
+            alert.close();
+        }
+        App.setRoot("fxml/Customer-management-view.fxml");
     }
 
 
@@ -64,7 +105,10 @@ public final class CustomerReadController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        reloadTable();
+    }
 
+    private void reloadTable() {
         Customer customer = CustomerManagementController.getSelectedCustomer();
         labelSurname.setText(String.valueOf(customer.getFirstName()));
         labelName.setText(String.valueOf(customer.getLastName()));
@@ -79,5 +123,28 @@ public final class CustomerReadController implements Initializable {
         String formattedDate = sdf.format(date);
         labelDriverLicenseExpirationDate.setText(formattedDate);
         labelIBAN.setText(String.valueOf(customer.getIBAN()));
+    }
+
+    void disableWindow(){
+        btnRemove.setDisable(true);
+        btnUpdate.setDisable(true);
+        btnGoBack.setDisable(true);
+
+        Stage primaryStage = (Stage) btnUpdate.getScene().getWindow();
+        primaryStage.onCloseRequestProperty().set(e -> {
+            e.consume();
+        });
+    }
+
+    void enableWindow(){
+        btnRemove.setDisable(false);
+        btnUpdate.setDisable(false);
+        btnGoBack.setDisable(false);
+
+        // Roten Kreuz Button wieder aktivieren
+        Stage primaryStage = (Stage) btnUpdate.getScene().getWindow();
+        primaryStage.onCloseRequestProperty().set(e -> {
+            primaryStage.close();
+        });
     }
 }
