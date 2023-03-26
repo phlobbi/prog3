@@ -41,9 +41,9 @@
                <items>
                   <CheckMenuItem fx:id="filterCustomer" mnemonicParsing="false" text="Kunde" />
                   <CheckMenuItem fx:id="filterCar" mnemonicParsing="false" text="Auto" />
-                  <CheckMenuItem fx:id="filterPickUpDate" mnemonicParsing="false" text="PickUpDate" />
-                  <CheckMenuItem fx:id="filterDropOffDate" mnemonicParsing="false" text="DropOffDate" />
-                  <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckFilters" text="menuItemUncheck" />
+                  <CheckMenuItem fx:id="filterPickUpDate" mnemonicParsing="false" text="Abholdatum" />
+                  <CheckMenuItem fx:id="filterDropOffDate" mnemonicParsing="false" text="Rückgabedatum" />
+                  <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckFilters" text="Filter zurücksetzen" />
                </items>
             </MenuButton>
             <Button fx:id="btnResetSearch" mnemonicParsing="false" onAction="#resetSearch" prefHeight="25.0" prefWidth="125.0" text="Zurücksetzen" />
@@ -53,13 +53,13 @@
    <center>
       <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="bookingIDColumn" prefWidth="87.0" text="BookingID" />
-          <TableColumn fx:id="customerColumn" prefWidth="225.0" text="Customer" />
-            <TableColumn fx:id="carColumn" prefWidth="200.0" text="Car" />
-            <TableColumn fx:id="pickUpDateColumn" prefWidth="155.0" text="PickUpDate + Time" />
-            <TableColumn fx:id="dropOffDateColumn" prefWidth="155.0" text="DropOffDate + Time" />
-            <TableColumn fx:id="realDropOffDateColumn" prefWidth="155.0" text="RealDropOff + Time" />
-            <TableColumn fx:id="checklistColumn" prefWidth="173.0" text="Checklist?" />
+          <TableColumn fx:id="bookingIDColumn" prefWidth="87.0" text="BuchungsID" />
+          <TableColumn fx:id="customerColumn" prefWidth="225.0" text="Kunde" />
+            <TableColumn fx:id="carColumn" prefWidth="200.0" text="Auto" />
+            <TableColumn fx:id="pickUpDateColumn" prefWidth="155.0" text="Abholdatum" />
+            <TableColumn fx:id="dropOffDateColumn" prefWidth="155.0" text="Rückgabedatum" />
+            <TableColumn fx:id="realDropOffDateColumn" prefWidth="155.0" text="Reales Rückgabedatum" />
+            <TableColumn fx:id="checklistColumn" prefWidth="173.0" text="Checkliste?" />
         </columns>
       </TableView>
    </center>

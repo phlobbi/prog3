@@ -2,7 +2,6 @@ package de.htwsaar.hopper.ui;
 
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.repositories.BookingRepository;
-import de.htwsaar.hopper.ui.App;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,9 +19,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class BookingManagementController implements Initializable {
@@ -105,6 +102,11 @@ public class BookingManagementController implements Initializable {
     @FXML
     private TextField textFieldSearch;
 
+    private static final int STATUS_ACTIVE = 1;
+    private static final int STATUS_DONE = 2;
+    private static final int STATUS_ALL = 3;
+
+    private static int tableViewStatus;
     private static Booking selectedBooking;
 
     public static Booking getSelectedBooking() {
@@ -115,29 +117,145 @@ public class BookingManagementController implements Initializable {
         BookingManagementController.selectedBooking = seletedBooking;
     }
 
+    /**
+     * Suche zurücksetzen
+     * @param event Event
+     */
     @FXML
     void resetSearch(ActionEvent event) {
-
+        uncheckFilters(new ActionEvent());
+        textFieldSearch.setText("");
+        reloadTable();
     }
 
     @FXML
     void searchBookings(ActionEvent event) {
+        try {
+            String searchCriteria = textFieldSearch.getText();
+            if(searchCriteria.trim().isEmpty())
+                throw new IllegalArgumentException("Kein Suchkriterium eingegeben");
+
+
+            ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
+            checkMenuItems = getAllSelectedCriteria();
+            if (checkMenuItems.isEmpty())
+                throw new IllegalArgumentException("Kein Filter ausgewählt");
+
+            ObservableList<Booking> currentItems = FXCollections.observableArrayList();
+            switch(tableViewStatus){
+                case STATUS_ACTIVE:
+                    currentItems.addAll(BookingRepository.findUncompleted());
+                    break;
+                case STATUS_DONE:
+                    currentItems.addAll(BookingRepository.findCompleted());
+                    break;
+                case STATUS_ALL:
+                    currentItems.addAll(BookingRepository.findAll());
+                    break;
+            }
+
+            ObservableList<Booking> itemsAfterSearch = FXCollections.observableArrayList();
+
+            for (Booking booking : currentItems){
+                for (CheckMenuItem item : checkMenuItems){
+                    boolean allowedToInsert = false;
+                    if (item.equals(filterCustomer)){
+                        if (booking.getCustomerShowField().toLowerCase().contains(searchCriteria.toLowerCase())){
+                            allowedToInsert = true;
+                        }
+                    } else if (item.equals(filterCar)){
+                        if (booking.getCarShowField().toLowerCase().contains(searchCriteria.toLowerCase())){
+                            allowedToInsert = true;
+                        }
+                    } else if (item.equals(filterPickUpDate)){
+                        if (booking.getPickUpDateShowField().contains(searchCriteria)){
+                            allowedToInsert = true;
+                        }
+                    } else if (item.equals(filterDropOffDate)) {
+                        if (booking.getDropOffDateShowField().contains(searchCriteria)) {
+                            allowedToInsert = true;
+                        }
+                    }
+                    if (!IsBookingAlreadyInTable(booking)){
+                        if (allowedToInsert)
+                            itemsAfterSearch.add(booking);
+                    }
+                }
+            }
+
+            if(itemsAfterSearch.isEmpty())
+                throw new IllegalArgumentException("Keine Buchungen gefunden");
+
+            tableView.setItems(itemsAfterSearch);
+
+        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fehler");
+            alert.setHeaderText("Fehler bei der Suche");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
 
     }
 
     @FXML
     void searchBookingsViaEnter(KeyEvent event) {
-
+        if (event.getCode().toString().equals("ENTER")) {
+            searchBookings(new ActionEvent());
+        }
     }
 
+
+    /**
+     * Zeigt alle aktiven Buchungen an
+     * @param event Event
+     */
     @FXML
     void showActiveBookings(ActionEvent event) {
+        tableView.getItems().clear();
+        menuButtonShowBookings.setText("Aktive");
+
+        ObservableList<Booking> list = FXCollections.observableArrayList();
+        list.addAll(BookingRepository.findUncompleted());
+        tableView.setItems(list);
+        if (list.isEmpty()) {
+            btnReturnCar.setDisable(true);
+        } else {
+            btnReturnCar.setDisable(false);
+            tableView.getSelectionModel().selectFirst();
+        }
+        tableViewStatus = STATUS_ACTIVE;
 
     }
 
+    /**
+     * Zeigt alle Buchungen an, die bereits zurückgegeben wurden
+     * @param event
+     */
+    @FXML
+    void showDoneBookings(ActionEvent event) {
+        tableView.getItems().clear();
+        menuButtonShowBookings.setText("Erledigte");
+
+        ObservableList<Booking> list = FXCollections.observableArrayList();
+        list.addAll(BookingRepository.findCompleted());
+        tableView.setItems(list);
+
+        btnReturnCar.setDisable(true);
+        tableView.getSelectionModel().selectFirst();
+        tableViewStatus = STATUS_DONE;
+
+    }
+
+
+    /**
+     * Zeigt alle Buchungen an
+     * @param event Event
+     */
     @FXML
     void showAllBookings(ActionEvent event) {
         tableView.getItems().clear();
+        menuButtonShowBookings.setText("Alle");
 
         ObservableList<Booking> list = FXCollections.observableArrayList();
         list.addAll(BookingRepository.findAll());
@@ -145,12 +263,10 @@ public class BookingManagementController implements Initializable {
         if (list.isEmpty()) {
             btnReturnCar.setDisable(true);
         } else {
+            btnReturnCar.setDisable(false);
             tableView.getSelectionModel().selectFirst();
         }
-    }
-
-    @FXML
-    void showDoneBookings(ActionEvent event) {
+        tableViewStatus = STATUS_ALL;
 
     }
 
@@ -179,7 +295,7 @@ public class BookingManagementController implements Initializable {
             alert.showAndWait();
         }
         enableWindow();
-        showAllBookings(new ActionEvent());
+        reloadTable();
     }
 
     @FXML
@@ -203,11 +319,16 @@ public class BookingManagementController implements Initializable {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();
+        reloadTable();
     }
+
 
     @FXML
     void uncheckFilters(ActionEvent event) {
-
+        filterCustomer.setSelected(false);
+        filterCar.setSelected(false);
+        filterPickUpDate.setSelected(false);
+        filterDropOffDate.setSelected(false);
     }
 
     void disableWindow() {
@@ -245,6 +366,23 @@ public class BookingManagementController implements Initializable {
         });
     }
 
+    private ObservableList<CheckMenuItem> getAllSelectedCriteria(){
+        ObservableList<CheckMenuItem> items = FXCollections.observableArrayList();
+        if (filterCustomer.isSelected())
+            items.add(filterCustomer);
+        if (filterCar.isSelected())
+            items.add(filterCar);
+        if (filterPickUpDate.isSelected())
+            items.add(filterPickUpDate);
+        if (filterDropOffDate.isSelected())
+            items.add(filterDropOffDate);
+        return items;
+    }
+
+    private boolean IsBookingAlreadyInTable(Booking booking){
+        return tableView.getItems().contains(booking);
+    }
+
     private void configureTableView(){
         bookingIDColumn.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
         customerColumn.setCellValueFactory(new PropertyValueFactory<>("customerShowField"));
@@ -259,13 +397,26 @@ public class BookingManagementController implements Initializable {
 
         tableView.getColumns().clear();
         tableView.getColumns().addAll(bookingIDColumn, customerColumn, carColumn, pickUpDateColumn, dropOffDateColumn, realDropOffDateColumn, checklistColumn);
+    }
 
-
+    private void reloadTable(){
+        switch (tableViewStatus) {
+            case STATUS_ACTIVE:
+                showActiveBookings(new ActionEvent());
+                break;
+            case STATUS_DONE:
+                showDoneBookings(new ActionEvent());
+                break;
+            case STATUS_ALL:
+                showAllBookings(new ActionEvent());
+                break;
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        tableViewStatus = STATUS_ACTIVE;
         configureTableView();
-        showAllBookings(new ActionEvent());
+        reloadTable();
     }
 }
