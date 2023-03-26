@@ -91,12 +91,12 @@ public final class CustomerReadController implements Initializable {
             reloadTable();
             Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Kunde wurde gelöscht.");
             alert2.show();
+            App.setRoot("fxml/Customer-management-view.fxml");
         } else {
             Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Kunde wurde nicht gelöscht.");
             alert2.show();
             alert.close();
         }
-        App.setRoot("fxml/Customer-management-view.fxml");
     }
 
 
