@@ -17,8 +17,8 @@
     <bottom>
         <HBox alignment="CENTER_LEFT" prefHeight="93.0" prefWidth="1000.0" spacing="20.0" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="btnSave" mnemonicParsing="false" onAction="#createCustomer" prefHeight="25.0" prefWidth="90.0" text="Speichern" />
-                <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelCreation" prefHeight="25.0" prefWidth="90.0" text="Abbrechen" />
+                <Button fx:id="btnSave" mnemonicParsing="false" onAction="#createCustomer" prefHeight="25.0" prefWidth="90.0" text="%MENU_SAVE" />
+                <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelCreation" prefHeight="25.0" prefWidth="90.0" text="%MENU_CANCEL" />
             </children>
             <padding>
                 <Insets bottom="20.0" left="20.0" top="20.0" />
@@ -30,7 +30,7 @@
                 <Insets left="20.0" top="20.0" />
             </padding>
             <children>
-                <Label contentDisplay="CENTER" prefHeight="26.0" prefWidth="614.0" text="Legen Sie die notwendigen Informationen für den neuen Kunden an." textFill="WHITE" underline="true">
+                <Label contentDisplay="CENTER" prefHeight="26.0" prefWidth="614.0" text="%CUSTOMER_NECESSARY_INFORMATIONS" textFill="WHITE" underline="true">
                     <font>
                         <Font size="20.0" />
                     </font>
@@ -64,16 +64,16 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                                    <Label fx:id="labelDLExpirationDate" prefHeight="18.0" prefWidth="150.0" text="Fuehrerschein-Ablaufdatum" textFill="WHITE" GridPane.rowIndex="9" />
-                                    <Label fx:id="labelFirstName" text="Vorname" textFill="WHITE" />
-                                    <Label fx:id="labelLastName" text="Nachname" textFill="WHITE" GridPane.rowIndex="1" />
-                                    <Label fx:id="labelPhoneNumber" text="Telefonnummer" textFill="WHITE" GridPane.rowIndex="2" />
-                              <Label fx:id="labelEmail" text="E-Mail" textFill="WHITE" GridPane.rowIndex="3" />
-                              <Label fx:id="labelIBAN" text="IBAN" textFill="WHITE" GridPane.rowIndex="4" />
-                                    <Label fx:id="labelAdressHouseNumber" text="Adresse, Hausnummer" textFill="WHITE" GridPane.rowIndex="5" />
-                                    <Label fx:id="labelZipCode" text="Postleitzahl" textFill="WHITE" GridPane.rowIndex="6" />
-                                    <Label fx:id="labelCity" text="Ort" textFill="WHITE" GridPane.rowIndex="7" />
-                                    <Label fx:id="labelDLNumber" text="Fuehrerscheinnummer" textFill="WHITE" GridPane.rowIndex="8" />
+                                    <Label fx:id="labelDLExpirationDate" prefHeight="18.0" prefWidth="150.0" text="%CUSTOMER_DRIVER_LICENSE_EXPIRATION_DATE" textFill="WHITE" GridPane.rowIndex="9" />
+                                    <Label fx:id="labelFirstName" text="%CUSTOMER_FIRSTNAME" textFill="WHITE" />
+                                    <Label fx:id="labelLastName" text="%CUSTOMER_LASTNAME" textFill="WHITE" GridPane.rowIndex="1" />
+                                    <Label fx:id="labelPhoneNumber" text="%CUSTOMER_TELEPHONE" textFill="WHITE" GridPane.rowIndex="2" />
+                              <Label fx:id="labelEmail" text="%CUSTOMER_EMAIL" textFill="WHITE" GridPane.rowIndex="3" />
+                              <Label fx:id="labelIBAN" text="%CUSTOMER_IBAN" textFill="WHITE" GridPane.rowIndex="4" />
+                                    <Label fx:id="labelAdressHouseNumber" text="%CUSTOMER_ADDRESS_HOUSENUMBER" textFill="WHITE" GridPane.rowIndex="5" />
+                                    <Label fx:id="labelZipCode" text="%CUSTOMER_ZIPCODE" textFill="WHITE" GridPane.rowIndex="6" />
+                                    <Label fx:id="labelCity" text="%CUSTOMER_CITY" textFill="WHITE" GridPane.rowIndex="7" />
+                                    <Label fx:id="labelDLNumber" text="%CUSTOMER_DRIVER_LICENSE_NUMBER" textFill="WHITE" GridPane.rowIndex="8" />
                               <TextField fx:id="textFieldStreetNumber" alignment="CENTER" prefHeight="0.0" prefWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                  <GridPane.margin>
                                     <Insets left="50.0" right="80.0" />
