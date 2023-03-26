@@ -21,7 +21,7 @@ public final class App extends Application {
 			URL url = App.class.getResource("fxml/first-view.fxml");
 		if (url != null) {
 			root = FXMLLoader.load(url);
-			scene = new Scene(root,1000,600);
+			scene = new Scene(root,1366,768);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} else {

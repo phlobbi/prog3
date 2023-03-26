@@ -2,6 +2,7 @@ package de.htwsaar.hopper.ui;
 
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.repositories.BookingRepository;
+import de.htwsaar.hopper.ui.App;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,20 +11,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
-
-public final class BookingManagementController implements Initializable {
+public class BookingManagementController implements Initializable {
 
     @FXML
     private Button btnBookCar;
@@ -32,18 +34,76 @@ public final class BookingManagementController implements Initializable {
     private Button btnGoBack;
 
     @FXML
+    private Button btnReadBooking;
+
+    @FXML
+    private Button btnResetSearch;
+
+    @FXML
     private Button btnReturnCar;
 
     @FXML
+    private Button btnSearch;
+
+    @FXML
     private TableView<Booking> tableView;
-    @FXML
-    private TableColumn<Booking, String> carIdColumn;
 
     @FXML
-    private TableColumn<Booking, Integer> bookingIdColumn;
+    private TableColumn<Booking, Integer> bookingIDColumn;
 
     @FXML
-    private TableColumn<Booking, String> customerIdColumn;
+    private TableColumn<Booking, String> customerColumn;
+
+    @FXML
+    private TableColumn<Booking, String> carColumn;
+
+    @FXML
+    private TableColumn<Booking, String> pickUpDateColumn;
+
+    @FXML
+    private TableColumn<Booking, String> dropOffDateColumn;
+
+    @FXML
+    private TableColumn<Booking, String> realDropOffDateColumn;
+
+    @FXML
+    private TableColumn<Booking, String> checklistColumn;
+
+    @FXML
+    private CheckMenuItem filterCar;
+
+    @FXML
+    private CheckMenuItem filterCustomer;
+
+    @FXML
+    private CheckMenuItem filterDropOffDate;
+
+    @FXML
+    private CheckMenuItem filterPickUpDate;
+
+    @FXML
+    private MenuButton menuButtonFilter;
+
+    @FXML
+    private MenuButton menuButtonShowBookings;
+
+    @FXML
+    private MenuItem menuItemShowActive;
+
+    @FXML
+    private MenuItem menuItemShowAll;
+
+    @FXML
+    private MenuItem menuItemShowDone;
+
+    @FXML
+    private MenuItem menuItemUncheck;
+
+    @FXML
+    private BorderPane root;
+
+    @FXML
+    private TextField textFieldSearch;
 
     private static Booking selectedBooking;
 
@@ -55,6 +115,45 @@ public final class BookingManagementController implements Initializable {
         BookingManagementController.selectedBooking = seletedBooking;
     }
 
+    @FXML
+    void resetSearch(ActionEvent event) {
+
+    }
+
+    @FXML
+    void searchBookings(ActionEvent event) {
+
+    }
+
+    @FXML
+    void searchBookingsViaEnter(KeyEvent event) {
+
+    }
+
+    @FXML
+    void showActiveBookings(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showAllBookings(ActionEvent event) {
+        tableView.getItems().clear();
+
+        ObservableList<Booking> list = FXCollections.observableArrayList();
+        list.addAll(BookingRepository.findAll());
+        tableView.setItems(list);
+        if (list.isEmpty()) {
+            btnReturnCar.setDisable(true);
+        } else {
+            tableView.getSelectionModel().selectFirst();
+        }
+    }
+
+    @FXML
+    void showDoneBookings(ActionEvent event) {
+
+    }
+
     /**
      * Wechselt bei Aufruf auf die Startseite zurück.
      *
@@ -63,6 +162,29 @@ public final class BookingManagementController implements Initializable {
     @FXML
     void switchToFirstView(ActionEvent event) throws IOException {
         App.setRoot("fxml/first-view.fxml");
+    }
+
+    @FXML
+    void switchToSceneNewBooking(ActionEvent event) {
+        Stage stage;
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Booking-creation-view.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            stage = new Stage();
+            stage.setScene(new Scene(root1));
+            disableWindow();
+            stage.showAndWait();
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            alert.showAndWait();
+        }
+        enableWindow();
+        showAllBookings(new ActionEvent());
+    }
+
+    @FXML
+    void switchToSceneReadBooking(ActionEvent event) {
+
     }
 
     /**
@@ -84,27 +206,20 @@ public final class BookingManagementController implements Initializable {
     }
 
     @FXML
-    void switchToSceneCarBooking(ActionEvent event) {
-        Stage stage;
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Booking-creation-view.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            stage = new Stage();
-            stage.setScene(new Scene(root1));
-            disableWindow();
-            stage.showAndWait();
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
-            alert.showAndWait();
-        }
-        enableWindow();
-        showBookingList();
+    void uncheckFilters(ActionEvent event) {
+
     }
 
     void disableWindow() {
         btnBookCar.setDisable(true);
         btnReturnCar.setDisable(true);
         btnGoBack.setDisable(true);
+        btnReadBooking.setDisable(true);
+        btnSearch.setDisable(true);
+        btnResetSearch.setDisable(true);
+        menuButtonFilter.setDisable(true);
+        menuButtonShowBookings.setDisable(true);
+        textFieldSearch.setDisable(true);
 
         Stage primaryStage = (Stage) btnBookCar.getScene().getWindow();
         primaryStage.onCloseRequestProperty().set(e -> {
@@ -116,6 +231,12 @@ public final class BookingManagementController implements Initializable {
         btnBookCar.setDisable(false);
         btnReturnCar.setDisable(false);
         btnGoBack.setDisable(false);
+        btnReadBooking.setDisable(false);
+        btnSearch.setDisable(false);
+        btnResetSearch.setDisable(false);
+        menuButtonFilter.setDisable(false);
+        menuButtonShowBookings.setDisable(false);
+        textFieldSearch.setDisable(false);
 
         // Roten Kreuz Button wieder aktivieren
         Stage primaryStage = (Stage) btnBookCar.getScene().getWindow();
@@ -124,38 +245,27 @@ public final class BookingManagementController implements Initializable {
         });
     }
 
-    /**
-     * Mit der Methode showBookingList können Sie in der Tabelle ID der Buchung eines Autos,
-     * den Vor und Nachnamen der Person,die das Auto reserviert hat
-     * sowie die Marke des reservierten Autos anzeigen.
-     */
-    void showBookingList() {
-        tableView.getItems().clear();
+    private void configureTableView(){
+        bookingIDColumn.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
+        customerColumn.setCellValueFactory(new PropertyValueFactory<>("customerShowField"));
+        carColumn.setCellValueFactory(new PropertyValueFactory<>("carShowField"));
 
-        customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerShowField"));
-        bookingIdColumn.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
-        carIdColumn.setCellValueFactory(new PropertyValueFactory<>("carShowField"));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+
+        pickUpDateColumn.setCellValueFactory(new PropertyValueFactory<>("pickUpDateShowField"));
+        dropOffDateColumn.setCellValueFactory(new PropertyValueFactory<>("dropOffDateShowField"));
+        realDropOffDateColumn.setCellValueFactory(new PropertyValueFactory<>("realDropOffDateShowField"));
+        checklistColumn.setCellValueFactory(new PropertyValueFactory<>("checklist"));
 
         tableView.getColumns().clear();
-        tableView.getColumns().addAll(customerIdColumn, bookingIdColumn, carIdColumn);
+        tableView.getColumns().addAll(bookingIDColumn, customerColumn, carColumn, pickUpDateColumn, dropOffDateColumn, realDropOffDateColumn, checklistColumn);
 
-        ObservableList<Booking> list = FXCollections.observableArrayList();
-        list.addAll(BookingRepository.findAll());
-        tableView.setItems(list);
-        if (list.isEmpty()) {
-            btnReturnCar.setDisable(true);
-        } else {
-            tableView.getSelectionModel().selectFirst();
-        }
+
     }
 
-    /**
-     * @param location  Der Ort, an dem relative Pfade für das Root-Objekt aufgelöst werden, oder
-     *                  {@code null}, wenn der Speicherort nicht bekannt ist.
-     * @param resources Die Ressourcen, die zum Lokalisieren des Root-Objekts verwendet werden, oder {@code null}
-     */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        showBookingList();
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        configureTableView();
+        showAllBookings(new ActionEvent());
     }
 }

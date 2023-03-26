@@ -99,6 +99,33 @@ public class Booking implements BookingInterface {
         return String.format("%s %s (ID: %d)",car.getBrand(),car.getModel(),car.getCarId());
     }
 
+    /**
+     * Gibt das PickUpDate als String zurück
+     * @return PickUpDate als String
+     */
+    @Override
+    public String getPickUpDateShowField() {
+        return Utils.calendarToString(this.pickUpDate);
+    }
+
+    /**
+     * Gibt das DropOffDate als String zurück
+     * @return DropOffDate als String
+     */
+    @Override
+    public String getDropOffDateShowField() {
+        return Utils.calendarToString(this.dropOffDate);
+    }
+
+    /**
+     * Gibt das RealDropOffDate als String zurück
+     * @return RealDropOffDate als String
+     */
+    @Override
+    public String getRealDropOffDateShowField() {
+        return Utils.calendarToString(this.realDropOffDate);
+    }
+
     /* GETTER */
     @Override
     public int getBookingId() {
