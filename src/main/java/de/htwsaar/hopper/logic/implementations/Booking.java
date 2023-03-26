@@ -197,7 +197,7 @@ public class Booking implements BookingInterface {
 
         if(!Utils.isSameDate(dropOffDate, realDropOffDate)) {
             int lateDays = Utils.calculateDaysBetween(dropOffDate, realDropOffDate);
-            return calculatedFinalPrice + (lateDays - 1) * newPreisPerDay;
+            return calculatedFinalPrice + lateDays * newPreisPerDay;
         }
         return calculatedFinalPrice;
     }

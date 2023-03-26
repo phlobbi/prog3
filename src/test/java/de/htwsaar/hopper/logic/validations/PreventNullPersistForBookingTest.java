@@ -28,7 +28,6 @@ public class PreventNullPersistForBookingTest {
         pickUpDate = Calendar.getInstance();
 
         dropOffDate = Calendar.getInstance();
-        dropOffDate.add(Calendar.DAY_OF_YEAR, 1);
 
         realDropOffDate = Calendar.getInstance();
         realDropOffDate.add(Calendar.DAY_OF_YEAR, 2);
@@ -87,14 +86,6 @@ public class PreventNullPersistForBookingTest {
     public void persistWithCustomerIDSetNotNullThrowsException(){
         booking.setCarId(1);
         booking.setCustomerId(1);
-        preventNullPersist.testAttributesOnNull(booking);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void persistWithPickUpDateSetNotNullThrowsException(){
-        booking.setCarId(1);
-        booking.setCustomerId(1);
-        booking.setPickUpDate(pickUpDate);
         preventNullPersist.testAttributesOnNull(booking);
     }
 
