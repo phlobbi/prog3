@@ -116,6 +116,11 @@ public class Car implements CarInterface {
         this.currentPrice = CarValidation.validateCurrentPrice(currentPrice);
         this.licensePlate = CarValidation.validateLicensePlate(licensePlate);
         this.model = CarValidation.validateString(model, "Das Automodell darf nicht leer sein.");
+        this.horsepower = CarValidation.validateHorsepower(horsepower);
+        this.transmissionType = CarValidation.validateTransmissionType(transmissionType);
+        this.fuelType = CarValidation.validateFuelType(fuelType);
+        this.satNav = CarValidation.validateSatNav(satNav);
+        this.mileage = CarValidation.validateMileage(mileage);
     }
 
     /* GETTER */
@@ -163,6 +168,21 @@ public class Car implements CarInterface {
     public String getModel() {
         return model;
     }
+    public int getHorsepower() {
+        return horsepower;
+    }
+    public TransmissionTypeEnum getTransmissionType() {
+        return transmissionType;
+    }
+    public FuelTypeEnum getFuelType() {
+        return fuelType;
+    }
+    public SatNavEnum getSatNav() {
+        return satNav;
+    }
+    public int getMileage() {
+        return mileage;
+    }
 
     /* SETTER */
     @Override
@@ -205,6 +225,25 @@ public class Car implements CarInterface {
         this.model = CarValidation.validateString(model,"Kein gültiges Modell!");
     }
 
+    public void setCarId(int carId) {
+        this.carId = carId;
+    }
+    public void setHorsepower(int horsepower) {
+        this.horsepower = horsepower;
+    }
+    public void setTransmissionType(TransmissionTypeEnum transmissionType) {
+        this.transmissionType = transmissionType;
+    }
+    public void setFuelType(FuelTypeEnum fuelType) {
+        this.fuelType = fuelType;
+    }
+    public void setSatNav(SatNavEnum satNav) {
+        this.satNav = satNav;
+    }
+    public void setMileage(int mileage) {
+        this.mileage = mileage;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
@@ -217,6 +256,11 @@ public class Car implements CarInterface {
                 ", currentPrice=" + currentPrice +
                 ", licensePlate='" + licensePlate + '\'' +
                 ", model='" + model + '\'' +
+                ", horsepower=" + horsepower +
+                ", transmissionType=" + transmissionType +
+                ", fuelType=" + fuelType +
+                ", satNav=" + satNav +
+                ", mileage=" + mileage +
                 '}';
     }
 

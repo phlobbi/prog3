@@ -117,9 +117,9 @@ public class CarEditController implements Initializable{
             creationDateCal.setTime(creationDate);
 
             Car car = CarManagementController.getSelectedCar();
-
+            /*
             Car temp = new Car(car.getType(), car.getBrand(), car.getCreationDate(), car.getSeats(),
-                    car.getBasePrice(), car.getCurrentPrice(), car.getLicensePlate(), car.getModel());
+                    car.getBasePrice(), car.getCurrentPrice(), car.getLicensePlate(), car.getModel());*/
 
 
             car.setBrand(brand);
@@ -130,7 +130,7 @@ public class CarEditController implements Initializable{
             car.setBasePrice(basePrice);
             car.setLicensePlate(licensePlate);
             car.setType(concreteType);
-            System.out.println(car.equals(temp));
+            /*System.out.println(car.equals(temp));
 
                 if (car.equals(temp)){
                 throw new IllegalArgumentException("Keine Änderungen vorgenommen");
@@ -140,7 +140,7 @@ public class CarEditController implements Initializable{
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Auto erfolgreich geandert!");
             alert.showAndWait();
             Stage stage = (Stage) btnSave.getScene().getWindow();
-            stage.close();
+            stage.close();*/
 
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
