@@ -10,6 +10,7 @@ import de.htwsaar.hopper.logic.validations.PreventNullPersistForCar;
 
 import javax.persistence.*;
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
  * Implementierung des CarInterface.
@@ -168,18 +169,28 @@ public class Car implements CarInterface {
     public String getModel() {
         return model;
     }
+
+    @Override
     public int getHorsepower() {
         return horsepower;
     }
+
+    @Override
     public TransmissionTypeEnum getTransmissionType() {
         return transmissionType;
     }
+
+    @Override
     public FuelTypeEnum getFuelType() {
         return fuelType;
     }
+
+    @Override
     public SatNavEnum getSatNav() {
         return satNav;
     }
+
+    @Override
     public int getMileage() {
         return mileage;
     }
@@ -225,21 +236,27 @@ public class Car implements CarInterface {
         this.model = CarValidation.validateString(model,"Kein gültiges Modell!");
     }
 
-    public void setCarId(int carId) {
-        this.carId = carId;
-    }
+    @Override
     public void setHorsepower(int horsepower) {
         this.horsepower = horsepower;
     }
+
+    @Override
     public void setTransmissionType(TransmissionTypeEnum transmissionType) {
         this.transmissionType = transmissionType;
     }
+
+    @Override
     public void setFuelType(FuelTypeEnum fuelType) {
         this.fuelType = fuelType;
     }
+
+    @Override
     public void setSatNav(SatNavEnum satNav) {
         this.satNav = satNav;
     }
+
+    @Override
     public void setMileage(int mileage) {
         this.mileage = mileage;
     }
@@ -268,35 +285,27 @@ public class Car implements CarInterface {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Car car = (Car) o;
-
-        //if (getCarId() != car.getCarId()) return false;
-        if (getSeats() != car.getSeats()) return false;
-        if (Double.compare(car.getBasePrice(), getBasePrice()) != 0) return false;
-        if (Double.compare(car.getCurrentPrice(), getCurrentPrice()) != 0) return false;
-        if (getType() != car.getType()) return false;
-        if (!getBrand().equals(car.getBrand())) return false;
-        if (!getCreationDate().equals(car.getCreationDate())) return false;
-        if (!getLicensePlate().equals(car.getLicensePlate())) return false;
-        return getModel().equals(car.getModel());
+        return seats == car.seats
+                && Double.compare(car.basePrice, basePrice) == 0
+                && Double.compare(car.currentPrice, currentPrice) == 0
+                && horsepower == car.horsepower
+                && mileage == car.mileage
+                && type == car.type
+                && Objects.equals(brand, car.brand)
+                && Objects.equals(creationDate, car.creationDate)
+                && Objects.equals(licensePlate, car.licensePlate)
+                && Objects.equals(model, car.model)
+                && transmissionType == car.transmissionType
+                && fuelType == car.fuelType
+                && satNav == car.satNav;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = getCarId();
-        result = 31 * result + getType().hashCode();
-        result = 31 * result + getBrand().hashCode();
-        result = 31 * result + getCreationDate().hashCode();
-        result = 31 * result + getSeats();
-        temp = Double.doubleToLongBits(getBasePrice());
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(getCurrentPrice());
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + getLicensePlate().hashCode();
-        result = 31 * result + getModel().hashCode();
-        return result;
+        return Objects.hash(type, brand, creationDate,
+                seats, basePrice, currentPrice,
+                licensePlate, model, horsepower,
+                transmissionType, fuelType, satNav, mileage);
     }
 }
