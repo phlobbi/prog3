@@ -18,9 +18,9 @@
    <top>
       <HBox alignment="CENTER" prefHeight="56.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="35.0" prefWidth="180.0" text="Autoverwaltung" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="654.0" text="Autoverwaltung" textFill="WHITE">
                <font>
-                  <Font size="24.0" />
+                  <Font size="40.0" />
                </font></Label>
          </children>
       </HBox>
@@ -61,106 +61,86 @@
             </HBox>
             <HBox alignment="CENTER" stylesheets="@../css/firstview.css">
                <children>
-                  <Label prefHeight="31.0" prefWidth="119.0" text="Eigenschaft" textFill="WHITE">
+                  <Label prefHeight="30.0" prefWidth="162.0" text="Eigenschaften" textFill="WHITE" underline="true">
                      <font>
-                        <Font size="21.0" />
+                        <Font size="25.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="12.0" />
                      </HBox.margin></Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" stylesheets="@../css/readviewstyle.css">
+            <HBox alignment="CENTER" prefHeight="166.0" prefWidth="624.0" stylesheets="@../css/readviewstyle.css">
                <VBox.margin>
-                  <Insets right="150.0" />
+                  <Insets />
                </VBox.margin>
                <children>
-                  <GridPane alignment="CENTER_RIGHT">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="124.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="76.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                  <VBox alignment="CENTER" prefHeight="166.0" prefWidth="639.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Typ:" wrappingWidth="28.0">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Text>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kennzeichen:" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Text>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Marke:" GridPane.rowIndex="2" />
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Herstellungsdatum:" GridPane.rowIndex="4">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Text>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sitze:" GridPane.rowIndex="3">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Text>
-                        <Label fx:id="labelCarType" GridPane.columnIndex="1" />
-                        <Label fx:id="labelcarLicensePlate" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label fx:id="labelCarBrand" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label fx:id="labelCarSeats" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label fx:id="labelCarCreationDate" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <GridPane alignment="CENTER" hgap="50.0" prefHeight="166.0" prefWidth="703.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="124.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="180.0" prefWidth="76.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Typ:" wrappingWidth="28.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kennzeichen:" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Marke:" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Herstellungsdatum:" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sitze:" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                              <Label fx:id="labelCarType" textFill="WHITE" GridPane.columnIndex="1" />
+                              <Label fx:id="labelcarLicensePlate" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="labelCarBrand" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <Label fx:id="labelCarSeats" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <Label fx:id="labelCarCreationDate" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Grundpreis:" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tagespreis:" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Text>
+                              <Label fx:id="labelCarBasePrice" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <Label fx:id="labelCarCurrentPrise" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </GridPane>
                      </children>
-                  </GridPane>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="98.0">
-               <children>
-                  <Label prefHeight="17.0" prefWidth="77.0" text="Preise">
-                     <font>
-                        <Font size="19.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin></Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" stylesheets="@../css/readviewstyle.css">
-               <VBox.margin>
-                  <Insets right="150.0" />
-               </VBox.margin>
-               <children>
-                  <GridPane alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="180.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="124.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="85.0" minWidth="10.0" prefWidth="56.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Grundpreis:">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Text>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tagespreis:" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Text>
-                        <Label fx:id="labelCarBasePrice" GridPane.columnIndex="1" />
-                        <Label fx:id="labelCarCurrentPrise" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                     </children>
-                     <HBox.margin>
-                        <Insets right="15.0" />
-                     </HBox.margin>
-                  </GridPane>
+                  </VBox>
                </children>
             </HBox>
          </children>
