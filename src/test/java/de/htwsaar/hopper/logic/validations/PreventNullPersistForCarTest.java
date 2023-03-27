@@ -2,6 +2,9 @@ package de.htwsaar.hopper.logic.validations;
 
 import de.htwsaar.hopper.TestDBUtils;
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
+import de.htwsaar.hopper.logic.enums.FuelTypeEnum;
+import de.htwsaar.hopper.logic.enums.SatNavEnum;
+import de.htwsaar.hopper.logic.enums.TransmissionTypeEnum;
 import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.repositories.CarRepository;
 import org.junit.AfterClass;
@@ -105,8 +108,8 @@ public class PreventNullPersistForCarTest {
         preventNullPersist.testAttributesOnNull(car);
     }
 
-    @Test
-    public void persistWithModelNotNullThrowsNoException(){
+    @Test(expected = IllegalArgumentException.class)
+    public void persistWithModelNotNullThrowsException(){
         car.setType(CarTypeEnum.AUTO);
         car.setBrand("Infinity");
         car.setCreationDate(calendar);
@@ -118,18 +121,83 @@ public class PreventNullPersistForCarTest {
         preventNullPersist.testAttributesOnNull(car);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void persistWithHorsepowerSetShouldThrowException() {
+        car.setType(CarTypeEnum.AUTO);
+        car.setBrand("Infinity");
+        car.setCreationDate(calendar);
+        car.setSeats(7);
+        car.setBasePrice(500);
+        car.setCurrentPrice(450);
+        car.setLicensePlate("NT-RL-1791");
+        car.setModel("Lumina");
+        car.setHorsepower(100);
+        preventNullPersist.testAttributesOnNull(car);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void persistWithTransmissionTypeSetShouldThrowException() {
+        car.setType(CarTypeEnum.AUTO);
+        car.setBrand("Infinity");
+        car.setCreationDate(calendar);
+        car.setSeats(7);
+        car.setBasePrice(500);
+        car.setCurrentPrice(450);
+        car.setLicensePlate("NT-RL-1791");
+        car.setModel("Lumina");
+        car.setHorsepower(100);
+        car.setTransmissionType(TransmissionTypeEnum.AUTOMATIK);
+        preventNullPersist.testAttributesOnNull(car);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void persistWithFuelTypeSetShouldThrowException() {
+        car.setType(CarTypeEnum.AUTO);
+        car.setBrand("Infinity");
+        car.setCreationDate(calendar);
+        car.setSeats(7);
+        car.setBasePrice(500);
+        car.setCurrentPrice(450);
+        car.setLicensePlate("NT-RL-1791");
+        car.setModel("Lumina");
+        car.setHorsepower(100);
+        car.setTransmissionType(TransmissionTypeEnum.AUTOMATIK);
+        car.setFuelType(FuelTypeEnum.DIESEL);
+        preventNullPersist.testAttributesOnNull(car);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void persistWithSatNavSetShouldThrowException() {
+        car.setType(CarTypeEnum.AUTO);
+        car.setBrand("Infinity");
+        car.setCreationDate(calendar);
+        car.setSeats(7);
+        car.setBasePrice(500);
+        car.setCurrentPrice(450);
+        car.setLicensePlate("NT-RL-1791");
+        car.setModel("Lumina");
+        car.setHorsepower(100);
+        car.setFuelType(FuelTypeEnum.DIESEL);
+        car.setSatNav(SatNavEnum.JA);
+        preventNullPersist.testAttributesOnNull(car);
+    }
+
     @Test
     public void persistWithAllValuesCorrect(){
         car.setType(CarTypeEnum.AUTO);
         car.setBrand("Infinity");
         car.setCreationDate(calendar);
-        car.setSeats(10);
+        car.setSeats(7);
         car.setBasePrice(500);
         car.setCurrentPrice(450);
         car.setLicensePlate("NT-RL-1791");
-        car.setModel("Alpha");
+        car.setModel("Lumina");
+        car.setHorsepower(100);
+        car.setTransmissionType(TransmissionTypeEnum.AUTOMATIK);
+        car.setFuelType(FuelTypeEnum.DIESEL);
+        car.setSatNav(SatNavEnum.JA);
+        car.setMileage(1000);
         preventNullPersist.testAttributesOnNull(car);
         CarRepository.persist(car);
     }
-
 }

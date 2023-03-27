@@ -2,6 +2,9 @@ package de.htwsaar.hopper.tests.implementations;
 
 import de.htwsaar.hopper.TestDBUtils;
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
+import de.htwsaar.hopper.logic.enums.FuelTypeEnum;
+import de.htwsaar.hopper.logic.enums.SatNavEnum;
+import de.htwsaar.hopper.logic.enums.TransmissionTypeEnum;
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.implementations.Checklist;
@@ -38,10 +41,11 @@ public class BookingTest {
 
         Calendar carCreation = Calendar.getInstance();
         carCreation.add(Calendar.YEAR, -1);
-        Car car = new Car(CarTypeEnum.AUTO, "BMW", carCreation, 5, 100, 50, "SB-AB-12", "M3");
+        Car car = new Car(CarTypeEnum.AUTO, "BMW", carCreation, 5, 100, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
         CarRepository.persist(car);
 
-        Car car2 = new Car(CarTypeEnum.AUTO, "Audi", carCreation, 5, 200, 50, "SB-AU-12", "A4");
+
+        Car car2 = new Car(CarTypeEnum.AUTO, "Audi", carCreation, 5, 200, 50, "SB-AU-12", "A4", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
         CarRepository.persist(car2);
 
         Calendar driverLicenseExpiration = Calendar.getInstance();

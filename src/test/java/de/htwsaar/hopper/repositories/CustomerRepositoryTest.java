@@ -2,6 +2,9 @@ package de.htwsaar.hopper.repositories;
 
 import de.htwsaar.hopper.TestDBUtils;
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
+import de.htwsaar.hopper.logic.enums.FuelTypeEnum;
+import de.htwsaar.hopper.logic.enums.SatNavEnum;
+import de.htwsaar.hopper.logic.enums.TransmissionTypeEnum;
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.implementations.Customer;
@@ -46,7 +49,7 @@ public class CustomerRepositoryTest {
     public void reloadTestDB() throws IOException {
         TestDBUtils.reloadTestDB();
 
-        Car testCar = new Car(CarTypeEnum.AUTO, "BMW", creationDate, 5, 100, 50, "SB-AB-12", "M3");
+        Car testCar = new Car(CarTypeEnum.AUTO, "BMW", creationDate, 5, 100, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
         CarRepository.persist(testCar);
 
         testCustomer = new Customer("Max", "Mustermann", "max@muster.de", "Musterstraße", "1", "66111", "Saarbrücken", "068192001", "DE74500105174514856976", "B072RRE2I55", expirationDate);

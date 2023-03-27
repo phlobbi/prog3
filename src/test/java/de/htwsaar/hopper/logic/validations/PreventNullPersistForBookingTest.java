@@ -2,6 +2,9 @@ package de.htwsaar.hopper.logic.validations;
 
 import de.htwsaar.hopper.TestDBUtils;
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
+import de.htwsaar.hopper.logic.enums.FuelTypeEnum;
+import de.htwsaar.hopper.logic.enums.SatNavEnum;
+import de.htwsaar.hopper.logic.enums.TransmissionTypeEnum;
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.implementations.Customer;
@@ -33,17 +36,6 @@ public class PreventNullPersistForBookingTest {
         realDropOffDate.add(Calendar.DAY_OF_YEAR, 2);
 
         TestDBUtils.prepareTestDB();
-
-
-        Calendar carCreation = Calendar.getInstance();
-        carCreation.add(Calendar.YEAR, -1);
-        Car car = new Car(CarTypeEnum.AUTO, "BMW", carCreation, 5, 100, 50, "SB-AB-12", "M3");
-        CarRepository.persist(car);
-
-        Calendar driverLicenseExpiration = Calendar.getInstance();
-        driverLicenseExpiration.add(Calendar.YEAR, 1);
-        Customer customer = new Customer("Max", "Mustermann", "max@muster.de", "Musterstraße", "1", "66111", "Saarbrücken", "068192001", "DE74500105174514856976", "B072RRE2I55" ,driverLicenseExpiration);
-        CustomerRepository.persist(customer);
     }
 
     @Before
@@ -52,7 +44,7 @@ public class PreventNullPersistForBookingTest {
 
         Calendar carCreation = Calendar.getInstance();
         carCreation.add(Calendar.YEAR, -1);
-        Car car = new Car(CarTypeEnum.AUTO, "BMW", carCreation, 5, 100, 50, "SB-AB-12", "M3");
+        Car car = new Car(CarTypeEnum.AUTO, "BMW", carCreation, 5, 100, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
         CarRepository.persist(car);
 
         Calendar driverLicenseExpiration = Calendar.getInstance();

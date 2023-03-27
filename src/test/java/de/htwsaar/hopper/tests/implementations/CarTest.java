@@ -1,6 +1,9 @@
 package de.htwsaar.hopper.tests.implementations;
 
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
+import de.htwsaar.hopper.logic.enums.FuelTypeEnum;
+import de.htwsaar.hopper.logic.enums.SatNavEnum;
+import de.htwsaar.hopper.logic.enums.TransmissionTypeEnum;
 import de.htwsaar.hopper.logic.implementations.Car;
 
 import org.junit.Before;
@@ -24,106 +27,113 @@ public class CarTest {
         futureCal = Calendar.getInstance();
         futureCal.add(Calendar.YEAR, 1);
         cal.add(Calendar.YEAR, -2);
-        setterTestCar = new Car(CarTypeEnum.AUTO, "BMW", cal,
-                                4, 100, 100, "AB-CD-123", "M3");
+        setterTestCar = new Car(CarTypeEnum.AUTO, "BMW", cal, 5, 100, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
     }
 
     @Test
     public void constructorWithCorrectValues(){
-        new Car(CarTypeEnum.AUTO, "BMW", cal,
-                4, 100, 100, "AB-CD-123", "M3");
+        new Car(CarTypeEnum.AUTO, "BMW", cal, 5, 100, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullType(){
-        new Car(null, "BMW", cal,
-                4, 100, 100, "AB-CD-123", "M3");
+        new Car(null, "BMW", cal, 5, 100, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorWithNullTransmissionType() {
+        new Car(CarTypeEnum.AUTO, "BMW", cal, 5, 100, 50, "SB-AB-12", "M3", 300, null, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorWithNullFuelType() {
+        new Car(CarTypeEnum.AUTO, "BMW", cal, 5, 100, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, null, SatNavEnum.JA, 10000);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorWithNullSatNavType() {
+        new Car(CarTypeEnum.AUTO, "BMW", cal, 5, 100, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, null, 10000);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithBlankBrand(){
-        new Car(CarTypeEnum.AUTO, " ", cal,
-                4, 100, 100, "AB-CD-123", "M3");
+        new Car(CarTypeEnum.AUTO, "", cal, 5, 100, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithBlankLicensePlate(){
-        new Car(CarTypeEnum.AUTO, "BWM", cal,
-                4, 100, 100, " ", "M3");
+        new Car(CarTypeEnum.AUTO, "BMW", cal, 5, 100, 50, "", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithBlankModel(){
-        new Car(CarTypeEnum.AUTO, "BMW", cal,
-                4, 100, 100, "AB-CD-123", " ");
+        new Car(CarTypeEnum.AUTO, "BMW", cal, 5, 100, 50, "SB-AB-12", "", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullBrand(){
-        new Car(CarTypeEnum.AUTO, null, cal,
-                4, 100, 100, "AB-CD-123", "M3");
+        new Car(CarTypeEnum.AUTO, null, cal, 5, 100, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullCreatedDate(){
-        new Car(CarTypeEnum.AUTO, "BMW", null,
-                4, 100, 100, "AB-CD-123", "M3");
+        new Car(CarTypeEnum.AUTO, "BMW", null, 5, 100, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullLicensePlate(){
-        new Car(CarTypeEnum.AUTO, "BMW", cal,
-                4, 100, 100, null, "M3");
+        new Car(CarTypeEnum.AUTO, "BMW", cal, 5, 100, 50, null, "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNullModel(){
-        new Car(CarTypeEnum.AUTO, "BMW", cal,
-                4, 100, 100, "AB-CD-123", null);
+        new Car(CarTypeEnum.AUTO, "BMW", cal, 5, 100, 50, "SB-AB-12", null, 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void constructorWithNegativeSeats(){
-        new Car(CarTypeEnum.AUTO, "BMW", cal,
-                -4, 100, 100, "AB-CD-123", "M3");
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void constructorWithNegativeBasePrice(){
-        new Car(CarTypeEnum.AUTO, "BMW", cal,
-                4, -100, 100, "AB-CD-123", "M3");
+    public void constructorWithZeroSeats(){
+        new Car(CarTypeEnum.AUTO, "BMW", cal, 0, 100, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithTooManySeats(){
-        new Car(CarTypeEnum.AUTO, "BMW", cal,
-                400, 100, 100, "AB-CD-123", "M3");
+        new Car(CarTypeEnum.AUTO, "BMW", cal, 302, 100, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorWithNegativeBasePrice(){
+        new Car(CarTypeEnum.AUTO, "BMW", cal, 5, -0.1, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithNegativeCurrentPrice(){
-        new Car(CarTypeEnum.AUTO, "BMW", cal,
-                4, 100, -100, "AB-CD-123", "M3");
+        new Car(CarTypeEnum.AUTO, "BMW", cal, 5, 100, -0.01, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithInvalidLicensePlate(){
-        new Car(CarTypeEnum.AUTO, "BMW", cal,
-                4, 100, 100, "ABCD123", "M3");
+        new Car(CarTypeEnum.AUTO, "BMW", cal, 5, 100, 50, "ABCD123", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorWithInvalidCreatedDate(){
-        new Car(CarTypeEnum.AUTO, "BMW", futureCal,
-                4, 100, 100, "AB-CD-123", "M3");
+        new Car(CarTypeEnum.AUTO, "BMW", futureCal, 5, 100, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorWithNegativeHorsepower(){
+        new Car(CarTypeEnum.AUTO, "BMW", cal, 5, 100, 150, "SB-AB-12", "M3", -1, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructorWithNegativeMileage(){
+        new Car(CarTypeEnum.AUTO, "BMW", cal, 5, 100, 150, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, -1);
     }
 
     @Test
     public void constructorTrimTest(){
-        Car testCar = new Car(CarTypeEnum.AUTO, " BMW ", cal,
-                4, 100, 100, " AB-CD-123 ", " M3 ");
-        Car expectedCar = new Car(CarTypeEnum.AUTO, "BMW", cal,
-                4, 100, 100, "AB-CD-123", "M3");
+        Car testCar = new Car(CarTypeEnum.AUTO, "   BMW   ", cal, 5, 100, 50, "   SB-AB-12   ", "   M3   ", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
+        Car expectedCar = new Car(CarTypeEnum.AUTO, "BMW", cal, 5, 100, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
         if (testCar.getBrand().equals(expectedCar.getBrand()) &&
                 testCar.getLicensePlate().equals(expectedCar.getLicensePlate()) &&
                 testCar.getModel().equals(expectedCar.getModel())) {
@@ -131,6 +141,11 @@ public class CarTest {
         } else {
             fail();
         }
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void constructorWithWhitespaceStrings() {
+        new Car(CarTypeEnum.AUTO, " ", cal, 5, 100, 50, " ", " ", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
     }
 
     @Test
@@ -164,6 +179,22 @@ public class CarTest {
     @Test(expected = IllegalArgumentException.class)
     public void setBrandWithNullValue(){
         setterTestCar.setBrand(null);
+    }
+
+    @Test
+    public void setCreationDateWithValidValue(){
+        setterTestCar.setCreationDate(cal);
+        assertEquals(cal, setterTestCar.getCreationDate());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void setCreationDateWithInvalidValue(){
+        setterTestCar.setCreationDate(futureCal);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void setCreationDateWithNullValue(){
+        setterTestCar.setCreationDate(null);
     }
 
     @Test
@@ -242,13 +273,13 @@ public class CarTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void setSeatsWithNegativeValue(){
-        setterTestCar.setSeats(-4);
+    public void setSeatsWithZeroValue(){
+        setterTestCar.setSeats(0);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void setSeatsWithTooManyValue(){
-        setterTestCar.setSeats(400);
+        setterTestCar.setSeats(302);
     }
 
     @Test
@@ -262,8 +293,8 @@ public class CarTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void setBasePriceWithNegativeValue(){
-        setterTestCar.setBasePrice(-100);
+    public void setBasePriceWithZeroValue(){
+        setterTestCar.setBasePrice(0);
     }
 
     @Test
@@ -277,8 +308,68 @@ public class CarTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void setCurrentPriceWithNegativeValue(){
-        setterTestCar.setCurrentPrice(-100);
+    public void setCurrentPriceWithZeroValue(){
+        setterTestCar.setCurrentPrice(0);
     }
 
+    @Test
+    public void setHorsepowerWithValidValue() {
+        setterTestCar.setHorsepower(123);
+        assertEquals(123, setterTestCar.getHorsepower());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void setHorsepowerWithZeroValue() {
+        setterTestCar.setHorsepower(0);
+    }
+
+    @Test
+    public void setTransmissionWithValidValue() {
+        setterTestCar.setTransmissionType(TransmissionTypeEnum.MANUELL);
+        assertEquals(TransmissionTypeEnum.MANUELL, setterTestCar.getTransmissionType());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void setTransmissionWithNullValue() {
+        setterTestCar.setTransmissionType(null);
+    }
+
+    @Test
+    public void setFuelTypeWithValidValue() {
+        setterTestCar.setFuelType(FuelTypeEnum.DIESEL);
+        assertEquals(FuelTypeEnum.DIESEL, setterTestCar.getFuelType());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void setFuelTypeWithNullValue() {
+        setterTestCar.setFuelType(null);
+    }
+
+    @Test
+    public void setSatNavWithValidValue() {
+        setterTestCar.setSatNav(SatNavEnum.JA);
+        assertEquals(SatNavEnum.JA, setterTestCar.getSatNav());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void setSatNavWithNullValue() {
+        setterTestCar.setSatNav(null);
+    }
+
+    @Test
+    public void setMileageWithValidValue() {
+        setterTestCar.setMileage(123);
+        assertEquals(123, setterTestCar.getMileage());
+    }
+
+    @Test
+    public void setMileageWithZeroValue() {
+        setterTestCar.setMileage(0);
+        assertEquals(0, setterTestCar.getMileage());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void setMileageWithNegativeValue() {
+        setterTestCar.setMileage(-1);
+    }
 }
