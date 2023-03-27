@@ -1,8 +1,8 @@
 package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.interfaces.BookingInterface;
-import de.htwsaar.hopper.logic.validations.PreventNullPersistForBooking;
 import de.htwsaar.hopper.logic.validations.BookingValidation;
+import de.htwsaar.hopper.logic.validations.PreventNullPersistForBooking;
 import de.htwsaar.hopper.logic.validations.Utils;
 import de.htwsaar.hopper.repositories.CarRepository;
 import de.htwsaar.hopper.repositories.CustomerRepository;
