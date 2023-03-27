@@ -123,7 +123,12 @@ public class Booking implements BookingInterface {
      */
     @Override
     public String getRealDropOffDateShowField() {
-        return Utils.calendarToString(this.realDropOffDate);
+        if (this.realDropOffDate == null){
+            return "Noch nicht zurückgegeben";
+        } else {
+            return Utils.calendarToString(this.realDropOffDate);
+        }
+
     }
 
     /* GETTER */

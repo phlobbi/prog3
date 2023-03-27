@@ -388,9 +388,6 @@ public class BookingManagementController implements Initializable {
         bookingIDColumn.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
         customerColumn.setCellValueFactory(new PropertyValueFactory<>("customerShowField"));
         carColumn.setCellValueFactory(new PropertyValueFactory<>("carShowField"));
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-
         pickUpDateColumn.setCellValueFactory(new PropertyValueFactory<>("pickUpDateShowField"));
         dropOffDateColumn.setCellValueFactory(new PropertyValueFactory<>("dropOffDateShowField"));
         realDropOffDateColumn.setCellValueFactory(new PropertyValueFactory<>("realDropOffDateShowField"));
