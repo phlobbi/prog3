@@ -28,10 +28,6 @@ public class PreventNullPersistForBookingTest {
     public static void setUpClass() throws IOException {
         preventNullPersist = new PreventNullPersistForBooking();
 
-        pickUpDate = Calendar.getInstance();
-
-        dropOffDate = Calendar.getInstance();
-
         realDropOffDate = Calendar.getInstance();
         realDropOffDate.add(Calendar.DAY_OF_YEAR, 2);
 
@@ -41,6 +37,10 @@ public class PreventNullPersistForBookingTest {
     @Before
     public void reloadTestDB() throws IOException {
         TestDBUtils.reloadTestDB();
+
+        pickUpDate = Calendar.getInstance();
+        dropOffDate = Calendar.getInstance();
+        dropOffDate.add(Calendar.DAY_OF_YEAR, 1);
 
         Calendar carCreation = Calendar.getInstance();
         carCreation.add(Calendar.YEAR, -1);
