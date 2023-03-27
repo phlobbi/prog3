@@ -2,7 +2,6 @@ package de.htwsaar.hopper.repositories;
 
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.logic.implementations.Car;
-import org.hibernate.Transaction;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -156,34 +155,4 @@ public class CarRepository {
             }
         }
     }
-
-    /**
-     * Wird beim Ändern von eimen Auto automatisch aufgerufen.
-     *
-     * @param car ist das neue Auto
-     */
-    public static void update(Car car) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        Transaction transaction = (Transaction) entityManager.getTransaction();
-        try {
-            transaction.begin();
-            Car oldcar = find(car.getCarId());
-            oldcar.setBrand(car.getBrand());
-            oldcar.setType(car.getType());
-            oldcar.setModel(car.getModel());
-            oldcar.setSeats(car.getSeats());
-            oldcar.setCurrentPrice(car.getCurrentPrice());
-            oldcar.setBasePrice(car.getBasePrice());
-            oldcar.setLicensePlate(car.getLicensePlate());
-            oldcar.setCreationDate(car.getCreationDate());
-            entityManager.merge(oldcar);
-            transaction.commit();
-        } finally {
-            if (transaction.isActive()) {
-                transaction.rollback();
-            }
-        }
-    }
-
 }

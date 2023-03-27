@@ -60,6 +60,11 @@ public class BookingRepositoryTest {
         CustomerRepository.persist(customer);
     }
 
+    @AfterClass
+    public static void tearDownClass() throws IOException {
+        TestDBUtils.loadBackupDB();
+    }
+
     @Test
     public void testPersist() {
         Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
@@ -282,10 +287,5 @@ public class BookingRepositoryTest {
 
         List<Booking> result = BookingRepository.findUncompleted();
         assertTrue(result.isEmpty());
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws IOException {
-        TestDBUtils.loadBackupDB();
     }
 }
