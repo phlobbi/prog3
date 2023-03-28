@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -281,4 +282,23 @@ public class CarTest {
         setterTestCar.setCurrentPrice(-100);
     }
 
+    @Test
+    public void testToString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        String date = sdf.format(cal.getTime());
+        String expected = String.format("Car{carId=0, type=AUTO, brand='BMW', creationDate=%s, seats=4, basePrice=100.0, currentPrice=100.0, licensePlate='AB-CD-123', model='M3'}", date);
+        assertEquals(expected, setterTestCar.toString());
+    }
+
+    @Test
+    public void testEqualsWithSameObject() {
+        assertEquals(setterTestCar, setterTestCar);
+    }
+
+    @Test
+    public void testEqualsWithSameValues() {
+        Car testCar = new Car(CarTypeEnum.AUTO, "BMW", cal,
+                4, 100, 100, "AB-CD-123", "M3");
+        assertEquals(setterTestCar, testCar);
+    }
 }
