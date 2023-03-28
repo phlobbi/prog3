@@ -60,6 +60,11 @@ public class BookingRepositoryTest {
         CustomerRepository.persist(customer);
     }
 
+    @AfterClass
+    public static void tearDownClass() throws IOException {
+        TestDBUtils.loadBackupDB();
+    }
+
     @Test
     public void testPersist() {
         Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
@@ -224,8 +229,63 @@ public class BookingRepositoryTest {
         assertNull(result);
     }
 
-    @AfterClass
-    public static void tearDownClass() throws IOException {
-        TestDBUtils.loadBackupDB();
+    @Test
+    public void testFindUncompletedWithZeroEntries() {
+        List<Booking> result = BookingRepository.findUncompleted();
+        assertTrue(result.isEmpty());
+    }
+
+    @Test
+    public void testFindUncompletedWithOneEntry() {
+        Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
+        BookingRepository.persist(booking);
+
+        List<Booking> result = BookingRepository.findUncompleted();
+        assertEquals(1, result.size());
+    }
+
+    @Test
+    public void testFindUncompletedWithTwoEntries() {
+        Booking booking1 = new Booking(1, 1, pickUpDate, dropOffDate);
+        Booking booking2 = new Booking(2, 2, pickUpDate, dropOffDate);
+        BookingRepository.persist(booking1);
+        BookingRepository.persist(booking2);
+
+        List<Booking> result = BookingRepository.findUncompleted();
+        assertEquals(2, result.size());
+    }
+
+    @Test
+    public void testFindUncompletedWithOneCompletedEntry() {
+        Booking booking1 = new Booking(1, 1, pickUpDate, dropOffDate);
+        Booking booking2 = new Booking(2, 2, pickUpDate, dropOffDate);
+        BookingRepository.persist(booking1);
+        BookingRepository.persist(booking2);
+
+        booking1 = BookingRepository.find(1);
+        booking1.setRealDropOffDate(dropOffDate);
+        BookingRepository.persist(booking1);
+
+        List<Booking> result = BookingRepository.findUncompleted();
+        assertEquals(1, result.size());
+    }
+
+    @Test
+    public void testFindUncompletedWithTwoCompletedEntries() {
+        Booking booking1 = new Booking(1, 1, pickUpDate, dropOffDate);
+        Booking booking2 = new Booking(2, 2, pickUpDate, dropOffDate);
+        BookingRepository.persist(booking1);
+        BookingRepository.persist(booking2);
+
+        booking1 = BookingRepository.find(1);
+        booking2 = BookingRepository.find(2);
+
+        booking1.setRealDropOffDate(dropOffDate);
+        booking2.setRealDropOffDate(dropOffDate);
+        BookingRepository.persist(booking1);
+        BookingRepository.persist(booking2);
+
+        List<Booking> result = BookingRepository.findUncompleted();
+        assertTrue(result.isEmpty());
     }
 }
