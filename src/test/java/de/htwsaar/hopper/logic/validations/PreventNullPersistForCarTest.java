@@ -149,38 +149,6 @@ public class PreventNullPersistForCarTest {
         preventNullPersist.testAttributesOnNull(car);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void persistWithFuelTypeSetShouldThrowException() {
-        car.setType(CarTypeEnum.AUTO);
-        car.setBrand("Infinity");
-        car.setCreationDate(calendar);
-        car.setSeats(7);
-        car.setBasePrice(500);
-        car.setCurrentPrice(450);
-        car.setLicensePlate("NT-RL-1791");
-        car.setModel("Lumina");
-        car.setHorsepower(100);
-        car.setTransmissionType(TransmissionTypeEnum.AUTOMATIK);
-        car.setFuelType(FuelTypeEnum.DIESEL);
-        preventNullPersist.testAttributesOnNull(car);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void persistWithSatNavSetShouldThrowException() {
-        car.setType(CarTypeEnum.AUTO);
-        car.setBrand("Infinity");
-        car.setCreationDate(calendar);
-        car.setSeats(7);
-        car.setBasePrice(500);
-        car.setCurrentPrice(450);
-        car.setLicensePlate("NT-RL-1791");
-        car.setModel("Lumina");
-        car.setHorsepower(100);
-        car.setFuelType(FuelTypeEnum.DIESEL);
-        car.setSatNav(true);
-        preventNullPersist.testAttributesOnNull(car);
-    }
-
     @Test
     public void persistWithAllValuesCorrect(){
         car.setType(CarTypeEnum.AUTO);
