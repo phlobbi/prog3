@@ -3,7 +3,6 @@ package de.htwsaar.hopper.repositories;
 import de.htwsaar.hopper.TestDBUtils;
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.enums.FuelTypeEnum;
-import de.htwsaar.hopper.logic.enums.SatNavEnum;
 import de.htwsaar.hopper.logic.enums.TransmissionTypeEnum;
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.logic.implementations.Car;
@@ -43,7 +42,7 @@ public class CarRepositoryTest {
     public void reloadTestDB() throws IOException {
         TestDBUtils.reloadTestDB();
 
-        testCar = new Car(CarTypeEnum.AUTO, "BMW", creationDate, 5, 100, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, SatNavEnum.JA, 10000);
+        testCar = new Car(CarTypeEnum.AUTO, "BMW", creationDate, 5, 100, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, true, 10000);
 
         Calendar driverLicenseExpiration = Calendar.getInstance();
         driverLicenseExpiration.add(Calendar.YEAR, 1);

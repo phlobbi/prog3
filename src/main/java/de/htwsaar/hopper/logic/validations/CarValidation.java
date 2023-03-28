@@ -121,18 +121,6 @@ public class CarValidation extends Validation {
     }
 
     /**
-     * Prüft, ob der übergebene Typ gültig ist.
-     * Da es um eine Enum geht, wird hier nur geprüft, ob der übergebene Typ null ist.
-     * @param naviAvailability Zu prüfender Typ
-     * @return Typ, falls gültig
-     * @throws IllegalArgumentException Falls der Typ null ist
-     */
-    public static SatNavEnum validateSatNav(SatNavEnum naviAvailability){
-        Utils.check(naviAvailability != null, "Die Verfügbarkeit eines Navis darf nicht null sein.");
-        return naviAvailability;
-    }
-
-    /**
      * Prüft, ob der angegebene Kilometerstand eines Autos größer gleich als null ist
      * @param mileage, der Kilometerstand eines Autos
      * @return mileage, falls gültig

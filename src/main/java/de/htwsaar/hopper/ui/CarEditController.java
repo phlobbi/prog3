@@ -2,7 +2,6 @@ package de.htwsaar.hopper.ui;
 
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.enums.FuelTypeEnum;
-import de.htwsaar.hopper.logic.enums.SatNavEnum;
 import de.htwsaar.hopper.logic.enums.TransmissionTypeEnum;
 import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.repositories.CarRepository;
@@ -146,7 +145,7 @@ public class CarEditController implements Initializable{
             CarTypeEnum concreteType = CarTypeEnum.ANDERE;
             TransmissionTypeEnum concreteTransmission = TransmissionTypeEnum.MANUELL;
             FuelTypeEnum concreteFuel = FuelTypeEnum.BENZIN;
-            SatNavEnum concreteSatNav= SatNavEnum.JA;
+            boolean concreteSatNav = true;
 
             for (CarTypeEnum type : CarTypeEnum.values()){
                 if (type.getLabel().equals(carTypeStr)){
@@ -166,11 +165,10 @@ public class CarEditController implements Initializable{
                 }
             }
 
-            for (SatNavEnum type : SatNavEnum.values()){
-                if (type.getLabel().equals(satNavStr)){
-                    concreteSatNav = type;
-                }
+            if (satNavStr.equals("Nein")){
+                concreteSatNav = false;
             }
+
             // LocalDate vom DatePicker zu Calender-Format
             Date creationDate = Date.from(creationDateLocal.atStartOfDay(ZoneId.systemDefault()).toInstant());
             Calendar creationDateCal = Calendar.getInstance();
@@ -181,7 +179,6 @@ public class CarEditController implements Initializable{
             Car temp = new Car(car.getType(), car.getBrand(), car.getCreationDate(), car.getSeats(),
                     car.getBasePrice(), car.getCurrentPrice(), car.getLicensePlate(), car.getModel(),
                     car.getHorsepower(), car.getTransmissionType(), car.getFuelType(), car.getSatNav(), car.getMileage());
-
 
             car.setBrand(brand);
             car.setSeats(seats);
@@ -216,8 +213,6 @@ public class CarEditController implements Initializable{
             alert.showAndWait();
         }
     }
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -295,25 +290,30 @@ public class CarEditController implements Initializable{
     }
 
     /**
-     * Setzt gewollten Navi-Verfügbarkeit, hierbei wird bei jedem
+     * Setzt gewollte Navi-Verfügbarkeit, hierbei wird bei jedem
      * Klick auf ein Menü-Item der Text im Menü-Button ersetzt und
      * die lokale Variable satNav mit dem neuen Typen ersetzt
      */
     private void setChosenSatNav(){
         // basistyp, falls kein Typ ausgewählt
-        satNavStr = SatNavEnum.JA.getLabel();
+        satNavStr = "Ja";
         menuSatNav.setText(satNavStr);
 
-        // Iteration über alle Enums und für jedes 1 Menü-Item erstellen
-        for (SatNavEnum satNav : SatNavEnum.values()){
-            MenuItem item = new MenuItem(satNav.getLabel());
-            menuSatNav.getItems().add(item);
-            // wird Action auf Item bemerkt -> carType aktualisieren und Text
-            item.setOnAction(e ->{
-                menuSatNav.setText(item.getText());
-                satNavStr = item.getText();
-            });
-        }
+        MenuItem item = new MenuItem("Ja");
+        menuSatNav.getItems().add(item);
+        MenuItem item2 = new MenuItem("Nein");
+        menuSatNav.getItems().add(item2);
+
+        // wird Action auf Item bemerkt -> carType aktualisieren und Text
+        item.setOnAction(e ->{
+            menuSatNav.setText(item.getText());
+            satNavStr = item.getText();
+        });
+        item2.setOnAction(e ->{
+            menuSatNav.setText(item2.getText());
+            satNavStr = item2.getText();
+            System.out.println(satNavStr);
+        });
     }
 
     @FXML
@@ -333,11 +333,11 @@ public class CarEditController implements Initializable{
             menuType.setText(loadedCar.getType().getLabel());
             menuTransmission.setText(loadedCar.getTransmissionType().getLabel());
             menuFuel.setText(loadedCar.getFuelType().getLabel());
-            menuSatNav.setText(loadedCar.getSatNav().getLabel());
+            menuSatNav.setText(translateSatNavtoSatNavString(loadedCar.getSatNav()));
             carTypeStr = loadedCar.getType().getLabel();
             transmissionStr = loadedCar.getTransmissionType().getLabel();
             fuelStr = loadedCar.getFuelType().getLabel();
-            satNavStr = loadedCar.getSatNav().getLabel();
+            satNavStr = translateSatNavtoSatNavString(loadedCar.getSatNav());
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fehler");
@@ -345,7 +345,16 @@ public class CarEditController implements Initializable{
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
+    }
 
+    /**
+     * Übersetzt den boolean-Wert von satNav in den String "Ja" bzw. "Nein",
+     * der auf dem entsprechenden Menu-Eintrag der Navi-Auswahl angezeigt werden soll.
+     * @param satNav zu übersetzender boolean-Wert
+     * @return der übersetzte String
+     */
+    private String translateSatNavtoSatNavString(boolean satNav) {
+        return (satNav == true) ? "Ja" : "Nein";
     }
 
     /**

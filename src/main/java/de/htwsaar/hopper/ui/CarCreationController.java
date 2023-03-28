@@ -2,7 +2,6 @@ package de.htwsaar.hopper.ui;
 
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.enums.FuelTypeEnum;
-import de.htwsaar.hopper.logic.enums.SatNavEnum;
 import de.htwsaar.hopper.logic.enums.TransmissionTypeEnum;
 import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.repositories.CarRepository;
@@ -120,7 +119,6 @@ public class CarCreationController implements Initializable{
     @FXML
     void createCar(ActionEvent event) {
         try {
-
             validateTextField(textFieldBrand, labelBrand.getText() + " leer");
             validateTextField(textFieldModel, labelModel.getText() + " leer");
             if (datePickCreationDate.getValue() == null){
@@ -130,11 +128,8 @@ public class CarCreationController implements Initializable{
             validateTextField(textFieldLicensePlate, labelLicensePlate.getText() + " leer");
             validateTextField(textFieldBasePrice, labelBasePrice.getText() + " leer");
             validateTextField(textFieldCurrentPrice, labelCurrentPrice.getText() + " leer");
-
             validateTextField(textFieldHorsePower, labelHorsePower.getText() + "leer");
             validateTextField(textFieldMileage, labelMileage.getText() + "leer");
-
-
 
             String brand = textFieldBrand.getText();
             int seats = Integer.parseInt(textFieldSeats.getText());
@@ -146,11 +141,11 @@ public class CarCreationController implements Initializable{
             int horsePower = Integer.parseInt(textFieldHorsePower.getText());
             int mileage = Integer.parseInt(textFieldMileage.getText());
 
-            // Enum bekommen vom Menü
+            // Werte bekommen vom Menü
             CarTypeEnum concreteType = CarTypeEnum.ANDERE;
             TransmissionTypeEnum concreteTransmission = TransmissionTypeEnum.MANUELL;
             FuelTypeEnum concreteFuel = FuelTypeEnum.BENZIN;
-            SatNavEnum concreteSatNav= SatNavEnum.JA;
+            boolean concreteSatNav = true;
 
             for (CarTypeEnum type : CarTypeEnum.values()){
                 if (type.getLabel().equals(carTypeStr)){
@@ -170,18 +165,15 @@ public class CarCreationController implements Initializable{
                 }
             }
 
-            for (SatNavEnum type : SatNavEnum.values()){
-                if (type.getLabel().equals(satNavStr)){
-                    concreteSatNav = type;
-                }
+            if (satNavStr.equals("Nein")){
+                    concreteSatNav = false;
             }
-
 
             // LocalDate vom DatePicker zu Calender-Format
             Date creationDate = Date.from(creationDateLocal.atStartOfDay(ZoneId.systemDefault()).toInstant());
             Calendar creationDateCal = Calendar.getInstance();
             creationDateCal.setTime(creationDate);
-            
+
             Car car = new Car(concreteType,brand,creationDateCal,seats,basePrice,curPrice,
                     licensePlate,model,horsePower,concreteTransmission,concreteFuel,concreteSatNav,mileage);
 
@@ -276,25 +268,30 @@ public class CarCreationController implements Initializable{
     }
 
     /**
-     * Setzt gewollten Navi-Verfügbarkeit, hierbei wird bei jedem
+     * Setzt gewollte Navi-Verfügbarkeit, hierbei wird bei jedem
      * Klick auf ein Menü-Item der Text im Menü-Button ersetzt und
      * die lokale Variable satNav mit dem neuen Typen ersetzt
      */
     private void setChosenSatNav(){
         // basistyp, falls kein Typ ausgewählt
-        satNavStr = SatNavEnum.JA.getLabel();
+        satNavStr = "Ja";
         menuSatNav.setText(satNavStr);
 
-        // Iteration über alle Enums und für jedes 1 Menü-Item erstellen
-        for (SatNavEnum satNav : SatNavEnum.values()){
-            MenuItem item = new MenuItem(satNav.getLabel());
-            menuSatNav.getItems().add(item);
-            // wird Action auf Item bemerkt -> carType aktualisieren und Text
-            item.setOnAction(e ->{
-                menuSatNav.setText(item.getText());
-                satNavStr = item.getText();
-            });
-        }
+        MenuItem item = new MenuItem("Ja");
+        menuSatNav.getItems().add(item);
+        MenuItem item2 = new MenuItem("Nein");
+        menuSatNav.getItems().add(item2);
+
+        // wird Action auf Item bemerkt -> carType aktualisieren und Text
+        item.setOnAction(e ->{
+            menuSatNav.setText(item.getText());
+            satNavStr = item.getText();
+        });
+        item2.setOnAction(e ->{
+            menuSatNav.setText(item2.getText());
+            satNavStr = item2.getText();
+            System.out.println(satNavStr);
+        });
     }
 
     /**

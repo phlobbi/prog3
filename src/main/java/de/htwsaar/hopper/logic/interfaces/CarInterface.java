@@ -2,7 +2,6 @@ package de.htwsaar.hopper.logic.interfaces;
 
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.enums.FuelTypeEnum;
-import de.htwsaar.hopper.logic.enums.SatNavEnum;
 import de.htwsaar.hopper.logic.enums.TransmissionTypeEnum;
 
 import java.util.Calendar;
@@ -26,7 +25,7 @@ public interface CarInterface {
     int getHorsepower();
     TransmissionTypeEnum getTransmissionType();
     FuelTypeEnum getFuelType();
-    SatNavEnum getSatNav();
+    boolean getSatNav();
     int getMileage();
 
 
@@ -42,7 +41,7 @@ public interface CarInterface {
     void setHorsepower(int horsepower);
     void setTransmissionType(TransmissionTypeEnum transmissionType);
     void setFuelType(FuelTypeEnum fuelType);
-    void setSatNav(SatNavEnum satNav);
+    void setSatNav(boolean satNav);
     void setMileage(int mileage);
     
     /*  toString  */

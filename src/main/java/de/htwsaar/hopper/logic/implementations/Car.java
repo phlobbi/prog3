@@ -2,13 +2,13 @@ package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.enums.FuelTypeEnum;
-import de.htwsaar.hopper.logic.enums.SatNavEnum;
 import de.htwsaar.hopper.logic.enums.TransmissionTypeEnum;
 import de.htwsaar.hopper.logic.interfaces.CarInterface;
 import de.htwsaar.hopper.logic.validations.CarValidation;
 import de.htwsaar.hopper.logic.validations.PreventNullPersistForCar;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -80,8 +80,8 @@ public class Car implements CarInterface {
 
     @Basic
     @Column(name = "SatNav")
-    @Enumerated(EnumType.STRING)
-    private SatNavEnum satNav;
+    @NotNull
+    private boolean satNav;
 
     @Basic
     @Column(name = "Mileage")
@@ -111,7 +111,7 @@ public class Car implements CarInterface {
      */
     public Car(CarTypeEnum type, String brand, Calendar creationDate, int seats, double basePrice,
                double currentPrice, String licensePlate, String model, int horsepower, TransmissionTypeEnum transmissionType,
-               FuelTypeEnum fuelType, SatNavEnum satNav, int mileage) {
+               FuelTypeEnum fuelType, boolean satNav, int mileage) {
         this.type = CarValidation.validateCarType(type);
         this.brand = CarValidation.validateString(brand, "Die Automarke darf nicht leer sein.");
         this.creationDate = CarValidation.validateCreatedDate(creationDate);
@@ -123,7 +123,7 @@ public class Car implements CarInterface {
         this.horsepower = CarValidation.validateHorsepower(horsepower);
         this.transmissionType = CarValidation.validateTransmissionType(transmissionType);
         this.fuelType = CarValidation.validateFuelType(fuelType);
-        this.satNav = CarValidation.validateSatNav(satNav);
+        this.satNav = satNav;
         this.mileage = CarValidation.validateMileage(mileage);
     }
 
@@ -189,7 +189,7 @@ public class Car implements CarInterface {
     }
 
     @Override
-    public SatNavEnum getSatNav() {
+    public boolean getSatNav() {
         return satNav;
     }
 
@@ -253,8 +253,8 @@ public class Car implements CarInterface {
     }
 
     @Override
-    public void setSatNav(SatNavEnum satNav) {
-        this.satNav = CarValidation.validateSatNav(satNav);
+    public void setSatNav(boolean satNav) {
+        this.satNav = satNav;
     }
 
     @Override

@@ -3,7 +3,6 @@ package de.htwsaar.hopper.logic.validations;
 import de.htwsaar.hopper.TestDBUtils;
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.enums.FuelTypeEnum;
-import de.htwsaar.hopper.logic.enums.SatNavEnum;
 import de.htwsaar.hopper.logic.enums.TransmissionTypeEnum;
 import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.repositories.CarRepository;
@@ -178,7 +177,7 @@ public class PreventNullPersistForCarTest {
         car.setModel("Lumina");
         car.setHorsepower(100);
         car.setFuelType(FuelTypeEnum.DIESEL);
-        car.setSatNav(SatNavEnum.JA);
+        car.setSatNav(true);
         preventNullPersist.testAttributesOnNull(car);
     }
 
@@ -195,7 +194,7 @@ public class PreventNullPersistForCarTest {
         car.setHorsepower(100);
         car.setTransmissionType(TransmissionTypeEnum.AUTOMATIK);
         car.setFuelType(FuelTypeEnum.DIESEL);
-        car.setSatNav(SatNavEnum.JA);
+        car.setSatNav(true);
         car.setMileage(1000);
         preventNullPersist.testAttributesOnNull(car);
         CarRepository.persist(car);
