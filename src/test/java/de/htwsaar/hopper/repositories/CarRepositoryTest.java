@@ -2,6 +2,8 @@ package de.htwsaar.hopper.repositories;
 
 import de.htwsaar.hopper.TestDBUtils;
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
+import de.htwsaar.hopper.logic.enums.FuelTypeEnum;
+import de.htwsaar.hopper.logic.enums.TransmissionTypeEnum;
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.implementations.Customer;
@@ -29,6 +31,11 @@ public class CarRepositoryTest {
 
         creationDate = Calendar.getInstance();
         creationDate.add(Calendar.YEAR, -1);
+
+        pickUpDate = Calendar.getInstance();
+
+        dropOffDate = Calendar.getInstance();
+        dropOffDate.add(Calendar.DAY_OF_MONTH, 1);
     }
 
     @Before
@@ -40,7 +47,7 @@ public class CarRepositoryTest {
         dropOffDate = Calendar.getInstance();
         dropOffDate.add(Calendar.DAY_OF_MONTH, 1);
 
-        testCar = new Car(CarTypeEnum.AUTO, "BMW", creationDate, 5, 100, 50, "SB-AB-12", "M3");
+        testCar = new Car(CarTypeEnum.AUTO, "BMW", creationDate, 5, 100, 50, "SB-AB-12", "M3", 300, TransmissionTypeEnum.AUTOMATIK, FuelTypeEnum.BENZIN, true, 10000);
 
         Calendar driverLicenseExpiration = Calendar.getInstance();
         driverLicenseExpiration.add(Calendar.YEAR, 1);
