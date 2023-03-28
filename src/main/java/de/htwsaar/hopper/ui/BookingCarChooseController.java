@@ -2,6 +2,7 @@ package de.htwsaar.hopper.ui;
 
 import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.repositories.CarRepository;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -46,6 +47,17 @@ public class BookingCarChooseController implements Initializable {
     @FXML
     private TableColumn<Car, String> carTypeColumn;
 
+    @FXML
+    private TableColumn<Car, String> carFuelTypeColumn;
+
+    @FXML
+    private TableColumn<Car, String> carTransmissionTypeColumn;
+
+    @FXML
+    private TableColumn<Car, String> carSatNavColumn;
+
+    @FXML
+    private TableColumn<Car, String> carHorsepowerColumn;
 
     @FXML
     private MenuButton menuButtonCriteria;
@@ -61,6 +73,12 @@ public class BookingCarChooseController implements Initializable {
 
     @FXML
     private CheckMenuItem searchCritType;
+
+    @FXML
+    private CheckMenuItem searchCritFuelType;
+
+    @FXML
+    private CheckMenuItem searchCritTransmissionType;
 
     @FXML
     private TableView<Car> tableView;
@@ -118,6 +136,12 @@ public class BookingCarChooseController implements Initializable {
                     } else if (item.equals(searchCritType)) {
                         if (car.getType().getLabel().toLowerCase().contains(searchCriteria.toLowerCase()))
                             allowedToInsert = true;
+                    } else if (item.equals(searchCritFuelType)) {
+                        if (car.getFuelType().getLabel().toLowerCase().contains(searchCriteria.toLowerCase()))
+                            allowedToInsert = true;
+                    } else if (item.equals(searchCritTransmissionType)) {
+                        if (car.getTransmissionType().getLabel().toLowerCase().contains(searchCriteria.toLowerCase()))
+                            allowedToInsert = true;
                     }
                     if (!IsCarAlreadyInTable(car)){
                         if (allowedToInsert)
@@ -166,6 +190,8 @@ public class BookingCarChooseController implements Initializable {
         searchCritBrand.setSelected(false);
         searchCritModel.setSelected(false);
         searchCritType.setSelected(false);
+        searchCritTransmissionType.setSelected(false);
+        searchCritFuelType.setSelected(false);
     }
 
     /**
@@ -190,6 +216,10 @@ public class BookingCarChooseController implements Initializable {
         carTypeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         carBrandColumn.setCellValueFactory(new PropertyValueFactory<>("brand"));
         carModelColumn.setCellValueFactory(new PropertyValueFactory<>("model"));
+        carTransmissionTypeColumn.setCellValueFactory(new PropertyValueFactory<>("transmissionType"));
+        carFuelTypeColumn.setCellValueFactory(new PropertyValueFactory<>("fuelType"));
+        carHorsepowerColumn.setCellValueFactory(new PropertyValueFactory<>("horsepower"));
+        carSatNavColumn.setCellValueFactory(new PropertyValueFactory<>("satNavShowField"));
         carBasePriceColumn.setCellValueFactory(new PropertyValueFactory<>("basePrice"));
 
         ObservableList<Car> observableList = FXCollections.observableArrayList();
@@ -225,6 +255,10 @@ public class BookingCarChooseController implements Initializable {
             checkMenuItems.add(searchCritModel);
         if (searchCritType.isSelected())
             checkMenuItems.add(searchCritType);
+        if (searchCritTransmissionType.isSelected())
+            checkMenuItems.add(searchCritTransmissionType);
+        if (searchCritFuelType.isSelected())
+            checkMenuItems.add(searchCritFuelType);
 
        return checkMenuItems;
     }
