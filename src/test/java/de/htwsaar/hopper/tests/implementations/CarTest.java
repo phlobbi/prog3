@@ -281,4 +281,21 @@ public class CarTest {
         setterTestCar.setCurrentPrice(-100);
     }
 
+    @Test
+    public void testToString() {
+        String expected = "Car{carId=0, type=AUTO, brand='BMW', creationDate=27.03.2021, seats=4, basePrice=100.0, currentPrice=100.0, licensePlate='AB-CD-123', model='M3'}";
+        assertEquals(expected, setterTestCar.toString());
+    }
+
+    @Test
+    public void testEqualsWithSameObject() {
+        assertEquals(setterTestCar, setterTestCar);
+    }
+
+    @Test
+    public void testEqualsWithSameValues() {
+        Car testCar = new Car(CarTypeEnum.AUTO, "BMW", cal,
+                4, 100, 100, "AB-CD-123", "M3");
+        assertEquals(setterTestCar, testCar);
+    }
 }
