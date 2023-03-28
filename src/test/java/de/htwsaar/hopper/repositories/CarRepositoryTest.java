@@ -29,16 +29,16 @@ public class CarRepositoryTest {
 
         creationDate = Calendar.getInstance();
         creationDate.add(Calendar.YEAR, -1);
-
-        pickUpDate = Calendar.getInstance();
-
-        dropOffDate = Calendar.getInstance();
-        dropOffDate.add(Calendar.DAY_OF_MONTH, 1);
     }
 
     @Before
     public void reloadTestDB() throws IOException {
         TestDBUtils.reloadTestDB();
+
+        pickUpDate = Calendar.getInstance();
+
+        dropOffDate = Calendar.getInstance();
+        dropOffDate.add(Calendar.DAY_OF_MONTH, 1);
 
         testCar = new Car(CarTypeEnum.AUTO, "BMW", creationDate, 5, 100, 50, "SB-AB-12", "M3");
 

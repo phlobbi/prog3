@@ -6,6 +6,7 @@ import de.htwsaar.hopper.logic.validations.CarValidation;
 import de.htwsaar.hopper.logic.validations.PreventNullPersistForCar;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -178,11 +179,14 @@ public class Car implements CarInterface {
 
     @Override
     public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+
+
         return "Car{" +
                 "carId=" + carId +
                 ", type=" + type +
                 ", brand='" + brand + '\'' +
-                ", creationDate=" + creationDate +
+                ", creationDate=" + sdf.format(creationDate.getTime()) +
                 ", seats=" + seats +
                 ", basePrice=" + basePrice +
                 ", currentPrice=" + currentPrice +
