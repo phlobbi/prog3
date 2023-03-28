@@ -95,26 +95,7 @@ public class BookingValidation extends Validation {
     public static void validatePickUpDateBeforeDropOffDate(Calendar pickUpDate, Calendar dropOffDate) {
         String errorMessage = "Das Abgabedatum liegt vor dem Abholdatum.";
 
-        // Fall: Stunde gleich, Minute pickUp nach Minute dropOff
-        if (pickUpDate.get(Calendar.MINUTE) > (dropOffDate.get(Calendar.MINUTE))
-                && pickUpDate.get(Calendar.HOUR_OF_DAY) == (dropOffDate.get(Calendar.HOUR_OF_DAY))) {
-            throw new IllegalArgumentException(errorMessage);
-        }
-
-        // Fall: Tag gleich, Stunde später als jetzt
-        if(pickUpDate.get(Calendar.HOUR_OF_DAY) > (dropOffDate.get(Calendar.HOUR_OF_DAY))
-                && pickUpDate.get(Calendar.DAY_OF_YEAR) == (dropOffDate.get(Calendar.DAY_OF_YEAR))){
-            throw new IllegalArgumentException(errorMessage);
-        }
-
-        // Fall: Jahr gleich, Tag später als jetzt
-        if (pickUpDate.get(Calendar.DAY_OF_YEAR) > (dropOffDate.get(Calendar.DAY_OF_YEAR))
-                && pickUpDate.get(Calendar.YEAR) == (dropOffDate.get(Calendar.YEAR))) {
-            throw new IllegalArgumentException(errorMessage);
-        }
-
-        // Fall: Jahr später als jetzt
-        if(pickUpDate.get(Calendar.YEAR) > (dropOffDate.get(Calendar.YEAR))) {
+        if(pickUpDate.after(dropOffDate)) {
             throw new IllegalArgumentException(errorMessage);
         }
     }

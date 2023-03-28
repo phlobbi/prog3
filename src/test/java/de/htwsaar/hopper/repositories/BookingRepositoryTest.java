@@ -30,6 +30,7 @@ public class BookingRepositoryTest {
         TestDBUtils.prepareTestDB();
 
         pickUpDate = Calendar.getInstance();
+        pickUpDate.add(Calendar.MINUTE, 5);
 
         dropOffDate = Calendar.getInstance();
         dropOffDate.add(Calendar.DAY_OF_YEAR, 1);
