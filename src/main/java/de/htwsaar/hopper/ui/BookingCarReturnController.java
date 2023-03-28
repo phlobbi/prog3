@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 public class BookingCarReturnController {
 
@@ -44,11 +45,12 @@ public class BookingCarReturnController {
      */
     @FXML
     void returnCar(ActionEvent event) {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         Booking booking = BookingManagementController.getSelectedBooking();
 
         if (booking.getRealDropOffDate() != null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Dieses Auto wurde schon zurückgegeben");
+            alert.setContentText(bundle.getString("CAR_ALREADY_RETURNED"));
             alert.showAndWait();
         } else {
             LocalDate realDropOffDateLocal = datePicker.getValue();
@@ -74,7 +76,7 @@ public class BookingCarReturnController {
             Stage stage1 = (Stage) root.getScene().getWindow();
             stage1.close();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Das Auto wurde zurückgegeben");
+            alert.setContentText(bundle.getString("CAR_RETURNED"));
             alert.showAndWait();
         }
     }

@@ -20,8 +20,8 @@
             <Insets bottom="20.0" left="20.0" top="20.0" />
          </padding>
          <children>
-            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#createBooking" prefHeight="25.0" prefWidth="90.0" text="Speichern" />
-            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelCreation" prefHeight="25.0" prefWidth="90.0" text="Abbrechen" />
+            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#createBooking" prefHeight="25.0" prefWidth="90.0" text="%MENU_SAVE" />
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancelCreation" prefHeight="25.0" prefWidth="90.0" text="%MENU_CANCEL" />
          </children>
       </HBox>
    </bottom>
@@ -31,7 +31,7 @@
    <top>
       <HBox prefHeight="79.0" prefWidth="704.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="labelExplanation" text="Legen Sie hier den Kunden und das Auto für die Buchung fest sowie den Buchungszeitraum.">
+            <Label fx:id="labelExplanation" text="%BOOKING_EXPLANATION">
                <font>
                   <Font size="14.0" />
                </font>

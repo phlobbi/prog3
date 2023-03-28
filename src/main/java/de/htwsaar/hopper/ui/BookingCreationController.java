@@ -13,10 +13,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 import static java.util.Calendar.*;
 
@@ -92,13 +94,14 @@ public class BookingCreationController {
     @FXML
     void chooseCar(ActionEvent event) {
         Stage stage = new Stage();
-
+        URL url = getClass().getResource("fxml/Booking-car-choose-view.fxml");
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Booking-car-choose-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(url, bundle);
             Parent root1 = (Parent) fxmlLoader.load();
 
             stage = new Stage();
-            stage.setTitle("Auto auswählen");
+            stage.setTitle(bundle.getString("CAR_CHOOSE"));
             stage.setScene(new Scene(root1));
             disableWindow();
             stage.showAndWait();
@@ -116,8 +119,8 @@ public class BookingCreationController {
             textFieldChosenCar.setText(chosenCar.getBrand() + " " + chosenCar.getModel());
         } else {
             textFieldChosenCar.setText("");
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Kein Auto ausgewählt");
-            alert.setHeaderText("Fehler bei der Auswahl");
+            Alert alert = new Alert(Alert.AlertType.ERROR, bundle.getString("NO_CAR_SELECTED"));
+            alert.setHeaderText(bundle.getString("ERROR_SELECTION"));
             alert.showAndWait();
         }
     }
@@ -131,13 +134,14 @@ public class BookingCreationController {
     @FXML
     void chooseCustomer(ActionEvent event) {
         Stage stage = new Stage();
-
+        URL url = getClass().getResource("fxml/Booking-customer-choose-view.fxml");
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Booking-customer-choose-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(url, bundle);
             Parent root1 = (Parent) fxmlLoader.load();
 
             stage = new Stage();
-            stage.setTitle("Kunde auswählen");
+            stage.setTitle(bundle.getString("CUSTOMER_CHOOSE"));
             stage.setScene(new Scene(root1));
             disableWindow();
             stage.showAndWait();
@@ -155,8 +159,8 @@ public class BookingCreationController {
             textFieldChosenCustomer.setText(chosenCustomer.getFirstName() + " " + chosenCustomer.getLastName());
         } else {
             textFieldChosenCustomer.setText("");
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Kein Kunde ausgewählt");
-            alert.setHeaderText("Fehler bei der Auswahl");
+            Alert alert = new Alert(Alert.AlertType.ERROR, bundle.getString("NO_CUSTOMER_SELECTED"));
+            alert.setHeaderText(bundle.getString("ERROR_SELECTION"));
             alert.showAndWait();
         }
     }

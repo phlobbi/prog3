@@ -22,8 +22,8 @@
             <Insets bottom="20.0" left="20.0" top="20.0" />
          </padding>
          <children>
-            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveChosenCustomer" prefHeight="25.0" prefWidth="90.0" text="Speichern" />
-            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="90.0" text="Abbrechen" />
+            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveChosenCustomer" prefHeight="25.0" prefWidth="90.0" text="%MENU_SAVE" />
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="90.0" text="%MENU_CANCEL" />
          </children>
       </HBox>
    </bottom>
@@ -31,11 +31,11 @@
       <TableView fx:id="tableView" onKeyPressed="#saveCustomerViaEnter" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <columns>
             <TableColumn fx:id="customerIdColumn" prefWidth="67.0" text="ID" />
-            <TableColumn fx:id="customerFirstNameColumn" prefWidth="192.0" text="Vorname" />
-            <TableColumn fx:id="customerLastNameColumn" prefWidth="172.0" text="Nachname" />
-            <TableColumn fx:id="customerEmailColumn" prefWidth="215.0" text="Email" />
-            <TableColumn fx:id="customerZipCodeColumn" prefWidth="84.0" text="PLZ" />
-            <TableColumn fx:id="customerCityColumn" prefWidth="114.0" text="Ort" />
+            <TableColumn fx:id="customerFirstNameColumn" prefWidth="192.0" text="%CUSTOMER_FIRSTNAME" />
+            <TableColumn fx:id="customerLastNameColumn" prefWidth="172.0" text="%CUSTOMER_LASTNAME" />
+            <TableColumn fx:id="customerEmailColumn" prefWidth="215.0" text="%CUSTOMER_EMAIL" />
+            <TableColumn fx:id="customerZipCodeColumn" prefWidth="84.0" text="%CUSTOMER_ZIP" />
+            <TableColumn fx:id="customerCityColumn" prefWidth="114.0" text="%CUSTOMER_CITY" />
          </columns></TableView>
    </center>
    <top>
@@ -45,19 +45,19 @@
          </padding>
          <children>
             <TextField fx:id="textFieldSearch" onKeyPressed="#searchForCustomerViaEnter" prefHeight="27.0" prefWidth="267.0" />
-            <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchForCustomer" prefHeight="25.0" prefWidth="90.0" text="Suchen" />
-            <MenuButton fx:id="menuButtonCriteria" contentDisplay="TOP" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Kriterien" textAlignment="CENTER">
+            <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchForCustomer" prefHeight="25.0" prefWidth="90.0" text="%MENU_SAVE" />
+            <MenuButton fx:id="menuButtonCriteria" contentDisplay="TOP" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="%CRITERIA" textAlignment="CENTER">
               <items>
-                  <CheckMenuItem fx:id="searchCritFirstName" mnemonicParsing="false" text="Vorname" />
-                  <CheckMenuItem fx:id="searchCritLastName" mnemonicParsing="false" text="Nachname" />
-                  <CheckMenuItem fx:id="searchCritEmail" mnemonicParsing="false" text="Email" />
-                  <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckCriteria" text="Haken entfernen" />
+                  <CheckMenuItem fx:id="searchCritFirstName" mnemonicParsing="false" text="%CUSTOMER_FIRSTNAME" />
+                  <CheckMenuItem fx:id="searchCritLastName" mnemonicParsing="false" text="%CUSTOMER_LASTNAME" />
+                  <CheckMenuItem fx:id="searchCritEmail" mnemonicParsing="false" text="%CUSTOMER_EMAIL" />
+                  <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckCriteria" text="%DELETE_CHECK" />
               </items>
                <padding>
                   <Insets left="2.0" />
                </padding>
             </MenuButton>
-            <Button mnemonicParsing="false" onAction="#resetSearch" prefHeight="25.0" prefWidth="90.0" text="Zurücksetzen" />
+            <Button mnemonicParsing="false" onAction="#resetSearch" prefHeight="25.0" prefWidth="90.0" text="%MENU_SET_BACK" />
          </children>
       </HBox>
    </top>

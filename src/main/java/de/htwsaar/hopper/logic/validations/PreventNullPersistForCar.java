@@ -29,7 +29,12 @@ public class PreventNullPersistForCar {
             car.getBasePrice(),
             car.getCurrentPrice(),
             car.getLicensePlate(),
-            car.getModel())
+            car.getModel(),
+            car.getHorsepower(),
+            car.getTransmissionType(),
+            car.getFuelType(),
+            car.getSatNav(),
+            car.getMileage())
             .allMatch(Objects::nonNull),"Null-Wert erkannt -> unzulaessig");
     }
 

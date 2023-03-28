@@ -40,14 +40,14 @@
                         <CheckBox fx:id="checkBoxCarClean" mnemonicParsing="false" GridPane.rowIndex="4" />
                         <CheckBox fx:id="checkBoxCarDamage" mnemonicParsing="false" GridPane.rowIndex="3" />
                         <CheckBox fx:id="checkBoxKeyDropped" mnemonicParsing="false" GridPane.rowIndex="5" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Das Auto ist voll getankt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Das Auto hat Keine Schaden" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Das Auto wurde sauber zurückgegeben" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Schlüssel wurden zurück gegeben" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Button mnemonicParsing="false" onAction="#returnCar" text="Bestätigen" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_FUELED" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_NO_DAMAGE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CLEANED" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_KEY_RETURNED" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Button mnemonicParsing="false" onAction="#returnCar" text="%MENU_CONFIRM" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="104.0" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rückgabedatum" wrappingWidth="96.34375" GridPane.columnIndex="1" />
-                        <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeWindow" text="Abrechen" GridPane.rowIndex="7" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%BOOKING_RETURN_DATE" wrappingWidth="96.34375" GridPane.columnIndex="1" />
+                        <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeWindow" text="%MENU_CANCEL" GridPane.rowIndex="7" />
                      </children>
                   </GridPane>
                </children>

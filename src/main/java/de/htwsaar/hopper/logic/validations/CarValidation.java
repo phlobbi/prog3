@@ -1,7 +1,6 @@
 package de.htwsaar.hopper.logic.validations;
 
-import de.htwsaar.hopper.logic.enums.CarTypeEnum;
-import de.htwsaar.hopper.logic.enums.ValidationRegexEnum;
+import de.htwsaar.hopper.logic.enums.*;
 
 import java.util.Calendar;
 
@@ -84,5 +83,51 @@ public class CarValidation extends Validation {
     public static CarTypeEnum validateCarType(CarTypeEnum type){
         Utils.check(type !=null, "Der Auto-Typ darf nicht null sein.");
         return type;
+    }
+
+    /**
+     * Prüft, ob die angegebene Pferdstärke eines Autos größer als null ist
+     * @param horsepower Pferdstärke
+     * @return horsepower, falls gültig
+     * @throws IllegalArgumentException Falls die Pferdstärke nicht stimmt
+     */
+    public static int validateHorsepower(int horsepower){
+        Utils.check(horsepower > 0, "Die Pferdstärke darf nicht kleiner gleich null sein.");
+        return horsepower;
+    }
+
+    /**
+     * Prüft, ob der übergebene Typ gültig ist.
+     * Da es um eine Enum geht, wird hier nur geprüft, ob der übergebene Typ null ist.
+     * @param type Zu prüfender Typ
+     * @return Typ, falls gültig
+     * @throws IllegalArgumentException Falls der Typ null ist
+     */
+    public static TransmissionTypeEnum validateTransmissionType(TransmissionTypeEnum type){
+        Utils.check(type != null, "Das Schaltgetriebe darf nicht null sein.");
+        return type;
+    }
+
+    /**
+     * Prüft, ob der übergebene Typ gültig ist.
+     * Da es um eine Enum geht, wird hier nur geprüft, ob der übergebene Typ null ist.
+     * @param type Zu prüfender Typ
+     * @return Typ, falls gültig
+     * @throws IllegalArgumentException Falls der Typ null ist
+     */
+    public static FuelTypeEnum validateFuelType(FuelTypeEnum type){
+        Utils.check(type != null, "Der Kraftstoff eines Autos darf nicht null sein.");
+        return type;
+    }
+
+    /**
+     * Prüft, ob der angegebene Kilometerstand eines Autos größer gleich als null ist
+     * @param mileage, der Kilometerstand eines Autos
+     * @return mileage, falls gültig
+     * @throws IllegalArgumentException Falls der Kilometerstand nicht stimmt
+     */
+    public static int validateMileage(int mileage){
+        Utils.check(mileage >= 0, "Der Kilometerstand eines Autos darf nicht kleiner als null sein.");
+        return mileage;
     }
 }
