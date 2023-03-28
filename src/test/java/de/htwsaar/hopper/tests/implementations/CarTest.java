@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -283,7 +284,9 @@ public class CarTest {
 
     @Test
     public void testToString() {
-        String expected = "Car{carId=0, type=AUTO, brand='BMW', creationDate=27.03.2021, seats=4, basePrice=100.0, currentPrice=100.0, licensePlate='AB-CD-123', model='M3'}";
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        String date = sdf.format(cal.getTime());
+        String expected = String.format("Car{carId=0, type=AUTO, brand='BMW', creationDate=%s, seats=4, basePrice=100.0, currentPrice=100.0, licensePlate='AB-CD-123', model='M3'}", date);
         assertEquals(expected, setterTestCar.toString());
     }
 
