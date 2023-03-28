@@ -229,6 +229,13 @@ public class BookingTest {
         assertEquals(dropOffDate.get(Calendar.DAY_OF_MONTH), result.get(Calendar.DAY_OF_MONTH));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetDropOffDateWithPickUpDateAfterDropOffDate() {
+        Calendar dropOffDate = Calendar.getInstance();
+        dropOffDate.add(Calendar.DAY_OF_YEAR, -5);
+        booking.setDropOffDate(dropOffDate);
+    }
+
     @Test
     public void testSetRealDropOffDateWithValidDate() {
         Calendar newRealDropOffDate = Calendar.getInstance();

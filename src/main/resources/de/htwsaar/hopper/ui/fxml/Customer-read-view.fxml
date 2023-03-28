@@ -17,7 +17,7 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: teal;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CustomerReadController">
     <top>
         <HBox alignment="CENTER" prefHeight="44.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kundenverwaltung" textAlignment="CENTER" wrappingWidth="600.7366790771484">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CUSTOMER_MANAGEMENT" textAlignment="CENTER" wrappingWidth="600.7366790771484">
                 <font>
                     <Font size="40.0" />
                 </font>
@@ -32,7 +32,7 @@
             <children>
             <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: teal;">
                <children>
-                        <Button fx:id="btnGoBack" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#switchToCustomerView" prefHeight="79.0" prefWidth="112.0" text="zurueck" textAlignment="CENTER">
+                        <Button fx:id="btnGoBack" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#switchToCustomerView" prefHeight="79.0" prefWidth="112.0" text="%MENU_GO_BACK" textAlignment="CENTER">
                      <graphic>
                         <ImageView fitHeight="29.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -40,7 +40,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                        <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#updateCustomer" prefHeight="79.0" prefWidth="122.0" text="bearbeiten">
+                        <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#updateCustomer" prefHeight="79.0" prefWidth="122.0" text="%MENU_EDIT">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -48,7 +48,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                        <Button fx:id="btnRemove" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#deleteCustomer" prefHeight="79.0" prefWidth="114.0" text="loeschen">
+                        <Button fx:id="btnRemove" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#deleteCustomer" prefHeight="79.0" prefWidth="114.0" text="%MENU_DELETE">
                      <graphic>
                         <ImageView fitHeight="45.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -63,7 +63,7 @@
             </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="30.0" prefWidth="600.0">
                <children>
-                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="33.0" prefWidth="600.0" text="Eigenschaften" textAlignment="RIGHT" textFill="WHITE" underline="true">
+                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="33.0" prefWidth="600.0" text="%PROPERTIES" textAlignment="RIGHT" textFill="WHITE" underline="true">
                           <font>
                               <Font size="24.0" />
                           </font>

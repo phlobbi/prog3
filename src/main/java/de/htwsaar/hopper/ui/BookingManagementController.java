@@ -73,8 +73,11 @@ public final class BookingManagementController implements Initializable {
      */
     @FXML
     void switchToSceneReturnCar(ActionEvent event) throws IOException {
+        URL url = getClass().getResource("fxml/ReturnCar.fxml");
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
+
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
-        Parent root = FXMLLoader.load(App.class.getResource("fxml/ReturnCar.fxml"));
+        Parent root = FXMLLoader.load(url, bundle);
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         //Die Actionevent von anderen Fenster sind blockiert.
@@ -86,8 +89,10 @@ public final class BookingManagementController implements Initializable {
     @FXML
     void switchToSceneCarBooking(ActionEvent event) {
         Stage stage;
+        URL url = getClass().getResource("fxml/Booking-creation-view.fxml");
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Booking-creation-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(url, bundle);
             Parent root1 = (Parent) fxmlLoader.load();
             stage = new Stage();
             stage.setScene(new Scene(root1));
