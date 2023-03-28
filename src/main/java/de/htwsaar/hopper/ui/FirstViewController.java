@@ -9,6 +9,7 @@ public final class FirstViewController {
 
     /**
      * Wechselt bei Aufruf auf die Buchungsverwaltung.
+     *
      * @param event mouse click
      */
     @FXML
@@ -18,6 +19,7 @@ public final class FirstViewController {
 
     /**
      * Wechselt bei Aufruf auf die Kundenverwaltung.
+     *
      * @param event mouse click
      */
     @FXML
@@ -27,19 +29,26 @@ public final class FirstViewController {
 
     /**
      * Wechselt bei Aufruf auf die Hilfesektion.
+     *
      * @param event mouse click
      */
     @FXML
-    void switchToHelpView(MouseEvent event)  {
+    void switchToHelpView(MouseEvent event) {
         System.out.println("Help");
     }
 
     /**
      * Wechselt bei Aufruf auf die Autoverwaltung.
+     *
      * @param event mouse click
      */
     @FXML
     void switchToCarManagementView(MouseEvent event) throws IOException {
         App.setRoot("fxml/Car-view.fxml");
+    }
+
+    @FXML
+    void switchToSettingsView(MouseEvent event) throws IOException {
+        App.setRoot("fxml/settings-view.fxml");
     }
 }

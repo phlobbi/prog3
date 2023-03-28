@@ -22,8 +22,8 @@
             <Insets bottom="20.0" left="20.0" top="20.0" />
          </padding>
          <children>
-            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveChosenCar" prefHeight="25.0" prefWidth="90.0" text="Speichern" />
-            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="90.0" text="Abbrechen" />
+            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveChosenCar" prefHeight="25.0" prefWidth="90.0" text="%MENU_SAVE" />
+            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="90.0" text="%MENU_CANCEL" />
          </children>
       </HBox>
    </bottom>
@@ -31,10 +31,10 @@
       <TableView fx:id="tableView" onKeyPressed="#saveCarViaEnter" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <columns>
             <TableColumn fx:id="carIdColumn" prefWidth="106.0" text="ID" />
-            <TableColumn fx:id="carTypeColumn" prefWidth="153.0" text="Typ" />
-            <TableColumn fx:id="carBrandColumn" prefWidth="225.0" text="Marke" />
-            <TableColumn fx:id="carModelColumn" prefWidth="249.0" text="Modell" />
-            <TableColumn fx:id="carBasePriceColumn" prefWidth="112.0" text="Basispreis" />
+            <TableColumn fx:id="carTypeColumn" prefWidth="153.0" text="%CAR_CARTYPE" />
+            <TableColumn fx:id="carBrandColumn" prefWidth="225.0" text="%CAR_CARBRAND" />
+            <TableColumn fx:id="carModelColumn" prefWidth="249.0" text="%CAR_CARMODEL" />
+            <TableColumn fx:id="carBasePriceColumn" prefWidth="112.0" text="%CAR_BASE_PRICE" />
          </columns></TableView>
    </center>
    <top>
@@ -44,19 +44,19 @@
          </padding>
          <children>
             <TextField fx:id="textFieldSearch" onKeyPressed="#searchForCarViaEnter" prefHeight="27.0" prefWidth="267.0" />
-            <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchForCar" prefHeight="25.0" prefWidth="90.0" text="Suchen" />
-            <MenuButton fx:id="menuButtonCriteria" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Kriterien">
+            <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchForCar" prefHeight="25.0" prefWidth="90.0" text="%MENU_SEARCH" />
+            <MenuButton fx:id="menuButtonCriteria" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="%CRITERIA">
               <items>
-                  <CheckMenuItem fx:id="searchCritType" mnemonicParsing="false" text="Typ" />
-                  <CheckMenuItem fx:id="searchCritBrand" mnemonicParsing="false" text="Marke" />
-                  <CheckMenuItem fx:id="searchCritModel" mnemonicParsing="false" text="Modell" />
-                <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckCriteria" text="Kriterien entfernen" />
+                  <CheckMenuItem fx:id="searchCritType" mnemonicParsing="false" text="%CAR_CARTYPE" />
+                  <CheckMenuItem fx:id="searchCritBrand" mnemonicParsing="false" text="%CAR_CARBRAND" />
+                  <CheckMenuItem fx:id="searchCritModel" mnemonicParsing="false" text="%CAR_CARMODEL" />
+                <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckCriteria" text="%DELETE_CRITERIA" />
               </items>
                <padding>
                   <Insets left="2.0" />
                </padding>
             </MenuButton>
-            <Button fx:id="btnResetSearch" mnemonicParsing="false" onAction="#resetSearch" prefHeight="25.0" prefWidth="90.0" text="Zurücksetzen" />
+            <Button fx:id="btnResetSearch" mnemonicParsing="false" onAction="#resetSearch" prefHeight="25.0" prefWidth="90.0" text="%MENU_SET_BACK" />
          </children>
       </HBox>
    </top>
