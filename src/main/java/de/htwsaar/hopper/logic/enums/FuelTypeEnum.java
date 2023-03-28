@@ -1,5 +1,9 @@
 package de.htwsaar.hopper.logic.enums;
 
+/**
+ * Enum für die unterschiedlichen Kraftstofftypen.
+ * @author Sosthene
+ */
 public enum FuelTypeEnum {
     DIESEL("Diesel"),
     BENZIN("Benzin"),

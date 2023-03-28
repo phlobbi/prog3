@@ -1,5 +1,9 @@
 package de.htwsaar.hopper.logic.enums;
 
+/**
+ * Enum für die Navi-Verfügbarkeit.
+ * @author Sosthene
+ */
 public enum SatNavEnum {
     JA("Ja"),
     NEIN("Nein");

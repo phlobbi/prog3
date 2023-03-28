@@ -182,9 +182,10 @@ public class CarCreationController implements Initializable{
             Calendar creationDateCal = Calendar.getInstance();
             creationDateCal.setTime(creationDate);
             
-            //Car car = new Car(concreteType,brand,creationDateCal,seats,basePrice,curPrice,licensePlate,model);
+            Car car = new Car(concreteType,brand,creationDateCal,seats,basePrice,curPrice,
+                    licensePlate,model,horsePower,concreteTransmission,concreteFuel,concreteSatNav,mileage);
 
-           // CarRepository.persist(car);
+            CarRepository.persist(car);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Auto erfolgreich erstellt");
             alert.showAndWait();
