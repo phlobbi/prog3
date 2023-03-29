@@ -54,30 +54,43 @@ public class BookingCarReturnController {
             alert.showAndWait();
         } else {
             LocalDate realDropOffDateLocal = datePicker.getValue();
-            Date realDropOffDateD = Date.from(realDropOffDateLocal.atStartOfDay(ZoneId.systemDefault()).toInstant());
-            Calendar realDropOffDateCal = Calendar.getInstance();
-            realDropOffDateCal.setTime(realDropOffDateD);
+            if (realDropOffDateLocal == null) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText(bundle.getString("NO_DATE_SELECTED"));
+                alert.showAndWait();
+                return;
+            } else {
+                try {
+                    Date realDropOffDateD = Date.from(realDropOffDateLocal.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                    Calendar realDropOffDateCal = Calendar.getInstance();
+                    realDropOffDateCal.setTime(realDropOffDateD);
 
-            booking.setRealDropOffDate(realDropOffDateCal);
-            BookingRepository.persist(booking);
+                    booking.setRealDropOffDate(realDropOffDateCal);
+                    BookingRepository.persist(booking);
 
-            boolean isCarFueledUp = checkBoxCarFueledUp.isSelected();
-            boolean isCarUnDamaged = checkBoxCarDamage.isSelected();
-            boolean isCarClean = checkBoxCarClean.isSelected();
-            boolean isKeyDropped = checkBoxKeyDropped.isSelected();
-            //Erstellt eine Checklist.
-            Checklist checklist = new Checklist(isCarFueledUp, isCarUnDamaged, isCarClean, isKeyDropped);
-            ChecklistRepository.persist(checklist);
-            //Sucht die Letzte checkList, die hinzugefügt wurde.
-            checklist = ChecklistRepository.findLastChecklist();
-            assert checklist != null;
-            checklist.addToBooking(booking.getBookingId());
-            System.out.println(realDropOffDateD.getTime());
-            Stage stage1 = (Stage) root.getScene().getWindow();
-            stage1.close();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText(bundle.getString("CAR_RETURNED"));
-            alert.showAndWait();
+                    boolean isCarFueledUp = checkBoxCarFueledUp.isSelected();
+                    boolean isCarUnDamaged = checkBoxCarDamage.isSelected();
+                    boolean isCarClean = checkBoxCarClean.isSelected();
+                    boolean isKeyDropped = checkBoxKeyDropped.isSelected();
+                    //Erstellt eine Checklist.
+                    Checklist checklist = new Checklist(isCarFueledUp, isCarUnDamaged, isCarClean, isKeyDropped);
+                    ChecklistRepository.persist(checklist);
+                    //Sucht die Letzte checkList, die hinzugefügt wurde.
+                    checklist = ChecklistRepository.findLastChecklist();
+                    assert checklist != null;
+                    checklist.addToBooking(booking.getBookingId());
+                    System.out.println(realDropOffDateD.getTime());
+                    Stage stage1 = (Stage) root.getScene().getWindow();
+                    stage1.close();
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setContentText(bundle.getString("CAR_RETURNED"));
+                    alert.showAndWait();
+                } catch (Exception e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText(bundle.getString("DATE_IN_PAST"));
+                alert.showAndWait();
+                }
+            }
         }
     }
 
