@@ -64,11 +64,10 @@ public class BookingReadController implements Initializable {
 
     void disableWindow() {
         btnDelete.setDisable(true);
-        btnEdit.setDisable(true);
         btnBack.setDisable(true);
 
 
-        Stage primaryStage = (Stage) btnEdit.getScene().getWindow();
+        Stage primaryStage = (Stage) btnDelete.getScene().getWindow();
         primaryStage.onCloseRequestProperty().set(e -> {
             e.consume();
         });
@@ -76,11 +75,10 @@ public class BookingReadController implements Initializable {
 
     void enableWindow() {
         btnDelete.setDisable(false);
-        btnEdit.setDisable(false);
         btnBack.setDisable(false);
 
         // Roten Kreuz Button wieder aktivieren
-        Stage primaryStage = (Stage) btnEdit.getScene().getWindow();
+        Stage primaryStage = (Stage) btnDelete.getScene().getWindow();
         primaryStage.onCloseRequestProperty().set(e -> {
             primaryStage.close();
         });
@@ -88,7 +86,7 @@ public class BookingReadController implements Initializable {
 
     @FXML
     void switchToSceneReturnCar(ActionEvent event) throws IOException {
-    URL url = getClass().getResource("fxml/ReturnCar.fxml");
+    URL url = getClass().getResource("fxml/Booking-car-return-view.fxml");
     ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
 
     BookingManagementController.setSelectedBooking(BookingManagementController.getSelectedBooking());
