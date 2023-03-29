@@ -28,16 +28,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="btnEdit" contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="82.0" prefWidth="114.0" text="Bearbeiten">
-                     <graphic>
-                        <ImageView fitHeight="52.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/manage_accounts_FILL0_wght400_GRAD0_opsz48.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="btnDelete" contentDisplay="BOTTOM" mnemonicParsing="false" prefHeight="82.0" prefWidth="109.0" text="Loeschen">
+                  <Button fx:id="btnDelete" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#switchToSceneReturnCar" prefHeight="82.0" prefWidth="120.0" text="Zurueckgeben">
                      <graphic>
                         <ImageView fitHeight="52.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                            <image>
