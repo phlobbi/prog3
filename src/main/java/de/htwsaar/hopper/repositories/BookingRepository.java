@@ -130,5 +130,20 @@ public class BookingRepository {
         return uncompletedBookings;
     }
 
+    /**
+     * Gibt als Liste alle Buchungen, die abgeschlossen sind (wo realDropOffDate ist nicht null)
+     *
+     * @return Liste der abgeschlossenen Buchungen
+     */
+    public static List<Booking> findCompleted(){
+        List<Booking> completedBookings = new ArrayList<>();
+        List<Booking> bookingsList = findAll();
 
+        for(Booking booking : bookingsList){
+            if(booking.getRealDropOffDate() != null) {
+                completedBookings.add(booking);
+            }
+        }
+        return completedBookings;
+    }
 }

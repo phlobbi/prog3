@@ -1,8 +1,8 @@
 package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.interfaces.BookingInterface;
-import de.htwsaar.hopper.logic.validations.PreventNullPersistForBooking;
 import de.htwsaar.hopper.logic.validations.BookingValidation;
+import de.htwsaar.hopper.logic.validations.PreventNullPersistForBooking;
 import de.htwsaar.hopper.logic.validations.Utils;
 import de.htwsaar.hopper.repositories.CarRepository;
 import de.htwsaar.hopper.repositories.CustomerRepository;
@@ -97,6 +97,38 @@ public class Booking implements BookingInterface {
     public String getCarShowField() {
         Car car = CarRepository.find(this.carId);
         return String.format("%s %s (ID: %d)",car.getBrand(),car.getModel(),car.getCarId());
+    }
+
+    /**
+     * Gibt das PickUpDate als String zurück
+     * @return PickUpDate als String
+     */
+    @Override
+    public String getPickUpDateShowField() {
+        return Utils.calendarToString(this.pickUpDate);
+    }
+
+    /**
+     * Gibt das DropOffDate als String zurück
+     * @return DropOffDate als String
+     */
+    @Override
+    public String getDropOffDateShowField() {
+        return Utils.calendarToString(this.dropOffDate);
+    }
+
+    /**
+     * Gibt das RealDropOffDate als String zurück
+     * @return RealDropOffDate als String
+     */
+    @Override
+    public String getRealDropOffDateShowField() {
+        if (this.realDropOffDate == null){
+            return "Noch nicht zurückgegeben";
+        } else {
+            return Utils.calendarToString(this.realDropOffDate);
+        }
+
     }
 
     /* GETTER */
