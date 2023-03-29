@@ -195,6 +195,14 @@ public class Car implements CarInterface {
     }
 
     @Override
+    public String getSatNavShowField(){
+        if (satNav)
+            return "Ja";
+        else
+            return "Nein";
+    }
+
+    @Override
     public int getMileage() {
         return mileage;
     }

@@ -12,12 +12,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="980.0" style="-fx-background-color: teal;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.BookingCarChooseController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="711.0" prefWidth="1060.0" style="-fx-background-color: teal;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.BookingCarChooseController">
    <left>
-      <VBox prefHeight="537.0" prefWidth="66.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="558.0" prefWidth="40.0" BorderPane.alignment="CENTER" />
    </left>
    <bottom>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" prefHeight="86.0" prefWidth="980.0" spacing="20.0" BorderPane.alignment="CENTER">
          <padding>
             <Insets bottom="20.0" left="20.0" top="20.0" />
          </padding>
@@ -30,11 +30,15 @@
    <center>
       <TableView fx:id="tableView" onKeyPressed="#saveCarViaEnter" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <columns>
-            <TableColumn fx:id="carIdColumn" prefWidth="106.0" text="ID" />
-            <TableColumn fx:id="carTypeColumn" prefWidth="153.0" text="%CAR_CARTYPE" />
-            <TableColumn fx:id="carBrandColumn" prefWidth="225.0" text="%CAR_CARBRAND" />
-            <TableColumn fx:id="carModelColumn" prefWidth="249.0" text="%CAR_CARMODEL" />
-            <TableColumn fx:id="carBasePriceColumn" prefWidth="112.0" text="%CAR_BASE_PRICE" />
+            <TableColumn fx:id="carIdColumn" prefWidth="54.0" text="ID" />
+            <TableColumn fx:id="carTypeColumn" prefWidth="120.0" text="%CAR_CARTYPE" />
+            <TableColumn fx:id="carBrandColumn" prefWidth="148.0" text="%CAR_CARBRAND" />
+            <TableColumn fx:id="carModelColumn" prefWidth="180.0" text="%CAR_CARMODEL" />
+            <TableColumn fx:id="carTransmissionTypeColumn" prefWidth="124.0" text="%CAR_TRANSMISSION" />
+            <TableColumn fx:id="carFuelTypeColumn" prefWidth="106.0" text="%CAR_FUELTYPE" />
+            <TableColumn fx:id="carHorsepowerColumn" prefWidth="83.0" text="%CAR_HORSEPOWER" />
+            <TableColumn fx:id="carSatNavColumn" prefWidth="74.0" text="%CAR_SATNAV" />
+            <TableColumn fx:id="carBasePriceColumn" prefWidth="82.0" text="%CAR_BASE_PRICE" />
          </columns></TableView>
    </center>
    <top>
@@ -50,6 +54,8 @@
                   <CheckMenuItem fx:id="searchCritType" mnemonicParsing="false" text="%CAR_CARTYPE" />
                   <CheckMenuItem fx:id="searchCritBrand" mnemonicParsing="false" text="%CAR_CARBRAND" />
                   <CheckMenuItem fx:id="searchCritModel" mnemonicParsing="false" text="%CAR_CARMODEL" />
+                  <CheckMenuItem fx:id="searchCritTransmissionType" mnemonicParsing="false" text="%CAR_TRANSMISSION" />
+                  <CheckMenuItem fx:id="searchCritFuelType" mnemonicParsing="false" text="%CAR_FUELTYPE" />
                 <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckCriteria" text="%DELETE_CRITERIA" />
               </items>
                <padding>
@@ -61,6 +67,6 @@
       </HBox>
    </top>
    <right>
-      <VBox prefHeight="537.0" prefWidth="66.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="558.0" prefWidth="46.0" BorderPane.alignment="CENTER" />
    </right>
 </BorderPane>
