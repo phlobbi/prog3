@@ -18,7 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class ReturnCarController {
+public class BookingCarReturnController {
 
 
     @FXML

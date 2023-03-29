@@ -11,6 +11,9 @@ public interface BookingInterface {
     /* UI-METHODEN */
     String getCustomerShowField();
     String getCarShowField();
+    String getPickUpDateShowField();
+    String getDropOffDateShowField();
+    String getRealDropOffDateShowField();
 
     /* PREISBERECHNUNG */
     double calculatePrice();
