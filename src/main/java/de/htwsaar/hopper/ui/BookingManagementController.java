@@ -311,7 +311,7 @@ public class BookingManagementController implements Initializable {
      */
     @FXML
     void switchToSceneReturnCar(ActionEvent event) throws IOException {
-        URL url = getClass().getResource("fxml/ReturnCar.fxml");
+        URL url = getClass().getResource("fxml/Booking-car-return-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
 
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
