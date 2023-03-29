@@ -12,6 +12,9 @@ import java.util.Calendar;
  */
 public interface CarInterface {
 
+    /* UI-METHODEN */
+    String getSatNavShowField();
+
     /*  GETTER  */
     int getCarId();
     CarTypeEnum getType();
