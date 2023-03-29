@@ -78,4 +78,14 @@ public class Utils {
                 date1.get(Calendar.DAY_OF_YEAR) == date2.get(Calendar.DAY_OF_YEAR);
     }
 
+    /**
+     * Wandelt das Kalenderdatum + Uhrzeit in String um.
+     *
+     * @param date Kalenderdatum
+     * @return Formatterter String mit Datum und Uhrzeit
+     */
+    public static String calendarToString(Calendar date){
+        return String.format("%02d.%02d.%04d, %02d:%02d", date.get(Calendar.DAY_OF_MONTH), date.get(Calendar.MONTH) + 1, date.get(Calendar.YEAR), date.get(Calendar.HOUR_OF_DAY), date.get(Calendar.MINUTE));
+    }
+
 }
