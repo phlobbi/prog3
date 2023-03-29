@@ -103,12 +103,18 @@
                                  <font>
                                     <Font size="14.0" />
                                  </font></Label>
-                              <Label text="Abhol" textFill="WHITE" GridPane.rowIndex="4">
+                              <Label text="Abholdatum" textFill="WHITE" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="14.0" />
                                  </font></Label>
-                              <Label text="Rückgabe" textFill="WHITE" GridPane.rowIndex="5" />
-                              <Label text="RealDrop" textFill="WHITE" GridPane.rowIndex="6" />
+                              <Label text="Rückgabedatum" textFill="WHITE" GridPane.rowIndex="5">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label text="Tatsaechliche Rückgabe" textFill="WHITE" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
                               <Label fx:id="labelPickUp" text="Label" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="14.0" />
