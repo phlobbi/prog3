@@ -22,6 +22,7 @@
             <Button fx:id="btnBookCar" mnemonicParsing="false" onAction="#switchToSceneNewBooking" prefHeight="25.0" prefWidth="125.0" text="Buchen" />
             <Button fx:id="btnReturnCar" mnemonicParsing="false" onAction="#switchToSceneReturnCar" prefHeight="25.0" prefWidth="125.0" text="Zurückgeben" />
             <Button fx:id="btnReadBooking" mnemonicParsing="false" onAction="#switchToSceneReadBooking" prefHeight="25.0" prefWidth="125.0" text="Buchung lesen" />
+             <Button fx:id="btnGenerateInvoice" mnemonicParsing="false" onAction="#generateInvoice" prefHeight="25.0" prefWidth="125.0" text="%BOOKING_GENERATE_INVOICE" />
             <MenuButton fx:id="menuButtonShowBookings" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Aktive">
               <items>
                 <MenuItem fx:id="menuItemShowActive" mnemonicParsing="false" onAction="#showActiveBookings" text="Aktive anzeigen" />
