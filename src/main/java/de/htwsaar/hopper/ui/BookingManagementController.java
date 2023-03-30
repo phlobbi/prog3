@@ -1,6 +1,7 @@
 package de.htwsaar.hopper.ui;
 
 import de.htwsaar.hopper.logic.implementations.Booking;
+import de.htwsaar.hopper.logic.implementations.Invoice;
 import de.htwsaar.hopper.repositories.BookingRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +23,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BookingManagementController implements Initializable {
+
+    @FXML
+    public Button btnGenerateInvoice;
 
     @FXML
     private Button btnBookCar;
@@ -385,6 +389,20 @@ public class BookingManagementController implements Initializable {
         });
     }
 
+    @FXML
+    void generateInvoice() {
+        setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
+        if(selectedBooking == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Keine Buchung ausgewählt.");
+            alert.showAndWait();
+        } else if(selectedBooking.getRealDropOffDate() == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Das Auto wurde noch nicht abgegeben.");
+            alert.showAndWait();
+            return;
+        }
+        Invoice.generate(getSelectedBooking());
+    }
+
     private ObservableList<CheckMenuItem> getAllSelectedCriteria(){
         ObservableList<CheckMenuItem> items = FXCollections.observableArrayList();
         if (filterCustomer.isSelected())
@@ -402,7 +420,7 @@ public class BookingManagementController implements Initializable {
         return tableView.getItems().contains(booking);
     }
 
-    private void configureTableView(){
+    private void configureTableView() {
         bookingIDColumn.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
         customerColumn.setCellValueFactory(new PropertyValueFactory<>("customerShowField"));
         carColumn.setCellValueFactory(new PropertyValueFactory<>("carShowField"));
