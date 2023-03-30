@@ -300,7 +300,14 @@ public class BookingManagementController implements Initializable {
     @FXML
     void switchToSceneReadBooking(ActionEvent event) throws IOException {
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
-        App.setRoot("fxml/Booking-read-view.fxml");
+        if(selectedBooking == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Keine Buchung ausgewählt.");
+            alert.showAndWait();
+            return;
+        } else {
+            App.setRoot("fxml/Booking-read-view.fxml");
+        }
+
     }
 
     /**
@@ -311,18 +318,25 @@ public class BookingManagementController implements Initializable {
      */
     @FXML
     void switchToSceneReturnCar(ActionEvent event) throws IOException {
-        URL url = getClass().getResource("fxml/ReturnCar.fxml");
+        URL url = getClass().getResource("fxml/Booking-car-return-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
 
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
-        Parent root = FXMLLoader.load(url, bundle);
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        //Die Actionevent von anderen Fenster sind blockiert.
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
-        stage.showAndWait();
-        reloadTable();
+        if (selectedBooking.getDropOffDate() != null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Die Buchung wurde bereits zurückgegeben.");
+            alert.showAndWait();
+            return;
+        } else {
+            Parent root = FXMLLoader.load(url, bundle);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            //Die Actionevent von anderen Fenster sind blockiert.
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.showAndWait();
+            reloadTable();
+        }
+
     }
 
 
