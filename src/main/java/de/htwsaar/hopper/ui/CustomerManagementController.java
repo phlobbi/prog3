@@ -1,8 +1,6 @@
 package de.htwsaar.hopper.ui;
 
-import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.implementations.Customer;
-import de.htwsaar.hopper.repositories.CarRepository;
 import de.htwsaar.hopper.repositories.CustomerRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,21 +10,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * UI-Klasse, die die CRUD-Funktionen für den Nutzer bereitstellt.
- */
-public final class CustomerManagementController implements Initializable {
+public class CustomerManagementController implements Initializable {
 
     @FXML
     private Button btnCreate;
@@ -41,21 +35,69 @@ public final class CustomerManagementController implements Initializable {
     private Button btnRemove;
 
     @FXML
+    private Button btnResetSearch;
+
+    @FXML
+    private Button btnSearch;
+
+    @FXML
     private Button btnUpdate;
 
     @FXML
-    private TableView<Customer> tableView;
+    private TableColumn<Customer, String> customerCityColumn;
 
-    private static Customer selectedCustomer;
+    @FXML
+    private TableColumn<Customer, String> customerEmailColumn;
 
     @FXML
     private TableColumn<Customer, String> customerFirstNameColumn;
 
     @FXML
+    private TableColumn<Customer, String> customerHouseNumberColumn;
+
+    @FXML
+    private TableColumn<Customer, String> customerIDColumn;
+
+    @FXML
     private TableColumn<Customer, String> customerLastNameColumn;
 
     @FXML
-    private TableColumn<Customer, String> customerIdColumn;
+    private TableColumn<Customer, String> customerPhoneNumberColumn;
+
+    @FXML
+    private TableColumn<Customer, String> customerStreetColumn;
+
+    @FXML
+    private TableColumn<Customer, String> customerZipCodeColumn;
+
+    @FXML
+    private CheckMenuItem filterCity;
+
+    @FXML
+    private CheckMenuItem filterEmail;
+
+    @FXML
+    private CheckMenuItem filterFirstName;
+
+    @FXML
+    private CheckMenuItem filterLastName;
+
+    @FXML
+    private MenuButton menuButtonFilter;
+
+    @FXML
+    private MenuItem menuItemUncheck;
+
+    @FXML
+    private BorderPane root;
+
+    @FXML
+    private TableView<Customer> tableView;
+
+    @FXML
+    private TextField textFieldSearch;
+
+    private static Customer selectedCustomer;
 
     /**
      * Wechselt bei Aufruf auf die Startseite zurück.
@@ -67,6 +109,80 @@ public final class CustomerManagementController implements Initializable {
     }
 
 
+    @FXML
+    void searchCustomers(ActionEvent event) {
+        try{
+            String searchCriteria = textFieldSearch.getText();
+
+            if(searchCriteria.trim().isEmpty()){
+                throw new IllegalArgumentException("Kein Suchkriterium eingegeben");
+            }
+
+            ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
+            checkMenuItems = getAllSelectedCriteria();
+
+            if (checkMenuItems.isEmpty())
+                throw new IllegalArgumentException("Kein Kriterium ausgewählt");
+
+
+            tableView.getItems().clear();
+            for (Customer customer : CustomerRepository.findAll()) {
+                for (CheckMenuItem item : checkMenuItems) {
+                    boolean allowedToInsert = false;
+                    if (item.equals(filterFirstName)) {
+                        if (customer.getFirstName().toLowerCase().contains(searchCriteria.toLowerCase()))
+                            allowedToInsert = true;
+                    } else if (item.equals(filterLastName)) {
+                        if (customer.getLastName().toLowerCase().contains(searchCriteria.toLowerCase()))
+                            allowedToInsert = true;
+                    } else if (item.equals(filterEmail)) {
+                        if (customer.getEmail().toLowerCase().contains(searchCriteria.toLowerCase()))
+                            allowedToInsert = true;
+                    } else if (item.equals(filterCity)) {
+                        if (customer.getCity().toLowerCase().contains(searchCriteria.toLowerCase()))
+                            allowedToInsert = true;
+                    }
+                    if (!IsCustomerAlreadyInTable(customer)){
+                        if (allowedToInsert)
+                            tableView.getItems().add(customer);
+                    }
+
+                }
+            }
+            if (tableView.getItems().isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Keine Treffer");
+                alert.setHeaderText("Keine Treffer");
+                alert.setContentText("Es wurden keine Kunden gefunden, die den Suchkriterien entsprechen");
+                alert.showAndWait();
+            }
+        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Fehler");
+            alert.setHeaderText("Fehler bei der Suche");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    void searchCustomersViaEnter(KeyEvent event) {
+        if(event.getCode().toString().equals("ENTER")){
+            searchCustomers(new ActionEvent());
+        }
+    }
+
+    /**
+     * Setzt die Suche zurück, sodass keine Filterkriterien mehr aktiviert sind,
+     * die Tabelle wieder auf original zurückgesetzt wird und das Suchfeld geleert wird
+     * @param event Event
+     */
+    @FXML
+    void resetSearch(ActionEvent event) {
+        uncheckFilters(new ActionEvent());
+        reloadTable();
+        textFieldSearch.clear();
+    }
 
     @FXML
     void switchToSceneAddCustomer(ActionEvent event) throws IOException {
@@ -110,9 +226,16 @@ public final class CustomerManagementController implements Initializable {
     public void reloadTable(){
         tableView.getItems().clear();
 
-        customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        customerIDColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         customerFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         customerLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        customerEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        customerStreetColumn.setCellValueFactory(new PropertyValueFactory<>("street"));
+        customerHouseNumberColumn.setCellValueFactory(new PropertyValueFactory<>("houseNumber"));
+        customerCityColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
+        customerZipCodeColumn.setCellValueFactory(new PropertyValueFactory<>("zipCode"));
+        customerPhoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+
         ObservableList<Customer> observableList = FXCollections.observableArrayList();
         observableList.addAll(CustomerRepository.findAll());
         tableView.getItems().addAll(observableList);
@@ -158,11 +281,6 @@ public final class CustomerManagementController implements Initializable {
     }
 
     @FXML
-    void switchToSceneRemoveCustomer(ActionEvent event) {
-
-    }
-
-    @FXML
     void switchToSceneUpdateCustomer(ActionEvent event) {
         setSelectedCustomer(tableView.getSelectionModel().getSelectedItem());
         Stage stage = new Stage();
@@ -183,8 +301,53 @@ public final class CustomerManagementController implements Initializable {
         reloadTable();
     }
 
-        public static Customer getSelectedCustomer() {
-            return selectedCustomer;
+    @FXML
+    void uncheckFilters(ActionEvent event) {
+        filterCity.setSelected(false);
+        filterEmail.setSelected(false);
+        filterFirstName.setSelected(false);
+        filterLastName.setSelected(false);
+    }
+
+    /**
+     * Gibt eine Liste aus mit allen Suchkriterien, die ausgewählt sind
+     * @return Liste mit allen ausgewählten Suchkriterien
+     */
+    private ObservableList<CheckMenuItem> getAllSelectedCriteria(){
+        ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
+
+        if (filterCity.isSelected())
+            checkMenuItems.add(filterCity);
+        if (filterEmail.isSelected())
+            checkMenuItems.add(filterEmail);
+        if (filterFirstName.isSelected())
+            checkMenuItems.add(filterFirstName);
+        if (filterLastName.isSelected())
+            checkMenuItems.add(filterLastName);
+
+        return checkMenuItems;
+    }
+
+    /**
+     * Prüft ob das Auto bereits in der Liste ist
+     * @param customer Auto was zu prüfen ist
+     * @return true wenn Auto bereits in der Liste ist, sonst false
+     */
+    private boolean IsCustomerAlreadyInTable(Customer customer){
+        return tableView.getItems().contains(customer);
+    }
+
+    public static Customer getSelectedCustomer() {
+        return selectedCustomer;
+    }
+
+        /**
+         * Setzt die Variable selectedCar auf ein angegebenes Car-Objekt.
+         * @param customer Zu setzendes Car-Objekt
+         */
+
+        public static void setSelectedCustomer(Customer customer) {
+            selectedCustomer = customer;
         }
 
         /**
@@ -195,26 +358,7 @@ public final class CustomerManagementController implements Initializable {
          */
         @Override
         public void initialize(URL url, ResourceBundle resourceBundle) {
-            customerLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-            customerFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-            customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
-            ObservableList<Customer> observableList = FXCollections.observableArrayList();
-            observableList.addAll(CustomerRepository.findAll());
-            tableView.getItems().addAll(observableList);
-            tableView.getSelectionModel().selectFirst();
-            if (tableView.getSelectionModel().isEmpty()) {
-                btnRead.setDisable(true);
-                btnRemove.setDisable(true);
-                btnUpdate.setDisable(true);
-            }
-        }
-
-        /**
-         * Setzt die Variable selectedCar auf ein angegebenes Car-Objekt.
-         * @param customer Zu setzendes Car-Objekt
-         */
-        public static void setSelectedCustomer(Customer customer) {
-            selectedCustomer = customer;
+            reloadTable();
         }
 
 }
