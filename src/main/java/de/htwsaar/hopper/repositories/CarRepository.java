@@ -20,15 +20,7 @@ public class CarRepository {
      * @return Gefundenes Car; null, falls nicht gefunden
      */
     public static Car find(int carId) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        try {
-            return entityManager.find(Car.class, carId);
-        } finally {
-            entityManager.close();
-            entityManagerFactory.close();
-        }
+        return (Car) DBObjectRepository.find(Car.class, carId);
     }
 
     /**
@@ -36,17 +28,7 @@ public class CarRepository {
      * @return Alle Cars in der Datenbank; null, falls keine existieren.
      */
     public static List<Car> findAll() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        Query query = entityManager.createQuery("SELECT c FROM Car AS c");
-
-        try {
-            return (List<Car>) query.getResultList();
-        } finally {
-            entityManager.close();
-            entityManagerFactory.close();
-        }
+        return (List<Car>) DBObjectRepository.findAll(Car.class, "Car");
     }
 
     /**
@@ -95,19 +77,9 @@ public class CarRepository {
      * @throws IllegalArgumentException wenn Objekt nicht in DB
      */
     public static void delete(Car car) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        DBObjectRepository.delete(car);
 
-        try {
-            entityManager.getTransaction().begin();
-
-            entityManager.remove(entityManager.contains(car) ? car : entityManager.merge(car));
-
-            entityManager.getTransaction().commit();
-        } finally {
-            entityManager.close();
-            entityManagerFactory.close();
-        }
+        //todo: testen ob removeOrphan funktioniert
         removeOrphan(car);
     }
 
@@ -116,19 +88,7 @@ public class CarRepository {
      * @param car Das uebergebene Objekt.
      */
     public static void persist(Car car) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        try {
-            entityManager.getTransaction().begin();
-
-            entityManager.persist(entityManager.contains(car) ? car : entityManager.merge(car));
-
-            entityManager.getTransaction().commit();
-        } finally {
-            entityManager.close();
-            entityManagerFactory.close();
-        }
+        DBObjectRepository.persist(car);
     }
 
     /**
