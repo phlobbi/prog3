@@ -1,7 +1,10 @@
 package de.htwsaar.hopper.ui;
 
+import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.implementations.Booking;
+import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.repositories.BookingRepository;
+import de.htwsaar.hopper.repositories.CarRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -320,11 +323,10 @@ public class BookingManagementController implements Initializable {
      */
     @FXML
     void switchToSceneReturnCar(ActionEvent event) throws IOException {
-        URL url = getClass().getResource("fxml/Booking-car-return-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
-
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
-        if (selectedBooking.getDropOffDate() != null) {
+        URL url = sceneChooser();
+        if (selectedBooking.getRealDropOffDate() != null) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Die Buchung wurde bereits zurückgegeben.");
             alert.showAndWait();
             return;
@@ -427,6 +429,41 @@ public class BookingManagementController implements Initializable {
                 showAllBookings(new ActionEvent());
                 break;
         }
+    }
+
+    @FXML
+    private URL sceneChooser() throws IOException {
+        Booking booking = getSelectedBooking();
+        URL setURL = null;
+        Car car = CarRepository.find(booking.getCarId());
+        CarTypeEnum carType = car.getType();
+        switch (carType.getLabel()){
+            case "SUV":
+                URL url = getClass().getResource("fxml/Booking-suv-return-view.fxml");
+                setURL = url;
+                break;
+            case "LKW":
+                URL url1 = getClass().getResource("fxml/Booking-truck-return-view.fxml");
+                setURL = url1;
+                break;
+            case "Bus":
+                URL url2 = getClass().getResource("fxml/Booking-bus-return-view.fxml");
+                setURL = url2;
+                break;
+            case "Van":
+                URL url3 = getClass().getResource("fxml/Booking-van-return-view.fxml");
+                setURL = url3;
+                break;
+            case "Motorrad":
+                URL url4 = getClass().getResource("fxml/Booking-bike-return-view.fxml");
+                setURL = url4;
+                break;
+            default:
+                URL url5 = getClass().getResource("fxml/Booking-car-return-view.fxml");
+                setURL = url5;
+                break;
+        }
+        return setURL;
     }
 
     @Override

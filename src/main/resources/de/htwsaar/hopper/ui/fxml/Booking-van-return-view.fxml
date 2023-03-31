@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.BookingCarReturnController">
+    <top>
+        <HBox prefHeight="74.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Van" />
+         </children></HBox>
+    </top>
+    <center>
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER">
+                    <children>
+                        <GridPane>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="118.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="82.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <CheckBox fx:id="checkBoxCarFueledUp" mnemonicParsing="false" GridPane.rowIndex="2" />
+                                <CheckBox fx:id="checkBoxCarClean" mnemonicParsing="false" GridPane.rowIndex="4" />
+                                <CheckBox fx:id="checkBoxCarDamage" mnemonicParsing="false" GridPane.rowIndex="3" />
+                                <CheckBox fx:id="checkBoxKeyDropped" mnemonicParsing="false" GridPane.rowIndex="5" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_FUELED" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_NO_DAMAGE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CLEANED" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_KEY_RETURNED" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                <Button mnemonicParsing="false" onAction="#returnCar" text="%MENU_CONFIRM" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="104.0" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%BOOKING_RETURN_DATE" wrappingWidth="96.34375" GridPane.columnIndex="1" />
+                                <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeWindow" text="%MENU_CANCEL" GridPane.rowIndex="7" />
+                            </children>
+                        </GridPane>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+    <bottom>
+        <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+    </bottom>
+</BorderPane>
