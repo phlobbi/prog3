@@ -4,7 +4,7 @@ package de.htwsaar.hopper.logic.interfaces;
  * Interface für die Klasse Checklist.
  * @author Philip
  */
-public interface ChecklistInterface {
+public interface ChecklistInterface extends DBObjectInterface {
     int getProblemCount();
 
     /* GETTER */
