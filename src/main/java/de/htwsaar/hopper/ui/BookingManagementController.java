@@ -185,11 +185,15 @@ public class BookingManagementController implements Initializable {
                     }
                 }
             }
-
-            if(itemsAfterSearch.isEmpty())
-                throw new IllegalArgumentException("Keine Buchungen gefunden");
-
             tableView.setItems(itemsAfterSearch);
+
+            if(tableView.getItems().isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Keine Buchungen gefunden");
+                alert.setHeaderText("Keine Buchungen gefunden");
+                alert.setContentText("Es wurden keine Buchungen gefunden, die den Suchkriterien entsprechen");
+                alert.showAndWait();
+            }
 
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);

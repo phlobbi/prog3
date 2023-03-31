@@ -327,6 +327,13 @@ public final class CarManagementController implements Initializable {
 
                 }
             }
+            if (tableView.getItems().isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Keine Autos gefunden");
+                alert.setHeaderText("Keine Autos gefunden");
+                alert.setContentText("Es wurden keine Autos gefunden, die den Suchkriterien entsprechen");
+                alert.showAndWait();
+            }
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fehler");
