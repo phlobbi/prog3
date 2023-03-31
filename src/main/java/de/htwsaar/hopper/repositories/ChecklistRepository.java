@@ -1,11 +1,6 @@
 package de.htwsaar.hopper.repositories;
 
 import de.htwsaar.hopper.logic.implementations.Checklist;
-import de.htwsaar.hopper.logic.implementations.Customer;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 public class ChecklistRepository {
 

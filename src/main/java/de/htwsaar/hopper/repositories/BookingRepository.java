@@ -3,7 +3,6 @@ package de.htwsaar.hopper.repositories;
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.logic.implementations.Checklist;
 
-import java.util.Calendar; //todo: nach Testen entfernen
 import java.util.List;
 
 /**
@@ -38,8 +37,7 @@ public class BookingRepository {
     public static void delete(Booking booking) {
         DBObjectRepository.delete(booking);
 
-        //todo: NullPointer bei nicht existierender Checklist behandeln
-        //removeOrphan(booking);
+        removeOrphan(booking);
     }
 
     /**
@@ -59,35 +57,5 @@ public class BookingRepository {
         Checklist checklist = ChecklistRepository.find(booking.getChecklistId());
         if (checklist != null)
             ChecklistRepository.delete(checklist);
-    }
-
-    //nur zum Testen der Auslagerung der Funktionalitäten in zentrale Repo-Klasse.
-    //todo: Löschen nach Testen
-    public static void main(String[] args) {
-        Calendar c = Calendar.getInstance();
-
-            //find() testen
-        //Booking b = BookingRepository.find(2);
-        //System.out.println(b.toString());
-
-            //findAll() testen
-        //List<Booking> l = BookingRepository.findAll();
-        //l.forEach(System.out::println);
-
-            //delete() testen
-        //List<Booking> l = BookingRepository.findAll();
-        //l.forEach(System.out::println);
-        //Booking b = BookingRepository.find(2);
-        //BookingRepository.delete(b);
-        //List<Booking> l = BookingRepository.findAll();
-        //l.forEach(System.out::println);
-
-            //persist() testen
-        //List<Booking> l = BookingRepository.findAll();
-        //l.forEach(System.out::println);
-        //Booking b = new Booking(1, 1, c, c);
-        //BookingRepository.persist(b);
-        //List<Booking> l = BookingRepository.findAll();
-        //l.forEach(System.out::println);
     }
 }

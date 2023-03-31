@@ -79,7 +79,6 @@ public class CarRepository {
     public static void delete(Car car) {
         DBObjectRepository.delete(car);
 
-        //todo: testen ob removeOrphan funktioniert
         removeOrphan(car);
     }
 
