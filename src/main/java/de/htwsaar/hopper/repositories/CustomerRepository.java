@@ -1,6 +1,7 @@
 package de.htwsaar.hopper.repositories;
 
 import de.htwsaar.hopper.logic.implementations.Booking;
+import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.implementations.Customer;
 
 import javax.persistence.EntityManager;
@@ -21,15 +22,7 @@ public class CustomerRepository {
      * @return Der gefundene Customer; null, falls nicht gefunden
      */
     public static Customer find(int customerId) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        try {
-            return entityManager.find(Customer.class, customerId);
-        } finally {
-            entityManager.close();
-            entityManagerFactory.close();
-        }
+        return (Customer) DBObjectRepository.find(Customer.class, customerId);
     }
 
     /**
@@ -37,17 +30,7 @@ public class CustomerRepository {
      * @return Alle Customer in der Datenbank; null, falls keine existieren.
      */
     public static List<Customer> findAll() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        Query query = entityManager.createQuery("SELECT c FROM Customer AS c");
-
-        try {
-            return query.getResultList();
-        } finally {
-            entityManager.close();
-            entityManagerFactory.close();
-        }
+        return (List<Customer>) DBObjectRepository.findAll(Customer.class, "Customer");
     }
 
     /**
@@ -58,19 +41,9 @@ public class CustomerRepository {
      * @throws IllegalArgumentException wenn Objekt nicht in DB
      */
     public static void delete(Customer customer) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        DBObjectRepository.delete(customer);
 
-        try {
-            entityManager.getTransaction().begin();
-
-            entityManager.remove(entityManager.contains(customer) ? customer : entityManager.merge(customer));
-
-            entityManager.getTransaction().commit();
-        } finally {
-            entityManager.close();
-            entityManagerFactory.close();
-        }
+        //todo: testen ob removeOrphan funktioniert
         removeOrphan(customer);
     }
 
@@ -79,19 +52,7 @@ public class CustomerRepository {
      * @param customer Das übergebene Objekt.
      */
     public static void persist(Customer customer) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        try {
-            entityManager.getTransaction().begin();
-
-            entityManager.persist(entityManager.contains(customer) ? customer : entityManager.merge(customer));
-
-            entityManager.getTransaction().commit();
-        } finally {
-            entityManager.close();
-            entityManagerFactory.close();
-        }
+        DBObjectRepository.persist(customer);
     }
 
     /**
