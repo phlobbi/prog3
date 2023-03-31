@@ -7,12 +7,14 @@ import java.util.List;
 
 /**
  * Repository-Klasse für den Customer. Dient zum Abrufbarmachen über die Datenbank.
+ *
  * @author Ronny
  */
 public class CustomerRepository {
 
     /**
      * Findet einen speziellen Customer über seine ID.
+     *
      * @param customerId ID des zu findenden Customers
      * @return Der gefundene Customer; null, falls nicht gefunden
      */
@@ -22,6 +24,7 @@ public class CustomerRepository {
 
     /**
      * Geht alle gespeicherten Customer durch und gibt sie als Liste zurück.
+     *
      * @return Alle Customer in der Datenbank; null, falls keine existieren.
      */
     public static List<Customer> findAll() {
@@ -29,9 +32,30 @@ public class CustomerRepository {
     }
 
     /**
+     * Sucht alle Customers, die keine Buchung am Laufen haben.
+     *
+     * @return Die Customer-Liste; null, falls keine verfuegbaren Customer existieren
+     */
+    public static List<Customer> findAvailable() {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        Query queryForAvailableCustomer = entityManager.createQuery("SELECT c FROM Customer AS c WHERE " +
+                "NOT EXISTS (SELECT b FROM Booking AS b WHERE c.customerId=b.customerId AND b.realDropOffDate = null)");
+
+        try {
+            return (List<Customer>) queryForAvailableCustomer.getResultList();
+        } finally {
+            entityManager.close();
+            entityManagerFactory.close();
+        }
+    }
+
+    /**
      * Nimmt einen Customer entgegen und loescht diesen aus der DB.
      * Wird dieser Customer nicht in der DB gefunden, wird eine IllegalArgumentException geworfen.
      * Nach dem Löschen werden ggf. vorhandene orphaned records entfernt.
+     *
      * @param customer Die übergebene / zu löschende Entität.
      * @throws IllegalArgumentException wenn Objekt nicht in DB
      */
@@ -43,6 +67,7 @@ public class CustomerRepository {
 
     /**
      * Nimmt ein Customer-Objekt entgegen und persistiert es in der Datenbank.
+     *
      * @param customer Das übergebene Objekt.
      */
     public static void persist(Customer customer) {
@@ -52,6 +77,7 @@ public class CustomerRepository {
     /**
      * Wird nach dem Löschen eines Customers automatisch aufgerufen und durchsucht alle vorhandenen Bookings.
      * Taucht der gelöschte Customer in einem Booking auf, wird auch das korrespondierende Booking entfernt.
+     *
      * @param customer Der gelöschte Customer.
      */
     private static void removeOrphan(Customer customer) {

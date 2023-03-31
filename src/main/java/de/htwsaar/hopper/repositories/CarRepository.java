@@ -11,11 +11,13 @@ import java.util.List;
 
 /**
  * Repository-Klasse für Car. Dient zum Abrufbarmachen über die Datenbank.
+ *
  * @author Ronny
  */
 public class CarRepository {
     /**
      * Findet ein Car über seine ID.
+     *
      * @param carId ID des zu findenden Cars
      * @return Gefundenes Car; null, falls nicht gefunden
      */
@@ -25,6 +27,7 @@ public class CarRepository {
 
     /**
      * Geht alle gespeicherten Cars durch und gibt sie als Liste zurueck.
+     *
      * @return Alle Cars in der Datenbank; null, falls keine existieren.
      */
     public static List<Car> findAll() {
@@ -33,6 +36,7 @@ public class CarRepository {
 
     /**
      * Sucht alle Cars, die noch verfügbar sind und gibt sie als Liste aus.
+     *
      * @return Die Car-Liste; null, falls keine verfügbaren Cars existieren
      */
     public static List<Car> findAvailable() {
@@ -52,6 +56,7 @@ public class CarRepository {
 
     /**
      * Sucht alle Cars, die nicht mehr verfuegbar sind und gibt sie als Liste aus.
+     *
      * @return Die Car-Liste; null, wenn keine nicht mehr verfügbaren Cars existieren.
      */
     public static List<Car> findUnavailable() {
@@ -73,6 +78,7 @@ public class CarRepository {
      * Nimmt ein Car entgegen und loescht dieses aus der DB.
      * Wird dieses Car nicht in der DB gefunden, wird eine IllegalArgumentException geworfen.
      * Nach dem Löschen werden ggf. vorhandene orphaned records entfernt.
+     *
      * @param car Die uebergebene / zu loeschende Entitaet.
      * @throws IllegalArgumentException wenn Objekt nicht in DB
      */
@@ -84,6 +90,7 @@ public class CarRepository {
 
     /**
      * Nimmt ein Car-Objekt entgegen und persistiert es in der Datenbank.
+     *
      * @param car Das uebergebene Objekt.
      */
     public static void persist(Car car) {
@@ -93,6 +100,7 @@ public class CarRepository {
     /**
      * Wird nach dem Löschen eines Cars automatisch aufgerufen und durchsucht alle vorhandenen Bookings.
      * Taucht das gelöschte Car in einem Booking auf, wird auch das korrespondierende Booking entfernt.
+     *
      * @param car Das gelöschte Car.
      */
     private static void removeOrphan(Car car) {

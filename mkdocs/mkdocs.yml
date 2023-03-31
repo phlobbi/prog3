@@ -1,0 +1,6 @@
+site_name: Autovermietung
+nav:
+  - Autovermietung: index.md
+  - Startseite: start.md
+  - Einstellungen: settings.md
+theme: readthedocs

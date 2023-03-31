@@ -22,4 +22,7 @@ public interface ChecklistInterface extends DBObjectInterface {
 
     /* toString */
     String toString();
+
+    /* addToBooking */
+    void addToBooking(int bookingId);
 }

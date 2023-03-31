@@ -2,92 +2,79 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: teal;" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.BookingManagementController">
-    <center>
-        <GridPane BorderPane.alignment="CENTER">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1144.0" minWidth="10.0" prefWidth="141.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1144.0" minWidth="10.0" prefWidth="872.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="631.0" minWidth="10.0" prefWidth="368.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints maxHeight="160.0" minHeight="10.0" prefHeight="71.19999694824219" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="450.4000122070313" minHeight="10.0" prefHeight="448.00000305175786" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            </rowConstraints>
-            <children>
-                <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                    <columns>
-                        <TableColumn fx:id="bookingIdColumn" prefWidth="201.0" text="BuchungID" />
-                        <TableColumn fx:id="customerIdColumn" prefWidth="239.199951171875" text="KundenID" />
-                        <TableColumn fx:id="carIdColumn" prefWidth="256.0000244140625" text="carID" />
-                    </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
-                </TableView>
-                <Label prefHeight="49.0" prefWidth="358.0" text="Buchungsverwaltung" GridPane.columnIndex="1">
-                    <GridPane.margin>
-                        <Insets left="300.0" />
-                    </GridPane.margin>
-                </Label>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <children>
-                        <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#switchToFirstView" prefHeight="25.0" prefWidth="122.0" text="zurueck">
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-               </children>
-            </HBox>
-            <VBox minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="100.0" spacing="50.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <children>
-                        <Button fx:id="btnReturnCar" contentDisplay="RIGHT" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#switchToScene" prefHeight="25.0" prefWidth="180.0" text="Auto zuruekgeben">
-                     <VBox.margin>
-                        <Insets top="50.0" />
-                     </VBox.margin>
-                     <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                        <Button fx:id="btnBookCar" contentDisplay="RIGHT" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#switchToSceneCarBooking" prefHeight="26.0" prefWidth="180.0" text="Auto buchen">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/add_circle_FILL0_wght400_GRAD0_opsz48.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-               </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </VBox>
-            </children>
-            <BorderPane.margin>
-                <Insets />
-            </BorderPane.margin>
-        </GridPane>
-    </center>
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minWidth="854.0" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: teal;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.BookingManagementController">
+   <left>
+      <VBox prefHeight="639.0" prefWidth="167.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets left="20.0" right="20.0" top="20.0" />
+         </padding>
+         <children>
+            <Button fx:id="btnBookCar" mnemonicParsing="false" onAction="#switchToSceneNewBooking" prefHeight="25.0" prefWidth="125.0" text="Buchen" />
+            <Button fx:id="btnReturnCar" mnemonicParsing="false" onAction="#switchToSceneReturnCar" prefHeight="25.0" prefWidth="125.0" text="Zurückgeben" />
+            <Button fx:id="btnReadBooking" mnemonicParsing="false" onAction="#switchToSceneReadBooking" prefHeight="25.0" prefWidth="125.0" text="Buchung lesen" />
+             <Button fx:id="btnGenerateInvoice" mnemonicParsing="false" onAction="#generateInvoice" prefHeight="25.0" prefWidth="125.0" text="%BOOKING_GENERATE_INVOICE" />
+            <MenuButton fx:id="menuButtonShowBookings" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Aktive">
+              <items>
+                <MenuItem fx:id="menuItemShowActive" mnemonicParsing="false" onAction="#showActiveBookings" text="Aktive anzeigen" />
+                <MenuItem fx:id="menuItemShowDone" mnemonicParsing="false" onAction="#showDoneBookings" text="Erledigte anzeigen" />
+                  <MenuItem fx:id="menuItemShowAll" mnemonicParsing="false" onAction="#showAllBookings" text="Alle anzeigen" />
+              </items>
+            </MenuButton>
+         </children>
+      </VBox>
+   </left>
+   <top>
+      <HBox alignment="CENTER" prefHeight="68.0" prefWidth="1280.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="textFieldSearch" onKeyPressed="#searchBookingsViaEnter" prefHeight="25.0" prefWidth="300.0" />
+            <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchBookings" prefHeight="25.0" prefWidth="125.0" text="Suchen" />
+            <MenuButton fx:id="menuButtonFilter" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Filter">
+               <items>
+                  <CheckMenuItem fx:id="filterCustomer" mnemonicParsing="false" text="Kunde" />
+                  <CheckMenuItem fx:id="filterCar" mnemonicParsing="false" text="Auto" />
+                  <CheckMenuItem fx:id="filterPickUpDate" mnemonicParsing="false" text="Abholdatum" />
+                  <CheckMenuItem fx:id="filterDropOffDate" mnemonicParsing="false" text="Rückgabedatum" />
+                  <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckFilters" text="Filter zurücksetzen" />
+               </items>
+            </MenuButton>
+            <Button fx:id="btnResetSearch" mnemonicParsing="false" onAction="#resetSearch" prefHeight="25.0" prefWidth="125.0" text="Zurücksetzen" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="bookingIDColumn" prefWidth="87.0" text="BuchungsID" />
+          <TableColumn fx:id="customerColumn" prefWidth="225.0" text="Kunde" />
+            <TableColumn fx:id="carColumn" prefWidth="200.0" text="Auto" />
+            <TableColumn fx:id="pickUpDateColumn" prefWidth="155.0" text="Abholdatum" />
+            <TableColumn fx:id="dropOffDateColumn" prefWidth="155.0" text="Rückgabedatum" />
+            <TableColumn fx:id="realDropOffDateColumn" prefWidth="155.0" text="Reales Rückgabedatum" />
+            <TableColumn fx:id="checklistColumn" prefWidth="173.0" text="Checkliste?" />
+        </columns>
+      </TableView>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="1366.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#switchToFirstView" prefHeight="25.0" prefWidth="125.0" text="Zurück" />
+         </children>
+         <padding>
+            <Insets left="20.0" right="20.0" />
+         </padding>
+      </HBox>
+   </bottom>
+   <right>
+      <VBox prefHeight="639.0" prefWidth="45.0" BorderPane.alignment="CENTER" />
+   </right>
 </BorderPane>

@@ -1,16 +1,23 @@
 package de.htwsaar.hopper.ui;
 
+import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.implementations.Customer;
+import de.htwsaar.hopper.repositories.CarRepository;
 import de.htwsaar.hopper.repositories.CustomerRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -62,8 +69,86 @@ public final class CustomerManagementController implements Initializable {
 
 
     @FXML
-    void switchToSceneAddCustomer(ActionEvent event) {
+    void switchToSceneAddCustomer(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        URL url = getClass().getResource("fxml/Customer-creation-view.fxml");
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(url, bundle);
+            Parent root1 = (Parent) fxmlLoader.load();
+            stage = new Stage();
+            stage.setScene(new Scene(root1));
+            disableWindow();
+            stage.showAndWait();
+        } catch(Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            alert.showAndWait();
+        }
+        enableWindow();
+        reloadTable();
+    }
 
+    public void deleteCustomer(){
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
+        setSelectedCustomer(tableView.getSelectionModel().getSelectedItem());
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, bundle.getString("CUSTOMER_CONFIRM_DELETE"));
+        alert.setHeaderText(bundle.getString("CUSTOMER_HEADER_CONFIRM_DELETE"));
+        alert.setContentText(bundle.getString("CUSTOMER_CONTENT_TEXT") + " " + selectedCustomer.getCustomerId() + " " + selectedCustomer.getFirstName() + " " + selectedCustomer.getLastName());
+        alert.showAndWait();
+        if (alert.getResult().getText().equals("OK")) {
+            CustomerRepository.delete(selectedCustomer);
+            reloadTable();
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, bundle.getString("CUSTOMER_DELETED"));
+            alert2.show();
+        } else {
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, bundle.getString("CUSTOMER_NOT_DELETED"));
+            alert2.show();
+            alert.close();
+        }
+    }
+
+    public void reloadTable(){
+        tableView.getItems().clear();
+
+        customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+        customerFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        customerLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        ObservableList<Customer> observableList = FXCollections.observableArrayList();
+        observableList.addAll(CustomerRepository.findAll());
+        tableView.getItems().addAll(observableList);
+        tableView.getSelectionModel().selectFirst();
+        if (tableView.getSelectionModel().isEmpty()) {
+            btnRead.setDisable(true);
+            btnRemove.setDisable(true);
+            btnUpdate.setDisable(true);
+        }
+    }
+
+    void disableWindow(){
+        btnCreate.setDisable(true);
+        btnRead.setDisable(true);
+        btnRemove.setDisable(true);
+        btnUpdate.setDisable(true);
+        btnGoBack.setDisable(true);
+
+        Stage primaryStage = (Stage) btnCreate.getScene().getWindow();
+        primaryStage.onCloseRequestProperty().set(e -> {
+            e.consume();
+        });
+    }
+
+    void enableWindow(){
+        btnCreate.setDisable(false);
+        btnRead.setDisable(false);
+        btnRemove.setDisable(false);
+        btnUpdate.setDisable(false);
+        btnGoBack.setDisable(false);
+
+        // Roten Kreuz Button wieder aktivieren
+        Stage primaryStage = (Stage) btnCreate.getScene().getWindow();
+        primaryStage.onCloseRequestProperty().set(e -> {
+            primaryStage.close();
+        });
     }
 
     @FXML
@@ -79,7 +164,23 @@ public final class CustomerManagementController implements Initializable {
 
     @FXML
     void switchToSceneUpdateCustomer(ActionEvent event) {
-
+        setSelectedCustomer(tableView.getSelectionModel().getSelectedItem());
+        Stage stage = new Stage();
+        URL url = getClass().getResource("fxml/Customer-edit-view.fxml");
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(url, bundle);
+            Parent root1 = fxmlLoader.load();
+            stage = new Stage();
+            stage.setScene(new Scene(root1));
+            disableWindow();
+            stage.showAndWait();
+        } catch(Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
+            alert.showAndWait();
+        }
+        enableWindow();
+        reloadTable();
     }
 
         public static Customer getSelectedCustomer() {

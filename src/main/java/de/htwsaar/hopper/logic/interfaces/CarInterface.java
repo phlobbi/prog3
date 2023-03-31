@@ -1,6 +1,8 @@
 package de.htwsaar.hopper.logic.interfaces;
 
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
+import de.htwsaar.hopper.logic.enums.FuelTypeEnum;
+import de.htwsaar.hopper.logic.enums.TransmissionTypeEnum;
 
 import java.util.Calendar;
 
@@ -9,6 +11,9 @@ import java.util.Calendar;
  * @author Daniel G
  */
 public interface CarInterface extends DBObjectInterface{
+
+    /* UI-METHODEN */
+    String getSatNavShowField();
 
     /*  GETTER  */
     int getCarId();
@@ -20,6 +25,11 @@ public interface CarInterface extends DBObjectInterface{
     double getCurrentPrice();
     String getLicensePlate();
     String getModel();
+    int getHorsepower();
+    TransmissionTypeEnum getTransmissionType();
+    FuelTypeEnum getFuelType();
+    boolean getSatNav();
+    int getMileage();
 
 
     /*  SETTER  */
@@ -31,6 +41,11 @@ public interface CarInterface extends DBObjectInterface{
     void setCurrentPrice(double currentPrice);
     void setLicensePlate(String licensePlate);
     void setModel(String model);
+    void setHorsepower(int horsepower);
+    void setTransmissionType(TransmissionTypeEnum transmissionType);
+    void setFuelType(FuelTypeEnum fuelType);
+    void setSatNav(boolean satNav);
+    void setMileage(int mileage);
     
     /*  toString  */
     String toString();

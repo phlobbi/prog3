@@ -232,4 +232,42 @@ public class Customer implements CustomerInterface {
     public void setDriverLicenseExpirationDate(Calendar driverLicenseExpirationDate) {
         this.driverLicenseExpirationDate = CustomerValidation.validateExpirationDate(driverLicenseExpirationDate);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Customer customer = (Customer) o;
+
+        //if (getCustomerId() != customer.getCustomerId()) return false;
+        if (!getFirstName().equals(customer.getFirstName())) return false;
+        if (!getLastName().equals(customer.getLastName())) return false;
+        if (!getEmail().equals(customer.getEmail())) return false;
+        if (!getStreet().equals(customer.getStreet())) return false;
+        if (!getHouseNumber().equals(customer.getHouseNumber())) return false;
+        if (!getZipCode().equals(customer.getZipCode())) return false;
+        if (!getCity().equals(customer.getCity())) return false;
+        if (!getPhoneNumber().equals(customer.getPhoneNumber())) return false;
+        if (!iban.equals(customer.iban)) return false;
+        if (!getDriverLicenseNumber().equals(customer.getDriverLicenseNumber())) return false;
+        return getDriverLicenseExpirationDate().equals(customer.getDriverLicenseExpirationDate());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getCustomerId();
+        result = 31 * result + getFirstName().hashCode();
+        result = 31 * result + getLastName().hashCode();
+        result = 31 * result + getEmail().hashCode();
+        result = 31 * result + getStreet().hashCode();
+        result = 31 * result + getHouseNumber().hashCode();
+        result = 31 * result + getZipCode().hashCode();
+        result = 31 * result + getCity().hashCode();
+        result = 31 * result + getPhoneNumber().hashCode();
+        result = 31 * result + iban.hashCode();
+        result = 31 * result + getDriverLicenseNumber().hashCode();
+        result = 31 * result + getDriverLicenseExpirationDate().hashCode();
+        return result;
+    }
 }

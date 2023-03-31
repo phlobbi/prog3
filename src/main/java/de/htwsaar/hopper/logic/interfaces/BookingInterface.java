@@ -11,10 +11,13 @@ public interface BookingInterface extends DBObjectInterface{
     /* UI-METHODEN */
     String getCustomerShowField();
     String getCarShowField();
+    String getPickUpDateShowField();
+    String getDropOffDateShowField();
+    String getRealDropOffDateShowField();
 
     /* PREISBERECHNUNG */
-    double calculatePrice(int carId);
-    double calculateFinalPrice(int carId);
+    double calculatePrice();
+    double calculateFinalPrice();
 
     /* GETTER */
     int getBookingId();
