@@ -10,7 +10,7 @@ import java.util.Calendar;
  * Interface für die Car-Klasse.
  * @author Daniel G
  */
-public interface CarInterface {
+public interface CarInterface extends DBObjectInterface{
 
     /* UI-METHODEN */
     String getSatNavShowField();
