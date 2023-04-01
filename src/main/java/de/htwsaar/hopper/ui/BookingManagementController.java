@@ -459,24 +459,24 @@ public class BookingManagementController implements Initializable {
         URL setURL = null;
         Car car = CarRepository.find(booking.getCarId());
         CarTypeEnum carType = car.getType();
-        switch (carType.getLabel()){
-            case "SUV":
+        switch (carType){
+            case SUV:
                 URL url = getClass().getResource("fxml/Booking-suv-return-view.fxml");
                 setURL = url;
                 break;
-            case "LKW":
+            case LKW:
                 URL url1 = getClass().getResource("fxml/Booking-truck-return-view.fxml");
                 setURL = url1;
                 break;
-            case "Bus":
+            case BUS:
                 URL url2 = getClass().getResource("fxml/Booking-bus-return-view.fxml");
                 setURL = url2;
                 break;
-            case "Van":
+            case VAN:
                 URL url3 = getClass().getResource("fxml/Booking-van-return-view.fxml");
                 setURL = url3;
                 break;
-            case "Motorrad":
+            case MOTORRAD:
                 URL url4 = getClass().getResource("fxml/Booking-bike-return-view.fxml");
                 setURL = url4;
                 break;
