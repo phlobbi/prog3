@@ -16,6 +16,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
 
 public class BookingCarReturnController {
@@ -61,9 +62,11 @@ public class BookingCarReturnController {
                 return;
             } else {
                 try {
-                    Date realDropOffDateD = Date.from(realDropOffDateLocal.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                    Calendar realDropOffDateCal = Calendar.getInstance();
+                    Date realDropOffDateD = Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+                    Calendar realDropOffDateCal = new GregorianCalendar();
                     realDropOffDateCal.setTime(realDropOffDateD);
+                    realDropOffDateCal.set(Calendar.HOUR_OF_DAY, 23);
+                    realDropOffDateCal.set(Calendar.MINUTE, 59);
 
                     booking.setRealDropOffDate(realDropOffDateCal);
                     BookingRepository.persist(booking);
@@ -86,6 +89,7 @@ public class BookingCarReturnController {
                     alert.setContentText(bundle.getString("CAR_RETURNED"));
                     alert.showAndWait();
                 } catch (Exception e) {
+                    e.printStackTrace();
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(bundle.getString("DATE_IN_PAST"));
                 alert.showAndWait();
