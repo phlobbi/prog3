@@ -16,12 +16,7 @@
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="21.0" prefWidth="600.0" styleClass="title-bar" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <Label prefHeight="27.0" prefWidth="286.0" styleClass="title-bar-text" text="%CAR_RENTAL" GridPane.columnIndex="0" GridPane.rowIndex="0">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
-            <Button alignment="CENTER" contentDisplay="CENTER" onMouseClicked="#switchToSettingsView" prefHeight="26.0" prefWidth="314.0" style="-fx-background-color: teal; -fx-tile-alignment: right" text="Einstellungen" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <Button alignment="TOP_LEFT" onMouseClicked="#switchToSettingsView" prefHeight="26.0" prefWidth="603.0" style="-fx-background-color: teal; -fx-tile-alignment: right" text="Einstellungen" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="0">
                <font>
                   <Font size="14.0" />
                </font>
