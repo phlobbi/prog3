@@ -24,6 +24,11 @@ public final class App extends Application {
             root = FXMLLoader.load(url, ResourceBundle.getBundle("bundles.i18n"));
             scene = new Scene(root, 1366,768);
             primaryStage.setScene(scene);
+            primaryStage.setTitle("Hopper Autovermietung");
+            primaryStage.setMinHeight(600);
+            primaryStage.setMinWidth(850);
+            URL iconURL = App.class.getResource("icons/car-icon.png");
+            primaryStage.getIcons().add(new javafx.scene.image.Image(iconURL.toString()));
             primaryStage.show();
         } else {
             throw new IOException("Could not load FXML file.");
