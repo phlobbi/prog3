@@ -126,27 +126,41 @@ public class Invoice {
                 contentStream.setFont(PDType1Font.HELVETICA, 10);
                 writeStoreAddress(contentStream);
                 writeInvoiceInformation(contentStream);
-                int bookedDays = Utils.calculateDaysBetween(booking.getPickUpDate(), booking.getDropOffDate());
+
+                int billedDays = Utils.calculateDaysBetween(booking.getPickUpDate(), booking.getDropOffDate());
                 writeBillingLine(
                         contentStream,
                         String.format("%s %s - Grundbetrag Miete",
                                 associatedCar.getBrand(), associatedCar.getModel()),
                         associatedCar.getBasePrice());
-                writeBillingLine(
-                        contentStream,
-                        String.format("%s %s - Tagespreis Miete (Anzahl Tage: %d)",
-                                associatedCar.getBrand(), associatedCar.getModel(),
-                                bookedDays),
-                        associatedCar.getCurrentPrice() * bookedDays);
-                if (!Utils.isSameDate(booking.getDropOffDate(), booking.getRealDropOffDate())) {
-                    int lateDays = Utils.calculateDaysBetween(booking.getDropOffDate(), booking.getRealDropOffDate());
+
+                int daysBetweenPickUpAndRealDropOff = Utils.calculateDaysBetween(booking.getPickUpDate(), booking.getRealDropOffDate());
+                if(billedDays > daysBetweenPickUpAndRealDropOff) {
+                    billedDays = daysBetweenPickUpAndRealDropOff;
                     writeBillingLine(
                             contentStream,
-                            String.format("%s %s - Strafzuschlag \"Überzogene Miete\" (Anzahl Tage: %d)",
+                            String.format("%s %s - Tagespreis Miete (Anzahl Tage: %d)",
                                     associatedCar.getBrand(), associatedCar.getModel(),
-                                    lateDays - 1),
-                            associatedCar.getCurrentPrice() * (lateDays - 1) * LATENESS_RATE);
+                                    billedDays),
+                            associatedCar.getCurrentPrice() * billedDays);
+                } else {
+                    writeBillingLine(
+                            contentStream,
+                            String.format("%s %s - Tagespreis Miete (Anzahl Tage: %d)",
+                                    associatedCar.getBrand(), associatedCar.getModel(),
+                                    billedDays),
+                            associatedCar.getCurrentPrice() * billedDays);
+                    if (!Utils.isSameDate(booking.getDropOffDate(), booking.getRealDropOffDate())) {
+                        int lateDays = Utils.calculateDaysBetween(booking.getDropOffDate(), booking.getRealDropOffDate());
+                        writeBillingLine(
+                                contentStream,
+                                String.format("%s %s - Strafzuschlag \"Überzogene Miete\" (Anzahl Tage: %d)",
+                                        associatedCar.getBrand(), associatedCar.getModel(),
+                                        lateDays - 1),
+                                associatedCar.getCurrentPrice() * (lateDays - 1) * LATENESS_RATE);
+                    }
                 }
+
                 writeFaults(contentStream);
                 writeTaxAndTotal(contentStream);
                 contentStream.close();
