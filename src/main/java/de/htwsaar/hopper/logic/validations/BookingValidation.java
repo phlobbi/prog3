@@ -79,9 +79,13 @@ public class BookingValidation extends Validation {
      * @return realDropOffDate, falls gültig
      * @throws IllegalArgumentException Falls das Datum in der Vergangenheit liegt
      */
-    public static Calendar validateRealDropOffDate(Calendar realDropOffDate) {
+    public static Calendar validateRealDropOffDate(Calendar realDropOffDate, Calendar dropOffDate) {
         if (realDropOffDate != null) {
-            return validateDatePastForbidden(realDropOffDate);
+            if(realDropOffDate.before(dropOffDate)){
+                throw new IllegalArgumentException("Das reale Rückgabedatum liegt vor dem ausgemachten Rückgabedatum.");
+            } else {
+                return realDropOffDate;
+            }
         }
         return null;
     }
