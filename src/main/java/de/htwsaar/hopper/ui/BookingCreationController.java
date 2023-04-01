@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -102,6 +103,10 @@ public class BookingCreationController {
 
             stage = new Stage();
             stage.setTitle(bundle.getString("CAR_CHOOSE"));
+            URL iconURL = getClass().getResource("icons/car-icon.png");
+            stage.getIcons().add(new Image(iconURL.toString()));
+            stage.setMinHeight(720);
+            stage.setMinWidth(820);
             stage.setScene(new Scene(root1));
             disableWindow();
             stage.showAndWait();
@@ -142,6 +147,10 @@ public class BookingCreationController {
 
             stage = new Stage();
             stage.setTitle(bundle.getString("CUSTOMER_CHOOSE"));
+            URL iconURL = getClass().getResource("icons/car-icon.png");
+            stage.getIcons().add(new Image(iconURL.toString()));
+            stage.setMinHeight(720);
+            stage.setMinWidth(820);
             stage.setScene(new Scene(root1));
             disableWindow();
             stage.showAndWait();

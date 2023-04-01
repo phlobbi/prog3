@@ -305,8 +305,8 @@ public class BookingManagementController implements Initializable {
             stage.setTitle("Neue Buchung");
             URL iconURL = getClass().getResource("icons/car-icon.png");
             stage.getIcons().add(new Image(iconURL.toString()));
-            stage.setMinHeight(500);
-            stage.setMinWidth(600);
+            stage.setMinHeight(480);
+            stage.setMinWidth(605);
             stage.showAndWait();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
@@ -348,7 +348,11 @@ public class BookingManagementController implements Initializable {
             Parent root = FXMLLoader.load(url, bundle);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-            //Die Actionevent von anderen Fenster sind blockiert.
+            stage.setTitle("Auto zurueckgeben");
+            URL iconURL = getClass().getResource("icons/car-icon.png");
+            stage.getIcons().add(new Image(iconURL.toString()));
+            stage.setMinHeight(500);
+            stage.setMinWidth(600);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
             stage.showAndWait();
