@@ -68,7 +68,7 @@
                                     <children>
                                         <ImageView fitHeight="48.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../icons/car-icon.png" />
+                                                <Image url="@../icons/motorbikeicon.png" />
                                             </image>
                                         </ImageView>
                                     </children>

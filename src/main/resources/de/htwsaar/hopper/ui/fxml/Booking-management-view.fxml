@@ -8,6 +8,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -19,10 +21,39 @@
             <Insets left="20.0" right="20.0" top="20.0" />
          </padding>
          <children>
-            <Button fx:id="btnBookCar" mnemonicParsing="false" onAction="#switchToSceneNewBooking" prefHeight="25.0" prefWidth="125.0" text="Buchen" />
-            <Button fx:id="btnReturnCar" mnemonicParsing="false" onAction="#switchToSceneReturnCar" prefHeight="25.0" prefWidth="125.0" text="Zurückgeben" />
-            <Button fx:id="btnReadBooking" mnemonicParsing="false" onAction="#switchToSceneReadBooking" prefHeight="25.0" prefWidth="125.0" text="Buchung lesen" />
-             <Button fx:id="btnGenerateInvoice" mnemonicParsing="false" onAction="#generateInvoice" prefHeight="25.0" prefWidth="125.0" text="%BOOKING_GENERATE_INVOICE" />
+            <Button fx:id="btnBookCar" mnemonicParsing="false" onAction="#switchToSceneNewBooking" prefHeight="25.0" prefWidth="125.0" text="Buchen">
+               <graphic>
+                  <ImageView fitHeight="70.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/wysiwyg_FILL0_wght400_GRAD0_opsz48.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="btnReturnCar" mnemonicParsing="false" onAction="#switchToSceneReturnCar" prefHeight="25.0" prefWidth="125.0" text="Zurückgeben">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="btnGenerateInvoice" mnemonicParsing="false" onAction="#generateInvoice" prefHeight="26.0" prefWidth="126.0" text="Rechnung generieren">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/receipt_long_FILL0_wght400_GRAD0_opsz48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btnReadBooking" mnemonicParsing="false" onAction="#switchToSceneReadBooking" prefHeight="25.0" prefWidth="125.0" text="Buchung lesen">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/search_FILL0_wght400_GRAD0_opsz48.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <MenuButton fx:id="menuButtonShowBookings" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Aktive">
               <items>
                 <MenuItem fx:id="menuItemShowActive" mnemonicParsing="false" onAction="#showActiveBookings" text="Aktive anzeigen" />
@@ -37,7 +68,14 @@
       <HBox alignment="CENTER" prefHeight="68.0" prefWidth="1280.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="textFieldSearch" onKeyPressed="#searchBookingsViaEnter" prefHeight="25.0" prefWidth="300.0" />
-            <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchBookings" prefHeight="25.0" prefWidth="125.0" text="Suchen" />
+            <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchBookings" prefHeight="25.0" prefWidth="125.0" text="Suchen">
+               <graphic>
+                  <ImageView fitHeight="70.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/search_FILL0_wght400_GRAD0_opsz48.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <MenuButton fx:id="menuButtonFilter" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Filter">
                <items>
                   <CheckMenuItem fx:id="filterCustomer" mnemonicParsing="false" text="Kunde" />
@@ -47,7 +85,14 @@
                   <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckFilters" text="Filter zurücksetzen" />
                </items>
             </MenuButton>
-            <Button fx:id="btnResetSearch" mnemonicParsing="false" onAction="#resetSearch" prefHeight="25.0" prefWidth="125.0" text="Zurücksetzen" />
+            <Button fx:id="btnResetSearch" mnemonicParsing="false" onAction="#resetSearch" prefHeight="25.0" prefWidth="125.0" text="Zurücksetzen">
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/undo_FILL0_wght400_GRAD0_opsz48.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
          </children>
       </HBox>
    </top>
@@ -67,7 +112,14 @@
    <bottom>
       <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="1366.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#switchToFirstView" prefHeight="25.0" prefWidth="125.0" text="Zurück" />
+            <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#switchToFirstView" prefHeight="25.0" prefWidth="125.0" text="Zurück">
+               <graphic>
+                  <ImageView fitHeight="13.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
          </children>
          <padding>
             <Insets left="20.0" right="20.0" />

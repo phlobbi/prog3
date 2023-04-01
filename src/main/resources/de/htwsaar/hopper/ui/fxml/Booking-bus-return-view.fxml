@@ -30,7 +30,7 @@
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="39.39996337890625" />
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.00003662109376" minWidth="10.0" prefWidth="116.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.80002441406248" minWidth="10.0" prefWidth="128.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.80002441406248" minWidth="10.0" prefWidth="97.19997253417972" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.80002441406248" minWidth="10.0" prefWidth="97.19997253417972" />
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -68,7 +68,7 @@
                                     <children>
                                         <ImageView fitHeight="48.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../icons/car-icon.png" />
+                                                <Image url="@../icons/busicom.png" />
                                             </image>
                                         </ImageView>
                                     </children>
@@ -91,24 +91,24 @@
                                         </ImageView>
                                     </children>
                                 </HBox>
-                                <TextField fx:id="textFieldHour" prefHeight="9.0" prefWidth="68.0" GridPane.columnIndex="2">
-                                    <GridPane.margin>
-                                        <Insets left="5.0" right="75.0" />
-                                    </GridPane.margin>
-                                </TextField>
-                                <TextField fx:id="textFieldMinute" GridPane.columnIndex="2">
-                                    <GridPane.margin>
-                                        <Insets left="75.0" right="5.0" />
-                                    </GridPane.margin>
-                                </TextField>
-                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=":" GridPane.columnIndex="2">
-                                    <GridPane.margin>
-                                        <Insets left="60.0" />
-                                    </GridPane.margin>
-                                    <font>
-                                        <Font size="20.0" />
-                                    </font>
-                                </Text>
+                        <TextField fx:id="textFieldHour" prefHeight="9.0" prefWidth="68.0" GridPane.columnIndex="2">
+                           <GridPane.margin>
+                              <Insets left="5.0" right="75.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="textFieldMinute" GridPane.columnIndex="2">
+                           <GridPane.margin>
+                              <Insets left="75.0" right="5.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=":" GridPane.columnIndex="2">
+                           <GridPane.margin>
+                              <Insets left="60.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
                             </children>
                         </GridPane>
                     </children>
