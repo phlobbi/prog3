@@ -6,7 +6,7 @@ import java.util.Calendar;
  * Interface für die Klasse Customer.
  * @author Bennet
  */
-public interface CustomerInterface {
+public interface CustomerInterface extends DBObjectInterface {
 
     /* GETTER */
     int getCustomerId();

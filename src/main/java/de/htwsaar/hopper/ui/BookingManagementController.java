@@ -3,6 +3,7 @@ package de.htwsaar.hopper.ui;
 import de.htwsaar.hopper.logic.enums.CarTypeEnum;
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.logic.implementations.Car;
+import de.htwsaar.hopper.logic.implementations.Invoice;
 import de.htwsaar.hopper.repositories.BookingRepository;
 import de.htwsaar.hopper.repositories.CarRepository;
 import javafx.collections.FXCollections;
@@ -25,6 +26,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class BookingManagementController implements Initializable {
+
+    @FXML
+    public Button btnGenerateInvoice;
 
     @FXML
     private Button btnBookCar;
@@ -184,11 +188,15 @@ public class BookingManagementController implements Initializable {
                     }
                 }
             }
-
-            if(itemsAfterSearch.isEmpty())
-                throw new IllegalArgumentException("Keine Buchungen gefunden");
-
             tableView.setItems(itemsAfterSearch);
+
+            if(tableView.getItems().isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Keine Buchungen gefunden");
+                alert.setHeaderText("Keine Buchungen gefunden");
+                alert.setContentText("Es wurden keine Buchungen gefunden, die den Suchkriterien entsprechen");
+                alert.showAndWait();
+            }
 
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -387,6 +395,20 @@ public class BookingManagementController implements Initializable {
         });
     }
 
+    @FXML
+    void generateInvoice() {
+        setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
+        if(selectedBooking == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Keine Buchung ausgewählt.");
+            alert.showAndWait();
+        } else if(selectedBooking.getRealDropOffDate() == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Das Auto wurde noch nicht abgegeben.");
+            alert.showAndWait();
+            return;
+        }
+        Invoice.generate(getSelectedBooking());
+    }
+
     private ObservableList<CheckMenuItem> getAllSelectedCriteria(){
         ObservableList<CheckMenuItem> items = FXCollections.observableArrayList();
         if (filterCustomer.isSelected())
@@ -404,7 +426,7 @@ public class BookingManagementController implements Initializable {
         return tableView.getItems().contains(booking);
     }
 
-    private void configureTableView(){
+    private void configureTableView() {
         bookingIDColumn.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
         customerColumn.setCellValueFactory(new PropertyValueFactory<>("customerShowField"));
         carColumn.setCellValueFactory(new PropertyValueFactory<>("carShowField"));

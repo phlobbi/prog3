@@ -24,15 +24,7 @@ public class BookingRepository {
      * @return Das gefundene Booking; null, falls nicht gefunden
      */
     public static Booking find(int bookingId) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        try {
-            return entityManager.find(Booking.class, bookingId);
-        } finally {
-            entityManager.close();
-            entityManagerFactory.close();
-        }
+        return (Booking) DBObjectRepository.find(Booking.class, bookingId);
     }
 
     /**
@@ -41,19 +33,7 @@ public class BookingRepository {
      * @return Alle Bookings in der Datenbank; null, falls keine existieren.
      */
     public static List<Booking> findAll() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        Query query = entityManager.createQuery("SELECT b FROM Booking AS b");
-
-        try {
-            return (List<Booking>) query.getResultList();
-        } finally {
-            entityManager.close();
-            entityManagerFactory.close();
-        }
-
-
+        return (List<Booking>) DBObjectRepository.findAll(Booking.class,"Booking");
     }
 
     /**
@@ -64,19 +44,8 @@ public class BookingRepository {
      * @throws IllegalArgumentException wenn Objekt nicht in DB
      */
     public static void delete(Booking booking) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        DBObjectRepository.delete(booking);
 
-        try {
-            entityManager.getTransaction().begin();
-
-            entityManager.remove(entityManager.contains(booking) ? booking : entityManager.merge(booking));
-
-            entityManager.getTransaction().commit();
-        } finally {
-            entityManager.close();
-            entityManagerFactory.close();
-        }
         removeOrphan(booking);
     }
 
@@ -86,19 +55,7 @@ public class BookingRepository {
      * @param booking Das uebergebene Objekt.
      */
     public static void persist(Booking booking) {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        try {
-            entityManager.getTransaction().begin();
-
-            entityManager.persist(entityManager.contains(booking) ? booking : entityManager.merge(booking));
-
-            entityManager.getTransaction().commit();
-        } finally {
-            entityManager.close();
-            entityManagerFactory.close();
-        }
+        DBObjectRepository.persist(booking);
     }
 
     /**

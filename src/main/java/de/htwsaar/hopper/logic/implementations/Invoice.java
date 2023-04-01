@@ -13,6 +13,7 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -27,7 +28,7 @@ import java.util.Calendar;
  */
 public class Invoice {
     private static final double DEFECT_RATE = 0.5;
-    private static final double LATENESS_RATE = 0.5;
+    private static final double LATENESS_RATE = 1.5;
     private static final double TAX_RATE = 0.19;
     private static final DecimalFormat df = new DecimalFormat("0.00");
 
@@ -149,8 +150,11 @@ public class Invoice {
                 writeFaults(contentStream);
                 writeTaxAndTotal(contentStream);
                 contentStream.close();
-                doc.save(new File("generated-invoice.pdf"));
 
+                File savedFile = new File("generated-invoice.pdf");
+
+                doc.save(savedFile);
+                Desktop.getDesktop().open(savedFile);
             } catch (Exception e) {
                 e.printStackTrace();
             }

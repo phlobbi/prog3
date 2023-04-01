@@ -123,6 +123,13 @@ public class BookingCustomerChooseController implements Initializable {
 
                 }
             }
+            if (tableView.getItems().isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Keine Treffer");
+                alert.setHeaderText("Keine Treffer");
+                alert.setContentText("Es wurden keine Kunden gefunden, die den Suchkriterien entsprechen");
+                alert.showAndWait();
+            }
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fehler");

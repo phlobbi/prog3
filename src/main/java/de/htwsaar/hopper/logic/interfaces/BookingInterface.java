@@ -6,7 +6,7 @@ import java.util.Calendar;
  * Interface für die Klasse Booking.
  * @author Philip
  */
-public interface BookingInterface {
+public interface BookingInterface extends DBObjectInterface{
 
     /* UI-METHODEN */
     String getCustomerShowField();
