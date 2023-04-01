@@ -37,6 +37,15 @@
                      </image>
                   </ImageView>
                </graphic></Button>
+            <Button fx:id="btnGenerateInvoice" mnemonicParsing="false" onAction="#generateInvoice" prefHeight="26.0" prefWidth="126.0" text="Rechnung generieren">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/receipt_long_FILL0_wght400_GRAD0_opsz48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             <Button fx:id="btnReadBooking" mnemonicParsing="false" onAction="#switchToSceneReadBooking" prefHeight="25.0" prefWidth="125.0" text="Buchung lesen">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
