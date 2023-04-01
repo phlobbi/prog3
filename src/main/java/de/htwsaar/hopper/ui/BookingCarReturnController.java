@@ -62,17 +62,17 @@ public class BookingCarReturnController {
         Booking booking = BookingManagementController.getSelectedBooking();
 
         if (booking.getRealDropOffDate() != null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(bundle.getString("CAR_ALREADY_RETURNED"));
             alert.showAndWait();
         } else {
             LocalDate realDropOffDateLocal = datePicker.getValue();
             if (realDropOffDateLocal == null) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(bundle.getString("NO_DATE_SELECTED"));
                 alert.showAndWait();
             } else  if (textFieldHour.getText().isEmpty() || textFieldMinute.getText().isEmpty()) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(bundle.getString("NO_TIME_SELECTED"));
                 alert.showAndWait();
             } else {

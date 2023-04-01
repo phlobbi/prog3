@@ -320,7 +320,7 @@ public class BookingManagementController implements Initializable {
     void switchToSceneReadBooking(ActionEvent event) throws IOException {
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
         if(selectedBooking == null){
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Keine Buchung ausgewählt.");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Keine Buchung ausgewählt.");
             alert.showAndWait();
             return;
         } else {
@@ -341,7 +341,7 @@ public class BookingManagementController implements Initializable {
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
         URL url = sceneChooser();
         if (selectedBooking.getRealDropOffDate() != null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Die Buchung wurde bereits zurückgegeben.");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Die Buchung wurde bereits zurückgegeben.");
             alert.showAndWait();
             return;
         } else {
@@ -407,10 +407,10 @@ public class BookingManagementController implements Initializable {
     void generateInvoice() {
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
         if(selectedBooking == null){
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Keine Buchung ausgewählt.");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Keine Buchung ausgewählt.");
             alert.showAndWait();
         } else if(selectedBooking.getRealDropOffDate() == null){
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Das Auto wurde noch nicht abgegeben.");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Das Auto wurde noch nicht abgegeben.");
             alert.showAndWait();
             return;
         }
