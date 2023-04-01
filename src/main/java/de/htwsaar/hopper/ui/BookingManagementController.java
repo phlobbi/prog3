@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -301,6 +302,11 @@ public class BookingManagementController implements Initializable {
             stage = new Stage();
             stage.setScene(new Scene(root1));
             disableWindow();
+            stage.setTitle("Neue Buchung");
+            URL iconURL = getClass().getResource("icons/car-icon.png");
+            stage.getIcons().add(new Image(iconURL.toString()));
+            stage.setMinHeight(500);
+            stage.setMinWidth(600);
             stage.showAndWait();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
@@ -361,6 +367,7 @@ public class BookingManagementController implements Initializable {
     }
 
     void disableWindow() {
+        btnGenerateInvoice.setDisable(true);
         btnBookCar.setDisable(true);
         btnReturnCar.setDisable(true);
         btnGoBack.setDisable(true);
@@ -378,6 +385,7 @@ public class BookingManagementController implements Initializable {
     }
 
     void enableWindow() {
+        btnGenerateInvoice.setDisable(false);
         btnBookCar.setDisable(false);
         btnReturnCar.setDisable(false);
         btnGoBack.setDisable(false);
