@@ -46,6 +46,25 @@ public class CarReadController implements Initializable {
 
     @FXML
     private Label labelCarType;
+
+    @FXML
+    private Label labelFuelType;
+
+    @FXML
+    private Label labelTransType;
+
+    @FXML
+    private Label labelModel;
+
+    @FXML
+    private Label labelSatNav;
+
+    @FXML
+    private Label labelMileage;
+
+    @FXML
+    private Label labelHorsePower;
+
     @FXML
     private Label labelcarLicensePlate;
 
@@ -144,5 +163,15 @@ public class CarReadController implements Initializable {
         labelCarSeats.setText(String.valueOf(car.getSeats()));
         labelCarType.setText(car.getType().getLabel());
         labelcarLicensePlate.setText(car.getLicensePlate());
+        labelFuelType.setText(car.getFuelType().getLabel());
+        labelTransType.setText(car.getTransmissionType().getLabel());
+        labelModel.setText(car.getModel());
+        if (car.getSatNav()) {
+            labelSatNav.setText("Ja");
+        } else {
+            labelSatNav.setText("Nein");
+        }
+        labelMileage.setText(String.valueOf(car.getMileage()));
+        labelHorsePower.setText(String.valueOf(car.getHorsepower()));
     }
 }
