@@ -65,6 +65,7 @@ public class BookingCarReturnController {
                     Date realDropOffDateD = Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
                     Calendar realDropOffDateCal = new GregorianCalendar();
                     realDropOffDateCal.setTime(realDropOffDateD);
+                    realDropOffDateCal.set(Calendar.HOUR_OF_DAY, 23);
                     realDropOffDateCal.set(Calendar.MINUTE, 59);
                     realDropOffDateCal.set(Calendar.SECOND, 59);
                     realDropOffDateCal.set(Calendar.MILLISECOND, 999);
