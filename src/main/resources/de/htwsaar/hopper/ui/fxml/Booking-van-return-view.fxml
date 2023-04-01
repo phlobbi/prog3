@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -11,6 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: teal;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.BookingCarReturnController">
@@ -22,11 +25,12 @@
             <children>
                 <HBox alignment="CENTER">
                     <children>
-                        <GridPane>
+                        <GridPane prefHeight="226.0" prefWidth="374.0">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="28.799963378906256" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.00003662109376" minWidth="10.0" prefWidth="109.59998779296878" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.80002441406248" minWidth="10.0" prefWidth="181.60001220703123" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="39.39996337890625" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.00003662109376" minWidth="10.0" prefWidth="116.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.80002441406248" minWidth="10.0" prefWidth="128.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.80002441406248" minWidth="10.0" prefWidth="97.19997253417972" />
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -43,17 +47,17 @@
                                 <CheckBox fx:id="checkBoxCarClean" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                 <CheckBox fx:id="checkBoxCarDamage" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                 <CheckBox fx:id="checkBoxKeyDropped" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_FUELED" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_NO_DAMAGE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CLEANED" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_KEY_RETURNED" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_FUELED" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_NO_DAMAGE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CLEANED" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_KEY_RETURNED" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                                 <Button mnemonicParsing="false" onAction="#returnCar" text="%MENU_CONFIRM" GridPane.columnIndex="2" GridPane.rowIndex="7" />
                                 <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="104.0" GridPane.columnIndex="1" />
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%BOOKING_RETURN_DATE" wrappingWidth="96.34375" GridPane.columnIndex="2" />
+                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%BOOKING_RETURN_DATE" wrappingWidth="96.34375" GridPane.columnIndex="3" />
                                 <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeWindow" text="%MENU_CANCEL" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                 <HBox alignment="TOP_RIGHT" GridPane.rowIndex="2">
                                     <children>
-                                        <ImageView fitHeight="30.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../icons/fuelicon.png" />
                                             </image>
@@ -87,6 +91,24 @@
                                         </ImageView>
                                     </children>
                                 </HBox>
+                                <TextField fx:id="textFieldHour" prefHeight="9.0" prefWidth="68.0" GridPane.columnIndex="2">
+                                    <GridPane.margin>
+                                        <Insets left="5.0" right="75.0" />
+                                    </GridPane.margin>
+                                </TextField>
+                                <TextField fx:id="textFieldMinute" GridPane.columnIndex="2">
+                                    <GridPane.margin>
+                                        <Insets left="75.0" right="5.0" />
+                                    </GridPane.margin>
+                                </TextField>
+                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=":" GridPane.columnIndex="2">
+                                    <GridPane.margin>
+                                        <Insets left="60.0" />
+                                    </GridPane.margin>
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Text>
                             </children>
                         </GridPane>
                     </children>

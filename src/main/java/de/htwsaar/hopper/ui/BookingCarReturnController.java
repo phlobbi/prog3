@@ -2,6 +2,7 @@ package de.htwsaar.hopper.ui;
 
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.logic.implementations.Checklist;
+import de.htwsaar.hopper.logic.validations.Validation;
 import de.htwsaar.hopper.repositories.BookingRepository;
 import de.htwsaar.hopper.repositories.ChecklistRepository;
 import javafx.event.ActionEvent;
@@ -9,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -18,6 +20,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.ResourceBundle;
+
+import static java.util.Calendar.HOUR_OF_DAY;
+import static java.util.Calendar.MINUTE;
 
 public class BookingCarReturnController {
 
@@ -30,6 +35,13 @@ public class BookingCarReturnController {
 
     @FXML
     private CheckBox checkBoxCarClean;
+
+    @FXML
+    private TextField textFieldHour;
+
+    @FXML
+    private TextField textFieldMinute;
+
     @FXML
     private BorderPane root;
 
@@ -59,14 +71,24 @@ public class BookingCarReturnController {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setContentText(bundle.getString("NO_DATE_SELECTED"));
                 alert.showAndWait();
-                return;
+            } else  if (textFieldHour.getText().isEmpty() || textFieldMinute.getText().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText(bundle.getString("NO_TIME_SELECTED"));
+                alert.showAndWait();
             } else {
                 try {
                     Date realDropOffDateD = Date.from(datePicker.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
                     Calendar realDropOffDateCal = new GregorianCalendar();
                     realDropOffDateCal.setTime(realDropOffDateD);
-                    realDropOffDateCal.set(Calendar.HOUR_OF_DAY, 23);
-                    realDropOffDateCal.set(Calendar.MINUTE, 59);
+
+                    int pickUpHour = Integer.parseInt(textFieldHour.getText());
+                    Validation.validateHour(pickUpHour);
+
+                    int pickUpMinute = Integer.parseInt(textFieldMinute.getText());
+                    Validation.validateMinute(pickUpMinute);
+
+                    realDropOffDateCal.set(HOUR_OF_DAY, pickUpHour);
+                    realDropOffDateCal.set(MINUTE, pickUpMinute);
                     realDropOffDateCal.set(Calendar.SECOND, 59);
                     realDropOffDateCal.set(Calendar.MILLISECOND, 999);
 
