@@ -21,7 +21,7 @@
             <Insets left="20.0" right="20.0" top="20.0" />
          </padding>
          <children>
-            <Button fx:id="btnBookCar" mnemonicParsing="false" onAction="#switchToSceneNewBooking" prefHeight="25.0" prefWidth="125.0" text="Buchen">
+            <Button fx:id="btnBookCar" mnemonicParsing="false" onAction="#switchToSceneNewBooking" prefHeight="25.0" prefWidth="125.0" text="%CAR_BOOK">
                <graphic>
                   <ImageView fitHeight="70.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -29,7 +29,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="btnReturnCar" mnemonicParsing="false" onAction="#switchToSceneReturnCar" prefHeight="25.0" prefWidth="125.0" text="Zurückgeben">
+            <Button fx:id="btnReturnCar" mnemonicParsing="false" onAction="#switchToSceneReturnCar" prefHeight="25.0" prefWidth="125.0" text="%MENU_RETURN">
                <graphic>
                   <ImageView fitHeight="31.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -37,7 +37,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="btnGenerateInvoice" mnemonicParsing="false" onAction="#generateInvoice" prefHeight="26.0" prefWidth="126.0" text="Rechnung generieren">
+            <Button fx:id="btnGenerateInvoice" mnemonicParsing="false" onAction="#generateInvoice" prefHeight="26.0" prefWidth="126.0" text="%BOOKING_GENERATE_INVOICE">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -46,7 +46,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btnReadBooking" mnemonicParsing="false" onAction="#switchToSceneReadBooking" prefHeight="25.0" prefWidth="125.0" text="Buchung lesen">
+            <Button fx:id="btnReadBooking" mnemonicParsing="false" onAction="#switchToSceneReadBooking" prefHeight="25.0" prefWidth="125.0" text="%BOOKING_READ">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -54,11 +54,11 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <MenuButton fx:id="menuButtonShowBookings" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Aktive">
+            <MenuButton fx:id="menuButtonShowBookings" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="%MENU_ACTIVE">
               <items>
-                <MenuItem fx:id="menuItemShowActive" mnemonicParsing="false" onAction="#showActiveBookings" text="Aktive anzeigen" />
-                <MenuItem fx:id="menuItemShowDone" mnemonicParsing="false" onAction="#showDoneBookings" text="Erledigte anzeigen" />
-                  <MenuItem fx:id="menuItemShowAll" mnemonicParsing="false" onAction="#showAllBookings" text="Alle anzeigen" />
+                <MenuItem fx:id="menuItemShowActive" mnemonicParsing="false" onAction="#showActiveBookings" text="%MENU_SHOW_ACTIVE" />
+                <MenuItem fx:id="menuItemShowDone" mnemonicParsing="false" onAction="#showDoneBookings" text="%MENU_SHOW_DONE" />
+                  <MenuItem fx:id="menuItemShowAll" mnemonicParsing="false" onAction="#showAllBookings" text="%MENU_SHOW_ALL" />
               </items>
             </MenuButton>
          </children>
@@ -68,7 +68,7 @@
       <HBox alignment="CENTER" prefHeight="68.0" prefWidth="1280.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="textFieldSearch" onKeyPressed="#searchBookingsViaEnter" prefHeight="25.0" prefWidth="300.0" />
-            <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchBookings" prefHeight="25.0" prefWidth="125.0" text="Suchen">
+            <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchBookings" prefHeight="25.0" prefWidth="125.0" text="%MENU_SEARCH">
                <graphic>
                   <ImageView fitHeight="70.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -76,16 +76,16 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <MenuButton fx:id="menuButtonFilter" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="Filter">
+            <MenuButton fx:id="menuButtonFilter" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="%MENU_FILTER">
                <items>
-                  <CheckMenuItem fx:id="filterCustomer" mnemonicParsing="false" text="Kunde" />
-                  <CheckMenuItem fx:id="filterCar" mnemonicParsing="false" text="Auto" />
-                  <CheckMenuItem fx:id="filterPickUpDate" mnemonicParsing="false" text="Abholdatum" />
-                  <CheckMenuItem fx:id="filterDropOffDate" mnemonicParsing="false" text="Rückgabedatum" />
-                  <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckFilters" text="Filter zurücksetzen" />
+                  <CheckMenuItem fx:id="filterCustomer" mnemonicParsing="false" text="%CUSTOMER" />
+                  <CheckMenuItem fx:id="filterCar" mnemonicParsing="false" text="%CAR" />
+                  <CheckMenuItem fx:id="filterPickUpDate" mnemonicParsing="false" text="%BOOKING_PICK_UP_DATE" />
+                  <CheckMenuItem fx:id="filterDropOffDate" mnemonicParsing="false" text="%BOOKING_DROP_OFF_DATE" />
+                  <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckFilters" text="%MENU_REMOVE_FILTER" />
                </items>
             </MenuButton>
-            <Button fx:id="btnResetSearch" mnemonicParsing="false" onAction="#resetSearch" prefHeight="25.0" prefWidth="125.0" text="Zurücksetzen">
+            <Button fx:id="btnResetSearch" mnemonicParsing="false" onAction="#resetSearch" prefHeight="25.0" prefWidth="125.0" text="%MENU_REMOVE_FILTER">
                <graphic>
                   <ImageView fitHeight="16.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -99,20 +99,20 @@
    <center>
       <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="bookingIDColumn" prefWidth="87.0" text="BuchungsID" />
-          <TableColumn fx:id="customerColumn" prefWidth="225.0" text="Kunde" />
-            <TableColumn fx:id="carColumn" prefWidth="200.0" text="Auto" />
-            <TableColumn fx:id="pickUpDateColumn" prefWidth="155.0" text="Abholdatum" />
-            <TableColumn fx:id="dropOffDateColumn" prefWidth="155.0" text="Rückgabedatum" />
-            <TableColumn fx:id="realDropOffDateColumn" prefWidth="155.0" text="Reales Rückgabedatum" />
-            <TableColumn fx:id="checklistColumn" prefWidth="173.0" text="Checkliste?" />
+          <TableColumn fx:id="bookingIDColumn" prefWidth="87.0" text="%BOOKING_BOOKINGID" />
+          <TableColumn fx:id="customerColumn" prefWidth="225.0" text="%CUSTOMER" />
+            <TableColumn fx:id="carColumn" prefWidth="200.0" text="%CAR" />
+            <TableColumn fx:id="pickUpDateColumn" prefWidth="155.0" text="%BOOKING_PICK_UP_DATE" />
+            <TableColumn fx:id="dropOffDateColumn" prefWidth="155.0" text="%BOOKING_DROP_OFF_DATE" />
+            <TableColumn fx:id="realDropOffDateColumn" prefWidth="155.0" text="%BOOKING_REAL_DROP_OFF_DATE" />
+            <TableColumn fx:id="checklistColumn" prefWidth="173.0" text="%CHECKLIST?" />
         </columns>
       </TableView>
    </center>
    <bottom>
       <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="1366.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#switchToFirstView" prefHeight="25.0" prefWidth="125.0" text="Zurück">
+            <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#switchToFirstView" prefHeight="25.0" prefWidth="125.0" text="%MENU_GO_BACK">
                <graphic>
                   <ImageView fitHeight="13.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>

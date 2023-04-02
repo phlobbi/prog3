@@ -19,7 +19,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="82.0" prefWidth="854.0">
                <children>
-                  <Button fx:id="btnBack" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#close" prefHeight="82.0" prefWidth="118.0" text="Zurueck">
+                  <Button fx:id="btnBack" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#close" prefHeight="82.0" prefWidth="118.0" text="%MENU_GO_BACK">
                      <graphic>
                         <ImageView fitHeight="53.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -28,7 +28,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="btnDelete" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#switchToSceneReturnCar" prefHeight="82.0" prefWidth="120.0" text="Zurueckgeben">
+                  <Button fx:id="btnDelete" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#switchToSceneReturnCar" prefHeight="82.0" prefWidth="120.0" text="%MENU_RETURN">
                      <graphic>
                         <ImageView fitHeight="52.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -41,7 +41,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Eigenschaften" textFill="WHITE" underline="true">
+                  <Label text="%PROPERTIES" textFill="WHITE" underline="true">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -67,7 +67,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label text="Kunde" textFill="WHITE" GridPane.rowIndex="1">
+                              <Label text="%CUSTOMER" textFill="WHITE" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -85,7 +85,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label text="Auto" textFill="WHITE" GridPane.rowIndex="3">
+                              <Label text="%CAR" textFill="WHITE" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -94,15 +94,15 @@
                                  <font>
                                     <Font size="14.0" />
                                  </font></Label>
-                              <Label text="Abholdatum" textFill="WHITE" GridPane.rowIndex="4">
+                              <Label text="%BOOKING_PICK_UP_DATE" textFill="WHITE" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="14.0" />
                                  </font></Label>
-                              <Label text="Rückgabedatum" textFill="WHITE" GridPane.rowIndex="5">
+                              <Label text="%BOOKING_DROP_OFF_DATE" textFill="WHITE" GridPane.rowIndex="5">
                                  <font>
                                     <Font size="14.0" />
                                  </font></Label>
-                              <Label text="Tatsaechliche Rückgabe" textFill="WHITE" GridPane.rowIndex="6">
+                              <Label text="%BOOKING_REAL_DROP_OFF_DATE" textFill="WHITE" GridPane.rowIndex="6">
                                  <font>
                                     <Font size="14.0" />
                                  </font></Label>
@@ -135,7 +135,7 @@
          <children>
             <VBox alignment="CENTER" prefHeight="74.0" prefWidth="909.0">
                <children>
-                  <Label text="Buchungsverwaltung" textFill="WHITE">
+                  <Label text="%BOOKING_MANAGEMENT" textFill="WHITE">
                      <font>
                         <Font size="40.0" />
                      </font>

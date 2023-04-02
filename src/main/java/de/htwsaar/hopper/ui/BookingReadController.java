@@ -100,8 +100,5 @@ public class BookingReadController implements Initializable {
         stage.showAndWait();
         enableWindow();
         App.setRoot("fxml/Booking-management-view.fxml");
-}
-
-
-
+    }
 }

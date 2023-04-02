@@ -137,16 +137,17 @@ public class BookingManagementController implements Initializable {
 
     @FXML
     void searchBookings(ActionEvent event) {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
             String searchCriteria = textFieldSearch.getText();
             if(searchCriteria.trim().isEmpty())
-                throw new IllegalArgumentException("Kein Suchkriterium eingegeben");
+                throw new IllegalArgumentException(bundle.getString("NO_CRITERIA_ENTERED"));
 
 
             ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
             checkMenuItems = getAllSelectedCriteria();
             if (checkMenuItems.isEmpty())
-                throw new IllegalArgumentException("Kein Filter ausgewählt");
+                throw new IllegalArgumentException(bundle.getString("NO_CRITERIA_SELECTED"));
 
             ObservableList<Booking> currentItems = FXCollections.observableArrayList();
             switch(tableViewStatus){
@@ -193,16 +194,16 @@ public class BookingManagementController implements Initializable {
 
             if(tableView.getItems().isEmpty()){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Keine Buchungen gefunden");
-                alert.setHeaderText("Keine Buchungen gefunden");
-                alert.setContentText("Es wurden keine Buchungen gefunden, die den Suchkriterien entsprechen");
+                alert.setTitle(bundle.getString("BOOKINGS_NOT_FOUND"));
+                alert.setHeaderText(bundle.getString("BOOKINGS_NOT_FOUND"));
+                alert.setContentText(bundle.getString("BOOKINGS_NOT_FOUND_BY_CRITERIA"));
                 alert.showAndWait();
             }
 
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Fehler");
-            alert.setHeaderText("Fehler bei der Suche");
+            alert.setTitle(bundle.getString("MENU_ERROR"));
+            alert.setHeaderText(bundle.getString("MENU_ERROR_SEARCH"));
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
@@ -223,8 +224,9 @@ public class BookingManagementController implements Initializable {
      */
     @FXML
     void showActiveBookings(ActionEvent event) {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         tableView.getItems().clear();
-        menuButtonShowBookings.setText("Aktive");
+        menuButtonShowBookings.setText(bundle.getString("MENU_ACTIVE"));
 
         ObservableList<Booking> list = FXCollections.observableArrayList();
         list.addAll(BookingRepository.findUncompleted());
@@ -245,8 +247,9 @@ public class BookingManagementController implements Initializable {
      */
     @FXML
     void showDoneBookings(ActionEvent event) {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         tableView.getItems().clear();
-        menuButtonShowBookings.setText("Erledigte");
+        menuButtonShowBookings.setText(bundle.getString("MENU_DONE"));
 
         ObservableList<Booking> list = FXCollections.observableArrayList();
         list.addAll(BookingRepository.findCompleted());
@@ -265,8 +268,9 @@ public class BookingManagementController implements Initializable {
      */
     @FXML
     void showAllBookings(ActionEvent event) {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         tableView.getItems().clear();
-        menuButtonShowBookings.setText("Alle");
+        menuButtonShowBookings.setText(bundle.getString("MENU_ALL"));
 
         ObservableList<Booking> list = FXCollections.observableArrayList();
         list.addAll(BookingRepository.findAll());
@@ -302,7 +306,7 @@ public class BookingManagementController implements Initializable {
             stage = new Stage();
             stage.setScene(new Scene(root1));
             disableWindow();
-            stage.setTitle("Neue Buchung");
+            stage.setTitle(bundle.getString("BOOKING_NEW"));
             URL iconURL = getClass().getResource("icons/car-icon.png");
             stage.getIcons().add(new Image(iconURL.toString()));
             stage.setMinHeight(480);
@@ -318,9 +322,10 @@ public class BookingManagementController implements Initializable {
 
     @FXML
     void switchToSceneReadBooking(ActionEvent event) throws IOException {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
         if(selectedBooking == null){
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Keine Buchung ausgewählt.");
+            Alert alert = new Alert(Alert.AlertType.ERROR, bundle.getString("BOOKING_NOT_SELECTED"));
             alert.showAndWait();
             return;
         } else {
@@ -341,14 +346,14 @@ public class BookingManagementController implements Initializable {
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
         URL url = sceneChooser();
         if (selectedBooking.getRealDropOffDate() != null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Die Buchung wurde bereits zurückgegeben.");
+            Alert alert = new Alert(Alert.AlertType.ERROR, bundle.getString("BOOKING_ALREADY_RETURNED"));
             alert.showAndWait();
             return;
         } else {
             Parent root = FXMLLoader.load(url, bundle);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-            stage.setTitle("Auto zurueckgeben");
+            stage.setTitle(bundle.getString("CAR_RETURNED"));
             URL iconURL = getClass().getResource("icons/car-icon.png");
             stage.getIcons().add(new Image(iconURL.toString()));
             stage.setMinHeight(500);
@@ -409,12 +414,13 @@ public class BookingManagementController implements Initializable {
 
     @FXML
     void generateInvoice() {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
         if(selectedBooking == null){
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Keine Buchung ausgewählt.");
+            Alert alert = new Alert(Alert.AlertType.ERROR, bundle.getString("BOOKING_NOT_SELECTED"));
             alert.showAndWait();
         } else if(selectedBooking.getRealDropOffDate() == null){
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Das Auto wurde noch nicht abgegeben.");
+            Alert alert = new Alert(Alert.AlertType.ERROR, bundle.getString("CAR_NOT_RETURNED"));
             alert.showAndWait();
             return;
         }

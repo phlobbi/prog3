@@ -76,10 +76,10 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label fx:id="labelChosenCar" text="Ausgewähltes Auto" textFill="WHITE" />
-                        <Label fx:id="labelChosenCustomer" text="Ausgewählter Kunde" textFill="WHITE" GridPane.rowIndex="1" />
-                        <Label fx:id="labelPickUpDate" text="Abholdatum" textFill="WHITE" GridPane.rowIndex="2" />
-                        <Label fx:id="labelDropOffDate" text="Rückgabedatum" textFill="WHITE" GridPane.rowIndex="3" />
+                        <Label fx:id="labelChosenCar" text="%CHOSEN_CAR" textFill="WHITE" />
+                        <Label fx:id="labelChosenCustomer" text="%CHOSEN_CUSTOMER" textFill="WHITE" GridPane.rowIndex="1" />
+                        <Label fx:id="labelPickUpDate" text="%BOOKING_PICK_UP_DATE" textFill="WHITE" GridPane.rowIndex="2" />
+                        <Label fx:id="labelDropOffDate" text="%BOOKING_DROP_OFF_DATE" textFill="WHITE" GridPane.rowIndex="3" />
                         <DatePicker fx:id="datePickerPickUpDate" prefHeight="26.0" prefWidth="299.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <DatePicker fx:id="datePickerDropOffDate" prefHeight="26.0" prefWidth="315.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <TextField fx:id="textFieldChosenCustomer" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -92,8 +92,8 @@
                               <Insets right="10.0" />
                            </GridPane.margin>
                         </TextField>
-                        <Button fx:id="btnChooseCar" mnemonicParsing="false" onAction="#chooseCar" prefHeight="25.0" prefWidth="90.0" text="Auswählen" GridPane.columnIndex="2" />
-                        <Button fx:id="btnChooseCustomer" mnemonicParsing="false" onAction="#chooseCustomer" prefHeight="25.0" prefWidth="90.0" text="Auswählen" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Button fx:id="btnChooseCar" mnemonicParsing="false" onAction="#chooseCar" prefHeight="25.0" prefWidth="90.0" text="%MENU_CHOOSE" GridPane.columnIndex="2" />
+                        <Button fx:id="btnChooseCustomer" mnemonicParsing="false" onAction="#chooseCustomer" prefHeight="25.0" prefWidth="90.0" text="%MENU_CHOOSE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <TextField fx:id="textFieldPickUpHour" prefHeight="25.0" prefWidth="90.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <GridPane.margin>
                               <Insets right="210.0" />
