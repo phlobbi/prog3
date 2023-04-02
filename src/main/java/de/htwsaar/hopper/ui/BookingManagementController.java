@@ -16,6 +16,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -301,6 +302,11 @@ public class BookingManagementController implements Initializable {
             stage = new Stage();
             stage.setScene(new Scene(root1));
             disableWindow();
+            stage.setTitle("Neue Buchung");
+            URL iconURL = getClass().getResource("icons/car-icon.png");
+            stage.getIcons().add(new Image(iconURL.toString()));
+            stage.setMinHeight(480);
+            stage.setMinWidth(605);
             stage.showAndWait();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
@@ -314,7 +320,7 @@ public class BookingManagementController implements Initializable {
     void switchToSceneReadBooking(ActionEvent event) throws IOException {
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
         if(selectedBooking == null){
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Keine Buchung ausgewählt.");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Keine Buchung ausgewählt.");
             alert.showAndWait();
             return;
         } else {
@@ -335,14 +341,18 @@ public class BookingManagementController implements Initializable {
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
         URL url = sceneChooser();
         if (selectedBooking.getRealDropOffDate() != null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Die Buchung wurde bereits zurückgegeben.");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Die Buchung wurde bereits zurückgegeben.");
             alert.showAndWait();
             return;
         } else {
             Parent root = FXMLLoader.load(url, bundle);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-            //Die Actionevent von anderen Fenster sind blockiert.
+            stage.setTitle("Auto zurueckgeben");
+            URL iconURL = getClass().getResource("icons/car-icon.png");
+            stage.getIcons().add(new Image(iconURL.toString()));
+            stage.setMinHeight(500);
+            stage.setMinWidth(600);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
             stage.showAndWait();
@@ -361,6 +371,7 @@ public class BookingManagementController implements Initializable {
     }
 
     void disableWindow() {
+        btnGenerateInvoice.setDisable(true);
         btnBookCar.setDisable(true);
         btnReturnCar.setDisable(true);
         btnGoBack.setDisable(true);
@@ -378,6 +389,7 @@ public class BookingManagementController implements Initializable {
     }
 
     void enableWindow() {
+        btnGenerateInvoice.setDisable(false);
         btnBookCar.setDisable(false);
         btnReturnCar.setDisable(false);
         btnGoBack.setDisable(false);
@@ -399,10 +411,10 @@ public class BookingManagementController implements Initializable {
     void generateInvoice() {
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
         if(selectedBooking == null){
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Keine Buchung ausgewählt.");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Keine Buchung ausgewählt.");
             alert.showAndWait();
         } else if(selectedBooking.getRealDropOffDate() == null){
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Das Auto wurde noch nicht abgegeben.");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Das Auto wurde noch nicht abgegeben.");
             alert.showAndWait();
             return;
         }
