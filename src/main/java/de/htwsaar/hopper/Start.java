@@ -3,17 +3,15 @@ package de.htwsaar.hopper;
 import de.htwsaar.hopper.ui.App;
 
 /**
- * Hello world!
- *
+ * Eine Hilfsklasse, die die JavaFX Applikation startet.
  */
-public class Start
-{
+public class Start {
     /**
+     * Startet die JavaFX Applikation aus der Klasse App.
      *
-     * @param args
+     * @param args Kommandozeilenargumente
      */
-    public static void main( String[] args )
-    {
+    public static void main(String[] args) {
         App.main(args);
     }
 }

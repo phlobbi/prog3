@@ -20,6 +20,7 @@ public final class App extends Application {
 
     /**
      * Startet die JavaFX Anwendung.
+     *
      * @param primaryStage Hauptfenster der Anwendung
      * @throws Exception Fehler beim Laden der FXML-Datei
      */
@@ -28,7 +29,7 @@ public final class App extends Application {
         URL url = App.class.getResource("fxml/first-view.fxml");
         if (url != null) {
             root = FXMLLoader.load(url, ResourceBundle.getBundle("bundles.i18n"));
-            scene = new Scene(root, 1366,768);
+            scene = new Scene(root, 1366, 768);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Hopper Autovermietung");
             primaryStage.setMinHeight(600);
@@ -57,6 +58,7 @@ public final class App extends Application {
 
     /**
      * Die Methode startet die Applikation.
+     *
      * @param args Kommandozeilenargumente
      */
     public static void main(String[] args) {

@@ -18,7 +18,9 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
-
+/**
+ * Controller für die Anzeige eines Autos
+ */
 public class CarReadController implements Initializable {
 
     @FXML
@@ -68,6 +70,12 @@ public class CarReadController implements Initializable {
     @FXML
     private Label labelcarLicensePlate;
 
+    /**
+     * Öffnet das Fenster zum Löschen des Autos
+     *
+     * @param event Event
+     * @throws IOException
+     */
     @FXML
     void removeCar(ActionEvent event) throws IOException {
         Car selectedCar = CarManagementController.getSelectedCar();
@@ -91,7 +99,8 @@ public class CarReadController implements Initializable {
 
     /**
      * zeigt das gewaehlte Auto beim Aufruf.
-     * @param event
+     *
+     * @param event Event
      * @throws IOException
      */
     @FXML
@@ -100,6 +109,12 @@ public class CarReadController implements Initializable {
 
     }
 
+    /**
+     * Öffnet das Fenster zum Bearbeiten des Autos
+     *
+     * @param event Event
+     * @throws IOException
+     */
     @FXML
     void updateCar(ActionEvent event) {
         Stage stage;
@@ -120,6 +135,9 @@ public class CarReadController implements Initializable {
         reloadTable();
     }
 
+    /**
+     * Deaktiviert das Fenster
+     */
     void disableWindow() {
         btnRemove.setDisable(true);
         btnUpdate.setDisable(true);
@@ -131,6 +149,9 @@ public class CarReadController implements Initializable {
         });
     }
 
+    /**
+     * Aktiviert das Fenster
+     */
     void enableWindow() {
         btnRemove.setDisable(false);
         btnUpdate.setDisable(false);
@@ -145,19 +166,20 @@ public class CarReadController implements Initializable {
 
 
     /**
-     * @param url Der Ort, an dem relative Pfade für das Root-Objekt aufgelöst werden
+     * @param url            Der Ort, an dem relative Pfade für das Root-Objekt aufgelöst werden
      * @param resourceBundle Diese Methode initialisiert die Informationen über das ausgewählte Auto
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        reloadTable() ;
+        reloadTable();
     }
-    public void reloadTable(){
+
+    public void reloadTable() {
         Car car = CarManagementController.getSelectedCar();
         labelCarBasePrice.setText(String.valueOf(car.getBasePrice()));
         labelCarBrand.setText(String.valueOf(car.getBrand()));
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy") ;
-        String date = simpleDateFormat.format(car.getCreationDate().getTime()) ;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String date = simpleDateFormat.format(car.getCreationDate().getTime());
         labelCarCreationDate.setText((date));
         labelCarCurrentPrise.setText(String.valueOf(car.getCurrentPrice()));
         labelCarSeats.setText(String.valueOf(car.getSeats()));

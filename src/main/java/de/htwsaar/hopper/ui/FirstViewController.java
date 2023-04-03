@@ -5,6 +5,9 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 
+/**
+ * Controller für die Startseite
+ */
 public final class FirstViewController {
 
     /**
@@ -47,6 +50,11 @@ public final class FirstViewController {
         App.setRoot("fxml/Car-view.fxml");
     }
 
+    /**
+     * Wechselt bei Aufruf auf die Einstellungen.
+     *
+     * @param event mouse click
+     */
     @FXML
     void switchToSettingsView(MouseEvent event) throws IOException {
         App.setRoot("fxml/settings-view.fxml");
