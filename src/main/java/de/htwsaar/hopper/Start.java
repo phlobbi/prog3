@@ -7,7 +7,9 @@ import de.htwsaar.hopper.ui.App;
  */
 public class Start {
     /**
-     * Startet die JavaFX Applikation aus der Klasse App.
+     * Einstiegspunkt für die Anwendung.
+     * Die Methode ruft die main-Methode der Klasse App auf.
+     * Das wurde so gemacht, da der Start der Anwendung über die main-Methode der Klasse App nicht funktioniert hat.
      *
      * @param args Kommandozeilenargumente
      */

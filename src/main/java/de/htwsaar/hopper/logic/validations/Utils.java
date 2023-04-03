@@ -9,12 +9,13 @@ import java.util.Calendar;
 public class Utils {
     /**
      * Prüft, ob eine Bedingung erfüllt ist.
+     *
      * @param bedingung Bedingung, die überprüft werden soll
-     * @param msg Nachricht, die bei fehlgeschlagener Prüfung mit der Exception ausgegeben werden soll
+     * @param msg       Nachricht, die bei fehlgeschlagener Prüfung mit der Exception ausgegeben werden soll
      * @throws IllegalArgumentException Falls die Bedingung nicht erfüllt ist
      */
     public static void check(boolean bedingung, String msg) {
-        if(!bedingung)  {
+        if (!bedingung) {
             throw new IllegalArgumentException(msg);
         }
     }
@@ -31,19 +32,19 @@ public class Utils {
     public static int calculateDaysBetween(Calendar start, Calendar end) {
         clearHourMinuteSecond(start);
         clearHourMinuteSecond(end);
-        if (start.get(Calendar.YEAR) == end.get(Calendar.YEAR)){
+        if (start.get(Calendar.YEAR) == end.get(Calendar.YEAR)) {
             int endDay = end.get(Calendar.DAY_OF_YEAR);
             int startDay = start.get(Calendar.DAY_OF_YEAR);
-            return (int) (endDay - startDay);
+            return endDay - startDay;
         }
-        if (start.get(Calendar.YEAR) < end.get(Calendar.YEAR)){
+        if (start.get(Calendar.YEAR) < end.get(Calendar.YEAR)) {
             int yearDifference = end.get(Calendar.YEAR) - start.get(Calendar.YEAR);
-            int daysBetween = 0;
+            int daysBetween;
             int daysBeforeYearChange = 365 - start.get(Calendar.DAY_OF_YEAR);
             int daysAfterYearChange = end.get(Calendar.DAY_OF_YEAR);
             daysBetween = daysBeforeYearChange + daysAfterYearChange;
 
-            while (yearDifference > 1){
+            while (yearDifference > 1) {
                 daysBetween += 365;
                 yearDifference--;
             }
@@ -82,9 +83,9 @@ public class Utils {
      * Wandelt das Kalenderdatum + Uhrzeit in String um.
      *
      * @param date Kalenderdatum
-     * @return Formatterter String mit Datum und Uhrzeit
+     * @return Formatierter String mit Datum und Uhrzeit
      */
-    public static String calendarToString(Calendar date){
+    public static String calendarToString(Calendar date) {
         return String.format("%02d.%02d.%04d, %02d:%02d", date.get(Calendar.DAY_OF_MONTH), date.get(Calendar.MONTH) + 1, date.get(Calendar.YEAR), date.get(Calendar.HOUR_OF_DAY), date.get(Calendar.MINUTE));
     }
 

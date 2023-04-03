@@ -2,6 +2,7 @@ package de.htwsaar.hopper.logic.enums;
 
 /**
  * Enum für die regulären Ausdrücke, die zur Validierung von Eingaben verwendet werden.
+ *
  * @author Bennet
  */
 public enum ValidationRegexEnum {
@@ -22,6 +23,11 @@ public enum ValidationRegexEnum {
         this.regex = label;
     }
 
+    /**
+     * Gibt den regulären Ausdruck des Enums zurück.
+     *
+     * @return Regulärer Ausdruck des Enums
+     */
     public String getRegex() {
         return regex;
     }

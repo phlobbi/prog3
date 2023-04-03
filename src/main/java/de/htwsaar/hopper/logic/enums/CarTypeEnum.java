@@ -2,6 +2,7 @@ package de.htwsaar.hopper.logic.enums;
 
 /**
  * Enum für die unterschiedlichen Fahrzeugtypen.
+ *
  * @author Philip
  */
 public enum CarTypeEnum {
@@ -24,6 +25,11 @@ public enum CarTypeEnum {
         this.label = label;
     }
 
+    /**
+     * Gibt das Label des Enums zurück.
+     *
+     * @return Label des Enums
+     */
     public String getLabel() {
         return label;
     }

@@ -6,6 +6,7 @@ import java.util.Calendar;
  * Interface für die Klasse Customer.
  * @author Bennet
  */
+@SuppressWarnings("MissingJavadoc")
 public interface CustomerInterface extends DBObjectInterface {
 
     /* GETTER */

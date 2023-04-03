@@ -135,7 +135,7 @@ public class Invoice {
                         associatedCar.getBasePrice());
 
                 int daysBetweenPickUpAndRealDropOff = Utils.calculateDaysBetween(booking.getPickUpDate(), booking.getRealDropOffDate());
-                if(billedDays > daysBetweenPickUpAndRealDropOff) {
+                if (billedDays > daysBetweenPickUpAndRealDropOff) {
                     billedDays = daysBetweenPickUpAndRealDropOff;
                     writeBillingLine(
                             contentStream,
@@ -180,7 +180,7 @@ public class Invoice {
     /**
      * Schreibt die Adresse des Autovermieters in die PDF-Rechnung.
      *
-     * @param contentStream Contentstream der PDF-Rechnung
+     * @param contentStream Content-Stream der PDF-Rechnung
      * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
      */
     private void writeStoreAddress(PDPageContentStream contentStream) throws IOException {
@@ -197,7 +197,7 @@ public class Invoice {
     /**
      * Schreibt die Rechnungsdaten in die PDF-Rechnung.
      *
-     * @param contentStream Contentstream der PDF-Rechnung
+     * @param contentStream Content-Stream der PDF-Rechnung
      * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
      */
     private void writeInvoiceInformation(PDPageContentStream contentStream) throws IOException {
@@ -218,7 +218,7 @@ public class Invoice {
     /**
      * Schreibt eine Zeile in die PDF-Rechnung, ohne einen Betrag.
      *
-     * @param contentStream Contentstream der PDF-Rechnung
+     * @param contentStream Content-Stream der PDF-Rechnung
      * @param description   Beschreibung der Zeile
      * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
      * @see #writeBillingLine(PDPageContentStream, String, double) writeBillingLine
@@ -235,7 +235,7 @@ public class Invoice {
      * Schreibt eine Zeile mit Betrag in die PDF-Rechnung.
      * Der Betrag wird auf zwei Nachkommastellen gerundet und zum Gesamtbetrag addiert.
      *
-     * @param contentStream Contentstream der PDF-Rechnung
+     * @param contentStream Content-Stream der PDF-Rechnung
      * @param description   Beschreibung der Zeile
      * @param amount        Betrag der Zeile
      * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
@@ -256,7 +256,7 @@ public class Invoice {
     /**
      * Schreibt Mängel in die PDF-Rechnung.
      *
-     * @param contentStream Contentstream der PDF-Rechnung
+     * @param contentStream Content-Stream der PDF-Rechnung
      * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
      */
     private void writeFaults(PDPageContentStream contentStream) throws IOException {
@@ -277,7 +277,7 @@ public class Invoice {
      * Schreibt die letzten Zeilen in die Rechnung.
      * Diese sind: Bruttobetrag, Steuersatz, berechnete Steuer und Gesamtbetrag.
      *
-     * @param contentStream Contentstream der PDF-Rechnung
+     * @param contentStream Content-Stream der PDF-Rechnung
      * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
      */
     private void writeTaxAndTotal(PDPageContentStream contentStream) throws IOException {
