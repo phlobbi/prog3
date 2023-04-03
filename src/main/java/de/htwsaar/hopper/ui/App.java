@@ -10,12 +10,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Die Klasse App ist die Hauptklasse der JavaFX Anwendung.
+ * Sie startet das UI und ermöglicht den Wechsel zwischen den einzelnen Scenes.
+ */
 public final class App extends Application {
     private static Parent root;
     private static Scene scene;
 
     /**
-     * Startet die JavaFX Applikation.
+     * Startet die JavaFX Anwendung.
+     * @param primaryStage Hauptfenster der Anwendung
+     * @throws Exception Fehler beim Laden der FXML-Datei
      */
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -39,6 +45,7 @@ public final class App extends Application {
      * Die Methode erlaubt den Wechsel zwischen Scenes.
      *
      * @param fxmlfile Pfad zur FXML-Datei, die geladen werden soll
+     * @throws IOException Fehler beim Laden der FXML-Datei
      */
     public static void setRoot(String fxmlfile) throws IOException {
         URL url = App.class.getResource(fxmlfile);
@@ -50,6 +57,7 @@ public final class App extends Application {
 
     /**
      * Die Methode startet die Applikation.
+     * @param args Kommandozeilenargumente
      */
     public static void main(String[] args) {
         launch(args);
