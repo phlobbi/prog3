@@ -5,6 +5,7 @@ package de.htwsaar.hopper.logic.enums;
  *
  * @author Sosthene
  */
+@SuppressWarnings("MissingJavadoc")
 public enum FuelTypeEnum {
     DIESEL("Diesel"),
     BENZIN("Benzin"),

@@ -5,6 +5,7 @@ package de.htwsaar.hopper.logic.enums;
  *
  * @author Philip
  */
+@SuppressWarnings("MissingJavadoc")
 public enum CarTypeEnum {
     AUTO("Auto"),
     LKW("LKW"),

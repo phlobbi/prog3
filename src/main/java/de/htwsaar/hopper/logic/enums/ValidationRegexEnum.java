@@ -5,6 +5,7 @@ package de.htwsaar.hopper.logic.enums;
  *
  * @author Bennet
  */
+@SuppressWarnings("MissingJavadoc")
 public enum ValidationRegexEnum {
 
     PHONE_NUMBER("^(\\+49|0)[0-9]{1,5}(\\/| )?[0-9]{4,10}"),
