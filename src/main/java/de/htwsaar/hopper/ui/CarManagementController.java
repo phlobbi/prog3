@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -123,6 +124,11 @@ public final class CarManagementController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(url, bundle);
             Parent root1 = (Parent) fxmlLoader.load();
             stage = new Stage();
+            stage.setTitle("Neues Fahrzeug hinzufuegen");
+            URL iconURL = getClass().getResource("icons/car-icon.png");
+            stage.getIcons().add(new Image(iconURL.toString()));
+            stage.setMinHeight(670);
+            stage.setMinWidth(670);
             stage.setScene(new Scene(root1));
             disableWindow();
             stage.showAndWait();
@@ -135,6 +141,11 @@ public final class CarManagementController implements Initializable {
     }
 
     void disableWindow() {
+        menuButtonFilter.setDisable(true);
+        menuItemUncheck.setDisable(true);
+        textFieldSearch.setDisable(true);
+        btnResetSearch.setDisable(true);
+        btnSearch.setDisable(true);
         btnCreate.setDisable(true);
         btnRead.setDisable(true);
         btnRemove.setDisable(true);
@@ -148,6 +159,11 @@ public final class CarManagementController implements Initializable {
     }
 
     void enableWindow() {
+        menuButtonFilter.setDisable(false);
+        menuItemUncheck.setDisable(false);
+        textFieldSearch.setDisable(false);
+        btnResetSearch.setDisable(false);
+        btnSearch.setDisable(false);
         btnCreate.setDisable(false);
         btnRead.setDisable(false);
         btnRemove.setDisable(false);
@@ -183,6 +199,11 @@ public final class CarManagementController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(url, bundle);
             Parent root1 = fxmlLoader.load();
             stage = new Stage();
+            stage.setTitle("Fahrzeug bearbeiten");
+            URL iconURL = getClass().getResource("icons/car-icon.png");
+            stage.getIcons().add(new Image(iconURL.toString()));
+            stage.setMinHeight(670);
+            stage.setMinWidth(670);
             stage.setScene(new Scene(root1));
             disableWindow();
             stage.showAndWait();

@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -193,6 +194,11 @@ public class CustomerManagementController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(url, bundle);
             Parent root1 = (Parent) fxmlLoader.load();
             stage = new Stage();
+            stage.setTitle("Neuen Kunden hinzufuegen");
+            URL iconURL = getClass().getResource("icons/car-icon.png");
+            stage.getIcons().add(new Image(iconURL.toString()));
+            stage.setMinHeight(660);
+            stage.setMinWidth(675);
             stage.setScene(new Scene(root1));
             disableWindow();
             stage.showAndWait();
@@ -248,11 +254,16 @@ public class CustomerManagementController implements Initializable {
     }
 
     void disableWindow(){
+        btnSearch.setDisable(true);
+        btnResetSearch.setDisable(true);
         btnCreate.setDisable(true);
         btnRead.setDisable(true);
         btnRemove.setDisable(true);
         btnUpdate.setDisable(true);
         btnGoBack.setDisable(true);
+        menuButtonFilter.setDisable(true);
+        textFieldSearch.setDisable(true);
+        menuItemUncheck.setDisable(true);
 
         Stage primaryStage = (Stage) btnCreate.getScene().getWindow();
         primaryStage.onCloseRequestProperty().set(e -> {
@@ -261,11 +272,16 @@ public class CustomerManagementController implements Initializable {
     }
 
     void enableWindow(){
+        btnSearch.setDisable(false);
+        btnResetSearch.setDisable(false);
         btnCreate.setDisable(false);
         btnRead.setDisable(false);
         btnRemove.setDisable(false);
         btnUpdate.setDisable(false);
         btnGoBack.setDisable(false);
+        menuButtonFilter.setDisable(false);
+        textFieldSearch.setDisable(false);
+        menuItemUncheck.setDisable(false);
 
         // Roten Kreuz Button wieder aktivieren
         Stage primaryStage = (Stage) btnCreate.getScene().getWindow();
@@ -290,6 +306,11 @@ public class CustomerManagementController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(url, bundle);
             Parent root1 = fxmlLoader.load();
             stage = new Stage();
+            stage.setTitle("Kundendaten bearbeiten");
+            URL iconURL = getClass().getResource("icons/car-icon.png");
+            stage.getIcons().add(new Image(iconURL.toString()));
+            stage.setMinHeight(660);
+            stage.setMinWidth(675);
             stage.setScene(new Scene(root1));
             disableWindow();
             stage.showAndWait();
