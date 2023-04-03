@@ -268,7 +268,8 @@ public class Invoice {
      */
     private void writeTaxAndTotal(PDPageContentStream contentStream) throws IOException {
         double tax = total * TAX_RATE;
-        double beforeTax = total - tax;
+        double beforeTax = total;
+        double afterTax = beforeTax + tax;
         contentStream.beginText();
         contentStream.newLineAtOffset(510, 316);
         contentStream.showText(df.format(beforeTax) + "€");
@@ -277,7 +278,7 @@ public class Invoice {
         contentStream.newLineAtOffset(0, -26);
         contentStream.showText(df.format(tax) + "€");
         contentStream.newLineAtOffset(0, -50);
-        contentStream.showText(df.format(total) + "€");
+        contentStream.showText(df.format(afterTax) + "€");
         contentStream.endText();
     }
 
