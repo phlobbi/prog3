@@ -91,8 +91,8 @@ public class CustomerEditController implements Initializable {
     /**
      * Bricht die Bearbeitung eines Kunden ab
      *
-     * @param event
-     * @throws IOException
+     * @param event Event
+     * @throws IOException IOException
      */
     @FXML
     void cancelCreation(ActionEvent event) throws IOException {
@@ -144,7 +144,7 @@ public class CustomerEditController implements Initializable {
     /**
      * Validiert die Eingabe und speichert den geänderten Kunden
      *
-     * @param event
+     * @param event Event
      */
     @FXML
     void updateCustomer(ActionEvent event) {

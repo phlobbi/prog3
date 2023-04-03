@@ -85,7 +85,7 @@ public class BookingCreationController {
     /**
      * bricht die Wahl eines Kunden für die Buchung ab und schließt das Fenster.
      *
-     * @param event
+     * @param event Event (hier Mausklick)
      */
     @FXML
     void cancelCreation(ActionEvent event) {
@@ -97,7 +97,7 @@ public class BookingCreationController {
      * Öffnet ein Fenster, in dem das Auto ausgewählt werden kann, welches für die Buchung ausgeliehen werden soll.
      * Dabei wird die Methode getChosenCar() der Klasse BookingCarChooseController aufgerufen.
      *
-     * @param event
+     * @param event Event (hier Mausklick)
      */
     @FXML
     void chooseCar(ActionEvent event) {
@@ -141,7 +141,7 @@ public class BookingCreationController {
      * Öffnet ein neues Fenster, in dem der Kunde ausgewählt werden kann, der den Wagen ausleihen möchte.
      * Dabei wird die Methode getChosenCustomer() der Klasse BookingCustomerChooseController aufgerufen.
      *
-     * @param event
+     * @param event Event (hier Mausklick)
      */
     @FXML
     void chooseCustomer(ActionEvent event) {

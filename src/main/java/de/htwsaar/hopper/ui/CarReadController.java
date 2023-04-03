@@ -74,7 +74,7 @@ public class CarReadController implements Initializable {
      * Öffnet das Fenster zum Löschen des Autos
      *
      * @param event Event
-     * @throws IOException
+     * @throws IOException IOException
      */
     @FXML
     void removeCar(ActionEvent event) throws IOException {
@@ -101,7 +101,7 @@ public class CarReadController implements Initializable {
      * zeigt das gewaehlte Auto beim Aufruf.
      *
      * @param event Event
-     * @throws IOException
+     * @throws IOException IOException
      */
     @FXML
     void switchToCarView(ActionEvent event) throws IOException {
@@ -111,9 +111,7 @@ public class CarReadController implements Initializable {
 
     /**
      * Öffnet das Fenster zum Bearbeiten des Autos
-     *
      * @param event Event
-     * @throws IOException
      */
     @FXML
     void updateCar(ActionEvent event) {

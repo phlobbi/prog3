@@ -116,7 +116,7 @@ public class CustomerManagementController implements Initializable {
     /**
      * Sucht nach Kunden, die den Suchkriterien entsprechen.
      *
-     * @param event
+     * @param event button click
      */
     @FXML
     void searchCustomers(ActionEvent event) {
@@ -177,7 +177,7 @@ public class CustomerManagementController implements Initializable {
     /**
      * Sucht nach Kunden, wenn Enter gedrückt wird.
      *
-     * @param event
+     * @param event Event
      */
     @FXML
     void searchCustomersViaEnter(KeyEvent event) {
@@ -202,8 +202,8 @@ public class CustomerManagementController implements Initializable {
     /**
      * Wechselt zur Szene um einen Kunden zu erstellen.
      *
-     * @param event
-     * @throws IOException
+     * @param event button click
+     * @throws IOException wenn die Szene nicht geladen werden kann
      */
     @FXML
     void switchToSceneAddCustomer(ActionEvent event) throws IOException {
@@ -327,8 +327,8 @@ public class CustomerManagementController implements Initializable {
     /**
      * Wechselt zur Szene, um einen Kunden zu lesen.
      *
-     * @param event
-     * @throws IOException
+     * @param event Event
+     * @throws IOException IOException
      */
     @FXML
     void switchToSceneReadCustomer(ActionEvent event) throws IOException {
@@ -339,7 +339,7 @@ public class CustomerManagementController implements Initializable {
     /**
      * Wechselt zur Szene, um einen Kunden zu bearbeiten.
      *
-     * @param event
+     * @param event Event
      */
     @FXML
     void switchToSceneUpdateCustomer(ActionEvent event) {
@@ -370,7 +370,7 @@ public class CustomerManagementController implements Initializable {
     /**
      * setzt Filter zurück.
      *
-     * @param event
+     * @param event Event
      */
     @FXML
     void uncheckFilters(ActionEvent event) {

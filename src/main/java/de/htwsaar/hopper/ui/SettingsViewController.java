@@ -26,8 +26,8 @@ public class SettingsViewController implements Initializable {
     /**
      * Speichert die Spracheinstellung und wechselt zur ersten Ansicht
      *
-     * @param actionEvent
-     * @throws IOException
+     * @param actionEvent Das Event
+     * @throws IOException Wenn die Datei nicht gefunden werden kann
      */
     @FXML
     public void saveButtonAction(ActionEvent actionEvent) throws IOException {

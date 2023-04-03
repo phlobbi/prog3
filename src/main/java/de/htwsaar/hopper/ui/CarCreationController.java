@@ -129,7 +129,6 @@ public class CarCreationController implements Initializable {
      * Erstellt ein Auto
      *
      * @param event Event
-     * @throws IOException
      */
     @FXML
     void createCar(ActionEvent event) {

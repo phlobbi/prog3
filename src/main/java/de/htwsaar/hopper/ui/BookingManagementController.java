@@ -262,7 +262,7 @@ public class BookingManagementController implements Initializable {
     /**
      * Zeigt alle Buchungen an, die bereits zurückgegeben wurden
      *
-     * @param event
+     * @param event Event
      */
     @FXML
     void showDoneBookings(ActionEvent event) {
@@ -364,8 +364,8 @@ public class BookingManagementController implements Initializable {
     /**
      * Wechsel zum Fenster ReturnCar.
      *
-     * @param event
-     * @throws IOException
+     * @param event button click
+     * @throws IOException Exception
      */
     @FXML
     void switchToSceneReturnCar(ActionEvent event) throws IOException {
@@ -532,7 +532,7 @@ public class BookingManagementController implements Initializable {
      * Gibt die URL für die passende ReturnCarView zurück
      *
      * @return Die URL für den Typ des Fahrzeugs
-     * @throws IOException
+     * @throws IOException Wenn die Datei nicht gefunden wird
      */
     @FXML
     private URL sceneChooser() throws IOException {

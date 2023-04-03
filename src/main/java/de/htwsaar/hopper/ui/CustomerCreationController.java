@@ -90,8 +90,8 @@ public class CustomerCreationController {
     /**
      * Bricht die Erstellung eines Kunden ab
      *
-     * @param event
-     * @throws IOException
+     * @param event ActionEvent
+     * @throws IOException IOException
      */
     @FXML
     void cancelCreation(ActionEvent event) throws IOException {
@@ -102,8 +102,7 @@ public class CustomerCreationController {
     /**
      * Erstellt einen Kunden
      *
-     * @param event
-     * @throws IOException
+     * @param event ActionEvent
      */
     @FXML
     void createCustomer(ActionEvent event) {

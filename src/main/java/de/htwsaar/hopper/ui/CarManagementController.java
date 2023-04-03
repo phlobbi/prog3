@@ -121,8 +121,8 @@ public final class CarManagementController implements Initializable {
     /**
      * Wechselt zum Fenster, um ein Fahrzeug zu erstellen
      *
-     * @param event
-     * @throws IOException
+     * @param event Event
+     * @throws IOException IOException
      */
     @FXML
     void switchToSceneAddCar(ActionEvent event) throws IOException {
@@ -317,7 +317,7 @@ public final class CarManagementController implements Initializable {
     /**
      * Setzt die Suche zurück.
      *
-     * @param event
+     * @param event button click
      */
     @FXML
     void resetSearch(ActionEvent event) {
@@ -329,7 +329,7 @@ public final class CarManagementController implements Initializable {
     /**
      * Sucht nach Fahrzeugen, die den Suchkriterien entsprechen.
      *
-     * @param event
+     * @param event button click
      */
     @FXML
     void searchCars(ActionEvent event) {
@@ -432,7 +432,7 @@ public final class CarManagementController implements Initializable {
     /**
      * Setzt alle Suchkriterien zurück.
      *
-     * @param event
+     * @param event button click
      */
     @FXML
     void uncheckFilters(ActionEvent event) {

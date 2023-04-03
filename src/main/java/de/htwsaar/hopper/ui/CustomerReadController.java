@@ -52,8 +52,8 @@ public final class CustomerReadController implements Initializable {
     /**
      * zeigt den gewahlten Kunden beim Aufruf.
      *
-     * @param event
-     * @throws IOException
+     * @param event Event
+     * @throws IOException IOException
      */
     @FXML
     void switchToCustomerView(ActionEvent event) throws IOException {
@@ -86,8 +86,8 @@ public final class CustomerReadController implements Initializable {
     /**
      * Öffnet die Kundenlöschung
      *
-     * @param event
-     * @throws IOException
+     * @param event Event
+     * @throws IOException IOException
      */
     @FXML
     void deleteCustomer(ActionEvent event) throws IOException {

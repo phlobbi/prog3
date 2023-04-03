@@ -117,7 +117,6 @@ public class CarEditController implements Initializable {
      * Bricht die Bearbeitung ab und schließt das Fenster
      *
      * @param event Event
-     * @throws IOException
      */
     @FXML
     void cancelCreation(ActionEvent event) throws IOException {
