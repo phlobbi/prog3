@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Buchungsverwaltung - Autovermietung</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Buchungsverwaltung";
+        var mkdocs_page_input_path = "booking-management.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Autovermietung
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Autovermietung</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../start/">Startseite</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../car-management/">Fahrzeugverwaltung</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../customer-management/">Kundenverwaltung</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Buchungsverwaltung</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#buchen">Buchen</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#fahrzeug-auswahlen">Fahrzeug auswählen</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#kunde-auswahlen">Kunde auswählen</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#datumsauswahl">Datumsauswahl</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#speichern">Speichern</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#abbrechen">Abbrechen</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#zuruckgeben">Zurückgeben</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#filtern-nach-aktiven-beendeten-und-allen-buchungen">Filtern nach aktiven, beendeten und allen Buchungen</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rechnung-generieren">Rechnung generieren</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#buchung-lesen">Buchung lesen</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#suchen">Suchen</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#zuruck">Zurück</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../settings/">Einstellungen</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Autovermietung</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Buchungsverwaltung</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="buchungsverwaltung">Buchungsverwaltung</h1>
+<p><img alt="Buchungsverwaltung" src="../pictures/Buchungsverwaltung.png" /></p>
+<p>Die Buchungsverwaltung dient der Verwaltung aller laufenden und abgeschlossenen Buchungen. Sie hat folgende Funktionen:</p>
+<ul>
+<li><strong>Buchen</strong></li>
+<li><strong>Zurückgeben</strong></li>
+<li><strong>Rechnung generieren</strong></li>
+<li><strong>Buchung lesen</strong></li>
+<li><strong>Suchen</strong></li>
+<li><strong>Zurück</strong></li>
+</ul>
+<h2 id="buchen">Buchen</h2>
+<p><img alt="Buchen" src="../pictures/neueBuchung.png" /></p>
+<p>Das Fenster für eine neue Buchung wird geöffnet. Es müssen ein Fahrzeug in der Datenbank und ein Kunde in der Datenbank
+ausgewählt werden.
+Die Auswahl erfolgt jeweils über neue Fenster, die bei Klick auf "Auswählen" geöffnet werden:</p>
+<h3 id="fahrzeug-auswahlen">Fahrzeug auswählen</h3>
+<p><img alt="FahrzeugAuswaehlen" src="../pictures/verfuegbaresAutoWahl.png" /></p>
+<p>Hier verhält sich die Suche im oberen Bereich analog zur Suche in der Fahrzeugverwaltung (siehe Sektion "
+Fahrzeugverwaltung").<br />
+Die verfügbaren Fahrzeuge werden in der Tabelle angezeigt. Durch Klick auf eines der Fahrzeuge wird das Fahrzeug
+ausgewählt und nach der Auswahl und darauffolgendem Klick auf den Button "Speichern" wird das Auto in das Feld bei der
+Verwaltung der neuen Buchung geladen und das Fenster geschlossen.</p>
+<p>"Abbrechen" schließt das Fenster und die Auswahl wird verworfen.<br />
+Es sei darauf hingewiesen, dass die Interaktion mit der Buchungsverwaltung während der Auswahl eines Fahrzeugs nicht
+möglich ist, die angezeigten Fahrzeuge sind diejenigen, die in keiner Buchung vorkommen und somit verfügbar sind.</p>
+<h3 id="kunde-auswahlen">Kunde auswählen</h3>
+<p><img alt="KundeAuswaehlen" src="../pictures/verfuegbarerKundeWahl.png" /></p>
+<p>Hier verhält sich die Suche im oberen Bereich analog zur Suche in der Kundenverwaltung (siehe Sektion "
+Kundenverwaltung").</p>
+<p>Die verfügbaren Kunden werden in der Tabelle angezeigt.</p>
+<p>Durch Klick auf einen der Kunden wird der Kunde ausgewählt und nach der Auswahl und darauffolgendem Klick auf den
+Button "Speichern" wird der Kunde in das Feld bei der Verwaltung der neuen Buchung geladen und das Fenster geschlossen.</p>
+<p>"Abbrechen" schließt das Fenster und die Auswahl wird verworfen.</p>
+<p>Es sei darauf hingewiesen, dass die Interaktion mit der Buchungsverwaltung während der Auswahl eines Kunden nicht
+möglich ist, die angezeigten Kunden sind diejenigen, die in keiner Buchung vorkommen und somit verfügbar sind.</p>
+<h3 id="datumsauswahl">Datumsauswahl</h3>
+<p><img alt="DatumsAuswahl" src="../pictures/DatumsAuswahlBuchung.png" /></p>
+<p>Nach der Wahl des Fahrzeuges und des Kunden kann das Datum der Buchung ausgewählt werden. Hierbei ist zu beachten, dass
+das Datum der Buchung nicht in der Vergangenheit liegen darf. Das Datum der Buchung muss zudem vor dem Datum der
+Rückgabe liegen. Zudem muss eine Uhrzeit in die Felder rechts eingetragen werden. Diese muss ebenfalls gültig sein, also
+sind Uhrzeiten am selben Tag in der Vergangenheit ungültig und werfen eine Fehlermeldung.</p>
+<h3 id="speichern">Speichern</h3>
+<p>Nachdem alle Daten eingegeben wurden, kann die Buchung gespeichert werden. Dazu muss der Button "Speichern" geklickt
+werden. Die Buchung wird in der Datenbank gespeichert und das Fenster geschlossen. Die Interaktion mit der
+Buchungsverwaltung ist während des Speicherns nicht möglich.</p>
+<h3 id="abbrechen">Abbrechen</h3>
+<p>Der Button "Abbrechen" schließt das Fenster und die Buchung wird nicht gespeichert.</p>
+<h2 id="zuruckgeben">Zurückgeben</h2>
+<p><img alt="Zurückgeben" src="../pictures/returnCar.png" /></p>
+<p>Ein Klick auf die jeweilige Buchung in der Tabelle wählt diese aus.</p>
+<p>Durch Klick auf den Button "Zurückgeben" wird das Fenster zur Rückgabe des Fahrzeuges geöffnet. Hier kann das
+tatsächliche Rückgabedatum sowie der Uhrzeit analog zur Buchung ausgewählt werden.<br />
+Dabei ist zu beachten, dass das Rückgabedatum nicht vor oder gleich dem Abholdatum sein darf.</p>
+<p>Die Checkboxen sind für die Erfassung der Mängel zuständig. <br />
+Bei Klick auf eine der Checkboxen, ist der Mangel nicht vorhanden, bei Auslassen des Klicks, wird dies als Mangel
+gewertet. Hier ist aus 4 Optionen zu wählen. Nachdem die Daten eingegeben wurden, kann die Rückgabe gespeichert werden.
+Dazu muss der Button "Bestätigen" geklickt werden.</p>
+<p>Die Rückgabe wird in der Datenbank gespeichert und das Fenster geschlossen. Die Interaktion mit der Buchungsverwaltung
+ist während des Speicherns nicht möglich. Der Button "Abbrechen" schließt das Fenster und die Rückgabe wird nicht
+gespeichert. Die erledigten Buchungen können über den linken Filter der Tabelle der Buchungsverwaltung eingesehen
+werden.</p>
+<h2 id="filtern-nach-aktiven-beendeten-und-allen-buchungen">Filtern nach aktiven, beendeten und allen Buchungen</h2>
+<p><img alt="Filtern" src="../pictures/FilterTableBuchung.png" /></p>
+<p>Das Dropdown-Menü ist initial auf "Aktive" gesetzt und ermöglicht es, die Tabelle nach aktiven, beendeten oder allen
+Buchungen zu filtern. Die Auswahl erfolgt durch Klick auf den entsprechenden Eintrag. Die Tabelle wird nach der Auswahl
+wieder zurückgesetzt und alle Buchungen angezeigt.</p>
+<h2 id="rechnung-generieren">Rechnung generieren</h2>
+<p><img alt="RechnungGenerieren" src="../pictures/GenerierteRechnung.png" /></p>
+<p>Bei Auswahl einer erledigten Buchung in der Tabelle analog zu allen Tabellensichten, kann der Button "Rechnung
+generieren" geklickt werden.
+Hier werden die Kosten für den Kunden angezeigt. Die Rechnung wird automatisch generiert und kann über den Button "
+Rechnung anzeigen" angezeigt werden. Die Rechnung wird als PDF-Datei gespeichert und wird als neues Browserfenster
+automatisch geöffnet und kann heruntergeladen werden.</p>
+<h2 id="buchung-lesen">Buchung lesen</h2>
+<p><img alt="BuchungLesen" src="../pictures/BuchungsRead.png" /></p>
+<p>Bei Auswahl einer Buchung in der Tabelle analog zu allen Tabellensichten kann der Button "Buchung lesen" geklickt
+werden.
+Hier werden die Daten der Buchung angezeigt. Die Daten können nicht verändert werden. Jedoch kann durch Klick auf den
+Button "Zurück" das Fenster geschlossen werden. Der Button "Zurückgeben" initiiert die Rückgabe der Buchung und das
+Fenster wird bei erfolgter Buchung geschlossen und das Fenster der Buchungsverwaltung wird geöffnet.</p>
+<h2 id="suchen">Suchen</h2>
+<p><img alt="Suchen" src="../pictures/BuchungSearch.png" /></p>
+<p>Die Suche in der Tabelle der Buchungsverwaltung funktioniert analog zur Suche in der Tabelle der Fahrzeugverwaltung und
+der Kundenverwaltung. Die Suche ist case-insensitive und findet alle Treffer, die die Sucheingabe enthalten. Die Suche
+findet in allen Spalten der Tabelle statt. Die Suche kann durch Klick auf den Button "Suchen" gestartet werden. Die
+Suche kann durch Klick auf den Button "Zurücksetzen" zurückgesetzt werden. Es kann zudem ein Suchkriterium ausgewählt
+werden, in dem die Suche stattfinden soll. Die Auswahl erfolgt über das Dropdown-Menü.</p>
+<h2 id="zuruck">Zurück</h2>
+<p>Der Button "Zurück" schließt das Fenster und kehrt zur Startseite zurück.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../customer-management/" class="btn btn-neutral float-left" title="Kundenverwaltung"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../settings/" class="btn btn-neutral float-right" title="Einstellungen">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../customer-management/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../settings/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Fahrzeugverwaltung - Autovermietung</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Fahrzeugverwaltung";
+        var mkdocs_page_input_path = "car-management.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Autovermietung
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Autovermietung</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../start/">Startseite</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Fahrzeugverwaltung</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#neues-fahrzeug-anlegen">Neues Fahrzeug anlegen</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fahrzeug-bearbeiten">Fahrzeug bearbeiten</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fahrzeug-loschen">Fahrzeug löschen</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#fahrzeug-eigenschaften">Fahrzeug-Eigenschaften</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#suchen">Suchen</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#zuruck">Zurück</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../customer-management/">Kundenverwaltung</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../booking-management/">Buchungsverwaltung</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../settings/">Einstellungen</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Autovermietung</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Fahrzeugverwaltung</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="fahrzeugverwaltung">Fahrzeugverwaltung</h1>
+<p><img alt="Fahrzeugverwaltung" src="../pictures/Fahrzeugverwaltung.png" /></p>
+<p>Die Fahrzeugverwaltung dient der Verwaltung der Fahrzeuge. Sie hat folgende Funktionen:</p>
+<ul>
+<li><strong>Neues Fahrzeug anlegen</strong></li>
+<li><strong>Fahrzeug bearbeiten</strong></li>
+<li><strong>Fahrzeug löschen</strong></li>
+<li><strong>Fahrzeug-Eigenschaften</strong></li>
+<li><strong>Suchen</strong></li>
+<li><strong>Zurück</strong></li>
+</ul>
+<h2 id="neues-fahrzeug-anlegen">Neues Fahrzeug anlegen</h2>
+<p><img alt="neuesFahrzeug" src="../pictures/neuesFahrzeug.png" /></p>
+<p>Öffnet das Fenster zum Anlegen eines neuen Fahrzeugs. Hier können die Eigenschaften des Fahrzeugs eingetragen werden.
+Nach dem Klick auf "Speichern" wird das Fahrzeug in der Datenbank gespeichert und das Fenster geschlossen.</p>
+<p>Dabei muss beachtet werden, dass die Eingabe von Daten in die Felder für das Speichern des Fahrzeuges Pflicht ist und
+das Kennzeichen in der Form XX-XXX-XX eingetragen werden muss.</p>
+<p>Durch Drücken der "Abbrechen" Taste wird das Fenster geschlossen und die Eingaben verworfen.
+Während das Fenster für die Eingabe eines neuen Fahrzeugs geöffnet ist, kann nicht mehr mit der Fahrzeugverwaltung
+interagiert werden.
+Das Fenster muss zuerst wieder durch den "Abbrechen" Button geschlossen werden, oder durch das Klicken auf den "X"
+Button in der oberen rechten Ecke des Fensters.</p>
+<h2 id="fahrzeug-bearbeiten">Fahrzeug bearbeiten</h2>
+<p><img alt="FahrzeugBearbeiten" src="../pictures/FahrzeugEdit.png" /></p>
+<p>Öffnet das Fenster zum Bearbeiten eines Fahrzeugs.</p>
+<p>Hier können die Eigenschaften des Fahrzeugs bearbeitet werden. Die Daten des Fahrzeuges, welches bei der
+Fahrzeugverwaltung in der Tabelle angeklickt wurde, werden in die Felder geladen. Nach dem Klick auf "Speichern" wird
+das Fahrzeug in der Datenbank gespeichert und das Fenster geschlossen.</p>
+<p>Analog zum Anlegen eines neuen Fahrzeugs muss auch hier die Eingabe von Daten in die Felder für das Speichern des
+Fahrzeuges erfolgen und das Kennzeichen in der Form XX-XXX-XX eingetragen werden.</p>
+<p>Wenn das Fahrzeug unverändert gespeichert werden soll, wird eine Fehlermeldung angezeigt. Es ist demnach Pflicht,
+mindestens eine Eigenschaft zu ändern.</p>
+<p>Die Interaktion mit der Fahrzeugverwaltung ist während des Bearbeitens eines Fahrzeugs ebenfalls nicht möglich.</p>
+<h2 id="fahrzeug-loschen">Fahrzeug löschen</h2>
+<p><img alt="FahrzeugLoeschen" src="../pictures/FahrzeugDelete.png" /></p>
+<p>Öffnet das Fenster zum Löschen eines Fahrzeugs. Das in der Tabelle angeklickte Fahrzeug ist ausgewählt.</p>
+<p>Nach dem Klick auf "Löschen" muss die Meldung "Wagen wirklich löschen?" bestätigt werden.<br />
+Nach der Bestätigung wird das Fahrzeug aus der Datenbank gelöscht und das Fenster geschlossen.</p>
+<p>Während des Löschens eines Fahrzeugs ist die Interaktion mit der Fahrzeugverwaltung nicht möglich.<br />
+Durch den "Abbrechen" Button wird das Fenster geschlossen und das Fahrzeug nicht gelöscht.</p>
+<h2 id="fahrzeug-eigenschaften">Fahrzeug-Eigenschaften</h2>
+<p>Wechselt in das Fenster zur Anzeige der Eigenschaften eines Fahrzeugs. Das in der Tabelle angeklickte Fahrzeug ist
+ausgewählt.</p>
+<p>Durch den "Zurück" Button wird das Fenster geschlossen und die Fahrzeugverwaltung wieder geöffnet.</p>
+<p>Das Klicken auf "Löschen" oder "Bearbeiten" öffnet das entsprechende Fenster wie in den vorherigen Abschnitten
+beschrieben.</p>
+<p>Dabei sei darauf hingewiesen, dass die Interaktion mit der Fahrzeugverwaltung während der Bearbeitung oder Löschung
+eines Fahrzeugs nicht möglich ist und beim Löschen des Fahrzeuges die Anzeige der Eigenschaften des Fahrzeugs
+geschlossen wird.</p>
+<h2 id="suchen">Suchen</h2>
+<p><img alt="FahrzeugSuchen" src="../pictures/FahrzeugSearch.png" /></p>
+<p>Über der Fahrzeugtabelle befindet sich ein Textfeld und ein Button "Suchen".<br />
+Durch Eingabe eines Suchbegriffs in das Textfeld und anschließendem Klick auf den Button "Suchen" wird die Tabelle nach
+Fahrzeugen gefiltert, die den Suchbegriff in ihren Eigenschaften enthalten.</p>
+<p>Des Weiteren wird durch den Klick auf den Button "Suchen" die Tabelle wieder zurückgesetzt und alle Fahrzeuge angezeigt.</p>
+<p>Mithilfe des Menübuttons "Kriterien" kann die Suche nach bestimmten Eigenschaften des Fahrzeugs eingeschränkt werden.<br />
+"Kriterien löschen" wechselt wieder zur allgemeinen, übergreifenden Suche nach dem Suchbegriff.</p>
+<p>Der Button "Zurücksetzen" setzt die Tabelle wieder zurück und zeigt alle Fahrzeuge an.</p>
+<h2 id="zuruck">Zurück</h2>
+<p>Schließt das Fenster zur Fahrzeugverwaltung und wechselt in das Hauptfenster.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../start/" class="btn btn-neutral float-left" title="Startseite"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../customer-management/" class="btn btn-neutral float-right" title="Kundenverwaltung">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../start/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../customer-management/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

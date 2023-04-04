@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Kundenverwaltung - Autovermietung</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Kundenverwaltung";
+        var mkdocs_page_input_path = "customer-management.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Autovermietung
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Autovermietung</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../start/">Startseite</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../car-management/">Fahrzeugverwaltung</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Kundenverwaltung</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#neuen-kunden-anlegen">Neuen Kunden anlegen</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#kunden-bearbeiten">Kunden bearbeiten</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#kunden-loschen">Kunden löschen</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#kunden-anzeigen">Kunden anzeigen</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#suchen">Suchen</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#zuruck">Zurück</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../booking-management/">Buchungsverwaltung</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../settings/">Einstellungen</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Autovermietung</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Kundenverwaltung</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="kundenverwaltung">Kundenverwaltung</h1>
+<p><img alt="Kundenverwaltung" src="../pictures/Kundenverwaltung.png" /></p>
+<p>Die Kundenverwaltung dient der Verwaltung der Kunden. Sie hat folgende Funktionen:</p>
+<ul>
+<li><strong>Neuen Kunden anlegen</strong></li>
+<li><strong>Kunden bearbeiten</strong></li>
+<li><strong>Kunden löschen</strong></li>
+<li><strong>Kunden anzeigen</strong></li>
+<li><strong>Suchen</strong></li>
+<li><strong>Zurück</strong></li>
+</ul>
+<h2 id="neuen-kunden-anlegen">Neuen Kunden anlegen</h2>
+<p><img alt="neuerKunde" src="../pictures/neuerKunde.png" /></p>
+<p>Öffnet das Fenster zum Anlegen eines neuen Kunden.</p>
+<p>Hier können die Eigenschaften des Kunden eingetragen werden.<br />
+Nach dem Klick auf "Speichern" wird der Kunde in der Datenbank gespeichert und das Fenster geschlossen.<br />
+Dabei muss beachtet werden, dass die Eingabe von Daten in die Felder für das Speichern des Kunden Pflicht ist.</p>
+<p>Durch Drücken der "Abbrechen" Taste wird das Fenster geschlossen und die Eingaben verworfen.</p>
+<p>Während das Fenster für die Eingabe eines neuen Kunden geöffnet ist, kann nicht mehr mit der Kundenverwaltung
+interagiert werden.<br />
+Das Fenster muss zuerst wieder durch den "Abbrechen" Button geschlossen werden, oder durch das Klicken auf den "X"
+Button in der oberen rechten Ecke des Fensters.</p>
+<h2 id="kunden-bearbeiten">Kunden bearbeiten</h2>
+<p><img alt="KundenBearbeiten" src="../pictures/KundeEdit.png" /></p>
+<p>Öffnet das Fenster zum Bearbeiten eines Kunden.</p>
+<p>Hier können die Eigenschaften des Kunden bearbeitet werden.<br />
+Die Daten des Kunden, welcher bei der Kundenverwaltung in der Tabelle angeklickt wurde, werden in die Felder geladen.</p>
+<p>Nach dem Klick auf "Speichern" wird der Kunde in der Datenbank gespeichert und das Fenster geschlossen.<br />
+Analog zum Anlegen eines neuen Kunden muss auch hier die Eingabe von Daten in die Felder für das Speichern des Kunden
+erfolgen.</p>
+<p>Wenn der Kunde unverändert gespeichert werden soll, wird eine Fehlermeldung angezeigt. Es ist demnach Pflicht,
+mindestens eine Eigenschaft zu ändern. Die Interaktion mit der Kundenverwaltung ist während des Bearbeitens eines Kunden
+ebenfalls nicht möglich.</p>
+<h2 id="kunden-loschen">Kunden löschen</h2>
+<p><img alt="KundenLoeschen" src="../pictures/KundeDelete.png" /></p>
+<p>Öffnet das Fenster zum Löschen eines Kunden.</p>
+<p>Der in der Tabelle angeklickte Kunde ist ausgewählt.<br />
+Nach dem Klick auf "Löschen" muss die Meldung "Kunde wirklich löschen?" bestätigt werden.<br />
+Nach der Bestätigung wird der Kunde aus der Datenbank gelöscht und das Fenster geschlossen.<br />
+Während des Löschens eines Kunden ist die Interaktion mit der Kundenverwaltung nicht möglich.</p>
+<p>Durch den "Abbrechen" Button wird das Fenster geschlossen und der Kunde nicht gelöscht.</p>
+<h2 id="kunden-anzeigen">Kunden anzeigen</h2>
+<p><img alt="KundenAnzeigen" src="../pictures/KundeRead.png" /></p>
+<p>Wechselt in das Fenster zur Anzeige der Eigenschaften eines Kunden.</p>
+<p>Der in der Tabelle angeklickte Kunde ist ausgewählt.<br />
+Durch den "Zurück" Button wird das Fenster geschlossen und die Kundenverwaltung wieder geöffnet.</p>
+<p>Das Klicken auf "Löschen" oder "Bearbeiten" öffnet das entsprechende Fenster wie in den vorherigen Abschnitten
+beschrieben.<br />
+Dabei sei darauf hingewiesen, dass die Interaktion mit der Kundenverwaltung während der Bearbeitung oder Löschung eines
+Kunden nicht möglich ist und beim Löschen des Kunden die Anzeige der Eigenschaften des Kunden geschlossen wird.</p>
+<h2 id="suchen">Suchen</h2>
+<p><img alt="KundenSuchen" src="../pictures/KundeSearch.png" /></p>
+<p>Über der Kundentabelle befindet sich ein Textfeld und ein Button "Suchen".<br />
+Durch Eingabe eines Suchbegriffs in das Textfeld und anschließendem Klick auf den Button "Suchen" wird die Tabelle nach
+Kunden gefiltert, die den Suchbegriff in ihren Eigenschaften enthalten.</p>
+<p>Des Weiteren wird durch den Klick auf den Button "Suchen" die Tabelle wieder zurückgesetzt und alle Kunden angezeigt.</p>
+<p>Mithilfe des Menübuttons "Kriterien" kann die Suche nach bestimmten Eigenschaften des Kunden eingeschränkt werden.</p>
+<p>"Kriterien löschen" wechselt wieder zur allgemeinen, übergreifenden Suche nach dem Suchbegriff.</p>
+<p>Der Button "Zurücksetzen" setzt die Tabelle wieder zurück und zeigt alle Kunden an.</p>
+<h2 id="zuruck">Zurück</h2>
+<p>Schließt das Fenster der Kundenverwaltung und kehrt zur Startseite zurück.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../car-management/" class="btn btn-neutral float-left" title="Fahrzeugverwaltung"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../booking-management/" class="btn btn-neutral float-right" title="Buchungsverwaltung">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../car-management/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../booking-management/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
