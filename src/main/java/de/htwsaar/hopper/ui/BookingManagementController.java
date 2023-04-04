@@ -29,6 +29,7 @@ import java.util.ResourceBundle;
 /**
  * Eine Klasse, die die Logik für die Buchungsverwaltung enthält.
  */
+@SuppressWarnings("MissingJavadoc")
 public class BookingManagementController implements Initializable {
 
     @FXML

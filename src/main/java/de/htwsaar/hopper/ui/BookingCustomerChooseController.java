@@ -164,7 +164,7 @@ public class BookingCustomerChooseController implements Initializable {
     /**
      * Speichert den ausgewählten Kunden durch Drücken der Enter-Taste
      *
-     * @param event
+     * @param event KeyEvent, das die Enter-Taste repräsentiert
      */
     @FXML
     void saveCustomerViaEnter(KeyEvent event) {

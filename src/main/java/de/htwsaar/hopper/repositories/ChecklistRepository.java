@@ -7,6 +7,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
+/**
+ * Repository-Klasse für Checklist.
+ */
 public class ChecklistRepository {
 
     /**
@@ -29,10 +32,7 @@ public class ChecklistRepository {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         try {
-            List<Checklist> checklistList = entityManager
-                    .createQuery("SELECT C FROM Checklist AS C ORDER BY C.checklistId DESC")
-                    .setMaxResults(1)
-                    .getResultList();
+            List<Checklist> checklistList = entityManager.createQuery("SELECT C FROM Checklist AS C ORDER BY C.checklistId DESC").setMaxResults(1).getResultList();
             if (checklistList.size() == 0) {
                 return null;
             }
@@ -45,11 +45,11 @@ public class ChecklistRepository {
 
 
     /**
-     * Nimmt eine Checklist entgegen und loescht diese aus der DB.
+     * Nimmt eine Checklist entgegen und löscht diese aus der DB.
      * Wird diese Checklist nicht in der DB gefunden, wird eine IllegalArgumentException geworfen.
      *
-     * @param checklist Die uebergebene / zu loeschende Entitaet.
-     * @throws IllegalArgumentException wenn Objekt nicht in DB
+     * @param checklist Die übergebene / zu löschende Entität.
+     * @throws IllegalArgumentException Wenn Objekt nicht in DB
      */
     public static void delete(Checklist checklist) {
         DBObjectRepository.delete(checklist);

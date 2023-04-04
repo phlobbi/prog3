@@ -10,14 +10,14 @@ import javax.persistence.Query;
 import java.util.List;
 
 /**
- * Repository-Klasse für den Customer. Dient zum Abrufbarmachen über die Datenbank.
+ * Repository-Klasse für den Customer.
  *
  * @author Ronny
  */
 public class CustomerRepository {
 
     /**
-     * Findet einen speziellen Customer über seine ID.
+     * Findet einen Customer über seine ID.
      *
      * @param customerId ID des zu findenden Customers
      * @return Der gefundene Customer; null, falls nicht gefunden
@@ -32,13 +32,13 @@ public class CustomerRepository {
      * @return Alle Customer in der Datenbank; null, falls keine existieren.
      */
     public static List<Customer> findAll() {
-        return (List<Customer>) DBObjectRepository.findAll(Customer.class, "Customer");
+        return (List<Customer>) DBObjectRepository.findAll("Customer");
     }
 
     /**
      * Sucht alle Customers, die keine Buchung am Laufen haben.
      *
-     * @return Die Customer-Liste; null, falls keine verfuegbaren Customer existieren
+     * @return Die Customer-Liste; null, falls keine verfügbaren Customer existieren
      */
     public static List<Customer> findAvailable() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
@@ -56,7 +56,7 @@ public class CustomerRepository {
     }
 
     /**
-     * Nimmt einen Customer entgegen und loescht diesen aus der DB.
+     * Nimmt einen Customer entgegen und löscht diesen aus der DB.
      * Wird dieser Customer nicht in der DB gefunden, wird eine IllegalArgumentException geworfen.
      * Nach dem Löschen werden ggf. vorhandene orphaned records entfernt.
      *

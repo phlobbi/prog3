@@ -117,7 +117,7 @@ public class CarCreationController implements Initializable {
      * Bricht die Erstellung eines Autos ab
      *
      * @param event Event
-     * @throws IOException
+     * @throws IOException Fehler beim Laden einer Datei
      */
     @FXML
     void cancelCreation(ActionEvent event) throws IOException {

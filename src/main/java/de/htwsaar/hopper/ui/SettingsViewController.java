@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 /**
  * Controller für die Einstellungen
  */
+@SuppressWarnings("MissingJavadoc")
 public class SettingsViewController implements Initializable {
 
     @FXML

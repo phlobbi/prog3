@@ -232,6 +232,7 @@ public final class CarManagementController implements Initializable {
         reloadTable();
     }
 
+    @SuppressWarnings("MissingJavadoc")
     public static Car getSelectedCar() {
         return selectedCar;
     }
@@ -396,7 +397,7 @@ public final class CarManagementController implements Initializable {
     /**
      * Sucht nach Fahrzeugen mit Enter Taste
      *
-     * @param event
+     * @param event Enter Taste
      */
     @FXML
     void searchCarsViaEnter(KeyEvent event) {

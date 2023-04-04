@@ -172,6 +172,9 @@ public class CarReadController implements Initializable {
         reloadTable();
     }
 
+    /**
+     * Aktualisiert die Tabelle
+     */
     public void reloadTable() {
         Car car = CarManagementController.getSelectedCar();
         labelCarBasePrice.setText(String.valueOf(car.getBasePrice()));

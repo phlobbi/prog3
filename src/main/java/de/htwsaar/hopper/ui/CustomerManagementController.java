@@ -411,9 +411,9 @@ public class CustomerManagementController implements Initializable {
     }
 
     /**
-     * Returned den gewählten Kunden.
+     * Gibt den ausgewählten Kunden zurück.
      *
-     * @return
+     * @return Ausgewählter Kunde
      */
     public static Customer getSelectedCustomer() {
         return selectedCustomer;
