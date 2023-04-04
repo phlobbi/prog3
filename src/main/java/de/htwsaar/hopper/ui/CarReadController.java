@@ -70,20 +70,21 @@ public class CarReadController implements Initializable {
 
     @FXML
     void removeCar(ActionEvent event) throws IOException {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         Car selectedCar = CarManagementController.getSelectedCar();
         CarManagementController.setSelectedCar(selectedCar);
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wollen Sie den Wagen wirklich löschen?");
-        alert.setHeaderText("Wagen wirklich löschen?");
-        alert.setContentText("Wagen: " + selectedCar.getCarId() + " " + selectedCar.getBrand() + " " + selectedCar.getType());
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, bundle.getString("CAR_CONFIRM_DELETE"));
+        alert.setHeaderText(bundle.getString("CAR_HEADER_CONFIRM_DELETE"));
+        alert.setContentText(bundle.getString("CAR_CONTENT_TEXT") + selectedCar.getCarId() + " " + selectedCar.getBrand() + " " + selectedCar.getType());
         alert.showAndWait();
         if (alert.getResult().getText().equals("OK")) {
             CarRepository.delete(selectedCar);
             reloadTable();
-            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Wagen wurde gelöscht.");
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, bundle.getString("CAR_DELETED"));
             alert2.show();
             App.setRoot("fxml/Car-view.fxml");
         } else {
-            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Wagen wurde nicht gelöscht.");
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, bundle.getString("CAR_NOT_DELETED"));
             alert2.show();
             alert.close();
         }
@@ -103,10 +104,12 @@ public class CarReadController implements Initializable {
     @FXML
     void updateCar(ActionEvent event) {
         Stage stage;
+        URL url = getClass().getResource("fxml/Car-edit-view.fxml");
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
             Car selectedCar = CarManagementController.getSelectedCar();
             CarManagementController.setSelectedCar(selectedCar);
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Car-edit-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(url, bundle);
             Parent root1 = fxmlLoader.load();
             stage = new Stage();
             stage.setScene(new Scene(root1));

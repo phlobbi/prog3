@@ -55,11 +55,11 @@
                                         <Label fx:id="labelLicensePlate" text="%CAR_LICENSE_PLATE" textFill="WHITE" GridPane.rowIndex="5" />
                                         <Label fx:id="labelBasePrice" text="%CAR_BASE_PRICE" textFill="WHITE" GridPane.rowIndex="6" />
                                         <Label fx:id="labelCurrentPrice" text="%CAR_CURRENT_PRICE" textFill="WHITE" GridPane.rowIndex="7" />
-                                        <Label fx:id="labelHorsePower" text="PS" textFill="WHITE" GridPane.rowIndex="8" />
-                                        <Label fx:id="labelTransmissionType" text="Getriebe" textFill="WHITE" GridPane.rowIndex="9" />
-                                        <Label fx:id="labelFuelType" text="Kraftstoff" textFill="WHITE" GridPane.rowIndex="10" />
-                                        <Label fx:id="labelSatNav" text="Navi" textFill="WHITE" GridPane.rowIndex="11" />
-                                        <Label fx:id="labelMileage" text="Kilometerstand" textFill="WHITE" GridPane.rowIndex="12" />
+                                        <Label fx:id="labelHorsePower" text="%CAR_CARHP" textFill="WHITE" GridPane.rowIndex="8" />
+                                        <Label fx:id="labelTransmissionType" text="%CAR_TRANSMISSION" textFill="WHITE" GridPane.rowIndex="9" />
+                                        <Label fx:id="labelFuelType" text="%CAR_FUELTYPE" textFill="WHITE" GridPane.rowIndex="10" />
+                                        <Label fx:id="labelSatNav" text="%CAR_SATNAV" textFill="WHITE" GridPane.rowIndex="11" />
+                                        <Label fx:id="labelMileage" text="%CAR_MILEAGE" textFill="WHITE" GridPane.rowIndex="12" />
                                         <MenuButton fx:id="menuType" mnemonicParsing="false" prefHeight="30.0" prefWidth="363.0" text="%CAR_CHOOSE_TYPE" GridPane.columnIndex="1" />
                                         <TextField fx:id="textFieldBrand" prefHeight="31.0" prefWidth="242.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                         <TextField fx:id="textFieldModel" prefHeight="34.0" prefWidth="244.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -69,9 +69,9 @@
                                         <TextField fx:id="textFieldBasePrice" prefHeight="31.0" prefWidth="242.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                                         <TextField fx:id="textFieldCurrentPrice" prefHeight="30.0" prefWidth="242.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                         <TextField fx:id="textFieldHorsePower" prefHeight="30.0" prefWidth="242.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                                        <MenuButton fx:id="menuTransmission" mnemonicParsing="false" prefHeight="30.0" prefWidth="363.0" text="Getriebe auswählen" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                                        <MenuButton fx:id="menuFuel" mnemonicParsing="false" prefHeight="30.0" prefWidth="363.0" text="Kraftstoff auswählen" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                                        <MenuButton fx:id="menuSatNav" mnemonicParsing="false" prefHeight="30.0" prefWidth="363.0" text="Navi auswählen" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+                                        <MenuButton fx:id="menuTransmission" mnemonicParsing="false" prefHeight="30.0" prefWidth="363.0" text="%CAR_CHOOSE_TRANSMISSION" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                                        <MenuButton fx:id="menuFuel" mnemonicParsing="false" prefHeight="30.0" prefWidth="363.0" text="%CAR_CHOOSE_FUELTYPE" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                                        <MenuButton fx:id="menuSatNav" mnemonicParsing="false" prefHeight="30.0" prefWidth="363.0" text="%CAR_CHOOSE_NAV" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                                         <TextField fx:id="textFieldMileage" prefHeight="30.0" prefWidth="242.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
                                     </children>
                                 </GridPane>

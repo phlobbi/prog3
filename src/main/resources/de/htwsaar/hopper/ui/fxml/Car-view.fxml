@@ -99,7 +99,7 @@
             <TableColumn fx:id="carModelColumn" prefWidth="155.0" text="%CAR_CARMODEL" />
             <TableColumn fx:id="carTransmissionColumn" prefWidth="100.0" text="%CAR_TRANSMISSION" />
             <TableColumn fx:id="carFuelTypeColumn" prefWidth="97.0" text="%CAR_FUELTYPE" />
-            <TableColumn fx:id="carHorsepowerColumn" prefWidth="60.0" text="%CAR_HORSEPOWER" />
+            <TableColumn fx:id="carHorsepowerColumn" prefWidth="60.0" text="%CAR_CARHP" />
             <TableColumn fx:id="carSatNavColumn" prefWidth="60.0" text="%CAR_SATNAV" />
             <TableColumn fx:id="carMileageColumn" prefWidth="90.0" text="%CAR_MILEAGE" />
             <TableColumn fx:id="carLicensePlateColumn" prefWidth="120.0" text="%CAR_LICENSE_PLATE" />

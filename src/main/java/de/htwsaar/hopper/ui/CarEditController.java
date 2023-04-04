@@ -118,17 +118,18 @@ public class CarEditController implements Initializable{
 
     @FXML
     void updateCar(ActionEvent event) {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
-            validateTextField(textFieldBrand, labelBrand.getText() + " leer");
-            validateTextField(textFieldSeats, labelSeats.getText() + " leer");
-            validateTextField(textFieldModel, labelModel.getText() + " leer");
-            validateTextField(textFieldCurrentPrice, labelCurrentPrice.getText() + " leer");
-            validateTextField(textFieldBasePrice, labelBasePrice.getText() + " leer");
-            validateTextField(textFieldLicensePlate, labelLicensePlate.getText() + " leer");
-            validateTextField(textFieldHorsePower, labelHorsePower.getText() + "leer");
-            validateTextField(textFieldMileage, labelMileage.getText() + "leer");
+            validateTextField(textFieldBrand, labelBrand.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldSeats, labelSeats.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldModel, labelModel.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldCurrentPrice, labelCurrentPrice.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldBasePrice, labelBasePrice.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldLicensePlate, labelLicensePlate.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldHorsePower, labelHorsePower.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldMileage, labelMileage.getText() + " " + bundle.getString("EMPTY"));
             if (datePickCreationDate.getValue() == null){
-                throw new IllegalArgumentException(labelCreationDate.getText() + " leer");
+                throw new IllegalArgumentException(labelCreationDate.getText() + " " + bundle.getString("EMPTY"));
             }
 
             String brand = textFieldBrand.getText();
@@ -195,11 +196,11 @@ public class CarEditController implements Initializable{
             car.setMileage(mileage);
 
             if (car.equals(temp)){
-                throw new IllegalArgumentException("Keine Änderungen vorgenommen");
+                throw new IllegalArgumentException(bundle.getString("NO_CHANGES_MADE"));
             } else {
                 CarRepository.persist(car);
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Auto erfolgreich geandert!");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, bundle.getString("CAR_UPDATED"));
                 alert.showAndWait();
                 Stage stage = (Stage) btnSave.getScene().getWindow();
                 stage.close();
@@ -207,8 +208,8 @@ public class CarEditController implements Initializable{
 
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Fehler");
-            alert.setHeaderText("Fehler beim Erstellen des Autos");
+            alert.setTitle(bundle.getString("MENU_ERROR"));
+            alert.setHeaderText(bundle.getString("MENU_ERROR_CAR_UPDATE"));
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
@@ -318,6 +319,7 @@ public class CarEditController implements Initializable{
 
     @FXML
     void loadCar() {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try{
             CarManagementController carManagerController = new CarManagementController();
             Car loadedCar = CarManagementController.getSelectedCar();
@@ -340,8 +342,8 @@ public class CarEditController implements Initializable{
             satNavStr = translateSatNavtoSatNavString(loadedCar.getSatNav());
         } catch (Exception e){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Fehler");
-            alert.setHeaderText("Fehler beim Laden des Autos");
+            alert.setTitle(bundle.getString("MENU_ERROR"));
+            alert.setHeaderText(bundle.getString("MENU_ERROR_CAR_LOAD"));
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }

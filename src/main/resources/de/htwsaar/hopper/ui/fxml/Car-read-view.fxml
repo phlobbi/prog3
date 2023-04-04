@@ -98,27 +98,27 @@
                               <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Typ:" wrappingWidth="28.0">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CARTYPE" wrappingWidth="28.0">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kennzeichen:" GridPane.rowIndex="1">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_LICENSE_PLATE" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Marke:" GridPane.rowIndex="2">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CARBRAND" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Herstellungsdatum:" GridPane.rowIndex="5">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CREATION_DATE" GridPane.rowIndex="5">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sitze:" GridPane.rowIndex="4">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_SEATS" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -128,39 +128,39 @@
                               <Label fx:id="labelCarBrand" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <Label fx:id="labelCarSeats" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <Label fx:id="labelCarCreationDate" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Grundpreis:" GridPane.rowIndex="11">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_BASE_PRICE" GridPane.rowIndex="11">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tagespreis:" GridPane.rowIndex="12">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CURRENT_PRICE" GridPane.rowIndex="12">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
                               <Label fx:id="labelCarBasePrice" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                               <Label fx:id="labelCarCurrentPrise" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Model:" GridPane.rowIndex="3">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CARMODEL" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Pferdestaerke:" GridPane.rowIndex="6">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_HORSEPOWER" GridPane.rowIndex="6">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Getriebeart:" GridPane.rowIndex="8">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_TRANSMISSION" GridPane.rowIndex="8">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kraftstoffart:" GridPane.rowIndex="9">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_FUELTYPE" GridPane.rowIndex="9">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kilometerstand:" GridPane.rowIndex="7">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_MILEAGE" GridPane.rowIndex="7">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -170,7 +170,7 @@
                               <Label fx:id="labelHorsePower" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                               <Label fx:id="labelTransType" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                               <Label fx:id="labelFuelType" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Navi:" GridPane.rowIndex="10">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_SATNAV" GridPane.rowIndex="10">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

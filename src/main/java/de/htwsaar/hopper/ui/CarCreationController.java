@@ -118,18 +118,19 @@ public class CarCreationController implements Initializable{
 
     @FXML
     void createCar(ActionEvent event) {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
-            validateTextField(textFieldBrand, labelBrand.getText() + " leer");
-            validateTextField(textFieldModel, labelModel.getText() + " leer");
+            validateTextField(textFieldBrand, labelBrand.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldModel, labelModel.getText() + " " + bundle.getString("EMPTY"));
             if (datePickCreationDate.getValue() == null){
-                throw new IllegalArgumentException(labelCreationDate.getText() + " leer");
+                throw new IllegalArgumentException(labelCreationDate.getText() + " " + bundle.getString("EMPTY"));
             }
-            validateTextField(textFieldSeats, labelSeats.getText() + " leer");
-            validateTextField(textFieldLicensePlate, labelLicensePlate.getText() + " leer");
-            validateTextField(textFieldBasePrice, labelBasePrice.getText() + " leer");
-            validateTextField(textFieldCurrentPrice, labelCurrentPrice.getText() + " leer");
-            validateTextField(textFieldHorsePower, labelHorsePower.getText() + "leer");
-            validateTextField(textFieldMileage, labelMileage.getText() + "leer");
+            validateTextField(textFieldSeats, labelSeats.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldLicensePlate, labelLicensePlate.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldBasePrice, labelBasePrice.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldCurrentPrice, labelCurrentPrice.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldHorsePower, labelHorsePower.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldMileage, labelMileage.getText() + " " + bundle.getString("EMPTY"));
 
             String brand = textFieldBrand.getText();
             int seats = Integer.parseInt(textFieldSeats.getText());
@@ -179,15 +180,15 @@ public class CarCreationController implements Initializable{
 
             CarRepository.persist(car);
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Auto erfolgreich erstellt");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, bundle.getString("CAR_CREATED"));
             alert.showAndWait();
             Stage stage = (Stage) btnSave.getScene().getWindow();
             stage.close();
 
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Fehler");
-            alert.setHeaderText("Fehler beim Erstellen des Autos");
+            alert.setTitle(bundle.getString("MENU_ERROR"));
+            alert.setHeaderText(bundle.getString("MENU_ERROR_CAR_CREATION"));
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
