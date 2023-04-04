@@ -6,6 +6,7 @@ import de.htwsaar.hopper.logic.implementations.Customer;
 import de.htwsaar.hopper.logic.validations.Validation;
 import de.htwsaar.hopper.repositories.BookingRepository;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -101,7 +102,7 @@ public class BookingCreationController {
      */
     @FXML
     void chooseCar(ActionEvent event) {
-        Stage stage = new Stage();
+        Stage stage;
         URL url = getClass().getResource("fxml/Booking-car-choose-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
@@ -145,7 +146,7 @@ public class BookingCreationController {
      */
     @FXML
     void chooseCustomer(ActionEvent event) {
-        Stage stage = new Stage();
+        Stage stage;
         URL url = getClass().getResource("fxml/Booking-customer-choose-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
@@ -266,9 +267,7 @@ public class BookingCreationController {
 
 
         Stage primaryStage = (Stage) btnSave.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            e.consume();
-        });
+        primaryStage.onCloseRequestProperty().set(Event::consume);
     }
 
     /**
@@ -283,9 +282,7 @@ public class BookingCreationController {
 
         // Roten Kreuz Button wieder aktivieren
         Stage primaryStage = (Stage) btnSave.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            primaryStage.close();
-        });
+        primaryStage.onCloseRequestProperty().set(e -> primaryStage.close());
     }
 
 

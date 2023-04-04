@@ -1,8 +1,6 @@
 package de.htwsaar.hopper.ui;
 
-import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.implementations.Customer;
-import de.htwsaar.hopper.repositories.CarRepository;
 import de.htwsaar.hopper.repositories.CustomerRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -105,7 +103,7 @@ public class BookingCustomerChooseController implements Initializable {
                 throw new IllegalArgumentException("Kein Suchkriterium eingegeben");
             }
 
-            ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
+            ObservableList<CheckMenuItem> checkMenuItems;
             checkMenuItems = getAllSelectedCriteria();
 
             if (checkMenuItems.isEmpty())

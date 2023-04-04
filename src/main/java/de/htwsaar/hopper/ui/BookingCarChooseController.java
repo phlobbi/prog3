@@ -120,7 +120,7 @@ public class BookingCarChooseController implements Initializable {
                 throw new IllegalArgumentException("Kein Suchkriterium eingegeben");
             }
 
-            ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
+            ObservableList<CheckMenuItem> checkMenuItems;
             checkMenuItems = getAllSelectedCriteria();
 
             if (checkMenuItems.isEmpty())

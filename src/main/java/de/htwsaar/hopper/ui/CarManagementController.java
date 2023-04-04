@@ -5,6 +5,7 @@ import de.htwsaar.hopper.repositories.CarRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -126,7 +127,7 @@ public final class CarManagementController implements Initializable {
      */
     @FXML
     void switchToSceneAddCar(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
+        Stage stage;
         URL url = getClass().getResource("fxml/Car-creation-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
@@ -166,9 +167,7 @@ public final class CarManagementController implements Initializable {
         btnGoBack.setDisable(true);
 
         Stage primaryStage = (Stage) btnCreate.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            e.consume();
-        });
+        primaryStage.onCloseRequestProperty().set(Event::consume);
     }
 
     /**
@@ -189,9 +188,7 @@ public final class CarManagementController implements Initializable {
 
         // Roten Kreuz Button wieder aktivieren
         Stage primaryStage = (Stage) btnCreate.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            primaryStage.close();
-        });
+        primaryStage.onCloseRequestProperty().set(e -> primaryStage.close());
     }
 
     /**
@@ -207,7 +204,7 @@ public final class CarManagementController implements Initializable {
 
     @FXML
     void switchToSceneUpdateCar(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
+        Stage stage;
         URL url = getClass().getResource("fxml/Car-edit-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
@@ -341,7 +338,7 @@ public final class CarManagementController implements Initializable {
                 throw new IllegalArgumentException("Kein Suchkriterium eingegeben");
             }
 
-            ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
+            ObservableList<CheckMenuItem> checkMenuItems;
             checkMenuItems = getAllSelectedCriteria();
 
             if (checkMenuItems.isEmpty())

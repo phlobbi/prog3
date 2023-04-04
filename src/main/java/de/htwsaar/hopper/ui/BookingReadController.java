@@ -1,6 +1,7 @@
 package de.htwsaar.hopper.ui;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -88,9 +89,7 @@ public class BookingReadController implements Initializable {
 
 
         Stage primaryStage = (Stage) btnDelete.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            e.consume();
-        });
+        primaryStage.onCloseRequestProperty().set(Event::consume);
     }
 
     /**
@@ -102,9 +101,7 @@ public class BookingReadController implements Initializable {
 
         // Roten Kreuz Button wieder aktivieren
         Stage primaryStage = (Stage) btnDelete.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            primaryStage.close();
-        });
+        primaryStage.onCloseRequestProperty().set(e -> primaryStage.close());
     }
 
     /**
