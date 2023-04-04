@@ -9,6 +9,7 @@ import de.htwsaar.hopper.repositories.CarRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -163,7 +164,7 @@ public class BookingManagementController implements Initializable {
                 throw new IllegalArgumentException("Kein Suchkriterium eingegeben");
 
 
-            ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
+            ObservableList<CheckMenuItem> checkMenuItems;
             checkMenuItems = getAllSelectedCriteria();
             if (checkMenuItems.isEmpty())
                 throw new IllegalArgumentException("Kein Filter ausgewählt");
@@ -423,9 +424,7 @@ public class BookingManagementController implements Initializable {
         textFieldSearch.setDisable(true);
 
         Stage primaryStage = (Stage) btnBookCar.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            e.consume();
-        });
+        primaryStage.onCloseRequestProperty().set(Event::consume);
     }
 
     /**
@@ -445,9 +444,7 @@ public class BookingManagementController implements Initializable {
 
         // Roten Kreuz Button wieder aktivieren
         Stage primaryStage = (Stage) btnBookCar.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            primaryStage.close();
-        });
+        primaryStage.onCloseRequestProperty().set(e -> primaryStage.close());
     }
 
     /**
@@ -538,33 +535,27 @@ public class BookingManagementController implements Initializable {
     @FXML
     private URL sceneChooser() throws IOException {
         Booking booking = getSelectedBooking();
-        URL setURL = null;
+        URL setURL;
         Car car = CarRepository.find(booking.getCarId());
         CarTypeEnum carType = car.getType();
         switch (carType) {
             case SUV:
-                URL url = getClass().getResource("fxml/Booking-suv-return-view.fxml");
-                setURL = url;
+                setURL = getClass().getResource("fxml/Booking-suv-return-view.fxml");
                 break;
             case LKW:
-                URL url1 = getClass().getResource("fxml/Booking-truck-return-view.fxml");
-                setURL = url1;
+                setURL = getClass().getResource("fxml/Booking-truck-return-view.fxml");
                 break;
             case BUS:
-                URL url2 = getClass().getResource("fxml/Booking-bus-return-view.fxml");
-                setURL = url2;
+                setURL = getClass().getResource("fxml/Booking-bus-return-view.fxml");
                 break;
             case VAN:
-                URL url3 = getClass().getResource("fxml/Booking-van-return-view.fxml");
-                setURL = url3;
+                setURL = getClass().getResource("fxml/Booking-van-return-view.fxml");
                 break;
             case MOTORRAD:
-                URL url4 = getClass().getResource("fxml/Booking-bike-return-view.fxml");
-                setURL = url4;
+                setURL = getClass().getResource("fxml/Booking-bike-return-view.fxml");
                 break;
             default:
-                URL url5 = getClass().getResource("fxml/Booking-car-return-view.fxml");
-                setURL = url5;
+                setURL = getClass().getResource("fxml/Booking-car-return-view.fxml");
                 break;
         }
         return setURL;

@@ -3,6 +3,7 @@ package de.htwsaar.hopper.ui;
 import de.htwsaar.hopper.logic.implementations.Customer;
 import de.htwsaar.hopper.repositories.CustomerRepository;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -129,8 +130,8 @@ public final class CustomerReadController implements Initializable {
         Customer customer = CustomerManagementController.getSelectedCustomer();
         labelSurname.setText(String.valueOf(customer.getFirstName()));
         labelName.setText(String.valueOf(customer.getLastName()));
-        labelAdress.setText(String.valueOf(customer.getStreet() + " " + customer.getHouseNumber() +
-                ", " + customer.getZipCode() + " " + customer.getCity()));
+        labelAdress.setText(customer.getStreet() + " " + customer.getHouseNumber() +
+                ", " + customer.getZipCode() + " " + customer.getCity());
         labelEMail.setText(String.valueOf(customer.getEmail()));
         labelTelephoneNumber.setText(String.valueOf(customer.getPhoneNumber()));
         labelDriverLicenseNumber.setText(String.valueOf(customer.getDriverLicenseNumber()));
@@ -151,9 +152,7 @@ public final class CustomerReadController implements Initializable {
         btnGoBack.setDisable(true);
 
         Stage primaryStage = (Stage) btnUpdate.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            e.consume();
-        });
+        primaryStage.onCloseRequestProperty().set(Event::consume);
     }
 
     /**
@@ -166,8 +165,6 @@ public final class CustomerReadController implements Initializable {
 
         // Roten Kreuz Button wieder aktivieren
         Stage primaryStage = (Stage) btnUpdate.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            primaryStage.close();
-        });
+        primaryStage.onCloseRequestProperty().set(e -> primaryStage.close());
     }
 }

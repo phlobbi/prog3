@@ -14,64 +14,55 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/firstview.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.FirstViewController">
    <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="21.0" prefWidth="600.0" styleClass="title-bar" BorderPane.alignment="CENTER_LEFT">
-         <children>
-            <Button alignment="TOP_LEFT" onMouseClicked="#switchToSettingsView" prefHeight="26.0" prefWidth="603.0" style="-fx-background-color: teal; -fx-tile-alignment: right" text="Einstellungen" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-         </children>
+      <HBox alignment="CENTER_LEFT" prefHeight="21.0" prefWidth="600.0" styleClass="title-bar"
+            BorderPane.alignment="CENTER_LEFT">
+         <Button alignment="TOP_LEFT" onMouseClicked="#switchToSettingsView" prefHeight="26.0" prefWidth="603.0"
+                 style="-fx-background-color: teal; -fx-tile-alignment: right" text="%SETTINGS" textFill="WHITE"
+                 GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <font>
+               <Font size="14.0"/>
+            </font>
+         </Button>
       </HBox>
    </top>
    <center>
       <GridPane alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <VBox onMouseClicked="#switchToCarManagementView" prefHeight="200.0" prefWidth="100.0" style="-fx-border-width: 5px;" styleClass="menu-tile">
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/car-icon.png" />
-                     </image></ImageView>
-                  <Label styleClass="menu-tile-text" text="%CAR_MANAGEMENT" />
-               </children>
-            </VBox>
-            <VBox onMouseClicked="#switchToCustomerView" prefHeight="200.0" prefWidth="100.0" styleClass="menu-tile" GridPane.columnIndex="1">
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/person_FILL0_wght400_GRAD0_opsz48.png" />
-                     </image>
-                  </ImageView>
-                  <Label styleClass="menu-tile-text" stylesheets="@../css/firstview.css" text="%CUSTOMER_MANAGEMENT" />
-               </children></VBox>
-            <VBox onMouseClicked="#switchToCarRental" prefHeight="200.0" prefWidth="100.0" styleClass="menu-tile" GridPane.rowIndex="1">
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/wysiwyg_FILL0_wght400_GRAD0_opsz48.png" />
-                     </image>
-                  </ImageView>
-                  <Label styleClass="menu-tile-text" text="%BOOKING_MANAGEMENT" />
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="menu-tile" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/help_FILL0_wght400_GRAD0_opsz48.png" />
-                     </image></ImageView>
-                  <Label styleClass="menu-tile-text" text="%HELP" />
-               </children></VBox>
-         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+         </rowConstraints>
+         <VBox onMouseClicked="#switchToCarManagementView" prefHeight="200.0" prefWidth="100.0"
+               style="-fx-border-width: 5px;" styleClass="menu-tile">
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@../icons/car-icon.png"/>
+            </ImageView>
+            <Label styleClass="menu-tile-text" text="%CAR_MANAGEMENT"/>
+         </VBox>
+         <VBox onMouseClicked="#switchToCustomerView" prefHeight="200.0" prefWidth="100.0" styleClass="menu-tile"
+               GridPane.columnIndex="1">
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@../icons/person_FILL0_wght400_GRAD0_opsz48.png"/>
+            </ImageView>
+            <Label styleClass="menu-tile-text" stylesheets="@../css/firstview.css" text="%CUSTOMER_MANAGEMENT"/>
+         </VBox>
+         <VBox onMouseClicked="#switchToCarRental" prefHeight="200.0" prefWidth="100.0" styleClass="menu-tile"
+               GridPane.rowIndex="1">
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@../icons/wysiwyg_FILL0_wght400_GRAD0_opsz48.png"/>
+            </ImageView>
+            <Label styleClass="menu-tile-text" text="%BOOKING_MANAGEMENT"/>
+         </VBox>
+         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="menu-tile" GridPane.columnIndex="1"
+               GridPane.rowIndex="1">
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@../icons/help_FILL0_wght400_GRAD0_opsz48.png"/>
+            </ImageView>
+            <Label styleClass="menu-tile-text" text="%HELP"/>
+         </VBox>
       </GridPane>
    </center>
 </BorderPane>

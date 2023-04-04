@@ -378,7 +378,7 @@ public class CarEditController implements Initializable {
      * @return der übersetzte String
      */
     private String translateSatNavtoSatNavString(boolean satNav) {
-        return (satNav == true) ? "Ja" : "Nein";
+        return (satNav) ? "Ja" : "Nein";
     }
 
     /**
