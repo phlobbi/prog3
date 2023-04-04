@@ -16,6 +16,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller für die Ansicht einer Buchung
+ */
 public class BookingReadController implements Initializable {
 
     @FXML
@@ -45,6 +48,14 @@ public class BookingReadController implements Initializable {
     @FXML
     private Label labelRealDropOff;
 
+    /**
+     * Initialisiert die Ansicht einer Buchung
+     *
+     * @param url            The location used to resolve relative paths for the root object, or
+     *                       {@code null} if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or {@code null} if
+     *                       the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         int bookingID = BookingManagementController.getSelectedBooking().getBookingId();
@@ -57,11 +68,20 @@ public class BookingReadController implements Initializable {
     }
 
 
+    /**
+     * Schließt das Fenster
+     *
+     * @param event ActionEvent
+     * @throws IOException IOException
+     */
     @FXML
     void close(ActionEvent event) throws IOException {
         App.setRoot("fxml/Booking-management-view.fxml");
     }
 
+    /**
+     * deaktiviert das Fenster
+     */
     void disableWindow() {
         btnDelete.setDisable(true);
         btnBack.setDisable(true);
@@ -73,6 +93,9 @@ public class BookingReadController implements Initializable {
         });
     }
 
+    /**
+     * aktiviert das Fenster
+     */
     void enableWindow() {
         btnDelete.setDisable(false);
         btnBack.setDisable(false);
@@ -84,24 +107,29 @@ public class BookingReadController implements Initializable {
         });
     }
 
+    /**
+     * Öffnet in der Read View die Autorückgabe der Buchung
+     *
+     * @param event ActionEvent
+     * @throws IOException IOException
+     */
     @FXML
     void switchToSceneReturnCar(ActionEvent event) throws IOException {
-    URL url = getClass().getResource("fxml/Booking-car-return-view.fxml");
-    ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
+        URL url = getClass().getResource("fxml/Booking-car-return-view.fxml");
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
 
-    BookingManagementController.setSelectedBooking(BookingManagementController.getSelectedBooking());
-    Parent root = FXMLLoader.load(url, bundle);
-    Scene scene = new Scene(root);
-    Stage stage = new Stage();
-    disableWindow();
-    //Die Actionevent von anderen Fenster sind blockiert.
+        BookingManagementController.setSelectedBooking(BookingManagementController.getSelectedBooking());
+        Parent root = FXMLLoader.load(url, bundle);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        disableWindow();
+        //Die Actionevent von anderen Fenster sind blockiert.
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.showAndWait();
         enableWindow();
         App.setRoot("fxml/Booking-management-view.fxml");
-}
-
+    }
 
 
 }

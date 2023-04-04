@@ -6,6 +6,7 @@ import java.util.Calendar;
  * Interface für die Klasse Booking.
  * @author Philip
  */
+@SuppressWarnings("MissingJavadoc")
 public interface BookingInterface extends DBObjectInterface{
 
     /* UI-METHODEN */

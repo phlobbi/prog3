@@ -12,6 +12,7 @@ import java.util.Calendar;
 
 /**
  * Buchungsklasse für die Datenbankverwaltung
+ *
  * @author Sosthene
  */
 @EntityListeners(PreventNullPersistForBooking.class)
@@ -23,25 +24,25 @@ public class Booking implements BookingInterface {
     @Id
     @Column(name = "BookingID", unique = true)
     private int bookingId;
-    
+
     @Basic
     @Column(name = "CarID")
     private int carId;
-    
+
     @Basic
     @Column(name = "CustomerID")
     private int customerId;
-    
+
     @Basic
     @Column(name = "PickUpDate")
     @Temporal(TemporalType.DATE)
     private Calendar pickUpDate;
-    
+
     @Basic
     @Column(name = "DropOffDate")
     @Temporal(TemporalType.DATE)
     private Calendar dropOffDate;
-    
+
     @Basic
     @Column(name = "RealDropOffDate")
     @Temporal(TemporalType.DATE)
@@ -52,16 +53,18 @@ public class Booking implements BookingInterface {
     private Integer checklistId;
 
     /**
-    * Standard-Konstruktor
-    */
+     * Leerer Konstruktor, der von Hibernate benötigt wird.
+     * Nicht verwenden, da sonst die anderen Felder möglicherweise nicht gesetzt werden können.
+     */
     public Booking() {
     }
-    
+
     /**
      * Konstruktor zum Anlegen von Buchungen, ohne realDropOffDate
-     * @param carId ID des gebuchten Autos
-     * @param customerId ID des Kunden, der das Auto gebucht hat
-     * @param pickUpDate Abholdatum eines Autos vom Kunde
+     *
+     * @param carId       ID des gebuchten Autos
+     * @param customerId  ID des Kunden, der das Auto gebucht hat
+     * @param pickUpDate  Abholdatum eines Autos vom Kunde
      * @param dropOffDate Geplantes Rückgabedatum eines Autos vom Kunde
      */
     public Booking(int carId, int customerId, Calendar pickUpDate, Calendar dropOffDate) {
@@ -76,31 +79,34 @@ public class Booking implements BookingInterface {
     }
 
     /**
-     * Nutzt das CustomerRepository, um ueber die customerID des aktuellen Booking-Objekts
+     * Nutzt das CustomerRepository, um über die customerID des aktuellen Booking-Objekts
      * den zugeordneten Customer aus der DB herauszusuchen.
-     * Ueberfuehrt ausgewaehlte Felder des Customers dann in einen Ausgabestring.
+     * Überführt ausgewählte Felder des Customers dann in einen Ausgabestring.
+     *
      * @return Der Ausgabestring.
      */
     @Override
     public String getCustomerShowField() {
         Customer customer = CustomerRepository.find(this.customerId);
-        return String.format("%s %s (ID: %d)",customer.getFirstName(),customer.getLastName(),customer.getCustomerId());
+        return String.format("%s %s (ID: %d)", customer.getFirstName(), customer.getLastName(), customer.getCustomerId());
     }
 
     /**
      * Nutzt das CarRepository, um über die carID des aktuellen Booking-Objekts
-     * das zugeordnete Car aus der DB herauszusuchen.
-     * Überfuehrt ausgewählte Felder des Cars dann in einen Ausgabestring.
+     * das zugeordnete Auto aus der DB herauszusuchen.
+     * Überführt ausgewählte Felder des Cars dann in einen Ausgabestring.
+     *
      * @return Der Ausgabestring.
      */
     @Override
     public String getCarShowField() {
         Car car = CarRepository.find(this.carId);
-        return String.format("%s %s (ID: %d)",car.getBrand(),car.getModel(),car.getCarId());
+        return String.format("%s %s (ID: %d)", car.getBrand(), car.getModel(), car.getCarId());
     }
 
     /**
      * Gibt das PickUpDate als String zurück
+     *
      * @return PickUpDate als String
      */
     @Override
@@ -110,6 +116,7 @@ public class Booking implements BookingInterface {
 
     /**
      * Gibt das DropOffDate als String zurück
+     *
      * @return DropOffDate als String
      */
     @Override
@@ -119,11 +126,12 @@ public class Booking implements BookingInterface {
 
     /**
      * Gibt das RealDropOffDate als String zurück
+     *
      * @return RealDropOffDate als String
      */
     @Override
     public String getRealDropOffDateShowField() {
-        if (this.realDropOffDate == null){
+        if (this.realDropOffDate == null) {
             return "Noch nicht zurückgegeben";
         } else {
             return Utils.calendarToString(this.realDropOffDate);
@@ -202,7 +210,8 @@ public class Booking implements BookingInterface {
 
     /**
      * Methode zur Berechnung des Preises einer Buchung, wenn der Rückgabetermin eingehalten wird.
-     * @return - Preis der Buchung
+     *
+     * @return Preis der Buchung
      */
     @Override
     public double calculatePrice() {
@@ -218,16 +227,17 @@ public class Booking implements BookingInterface {
 
     /**
      * Methode zur Berechnung des Preises einer Buchung, wenn der Rückgabetermin nicht eingehalten wird.
-     * @return - Preis der Buchung mit erhöhtem Tagessatz
+     *
+     * @return Preis der Buchung mit erhöhtem Tagessatz
      */
     @Override
-    public double calculateFinalPrice(){
+    public double calculateFinalPrice() {
         Car car = CarRepository.find(carId);
 
         double calculatedFinalPrice = calculatePrice();
         double newPreisPerDay = car.getCurrentPrice() * 1.2;
 
-        if(!Utils.isSameDate(dropOffDate, realDropOffDate)) {
+        if (!Utils.isSameDate(dropOffDate, realDropOffDate)) {
             int lateDays = Utils.calculateDaysBetween(dropOffDate, realDropOffDate);
             return calculatedFinalPrice + lateDays * newPreisPerDay;
         }

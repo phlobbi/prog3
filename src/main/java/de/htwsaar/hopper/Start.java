@@ -3,17 +3,17 @@ package de.htwsaar.hopper;
 import de.htwsaar.hopper.ui.App;
 
 /**
- * Hello world!
- *
+ * Eine Hilfsklasse, die die JavaFX Applikation startet.
  */
-public class Start
-{
+public class Start {
     /**
+     * Einstiegspunkt für die Anwendung.
+     * Die Methode ruft die main-Methode der Klasse App auf.
+     * Das wurde so gemacht, da der Start der Anwendung über die main-Methode der Klasse App nicht funktioniert hat.
      *
-     * @param args
+     * @param args Kommandozeilenargumente
      */
-    public static void main( String[] args )
-    {
+    public static void main(String[] args) {
         App.main(args);
     }
 }

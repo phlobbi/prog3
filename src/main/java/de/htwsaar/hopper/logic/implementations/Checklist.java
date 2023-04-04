@@ -10,6 +10,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Checkliste, die bei jedem Wiedereingang eines Fahrzeugs ausgefüllt werden muss.
+ *
  * @author Philip
  */
 @Entity
@@ -41,15 +42,20 @@ public class Checklist implements ChecklistInterface {
     @NotNull
     private boolean keyDroppedOff;
 
+    /**
+     * Leerer Konstruktor, der von Hibernate benötigt wird.
+     * Nicht verwenden, da sonst die anderen Felder möglicherweise nicht gesetzt werden können.
+     */
     public Checklist() {
 
     }
 
     /**
      * Konstruktor zum Befüllen aller Attribute
-     * @param fueledUp Auto vollgetankt
-     * @param undamaged Auto unbeschädigt
-     * @param clean Auto ist sauber
+     *
+     * @param fueledUp      Auto vollgetankt
+     * @param undamaged     Auto unbeschädigt
+     * @param clean         Auto ist sauber
      * @param keyDroppedOff Schlüssel zum Auto sind vorhanden
      */
     public Checklist(boolean fueledUp, boolean undamaged, boolean clean, boolean keyDroppedOff) {
@@ -62,6 +68,7 @@ public class Checklist implements ChecklistInterface {
     /**
      * Gibt die Anzahl der Probleme zurück.
      * Jedes Boolean, das false ist, wird dabei als Problem gewertet.
+     *
      * @return Anzahl der Probleme
      */
     @Override
@@ -76,6 +83,7 @@ public class Checklist implements ChecklistInterface {
 
     /**
      * Fügt diese Checkliste zu einem Booking hinzu, sofern nicht bereits eine gesetzt ist.
+     *
      * @param bookingId ID des Booking, dem die Checkliste hinzugefügt werden soll
      * @throws IllegalArgumentException Falls bereits eine Checkliste gesetzt ist
      */
@@ -137,10 +145,10 @@ public class Checklist implements ChecklistInterface {
     @Override
     public String toString() {
         return String.format("Checklist (ID: %d):\n"
-                + "hasFullTank: %b\n"
-                + "isUndamaged: %b\n"
-                + "isClean: %b\n"
-                + "hasKey: %b",
+                        + "hasFullTank: %b\n"
+                        + "isUndamaged: %b\n"
+                        + "isClean: %b\n"
+                        + "hasKey: %b",
                 getChecklistId(), fueledUp, undamaged, clean, keyDroppedOff);
     }
 }

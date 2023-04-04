@@ -26,6 +26,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Eine Klasse, die die Logik für die Buchungsverwaltung enthält.
+ */
+@SuppressWarnings("MissingJavadoc")
 public class BookingManagementController implements Initializable {
 
     @FXML
@@ -116,16 +120,27 @@ public class BookingManagementController implements Initializable {
     private static int tableViewStatus;
     private static Booking selectedBooking;
 
+    /**
+     * Gibt die ausgewählte Buchung zurück
+     *
+     * @return selectedBooking
+     */
     public static Booking getSelectedBooking() {
         return selectedBooking;
     }
 
-    public static void setSelectedBooking(Booking seletedBooking) {
-        BookingManagementController.selectedBooking = seletedBooking;
+    /**
+     * Setzt die ausgewählte Buchung
+     *
+     * @param selectedBooking die ausgewählte Buchung
+     */
+    public static void setSelectedBooking(Booking selectedBooking) {
+        BookingManagementController.selectedBooking = selectedBooking;
     }
 
     /**
      * Suche zurücksetzen
+     *
      * @param event Event
      */
     @FXML
@@ -135,11 +150,16 @@ public class BookingManagementController implements Initializable {
         reloadTable();
     }
 
+    /**
+     * Buchung suchen
+     *
+     * @param event Event
+     */
     @FXML
     void searchBookings(ActionEvent event) {
         try {
             String searchCriteria = textFieldSearch.getText();
-            if(searchCriteria.trim().isEmpty())
+            if (searchCriteria.trim().isEmpty())
                 throw new IllegalArgumentException("Kein Suchkriterium eingegeben");
 
 
@@ -149,7 +169,7 @@ public class BookingManagementController implements Initializable {
                 throw new IllegalArgumentException("Kein Filter ausgewählt");
 
             ObservableList<Booking> currentItems = FXCollections.observableArrayList();
-            switch(tableViewStatus){
+            switch (tableViewStatus) {
                 case STATUS_ACTIVE:
                     currentItems.addAll(BookingRepository.findUncompleted());
                     break;
@@ -163,19 +183,19 @@ public class BookingManagementController implements Initializable {
 
             ObservableList<Booking> itemsAfterSearch = FXCollections.observableArrayList();
 
-            for (Booking booking : currentItems){
-                for (CheckMenuItem item : checkMenuItems){
+            for (Booking booking : currentItems) {
+                for (CheckMenuItem item : checkMenuItems) {
                     boolean allowedToInsert = false;
-                    if (item.equals(filterCustomer)){
-                        if (booking.getCustomerShowField().toLowerCase().contains(searchCriteria.toLowerCase())){
+                    if (item.equals(filterCustomer)) {
+                        if (booking.getCustomerShowField().toLowerCase().contains(searchCriteria.toLowerCase())) {
                             allowedToInsert = true;
                         }
-                    } else if (item.equals(filterCar)){
-                        if (booking.getCarShowField().toLowerCase().contains(searchCriteria.toLowerCase())){
+                    } else if (item.equals(filterCar)) {
+                        if (booking.getCarShowField().toLowerCase().contains(searchCriteria.toLowerCase())) {
                             allowedToInsert = true;
                         }
-                    } else if (item.equals(filterPickUpDate)){
-                        if (booking.getPickUpDateShowField().contains(searchCriteria)){
+                    } else if (item.equals(filterPickUpDate)) {
+                        if (booking.getPickUpDateShowField().contains(searchCriteria)) {
                             allowedToInsert = true;
                         }
                     } else if (item.equals(filterDropOffDate)) {
@@ -183,7 +203,7 @@ public class BookingManagementController implements Initializable {
                             allowedToInsert = true;
                         }
                     }
-                    if (!IsBookingAlreadyInTable(booking)){
+                    if (!IsBookingAlreadyInTable(booking)) {
                         if (allowedToInsert)
                             itemsAfterSearch.add(booking);
                     }
@@ -191,7 +211,7 @@ public class BookingManagementController implements Initializable {
             }
             tableView.setItems(itemsAfterSearch);
 
-            if(tableView.getItems().isEmpty()){
+            if (tableView.getItems().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Keine Buchungen gefunden");
                 alert.setHeaderText("Keine Buchungen gefunden");
@@ -199,7 +219,7 @@ public class BookingManagementController implements Initializable {
                 alert.showAndWait();
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fehler");
             alert.setHeaderText("Fehler bei der Suche");
@@ -219,6 +239,7 @@ public class BookingManagementController implements Initializable {
 
     /**
      * Zeigt alle aktiven Buchungen an
+     *
      * @param event Event
      */
     @FXML
@@ -241,7 +262,8 @@ public class BookingManagementController implements Initializable {
 
     /**
      * Zeigt alle Buchungen an, die bereits zurückgegeben wurden
-     * @param event
+     *
+     * @param event Event
      */
     @FXML
     void showDoneBookings(ActionEvent event) {
@@ -261,6 +283,7 @@ public class BookingManagementController implements Initializable {
 
     /**
      * Zeigt alle Buchungen an
+     *
      * @param event Event
      */
     @FXML
@@ -291,6 +314,11 @@ public class BookingManagementController implements Initializable {
         App.setRoot("fxml/first-view.fxml");
     }
 
+    /**
+     * Wechselt bei Aufruf zu dem Fenster zum Erstellen einer neuen Buchung.
+     *
+     * @param event button click
+     */
     @FXML
     void switchToSceneNewBooking(ActionEvent event) {
         Stage stage;
@@ -316,10 +344,15 @@ public class BookingManagementController implements Initializable {
         reloadTable();
     }
 
+    /**
+     * Wechselt bei Aufruf zu dem Fenster zum Einsehen einer Buchung.
+     *
+     * @param event button click
+     */
     @FXML
     void switchToSceneReadBooking(ActionEvent event) throws IOException {
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
-        if(selectedBooking == null){
+        if (selectedBooking == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Keine Buchung ausgewählt.");
             alert.showAndWait();
             return;
@@ -332,8 +365,8 @@ public class BookingManagementController implements Initializable {
     /**
      * Wechsel zum Fenster ReturnCar.
      *
-     * @param event
-     * @throws IOException
+     * @param event button click
+     * @throws IOException Exception
      */
     @FXML
     void switchToSceneReturnCar(ActionEvent event) throws IOException {
@@ -361,7 +394,11 @@ public class BookingManagementController implements Initializable {
 
     }
 
-
+    /**
+     * Setzt die gesetzten Filter zurück
+     *
+     * @param event Event des Buttons
+     */
     @FXML
     void uncheckFilters(ActionEvent event) {
         filterCustomer.setSelected(false);
@@ -370,6 +407,9 @@ public class BookingManagementController implements Initializable {
         filterDropOffDate.setSelected(false);
     }
 
+    /**
+     * deaktiviert die Buttons und das Schließen des Fensters
+     */
     void disableWindow() {
         btnGenerateInvoice.setDisable(true);
         btnBookCar.setDisable(true);
@@ -388,6 +428,9 @@ public class BookingManagementController implements Initializable {
         });
     }
 
+    /**
+     * aktiviert die Buttons und das Schließen des Fensters
+     */
     void enableWindow() {
         btnGenerateInvoice.setDisable(false);
         btnBookCar.setDisable(false);
@@ -407,13 +450,16 @@ public class BookingManagementController implements Initializable {
         });
     }
 
+    /**
+     * generiert Rechnung für die ausgewählte Buchung.
+     */
     @FXML
     void generateInvoice() {
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
-        if(selectedBooking == null){
+        if (selectedBooking == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Keine Buchung ausgewählt.");
             alert.showAndWait();
-        } else if(selectedBooking.getRealDropOffDate() == null){
+        } else if (selectedBooking.getRealDropOffDate() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Das Auto wurde noch nicht abgegeben.");
             alert.showAndWait();
             return;
@@ -421,7 +467,12 @@ public class BookingManagementController implements Initializable {
         Invoice.generate(getSelectedBooking());
     }
 
-    private ObservableList<CheckMenuItem> getAllSelectedCriteria(){
+    /**
+     * Gibt die gewählten Buchungen nach Kriterien zurück
+     *
+     * @return Alle ausgewählten Filter
+     */
+    private ObservableList<CheckMenuItem> getAllSelectedCriteria() {
         ObservableList<CheckMenuItem> items = FXCollections.observableArrayList();
         if (filterCustomer.isSelected())
             items.add(filterCustomer);
@@ -434,10 +485,20 @@ public class BookingManagementController implements Initializable {
         return items;
     }
 
-    private boolean IsBookingAlreadyInTable(Booking booking){
+    /**
+     * Gibt Buchung zurück, wenn sie in der Tabelle ist
+     *
+     * @param booking Buchung die schon in der Tabelle ist
+     * @return true, wenn Buchung in Tabelle ist
+     */
+    private boolean IsBookingAlreadyInTable(Booking booking) {
         return tableView.getItems().contains(booking);
     }
 
+    /**
+     * Konfiguriert die Tabelle
+     * lädt die Spalten
+     */
     private void configureTableView() {
         bookingIDColumn.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
         customerColumn.setCellValueFactory(new PropertyValueFactory<>("customerShowField"));
@@ -451,7 +512,10 @@ public class BookingManagementController implements Initializable {
         tableView.getColumns().addAll(bookingIDColumn, customerColumn, carColumn, pickUpDateColumn, dropOffDateColumn, realDropOffDateColumn, checklistColumn);
     }
 
-    private void reloadTable(){
+    /**
+     * Lädt die Tabelle neu
+     */
+    private void reloadTable() {
         switch (tableViewStatus) {
             case STATUS_ACTIVE:
                 showActiveBookings(new ActionEvent());
@@ -465,13 +529,19 @@ public class BookingManagementController implements Initializable {
         }
     }
 
+    /**
+     * Gibt die URL für die passende ReturnCarView zurück
+     *
+     * @return Die URL für den Typ des Fahrzeugs
+     * @throws IOException Wenn die Datei nicht gefunden wird
+     */
     @FXML
     private URL sceneChooser() throws IOException {
         Booking booking = getSelectedBooking();
         URL setURL = null;
         Car car = CarRepository.find(booking.getCarId());
         CarTypeEnum carType = car.getType();
-        switch (carType){
+        switch (carType) {
             case SUV:
                 URL url = getClass().getResource("fxml/Booking-suv-return-view.fxml");
                 setURL = url;
@@ -500,6 +570,15 @@ public class BookingManagementController implements Initializable {
         return setURL;
     }
 
+    /**
+     * Initialisiert die View
+     * dies geschieht automatisch, wenn die View geladen wird
+     *
+     * @param url            The location used to resolve relative paths for the root object, or
+     *                       {@code null} if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or {@code null} if
+     *                       the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tableViewStatus = STATUS_ACTIVE;

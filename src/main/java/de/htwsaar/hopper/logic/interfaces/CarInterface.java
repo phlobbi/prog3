@@ -10,6 +10,7 @@ import java.util.Calendar;
  * Interface für die Car-Klasse.
  * @author Daniel G
  */
+@SuppressWarnings("MissingJavadoc")
 public interface CarInterface extends DBObjectInterface{
 
     /* UI-METHODEN */

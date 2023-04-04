@@ -20,7 +20,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-
+/**
+ * Controller für die Ansicht eines Kunden
+ */
 public final class CustomerReadController implements Initializable {
 
     @FXML
@@ -50,14 +52,17 @@ public final class CustomerReadController implements Initializable {
     /**
      * zeigt den gewahlten Kunden beim Aufruf.
      *
-     * @param event
-     * @throws IOException
+     * @param event Event
+     * @throws IOException IOException
      */
     @FXML
     void switchToCustomerView(ActionEvent event) throws IOException {
         App.setRoot("fxml/Customer-management-view.fxml");
     }
 
+    /**
+     * Öffnet die Kundenbearbeitung
+     */
     @FXML
     void updateCustomer(ActionEvent event) {
         Stage stage;
@@ -78,6 +83,12 @@ public final class CustomerReadController implements Initializable {
         reloadTable();
     }
 
+    /**
+     * Öffnet die Kundenlöschung
+     *
+     * @param event Event
+     * @throws IOException IOException
+     */
     @FXML
     void deleteCustomer(ActionEvent event) throws IOException {
         Customer selectedCustomer = CustomerManagementController.getSelectedCustomer();
@@ -101,6 +112,8 @@ public final class CustomerReadController implements Initializable {
 
 
     /**
+     * Initialisiert die View
+     *
      * @param url            Der Ort, an dem relative Pfade für das Root-Objekt aufgelöst werden
      * @param resourceBundle Diese Methode initialisiert die Informationen über das ausgewählte Auto
      */
@@ -109,6 +122,9 @@ public final class CustomerReadController implements Initializable {
         reloadTable();
     }
 
+    /**
+     * Lädt die Informationen des Kunden neu
+     */
     private void reloadTable() {
         Customer customer = CustomerManagementController.getSelectedCustomer();
         labelSurname.setText(String.valueOf(customer.getFirstName()));
@@ -126,6 +142,9 @@ public final class CustomerReadController implements Initializable {
         labelIBAN.setText(String.valueOf(customer.getIBAN()));
     }
 
+    /**
+     * Deaktiviert das Fenster
+     */
     void disableWindow() {
         btnRemove.setDisable(true);
         btnUpdate.setDisable(true);
@@ -137,6 +156,9 @@ public final class CustomerReadController implements Initializable {
         });
     }
 
+    /**
+     * Aktiviert das Fenster
+     */
     void enableWindow() {
         btnRemove.setDisable(false);
         btnUpdate.setDisable(false);
