@@ -56,7 +56,7 @@
             </ImageView>
             <Label styleClass="menu-tile-text" text="%BOOKING_MANAGEMENT"/>
          </VBox>
-         <VBox prefHeight="200.0" prefWidth="100.0" styleClass="menu-tile" GridPane.columnIndex="1"
+         <VBox onMouseClicked="#switchToHelpView" prefHeight="200.0" prefWidth="100.0" styleClass="menu-tile" GridPane.columnIndex="1"
                GridPane.rowIndex="1">
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <Image url="@../icons/help_FILL0_wght400_GRAD0_opsz48.png"/>
