@@ -1,10 +1,13 @@
 # Startseite
 
-Beim Starten der Anwendung werden die vier Funktionsbereiche angezeigt.
+![Startseite](pictures/Startseite.png)
 
-- Autoverwaltung
-- Kundenverwaltung
-- Buchungsverwaltung
-- Hilfe (dieser Bereich)
+Auf der Startseite können die vier Hauptfunktionsbereiche des Programms aufgerufen werden.
 
-Zusätzlich können über die Menüleiste die Einstellungen aufgerufen werden.
+* **Fahrzeugverwaltung**
+* **Kundenverwaltung**
+* **Buchungsverwaltung**
+* **Hilfe**
+
+Ein einfacher Klick auf den jeweiligen Button öffnet ein dazugehöriges neues Fenster zur Verwaltung der drei Instanzen.
+Über den Button oben links können die Einstellungen des Programms geöffnet werden.
