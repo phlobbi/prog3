@@ -5,6 +5,7 @@ import de.htwsaar.hopper.repositories.CustomerRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -20,6 +22,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller für die Kundenverwaltung
+ */
 public class CustomerManagementController implements Initializable {
 
     @FXML
@@ -101,6 +106,7 @@ public class CustomerManagementController implements Initializable {
 
     /**
      * Wechselt bei Aufruf auf die Startseite zurück.
+     *
      * @param event button click
      */
     @FXML
@@ -108,17 +114,21 @@ public class CustomerManagementController implements Initializable {
         App.setRoot("fxml/first-view.fxml");
     }
 
-
+    /**
+     * Sucht nach Kunden, die den Suchkriterien entsprechen.
+     *
+     * @param event button click
+     */
     @FXML
     void searchCustomers(ActionEvent event) {
-        try{
+        try {
             String searchCriteria = textFieldSearch.getText();
 
-            if(searchCriteria.trim().isEmpty()){
+            if (searchCriteria.trim().isEmpty()) {
                 throw new IllegalArgumentException("Kein Suchkriterium eingegeben");
             }
 
-            ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
+            ObservableList<CheckMenuItem> checkMenuItems;
             checkMenuItems = getAllSelectedCriteria();
 
             if (checkMenuItems.isEmpty())
@@ -142,21 +152,21 @@ public class CustomerManagementController implements Initializable {
                         if (customer.getCity().toLowerCase().contains(searchCriteria.toLowerCase()))
                             allowedToInsert = true;
                     }
-                    if (!IsCustomerAlreadyInTable(customer)){
+                    if (!IsCustomerAlreadyInTable(customer)) {
                         if (allowedToInsert)
                             tableView.getItems().add(customer);
                     }
 
                 }
             }
-            if (tableView.getItems().isEmpty()){
+            if (tableView.getItems().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Keine Treffer");
                 alert.setHeaderText("Keine Treffer");
                 alert.setContentText("Es wurden keine Kunden gefunden, die den Suchkriterien entsprechen");
                 alert.showAndWait();
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fehler");
             alert.setHeaderText("Fehler bei der Suche");
@@ -165,9 +175,14 @@ public class CustomerManagementController implements Initializable {
         }
     }
 
+    /**
+     * Sucht nach Kunden, wenn Enter gedrückt wird.
+     *
+     * @param event Event
+     */
     @FXML
     void searchCustomersViaEnter(KeyEvent event) {
-        if(event.getCode().toString().equals("ENTER")){
+        if (event.getCode().toString().equals("ENTER")) {
             searchCustomers(new ActionEvent());
         }
     }
@@ -175,6 +190,7 @@ public class CustomerManagementController implements Initializable {
     /**
      * Setzt die Suche zurück, sodass keine Filterkriterien mehr aktiviert sind,
      * die Tabelle wieder auf original zurückgesetzt wird und das Suchfeld geleert wird
+     *
      * @param event Event
      */
     @FXML
@@ -184,19 +200,30 @@ public class CustomerManagementController implements Initializable {
         textFieldSearch.clear();
     }
 
+    /**
+     * Wechselt zur Szene um einen Kunden zu erstellen.
+     *
+     * @param event button click
+     * @throws IOException wenn die Szene nicht geladen werden kann
+     */
     @FXML
     void switchToSceneAddCustomer(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
+        Stage stage;
         URL url = getClass().getResource("fxml/Customer-creation-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(url, bundle);
             Parent root1 = (Parent) fxmlLoader.load();
             stage = new Stage();
+            stage.setTitle("Neuen Kunden hinzufuegen");
+            URL iconURL = getClass().getResource("icons/car-icon.png");
+            stage.getIcons().add(new Image(iconURL.toString()));
+            stage.setMinHeight(660);
+            stage.setMinWidth(675);
             stage.setScene(new Scene(root1));
             disableWindow();
             stage.showAndWait();
-        } catch(Exception e) {
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.showAndWait();
         }
@@ -204,7 +231,10 @@ public class CustomerManagementController implements Initializable {
         reloadTable();
     }
 
-    public void deleteCustomer(){
+    /**
+     * Löscht einen in der Tabelle ausgewählten Kunden.
+     */
+    public void deleteCustomer() {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         setSelectedCustomer(tableView.getSelectionModel().getSelectedItem());
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, bundle.getString("CUSTOMER_CONFIRM_DELETE"));
@@ -223,7 +253,10 @@ public class CustomerManagementController implements Initializable {
         }
     }
 
-    public void reloadTable(){
+    /**
+     * Lädt die Tabelle neu.
+     */
+    public void reloadTable() {
         tableView.getItems().clear();
 
         customerIDColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
@@ -247,53 +280,83 @@ public class CustomerManagementController implements Initializable {
         }
     }
 
-    void disableWindow(){
+    /**
+     * Deaktiviert die Buttons und Menüs, sodass der Benutzer nicht mehr auf die Buttons klicken kann und
+     * das Fenster nicht mehr geschlossen werden kann.
+     */
+    void disableWindow() {
+        btnSearch.setDisable(true);
+        btnResetSearch.setDisable(true);
         btnCreate.setDisable(true);
         btnRead.setDisable(true);
         btnRemove.setDisable(true);
         btnUpdate.setDisable(true);
         btnGoBack.setDisable(true);
+        menuButtonFilter.setDisable(true);
+        textFieldSearch.setDisable(true);
+        menuItemUncheck.setDisable(true);
 
         Stage primaryStage = (Stage) btnCreate.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            e.consume();
-        });
+        primaryStage.onCloseRequestProperty().set(Event::consume);
     }
 
-    void enableWindow(){
+    /**
+     * Aktiviert die Buttons und Menüs, sodass der Benutzer wieder auf die Buttons klicken kann und
+     * das Fenster wieder geschlossen werden kann.
+     */
+    void enableWindow() {
+        btnSearch.setDisable(false);
+        btnResetSearch.setDisable(false);
         btnCreate.setDisable(false);
         btnRead.setDisable(false);
         btnRemove.setDisable(false);
         btnUpdate.setDisable(false);
         btnGoBack.setDisable(false);
+        menuButtonFilter.setDisable(false);
+        textFieldSearch.setDisable(false);
+        menuItemUncheck.setDisable(false);
 
         // Roten Kreuz Button wieder aktivieren
         Stage primaryStage = (Stage) btnCreate.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            primaryStage.close();
-        });
+        primaryStage.onCloseRequestProperty().set(e -> primaryStage.close());
     }
 
+    /**
+     * Wechselt zur Szene, um einen Kunden zu lesen.
+     *
+     * @param event Event
+     * @throws IOException IOException
+     */
     @FXML
     void switchToSceneReadCustomer(ActionEvent event) throws IOException {
         setSelectedCustomer(tableView.getSelectionModel().getSelectedItem());
         App.setRoot("fxml/Customer-read-view.fxml");
     }
 
+    /**
+     * Wechselt zur Szene, um einen Kunden zu bearbeiten.
+     *
+     * @param event Event
+     */
     @FXML
     void switchToSceneUpdateCustomer(ActionEvent event) {
         setSelectedCustomer(tableView.getSelectionModel().getSelectedItem());
-        Stage stage = new Stage();
+        Stage stage;
         URL url = getClass().getResource("fxml/Customer-edit-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(url, bundle);
             Parent root1 = fxmlLoader.load();
             stage = new Stage();
+            stage.setTitle("Kundendaten bearbeiten");
+            URL iconURL = getClass().getResource("icons/car-icon.png");
+            stage.getIcons().add(new Image(iconURL.toString()));
+            stage.setMinHeight(660);
+            stage.setMinWidth(675);
             stage.setScene(new Scene(root1));
             disableWindow();
             stage.showAndWait();
-        } catch(Exception e) {
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.showAndWait();
         }
@@ -301,6 +364,11 @@ public class CustomerManagementController implements Initializable {
         reloadTable();
     }
 
+    /**
+     * setzt Filter zurück.
+     *
+     * @param event Event
+     */
     @FXML
     void uncheckFilters(ActionEvent event) {
         filterCity.setSelected(false);
@@ -311,9 +379,10 @@ public class CustomerManagementController implements Initializable {
 
     /**
      * Gibt eine Liste aus mit allen Suchkriterien, die ausgewählt sind
+     *
      * @return Liste mit allen ausgewählten Suchkriterien
      */
-    private ObservableList<CheckMenuItem> getAllSelectedCriteria(){
+    private ObservableList<CheckMenuItem> getAllSelectedCriteria() {
         ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
 
         if (filterCity.isSelected())
@@ -329,36 +398,43 @@ public class CustomerManagementController implements Initializable {
     }
 
     /**
-     * Prüft ob das Auto bereits in der Liste ist
+     * Prüft, ob das Auto bereits in der Liste ist
+     *
      * @param customer Auto was zu prüfen ist
-     * @return true wenn Auto bereits in der Liste ist, sonst false
+     * @return true, wenn Auto bereits in der Liste ist, sonst false
      */
-    private boolean IsCustomerAlreadyInTable(Customer customer){
+    private boolean IsCustomerAlreadyInTable(Customer customer) {
         return tableView.getItems().contains(customer);
     }
 
+    /**
+     * Gibt den ausgewählten Kunden zurück.
+     *
+     * @return Ausgewählter Kunde
+     */
     public static Customer getSelectedCustomer() {
         return selectedCustomer;
     }
 
-        /**
-         * Setzt die Variable selectedCar auf ein angegebenes Car-Objekt.
-         * @param customer Zu setzendes Car-Objekt
-         */
+    /**
+     * Setzt die Variable selectedCar auf ein angegebenes Car-Objekt.
+     *
+     * @param customer Zu setzendes Car-Objekt
+     */
+    public static void setSelectedCustomer(Customer customer) {
+        selectedCustomer = customer;
+    }
 
-        public static void setSelectedCustomer(Customer customer) {
-            selectedCustomer = customer;
-        }
-
-        /**
-         * Wird beim Aufruf der View ausgeführt und bereitet die View entsprechend vor.
-         * @param url Der Ort, an dem relative Pfade für das Root-Objekt aufgelöst werden, oder
-         * {@code null}, wenn der Speicherort nicht bekannt ist.
-         * @param resourceBundle Die Ressourcen, die zum Lokalisieren des Root-Objekts verwendet werden, oder {@code null}
-         */
-        @Override
-        public void initialize(URL url, ResourceBundle resourceBundle) {
-            reloadTable();
-        }
+    /**
+     * Wird beim Aufruf der View ausgeführt und bereitet die View entsprechend vor.
+     *
+     * @param url            Der Ort, an dem relative Pfade für das Root-Objekt aufgelöst werden, oder
+     *                       {@code null}, wenn der Speicherort nicht bekannt ist.
+     * @param resourceBundle Die Ressourcen, die zum Lokalisieren des Root-Objekts verwendet werden, oder {@code null}
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        reloadTable();
+    }
 
 }

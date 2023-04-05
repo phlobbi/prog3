@@ -16,7 +16,10 @@ import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
-public class CustomerEditController implements Initializable{
+/**
+ * Controller für die Bearbeitung eines Kunden
+ */
+public class CustomerEditController implements Initializable {
 
     @FXML
     private Button btnCancel;
@@ -85,34 +88,50 @@ public class CustomerEditController implements Initializable{
     @FXML
     private TextField textFieldDLNumber;
 
-
+    /**
+     * Bricht die Bearbeitung eines Kunden ab
+     *
+     * @param event Event
+     * @throws IOException IOException
+     */
     @FXML
     void cancelCreation(ActionEvent event) throws IOException {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Initialisiert die View
+     *
+     * @param url            The location used to resolve relative paths for the root object, or
+     *                       {@code null} if the location is not known.
+     * @param resourcebundle The resources used to localize the root object, or {@code null} if
+     *                       the root object was not localized.
+     */
     @Override
     public void initialize(URL url, java.util.ResourceBundle resourcebundle) {
         loadCustomer();
     }
 
+    /**
+     * Lädt den ausgewählten Kunden in die Felder der View
+     */
     @FXML
-    void loadCustomer(){
-        try{
-        Customer customer = CustomerManagementController.getSelectedCustomer();
-        textFieldFirstName.setText(customer.getFirstName());
-        textFieldLastName.setText(customer.getLastName());
-        textFieldEmail.setText(customer.getEmail());
-        textFieldStreet.setText(customer.getStreet());
-        textFieldStreetNumber.setText(customer.getHouseNumber());
-        textFieldZipCode.setText(customer.getZipCode());
-        textFieldCity.setText(customer.getCity());
-        textFieldPhoneNumber.setText(customer.getPhoneNumber());
-        textFieldDLNumber.setText(customer.getDriverLicenseNumber());
-        textFieldIBAN.setText(customer.getIBAN());
-        datePickDLExpirationDate.setValue(customer.getDriverLicenseExpirationDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        } catch (Exception e){
+    void loadCustomer() {
+        try {
+            Customer customer = CustomerManagementController.getSelectedCustomer();
+            textFieldFirstName.setText(customer.getFirstName());
+            textFieldLastName.setText(customer.getLastName());
+            textFieldEmail.setText(customer.getEmail());
+            textFieldStreet.setText(customer.getStreet());
+            textFieldStreetNumber.setText(customer.getHouseNumber());
+            textFieldZipCode.setText(customer.getZipCode());
+            textFieldCity.setText(customer.getCity());
+            textFieldPhoneNumber.setText(customer.getPhoneNumber());
+            textFieldDLNumber.setText(customer.getDriverLicenseNumber());
+            textFieldIBAN.setText(customer.getIBAN());
+            datePickDLExpirationDate.setValue(customer.getDriverLicenseExpirationDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Fehler");
             alert.setHeaderText("Fehler beim Laden des Kunden");
@@ -122,6 +141,11 @@ public class CustomerEditController implements Initializable{
     }
 
 
+    /**
+     * Validiert die Eingabe und speichert den geänderten Kunden
+     *
+     * @param event Event
+     */
     @FXML
     void updateCustomer(ActionEvent event) {
         try {
@@ -135,7 +159,7 @@ public class CustomerEditController implements Initializable{
             validateTextField(textFieldZipCode, labelZipCode.getText() + " leer");
             validateTextField(textFieldCity, labelCity.getText() + " leer");
             validateTextField(textFieldDLNumber, labelDLNumber.getText() + " leer");
-            if (datePickDLExpirationDate.getValue() == null){
+            if (datePickDLExpirationDate.getValue() == null) {
                 throw new IllegalArgumentException(labelDLExpirationDate.getText() + " leer");
             }
 
@@ -175,7 +199,7 @@ public class CustomerEditController implements Initializable{
             customer.setIBAN(iban);
             customer.setDriverLicenseExpirationDate(expirationDateCal);
 
-            if (customer.equals(temp)){
+            if (customer.equals(temp)) {
                 throw new IllegalArgumentException("Keine Änderungen vorgenommen");
             } else {
                 CustomerRepository.persist(customer);
@@ -196,11 +220,12 @@ public class CustomerEditController implements Initializable{
 
     /**
      * Überprüft Textfelder auf Gültigkeit
-     * @param textField betreffendes Textfeld
+     *
+     * @param textField    betreffendes Textfeld
      * @param errorMessage Fehlermeldung
      */
-    private void validateTextField(TextField textField, String errorMessage){
-        if(textField.getText() == null || textField.getText().isEmpty()){
+    private void validateTextField(TextField textField, String errorMessage) {
+        if (textField.getText() == null || textField.getText().isEmpty()) {
             throw new IllegalArgumentException(errorMessage);
         }
     }

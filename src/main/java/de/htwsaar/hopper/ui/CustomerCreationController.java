@@ -4,7 +4,6 @@ import de.htwsaar.hopper.logic.implementations.Customer;
 import de.htwsaar.hopper.repositories.CustomerRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
@@ -14,7 +13,10 @@ import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
-public class CustomerCreationController{
+/**
+ * Controller für die Erstellung eines Kunden
+ */
+public class CustomerCreationController {
 
     @FXML
     private Button btnCancel;
@@ -84,12 +86,23 @@ public class CustomerCreationController{
     private TextField textFieldDLNumber;
 
 
+    /**
+     * Bricht die Erstellung eines Kunden ab
+     *
+     * @param event ActionEvent
+     * @throws IOException IOException
+     */
     @FXML
     void cancelCreation(ActionEvent event) throws IOException {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Erstellt einen Kunden
+     *
+     * @param event ActionEvent
+     */
     @FXML
     void createCustomer(ActionEvent event) {
         try {
@@ -103,7 +116,7 @@ public class CustomerCreationController{
             validateTextField(textFieldZipCode, labelZipCode.getText() + " leer");
             validateTextField(textFieldCity, labelCity.getText() + " leer");
             validateTextField(textFieldDLNumber, labelDLNumber.getText() + " leer");
-            if (datePickDLExpirationDate.getValue() == null){
+            if (datePickDLExpirationDate.getValue() == null) {
                 throw new IllegalArgumentException(labelDLExpirationDate.getText() + " leer");
             }
 
@@ -126,7 +139,7 @@ public class CustomerCreationController{
 
             Customer customer = new Customer(firstName, lastName, email, street,
                     streetNumber, zipCode, city, phoneNumber,
-                     iban, dlNumber, expirationDateCal);
+                    iban, dlNumber, expirationDateCal);
 
 
             CustomerRepository.persist(customer);
@@ -146,11 +159,12 @@ public class CustomerCreationController{
 
     /**
      * Überprüft Textfelder auf Gültigkeit
-     * @param textField betreffendes Textfeld
+     *
+     * @param textField    betreffendes Textfeld
      * @param errorMessage Fehlermeldung
      */
-    private void validateTextField(TextField textField, String errorMessage){
-        if(textField.getText() == null || textField.getText().isEmpty()){
+    private void validateTextField(TextField textField, String errorMessage) {
+        if (textField.getText() == null || textField.getText().isEmpty()) {
             throw new IllegalArgumentException(errorMessage);
         }
     }

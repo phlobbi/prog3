@@ -7,11 +7,15 @@ import org.apache.commons.validator.routines.EmailValidator;
 
 import java.util.Calendar;
 
-public class CustomerValidation extends Validation{
+/**
+ * Stellt statische Methoden zur Verfügung, um die Felder für die Klasse Customer zu validieren.
+ */
+public class CustomerValidation extends Validation {
 
     /**
      * Prüft, ob eine IBAN gültig ist.
      * Die Methode entfernt außerdem sämtliche Leerzeichen um die IBAN.
+     *
      * @param iban Zu prüfende IBAN
      * @return IBAN als String, ohne Separierung
      * @throws IllegalArgumentException Falls die IBAN ungültig ist
@@ -26,6 +30,7 @@ public class CustomerValidation extends Validation{
     /**
      * Prüft, ob eine E-Mail gültig ist.
      * Die Methode entfernt außerdem sämtliche Leerzeichen um die E-Mail.
+     *
      * @param email E-Mail, die überprüft werden soll
      * @return Getrimmte E-Mail, falls gültig
      * @throws IllegalArgumentException Falls die E-Mail ungültig ist
@@ -55,7 +60,8 @@ public class CustomerValidation extends Validation{
      * Die Methode beschränkt sich ausschließlich auf deutsche Telefonnummern.
      * Sie trimmt außerdem die Telefonnummer.
      * Zusätzlich kann hier noch eine Fehlermeldung mitgegeben werden, falls die Telefonnummer ungültig sein sollte.
-     * @param phoneNumber Zu prüfende Telefonnummer
+     *
+     * @param phoneNumber  Zu prüfende Telefonnummer
      * @param errorMessage Fehlermeldung, falls die Telefonnummer ungültig ist
      * @return getrimmte Telefonnummer
      * @throws IllegalArgumentException Falls die Telefonnummer ungültig ist
@@ -70,6 +76,7 @@ public class CustomerValidation extends Validation{
      * Prüft, ob eine Telefonnummer gültig ist.
      * Die Methode beschränkt sich ausschließlich auf deutsche Telefonnummern.
      * Sie trimmt außerdem die Telefonnummer.
+     *
      * @param phoneNumber Zu prüfende Telefonnummer
      * @return getrimmte Telefonnummer
      * @throws IllegalArgumentException Falls die Telefonnummer ungültig ist
@@ -85,6 +92,7 @@ public class CustomerValidation extends Validation{
      * Prüft, ob eine Führerscheinnummer gültig ist.
      * Es sind nur deutsche Führerscheinnummer erlaubt.
      * Die Methode trimmt außerdem die Führerscheinnummer.
+     *
      * @param driverLicenseNumber Führerscheinnummer, die überprüft werden soll
      * @return Geprüfte Führerscheinnummer
      * @throws IllegalArgumentException Falls die Führerscheinnummer ungültig ist
@@ -130,6 +138,7 @@ public class CustomerValidation extends Validation{
     /**
      * Prüft das Ablaufdatum eines Führerscheins auf Gültigkeit.
      * Es wäre zum Beispiel ungültig, wenn das Ablaufdatum in der Vergangenheit liegt.
+     *
      * @param date Führerscheinablaufdatum
      * @return Datum, falls gültig
      * @throws IllegalArgumentException Falls das Datum ungültig ist
@@ -144,7 +153,8 @@ public class CustomerValidation extends Validation{
      * Dabei wären zum Beispiel 1 oder 1a erlaubt.
      * Die Hausnummer wird ebenfalls getrimmt.
      * Zusätzlich kann hier noch eine Fehlermeldung mitgegeben werden, falls die Hausnummer ungültig sein sollte.
-     * @param houseNumber Zu prüfende Hausnummer
+     *
+     * @param houseNumber  Zu prüfende Hausnummer
      * @param errorMessage Fehlermeldung, falls die Hausnummer ungültig ist
      * @return getrimmte Hausnummer
      * @throws IllegalArgumentException Falls die Hausnummer ungültig ist
@@ -159,6 +169,7 @@ public class CustomerValidation extends Validation{
      * Prüft, ob eine Hausnummer gültig ist.
      * Dabei wären zum Beispiel 1 oder 1a erlaubt.
      * Die Hausnummer wird ebenfalls getrimmt.
+     *
      * @param houseNumber Zu prüfende Hausnummer
      * @return getrimmte Hausnummer
      * @throws IllegalArgumentException Falls die Hausnummer ungültig ist
@@ -174,14 +185,15 @@ public class CustomerValidation extends Validation{
      * Es sind nur deutsche Postleitzahlen erlaubt.
      * Die Postleitzahl wird ebenfalls getrimmt.
      * Zusätzlich kann hier noch eine Fehlermeldung mitgegeben werden, falls die Postleitzahl ungültig sein sollte.
-     * @param zipCode PLZ, die überprüft werden soll
+     *
+     * @param zipCode      PLZ, die überprüft werden soll
      * @param errorMessage Fehlermeldung, falls die PLZ ungültig ist
      * @return getrimmte PLZ
      * @throws IllegalArgumentException Falls die PLZ ungültig ist
      * @throws IllegalArgumentException Falls die PLZ leer ist
      * @throws IllegalArgumentException Falls die PLZ null ist
      */
-    public static String validateZipCode(String zipCode, String errorMessage){
+    public static String validateZipCode(String zipCode, String errorMessage) {
         return validateStringViaRegex(zipCode, ValidationRegexEnum.GERMAN_ZIP_CODE.getRegex(), errorMessage);
     }
 
@@ -189,13 +201,14 @@ public class CustomerValidation extends Validation{
      * Prüft, ob eine Postleitzahl gültig ist.
      * Es sind nur deutsche Postleitzahlen erlaubt.
      * Die Postleitzahl wird ebenfalls getrimmt.
+     *
      * @param zipCode PLZ, die überprüft werden soll
      * @return getrimmte PLZ
      * @throws IllegalArgumentException Falls die PLZ ungültig ist
      * @throws IllegalArgumentException Falls die PLZ leer ist
      * @throws IllegalArgumentException Falls die PLZ null ist
      */
-    public static String validateZipCode(String zipCode){
+    public static String validateZipCode(String zipCode) {
         return validateStringViaRegex(zipCode, ValidationRegexEnum.GERMAN_ZIP_CODE.getRegex(), "Die Postleitzahl ist ungültig");
     }
 

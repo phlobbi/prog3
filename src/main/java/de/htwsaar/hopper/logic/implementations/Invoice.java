@@ -126,27 +126,41 @@ public class Invoice {
                 contentStream.setFont(PDType1Font.HELVETICA, 10);
                 writeStoreAddress(contentStream);
                 writeInvoiceInformation(contentStream);
-                int bookedDays = Utils.calculateDaysBetween(booking.getPickUpDate(), booking.getDropOffDate());
+
+                int billedDays = Utils.calculateDaysBetween(booking.getPickUpDate(), booking.getDropOffDate());
                 writeBillingLine(
                         contentStream,
                         String.format("%s %s - Grundbetrag Miete",
                                 associatedCar.getBrand(), associatedCar.getModel()),
                         associatedCar.getBasePrice());
-                writeBillingLine(
-                        contentStream,
-                        String.format("%s %s - Tagespreis Miete (Anzahl Tage: %d)",
-                                associatedCar.getBrand(), associatedCar.getModel(),
-                                bookedDays),
-                        associatedCar.getCurrentPrice() * bookedDays);
-                if (!Utils.isSameDate(booking.getDropOffDate(), booking.getRealDropOffDate())) {
-                    int lateDays = Utils.calculateDaysBetween(booking.getDropOffDate(), booking.getRealDropOffDate());
+
+                int daysBetweenPickUpAndRealDropOff = Utils.calculateDaysBetween(booking.getPickUpDate(), booking.getRealDropOffDate());
+                if (billedDays > daysBetweenPickUpAndRealDropOff) {
+                    billedDays = daysBetweenPickUpAndRealDropOff;
                     writeBillingLine(
                             contentStream,
-                            String.format("%s %s - Strafzuschlag \"Überzogene Miete\" (Anzahl Tage: %d)",
+                            String.format("%s %s - Tagespreis Miete (Anzahl Tage: %d)",
                                     associatedCar.getBrand(), associatedCar.getModel(),
-                                    lateDays - 1),
-                            associatedCar.getCurrentPrice() * (lateDays - 1) * LATENESS_RATE);
+                                    billedDays),
+                            associatedCar.getCurrentPrice() * billedDays);
+                } else {
+                    writeBillingLine(
+                            contentStream,
+                            String.format("%s %s - Tagespreis Miete (Anzahl Tage: %d)",
+                                    associatedCar.getBrand(), associatedCar.getModel(),
+                                    billedDays),
+                            associatedCar.getCurrentPrice() * billedDays);
+                    if (!Utils.isSameDate(booking.getDropOffDate(), booking.getRealDropOffDate())) {
+                        int lateDays = Utils.calculateDaysBetween(booking.getDropOffDate(), booking.getRealDropOffDate());
+                        writeBillingLine(
+                                contentStream,
+                                String.format("%s %s - Strafzuschlag \"Überzogene Miete\" (Anzahl Tage: %d)",
+                                        associatedCar.getBrand(), associatedCar.getModel(),
+                                        lateDays - 1),
+                                associatedCar.getCurrentPrice() * (lateDays - 1) * LATENESS_RATE);
+                    }
                 }
+
                 writeFaults(contentStream);
                 writeTaxAndTotal(contentStream);
                 contentStream.close();
@@ -166,7 +180,7 @@ public class Invoice {
     /**
      * Schreibt die Adresse des Autovermieters in die PDF-Rechnung.
      *
-     * @param contentStream Contentstream der PDF-Rechnung
+     * @param contentStream Content-Stream der PDF-Rechnung
      * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
      */
     private void writeStoreAddress(PDPageContentStream contentStream) throws IOException {
@@ -183,7 +197,7 @@ public class Invoice {
     /**
      * Schreibt die Rechnungsdaten in die PDF-Rechnung.
      *
-     * @param contentStream Contentstream der PDF-Rechnung
+     * @param contentStream Content-Stream der PDF-Rechnung
      * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
      */
     private void writeInvoiceInformation(PDPageContentStream contentStream) throws IOException {
@@ -204,7 +218,7 @@ public class Invoice {
     /**
      * Schreibt eine Zeile in die PDF-Rechnung, ohne einen Betrag.
      *
-     * @param contentStream Contentstream der PDF-Rechnung
+     * @param contentStream Content-Stream der PDF-Rechnung
      * @param description   Beschreibung der Zeile
      * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
      * @see #writeBillingLine(PDPageContentStream, String, double) writeBillingLine
@@ -221,7 +235,7 @@ public class Invoice {
      * Schreibt eine Zeile mit Betrag in die PDF-Rechnung.
      * Der Betrag wird auf zwei Nachkommastellen gerundet und zum Gesamtbetrag addiert.
      *
-     * @param contentStream Contentstream der PDF-Rechnung
+     * @param contentStream Content-Stream der PDF-Rechnung
      * @param description   Beschreibung der Zeile
      * @param amount        Betrag der Zeile
      * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
@@ -242,7 +256,7 @@ public class Invoice {
     /**
      * Schreibt Mängel in die PDF-Rechnung.
      *
-     * @param contentStream Contentstream der PDF-Rechnung
+     * @param contentStream Content-Stream der PDF-Rechnung
      * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
      */
     private void writeFaults(PDPageContentStream contentStream) throws IOException {
@@ -263,12 +277,13 @@ public class Invoice {
      * Schreibt die letzten Zeilen in die Rechnung.
      * Diese sind: Bruttobetrag, Steuersatz, berechnete Steuer und Gesamtbetrag.
      *
-     * @param contentStream Contentstream der PDF-Rechnung
+     * @param contentStream Content-Stream der PDF-Rechnung
      * @throws IOException Falls es beim Schreiben zu einem Fehler kommt
      */
     private void writeTaxAndTotal(PDPageContentStream contentStream) throws IOException {
         double tax = total * TAX_RATE;
-        double beforeTax = total - tax;
+        double beforeTax = total;
+        double afterTax = beforeTax + tax;
         contentStream.beginText();
         contentStream.newLineAtOffset(510, 316);
         contentStream.showText(df.format(beforeTax) + "€");
@@ -277,7 +292,7 @@ public class Invoice {
         contentStream.newLineAtOffset(0, -26);
         contentStream.showText(df.format(tax) + "€");
         contentStream.newLineAtOffset(0, -50);
-        contentStream.showText(df.format(total) + "€");
+        contentStream.showText(df.format(afterTax) + "€");
         contentStream.endText();
     }
 

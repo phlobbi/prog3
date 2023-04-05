@@ -4,6 +4,7 @@ package de.htwsaar.hopper.logic.interfaces;
  * Interface für die Klasse Checklist.
  * @author Philip
  */
+@SuppressWarnings("MissingJavadoc")
 public interface ChecklistInterface extends DBObjectInterface {
     int getProblemCount();
 

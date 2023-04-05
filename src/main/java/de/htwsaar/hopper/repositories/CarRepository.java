@@ -10,7 +10,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 /**
- * Repository-Klasse für Car. Dient zum Abrufbarmachen über die Datenbank.
+ * Repository-Klasse für Car.
  *
  * @author Ronny
  */
@@ -26,12 +26,12 @@ public class CarRepository {
     }
 
     /**
-     * Geht alle gespeicherten Cars durch und gibt sie als Liste zurueck.
+     * Geht alle gespeicherten Cars durch und gibt sie als Liste zurück.
      *
      * @return Alle Cars in der Datenbank; null, falls keine existieren.
      */
     public static List<Car> findAll() {
-        return (List<Car>) DBObjectRepository.findAll(Car.class, "Car");
+        return (List<Car>) DBObjectRepository.findAll("Car");
     }
 
     /**
@@ -55,7 +55,7 @@ public class CarRepository {
     }
 
     /**
-     * Sucht alle Cars, die nicht mehr verfuegbar sind und gibt sie als Liste aus.
+     * Sucht alle Cars, die nicht mehr verfügbar sind und gibt sie als Liste aus.
      *
      * @return Die Car-Liste; null, wenn keine nicht mehr verfügbaren Cars existieren.
      */
@@ -75,11 +75,11 @@ public class CarRepository {
     }
 
     /**
-     * Nimmt ein Car entgegen und loescht dieses aus der DB.
-     * Wird dieses Car nicht in der DB gefunden, wird eine IllegalArgumentException geworfen.
+     * Nimmt ein Car-Objekt entgegen und löscht dieses aus der DB.
+     * Wird das Car-Objekt nicht in der DB gefunden, wird eine IllegalArgumentException geworfen.
      * Nach dem Löschen werden ggf. vorhandene orphaned records entfernt.
      *
-     * @param car Die uebergebene / zu loeschende Entitaet.
+     * @param car Die übergebene / zu löschende Entität.
      * @throws IllegalArgumentException wenn Objekt nicht in DB
      */
     public static void delete(Car car) {
@@ -91,7 +91,7 @@ public class CarRepository {
     /**
      * Nimmt ein Car-Objekt entgegen und persistiert es in der Datenbank.
      *
-     * @param car Das uebergebene Objekt.
+     * @param car Das übergebene Objekt.
      */
     public static void persist(Car car) {
         DBObjectRepository.persist(car);
@@ -99,9 +99,9 @@ public class CarRepository {
 
     /**
      * Wird nach dem Löschen eines Cars automatisch aufgerufen und durchsucht alle vorhandenen Bookings.
-     * Taucht das gelöschte Car in einem Booking auf, wird auch das korrespondierende Booking entfernt.
+     * Taucht das gelöschte Car-Objekt in einem Booking auf, wird auch das korrespondierende Booking entfernt.
      *
-     * @param car Das gelöschte Car.
+     * @param car Das gelöschte Car-Objekt.
      */
     private static void removeOrphan(Car car) {
         List<Booking> bookings = BookingRepository.findAll();

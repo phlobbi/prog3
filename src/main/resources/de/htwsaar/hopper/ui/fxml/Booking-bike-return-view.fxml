@@ -22,98 +22,96 @@
     </top>
     <center>
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-            <children>
-                <HBox alignment="CENTER">
-                    <children>
-                        <GridPane prefHeight="226.0" prefWidth="374.0">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="39.39996337890625" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.00003662109376" minWidth="10.0" prefWidth="116.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.80002441406248" minWidth="10.0" prefWidth="128.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.80002441406248" minWidth="10.0" prefWidth="97.19997253417972" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            </rowConstraints>
-                            <children>
-                                <CheckBox fx:id="checkBoxCarFueledUp" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                <CheckBox fx:id="checkBoxCarClean" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                <CheckBox fx:id="checkBoxCarDamage" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                <CheckBox fx:id="checkBoxKeyDropped" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_FUELED" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_NO_DAMAGE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CLEANED" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_KEY_RETURNED" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                <Button mnemonicParsing="false" onAction="#returnCar" text="%MENU_CONFIRM" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                                <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="104.0" GridPane.columnIndex="1" />
-                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%BOOKING_RETURN_DATE" wrappingWidth="96.34375" GridPane.columnIndex="3" />
-                                <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeWindow" text="%MENU_CANCEL" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                <HBox alignment="TOP_RIGHT" GridPane.rowIndex="2">
-                                    <children>
-                                        <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../icons/fuelicon.png" />
-                                            </image>
-                                        </ImageView>
-                                    </children>
-                                </HBox>
-                                <HBox alignment="TOP_RIGHT" GridPane.rowIndex="3">
-                                    <children>
-                                        <ImageView fitHeight="48.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../icons/motorbikeicon.png" />
-                                            </image>
-                                        </ImageView>
-                                    </children>
-                                </HBox>
-                                <HBox alignment="TOP_RIGHT" GridPane.rowIndex="4">
-                                    <children>
-                                        <ImageView fitHeight="29.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../icons/vehiclecleanedicon.png" />
-                                            </image>
-                                        </ImageView>
-                                    </children>
-                                </HBox>
-                                <HBox alignment="TOP_RIGHT" GridPane.rowIndex="5">
-                                    <children>
-                                        <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../icons/vehiclekeyicon.png" />
-                                            </image>
-                                        </ImageView>
-                                    </children>
-                                </HBox>
-                                <TextField fx:id="textFieldHour" prefHeight="9.0" prefWidth="68.0" GridPane.columnIndex="2">
-                                    <GridPane.margin>
-                                        <Insets left="5.0" right="75.0" />
-                                    </GridPane.margin>
-                                </TextField>
-                                <TextField fx:id="textFieldMinute" GridPane.columnIndex="2">
-                                    <GridPane.margin>
-                                        <Insets left="75.0" right="5.0" />
-                                    </GridPane.margin>
-                                </TextField>
-                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=":" GridPane.columnIndex="2">
-                                    <GridPane.margin>
-                                        <Insets left="60.0" />
-                                    </GridPane.margin>
-                                    <font>
-                                        <Font size="20.0" />
-                                    </font>
-                                </Text>
-                            </children>
-                        </GridPane>
-                    </children>
-                </HBox>
-            </children>
+            <HBox alignment="CENTER">
+                <GridPane prefHeight="226.0" prefWidth="374.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0"
+                                           prefWidth="39.39996337890625"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="208.00003662109376" minWidth="10.0"
+                                           prefWidth="116.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.80002441406248" minWidth="10.0"
+                                           prefWidth="128.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.80002441406248" minWidth="10.0"
+                                           prefWidth="97.19997253417972"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <CheckBox fx:id="checkBoxCarFueledUp" mnemonicParsing="false" GridPane.columnIndex="1"
+                              GridPane.rowIndex="2"/>
+                    <CheckBox fx:id="checkBoxCarClean" mnemonicParsing="false" GridPane.columnIndex="1"
+                              GridPane.rowIndex="4"/>
+                    <CheckBox fx:id="checkBoxCarDamage" mnemonicParsing="false" GridPane.columnIndex="1"
+                              GridPane.rowIndex="3"/>
+                    <CheckBox fx:id="checkBoxKeyDropped" mnemonicParsing="false" GridPane.columnIndex="1"
+                              GridPane.rowIndex="5"/>
+                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_FUELED"
+                          GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_NO_DAMAGE"
+                          GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CLEANED"
+                          GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_KEY_RETURNED"
+                          GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+                    <Button mnemonicParsing="false" onAction="#returnCar" text="%MENU_CONFIRM"
+                            GridPane.columnIndex="2" GridPane.rowIndex="7"/>
+                    <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="104.0"
+                                GridPane.columnIndex="1"/>
+                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%BOOKING_RETURN_DATE"
+                          wrappingWidth="96.34375" GridPane.columnIndex="3"/>
+                    <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeWindow" text="%MENU_CANCEL"
+                            GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+                    <HBox alignment="TOP_RIGHT" GridPane.rowIndex="2">
+                        <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <Image url="@../icons/fuelicon.png"/>
+                        </ImageView>
+                    </HBox>
+                    <HBox alignment="TOP_RIGHT" GridPane.rowIndex="3">
+                        <ImageView fitHeight="48.0" fitWidth="28.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <Image url="@../icons/motorbikeicon.png"/>
+                        </ImageView>
+                    </HBox>
+                    <HBox alignment="TOP_RIGHT" GridPane.rowIndex="4">
+                        <ImageView fitHeight="29.0" fitWidth="64.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <Image url="@../icons/vehiclecleanedicon.png"/>
+                        </ImageView>
+                    </HBox>
+                    <HBox alignment="TOP_RIGHT" GridPane.rowIndex="5">
+                        <ImageView fitHeight="32.0" fitWidth="28.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <Image url="@../icons/vehiclekeyicon.png"/>
+                        </ImageView>
+                    </HBox>
+                    <TextField fx:id="textFieldHour" prefHeight="9.0" prefWidth="68.0" GridPane.columnIndex="2">
+                        <GridPane.margin>
+                            <Insets left="5.0" right="75.0"/>
+                        </GridPane.margin>
+                    </TextField>
+                    <TextField fx:id="textFieldMinute" GridPane.columnIndex="2">
+                        <GridPane.margin>
+                            <Insets left="75.0" right="5.0"/>
+                        </GridPane.margin>
+                    </TextField>
+                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text=":" GridPane.columnIndex="2">
+                        <GridPane.margin>
+                            <Insets left="60.0"/>
+                        </GridPane.margin>
+                        <font>
+                            <Font size="20.0"/>
+                        </font>
+                    </Text>
+                </GridPane>
+            </HBox>
         </VBox>
     </center>
     <bottom>

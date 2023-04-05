@@ -3,6 +3,7 @@ package de.htwsaar.hopper.ui;
 import de.htwsaar.hopper.logic.implementations.Customer;
 import de.htwsaar.hopper.repositories.CustomerRepository;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -20,7 +21,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-
+/**
+ * Controller für die Ansicht eines Kunden
+ */
 public final class CustomerReadController implements Initializable {
 
     @FXML
@@ -50,14 +53,17 @@ public final class CustomerReadController implements Initializable {
     /**
      * zeigt den gewahlten Kunden beim Aufruf.
      *
-     * @param event
-     * @throws IOException
+     * @param event Event
+     * @throws IOException IOException
      */
     @FXML
     void switchToCustomerView(ActionEvent event) throws IOException {
         App.setRoot("fxml/Customer-management-view.fxml");
     }
 
+    /**
+     * Öffnet die Kundenbearbeitung
+     */
     @FXML
     void updateCustomer(ActionEvent event) {
         Stage stage;
@@ -78,6 +84,12 @@ public final class CustomerReadController implements Initializable {
         reloadTable();
     }
 
+    /**
+     * Öffnet die Kundenlöschung
+     *
+     * @param event Event
+     * @throws IOException IOException
+     */
     @FXML
     void deleteCustomer(ActionEvent event) throws IOException {
         Customer selectedCustomer = CustomerManagementController.getSelectedCustomer();
@@ -101,6 +113,8 @@ public final class CustomerReadController implements Initializable {
 
 
     /**
+     * Initialisiert die View
+     *
      * @param url            Der Ort, an dem relative Pfade für das Root-Objekt aufgelöst werden
      * @param resourceBundle Diese Methode initialisiert die Informationen über das ausgewählte Auto
      */
@@ -109,12 +123,15 @@ public final class CustomerReadController implements Initializable {
         reloadTable();
     }
 
+    /**
+     * Lädt die Informationen des Kunden neu
+     */
     private void reloadTable() {
         Customer customer = CustomerManagementController.getSelectedCustomer();
         labelSurname.setText(String.valueOf(customer.getFirstName()));
         labelName.setText(String.valueOf(customer.getLastName()));
-        labelAdress.setText(String.valueOf(customer.getStreet() + " " + customer.getHouseNumber() +
-                ", " + customer.getZipCode() + " " + customer.getCity()));
+        labelAdress.setText(customer.getStreet() + " " + customer.getHouseNumber() +
+                ", " + customer.getZipCode() + " " + customer.getCity());
         labelEMail.setText(String.valueOf(customer.getEmail()));
         labelTelephoneNumber.setText(String.valueOf(customer.getPhoneNumber()));
         labelDriverLicenseNumber.setText(String.valueOf(customer.getDriverLicenseNumber()));
@@ -126,17 +143,21 @@ public final class CustomerReadController implements Initializable {
         labelIBAN.setText(String.valueOf(customer.getIBAN()));
     }
 
+    /**
+     * Deaktiviert das Fenster
+     */
     void disableWindow() {
         btnRemove.setDisable(true);
         btnUpdate.setDisable(true);
         btnGoBack.setDisable(true);
 
         Stage primaryStage = (Stage) btnUpdate.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            e.consume();
-        });
+        primaryStage.onCloseRequestProperty().set(Event::consume);
     }
 
+    /**
+     * Aktiviert das Fenster
+     */
     void enableWindow() {
         btnRemove.setDisable(false);
         btnUpdate.setDisable(false);
@@ -144,8 +165,6 @@ public final class CustomerReadController implements Initializable {
 
         // Roten Kreuz Button wieder aktivieren
         Stage primaryStage = (Stage) btnUpdate.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            primaryStage.close();
-        });
+        primaryStage.onCloseRequestProperty().set(e -> primaryStage.close());
     }
 }

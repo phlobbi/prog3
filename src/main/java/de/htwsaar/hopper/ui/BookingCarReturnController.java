@@ -24,6 +24,9 @@ import java.util.ResourceBundle;
 import static java.util.Calendar.HOUR_OF_DAY;
 import static java.util.Calendar.MINUTE;
 
+/**
+ * Controller für die Rückgabe eines Autos bei einer Buchung
+ */
 public class BookingCarReturnController {
 
 
@@ -54,7 +57,7 @@ public class BookingCarReturnController {
     /**
      * gibt ein gebuchtes Auto zurueck.
      *
-     * @param event
+     * @param event Event (hier Mausklick)
      */
     @FXML
     void returnCar(ActionEvent event) {
@@ -62,17 +65,17 @@ public class BookingCarReturnController {
         Booking booking = BookingManagementController.getSelectedBooking();
 
         if (booking.getRealDropOffDate() != null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText(bundle.getString("CAR_ALREADY_RETURNED"));
             alert.showAndWait();
         } else {
             LocalDate realDropOffDateLocal = datePicker.getValue();
             if (realDropOffDateLocal == null) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(bundle.getString("NO_DATE_SELECTED"));
                 alert.showAndWait();
-            } else  if (textFieldHour.getText().isEmpty() || textFieldMinute.getText().isEmpty()) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
+            } else if (textFieldHour.getText().isEmpty() || textFieldMinute.getText().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(bundle.getString("NO_TIME_SELECTED"));
                 alert.showAndWait();
             } else {
@@ -114,9 +117,9 @@ public class BookingCarReturnController {
                     alert.showAndWait();
                 } catch (Exception e) {
                     e.printStackTrace();
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText(bundle.getString("DATE_IN_PAST"));
-                alert.showAndWait();
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setContentText(bundle.getString("DATE_IN_PAST"));
+                    alert.showAndWait();
                 }
             }
         }
@@ -125,7 +128,7 @@ public class BookingCarReturnController {
     /**
      * Schließt das Fenster ReturnCar.
      *
-     * @param event
+     * @param event Event (hier Mausklick)
      */
     @FXML
     void closeWindow(ActionEvent event) {
