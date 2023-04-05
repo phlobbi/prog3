@@ -89,4 +89,24 @@ public class ChecklistRepositoryTest {
 
         assertTrue(booking.getChecklistId() == result.getChecklistId());
     }
+
+    @Test
+    public void correctBooleanOfChecklist() {
+        Checklist checklist = new Checklist(true,true,true,true);
+        ChecklistRepository.persist(checklist);
+        checklist = ChecklistRepository.find(1);
+
+        Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
+        BookingRepository.persist(booking);
+
+        checklist.addToBooking(1);
+        booking = BookingRepository.find(1);
+
+        assertTrue(checklist.isFueledUp()
+                        && checklist.isUndamaged()
+                        && checklist.isClean()
+                        && checklist.isKeyDroppedOff());
+
+    }
+
 }
