@@ -90,38 +90,38 @@
                               <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Vorname:">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CUSTOMER_FIRSTNAME">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
                                     <Label fx:id="labelSurname" alignment="CENTER" contentDisplay="CENTER" textFill="WHITE" GridPane.columnIndex="1" />
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nachname:" GridPane.rowIndex="1">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CUSTOMER_LASTNAME" GridPane.rowIndex="1">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse:" GridPane.rowIndex="2">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CUSTOMER_ADDRESS" GridPane.rowIndex="2">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="E-Mail:" GridPane.rowIndex="3">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CUSTOMER_EMAIL" GridPane.rowIndex="3">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefonnummer:" GridPane.rowIndex="4">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CUSTOMER_TELEPHONE" GridPane.rowIndex="4">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Führerscheinnummer:" GridPane.rowIndex="5">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CUSTOMER_DRIVER_LICENSE_NUMBER" GridPane.rowIndex="5">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Führerschein-Gültigkeitsdatum:" wrappingWidth="198.6809844970703" GridPane.rowIndex="6">
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CUSTOMER_DRIVER_LICENSE_EXPIRATION_DATE" wrappingWidth="198.6809844970703" GridPane.rowIndex="6">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
