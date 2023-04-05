@@ -8,9 +8,7 @@ import de.htwsaar.hopper.logic.enums.TransmissionTypeEnum;
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.implementations.Customer;
-import de.htwsaar.hopper.logic.validations.BookingValidation;
-import de.htwsaar.hopper.logic.validations.Utils;
-import org.hibernate.annotations.Check;
+
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -18,7 +16,6 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -88,7 +85,7 @@ public class ChecklistRepositoryTest {
         Checklist result = ChecklistRepository.find(checklist.getChecklistId());
         booking = BookingRepository.find(1);
 
-        assertTrue(booking.getChecklistId() == result.getChecklistId());
+        assertEquals(booking.getChecklistId(), result.getChecklistId());
     }
 
     @Test
@@ -110,15 +107,13 @@ public class ChecklistRepositoryTest {
 
     @Test
     public void testChecklistIsNotNull() {
-        Checklist checklist = new Checklist(true, true, true, true);
+        Checklist checklist = new Checklist(true,true,true,true);
         ChecklistRepository.persist(checklist);
-        ChecklistRepository.find(1);
+        checklist = ChecklistRepository.find(1);
 
         Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
         BookingRepository.persist(booking);
         checklist.addToBooking(1);
-
-        booking = BookingRepository.find(1);
 
         assertNotNull(checklist);
 
