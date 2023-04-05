@@ -20,8 +20,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ChecklistRepositoryTest {
 
@@ -75,7 +74,7 @@ public class ChecklistRepositoryTest {
 
 
     @Test
-    public void addToBookingTest() {
+    public void testAddToBookingTest() {
         Checklist checklist = new Checklist(true,true,true,true);
         ChecklistRepository.persist(checklist);
         checklist = ChecklistRepository.find(1);
@@ -91,22 +90,52 @@ public class ChecklistRepositoryTest {
     }
 
     @Test
-    public void correctBooleanOfChecklist() {
+    public void testCorrectBooleanOfChecklist() {
         Checklist checklist = new Checklist(true,true,true,true);
         ChecklistRepository.persist(checklist);
         checklist = ChecklistRepository.find(1);
 
         Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
         BookingRepository.persist(booking);
-
         checklist.addToBooking(1);
-        booking = BookingRepository.find(1);
 
         assertTrue(checklist.isFueledUp()
                         && checklist.isUndamaged()
                         && checklist.isClean()
                         && checklist.isKeyDroppedOff());
 
+    }
+
+    @Test
+    public void checklistIsNotNull() {
+        Checklist checklist = new Checklist(true, true, true, true);
+        ChecklistRepository.persist(checklist);
+        checklist = ChecklistRepository.find(1);
+
+        Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
+        BookingRepository.persist(booking);
+        checklist.addToBooking(1);
+
+        assertNotNull(checklist);
+
+    }
+
+    @Test
+    public void testChecklistFindWithNonExistingId() {
+        Checklist result = ChecklistRepository.find(1);
+        assertNull(result);
+    }
+
+    @Test
+    public void testChecklistFindWithNegativeId() {
+        Checklist result = ChecklistRepository.find(-1);
+        assertNull(result);
+    }
+
+    @Test
+    public void testChecklistFindWithZeroId() {
+        Checklist result = ChecklistRepository.find(0);
+        assertNull(result);
     }
 
 }
