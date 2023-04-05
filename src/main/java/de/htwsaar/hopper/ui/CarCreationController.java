@@ -151,6 +151,7 @@ public class CarCreationController implements Initializable{
             for (CarTypeEnum type : CarTypeEnum.values()){
                 if (type.getLabel().equals(carTypeStr)){
                     concreteType = type;
+
                 }
             }
 
@@ -208,13 +209,14 @@ public class CarCreationController implements Initializable{
      * die lokale Variable carType mit dem neuen Typen ersetzt
      */
     private void setChosenCarType(){
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         // basistyp, falls kein Typ ausgewählt
-        carTypeStr = CarTypeEnum.ANDERE.getLabel();
+        carTypeStr = bundle.getString(CarTypeEnum.ANDERE.name());
         menuType.setText(carTypeStr);
 
         // Iteration über alle Enums und für jedes 1 Menü-Item erstellen
         for (CarTypeEnum type : CarTypeEnum.values()){
-            MenuItem item = new MenuItem(type.getLabel());
+            MenuItem item = new MenuItem(bundle.getString(type.name()));
             menuType.getItems().add(item);
             // wird Action auf Item bemerkt -> carType aktualisieren und Text
             item.setOnAction(e ->{
@@ -230,13 +232,14 @@ public class CarCreationController implements Initializable{
      * die lokale Variable transmission mit dem neuen Typen ersetzt
      */
     private void setChosenTransmission(){
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         // basistyp, falls kein Typ ausgewählt
-        transmissionStr = TransmissionTypeEnum.MANUELL.getLabel();
+        transmissionStr = bundle.getString(TransmissionTypeEnum.MANUELL.name());
         menuTransmission.setText(transmissionStr);
 
         // Iteration über alle Enums und für jedes 1 Menü-Item erstellen
         for (TransmissionTypeEnum transmission : TransmissionTypeEnum.values()){
-            MenuItem item = new MenuItem(transmission.getLabel());
+            MenuItem item = new MenuItem(bundle.getString(transmission.name()));
             menuTransmission.getItems().add(item);
             // wird Action auf Item bemerkt -> carType aktualisieren und Text
             item.setOnAction(e ->{
@@ -252,13 +255,14 @@ public class CarCreationController implements Initializable{
      * die lokale Variable fuel mit dem neuen Typen ersetzt
      */
     private void setChosenFuel(){
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         // basistyp, falls kein Typ ausgewählt
-        fuelStr = FuelTypeEnum.BENZIN.getLabel();
+        fuelStr = bundle.getString(FuelTypeEnum.BENZIN.name());
         menuFuel.setText(fuelStr);
 
         // Iteration über alle Enums und für jedes 1 Menü-Item erstellen
         for (FuelTypeEnum fuel : FuelTypeEnum.values()){
-            MenuItem item = new MenuItem(fuel.getLabel());
+            MenuItem item = new MenuItem(bundle.getString(fuel.name()));
             menuFuel.getItems().add(item);
             // wird Action auf Item bemerkt -> carType aktualisieren und Text
             item.setOnAction(e ->{
@@ -274,13 +278,14 @@ public class CarCreationController implements Initializable{
      * die lokale Variable satNav mit dem neuen Typen ersetzt
      */
     private void setChosenSatNav(){
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         // basistyp, falls kein Typ ausgewählt
-        satNavStr = "Ja";
+        satNavStr = bundle.getString("JA");
         menuSatNav.setText(satNavStr);
 
-        MenuItem item = new MenuItem("Ja");
+        MenuItem item = new MenuItem(bundle.getString("JA"));
         menuSatNav.getItems().add(item);
-        MenuItem item2 = new MenuItem("Nein");
+        MenuItem item2 = new MenuItem(bundle.getString("NEIN"));
         menuSatNav.getItems().add(item2);
 
         // wird Action auf Item bemerkt -> carType aktualisieren und Text

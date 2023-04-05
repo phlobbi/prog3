@@ -156,6 +156,7 @@ public class CarReadController implements Initializable {
         reloadTable() ;
     }
     public void reloadTable(){
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         Car car = CarManagementController.getSelectedCar();
         labelCarBasePrice.setText(String.valueOf(car.getBasePrice()));
         labelCarBrand.setText(String.valueOf(car.getBrand()));
@@ -164,15 +165,15 @@ public class CarReadController implements Initializable {
         labelCarCreationDate.setText((date));
         labelCarCurrentPrise.setText(String.valueOf(car.getCurrentPrice()));
         labelCarSeats.setText(String.valueOf(car.getSeats()));
-        labelCarType.setText(car.getType().getLabel());
+        labelCarType.setText(bundle.getString(car.getType().name()));
         labelcarLicensePlate.setText(car.getLicensePlate());
-        labelFuelType.setText(car.getFuelType().getLabel());
-        labelTransType.setText(car.getTransmissionType().getLabel());
+        labelFuelType.setText(bundle.getString(car.getFuelType().name()));
+        labelTransType.setText(bundle.getString(car.getTransmissionType().name()));
         labelModel.setText(car.getModel());
         if (car.getSatNav()) {
-            labelSatNav.setText("Ja");
+            labelSatNav.setText(bundle.getString("YES"));
         } else {
-            labelSatNav.setText("Nein");
+            labelSatNav.setText(bundle.getString("NO"));
         }
         labelMileage.setText(String.valueOf(car.getMileage()));
         labelHorsePower.setText(String.valueOf(car.getHorsepower()));
