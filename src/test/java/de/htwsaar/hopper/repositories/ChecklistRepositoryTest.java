@@ -66,13 +66,6 @@ public class ChecklistRepositoryTest {
         customer.setEmail("hans@mueller.de");
         CustomerRepository.persist(customer);
 
-
-        Checklist myChecklist1 = new Checklist(true,true,true,true);
-        ChecklistRepository.persist(myChecklist1);
-        myChecklist1.setFueledUp(true);
-        myChecklist1.setUndamaged(true);
-        myChecklist1.setClean(true);
-        myChecklist1.setKeyDroppedOff(true);
     }
 
     @AfterClass
@@ -86,20 +79,17 @@ public class ChecklistRepositoryTest {
     public void addToBookingTest() {
         Checklist checklist = new Checklist(true,true,true,true);
         ChecklistRepository.persist(checklist);
-
         checklist = ChecklistRepository.find(1);
 
         Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
         BookingRepository.persist(booking);
-
         booking = BookingRepository.find(1);
 
-        booking.setChecklistId(1);
-        BookingRepository.persist(booking);
+
+        checklist.addToBooking(1);
 
         Checklist result = ChecklistRepository.find(checklist.getChecklistId());
 
-        checklist.addToBooking(1);
 
         assertTrue(booking.getChecklistId() == result.getChecklistId());
     }
