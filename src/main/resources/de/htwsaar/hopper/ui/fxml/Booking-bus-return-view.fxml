@@ -53,7 +53,7 @@
                                 <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_KEY_RETURNED" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                                 <Button mnemonicParsing="false" onAction="#returnCar" text="%MENU_CONFIRM" GridPane.columnIndex="2" GridPane.rowIndex="7" />
                                 <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="104.0" GridPane.columnIndex="1" />
-                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%BOOKING_RETURN_DATE" wrappingWidth="96.34375" GridPane.columnIndex="3" />
+                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%BOOKING_DROP_OFF_DATE" wrappingWidth="96.34375" GridPane.columnIndex="3" />
                                 <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeWindow" text="%MENU_CANCEL" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                                 <HBox alignment="TOP_RIGHT" GridPane.rowIndex="2">
                                     <children>
