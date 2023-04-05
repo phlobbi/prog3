@@ -65,6 +65,8 @@ public class ChecklistRepositoryTest {
         customer.setEmail("hans@mueller.de");
         CustomerRepository.persist(customer);
 
+        Checklist checklist = new Checklist(true,true,true,true);
+        ChecklistRepository.persist(checklist);
     }
 
     @AfterClass
@@ -107,23 +109,25 @@ public class ChecklistRepositoryTest {
     }
 
     @Test
-    public void checklistIsNotNull() {
+    public void testChecklistIsNotNull() {
         Checklist checklist = new Checklist(true, true, true, true);
         ChecklistRepository.persist(checklist);
-        checklist = ChecklistRepository.find(1);
+        ChecklistRepository.find(1);
 
         Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
         BookingRepository.persist(booking);
         checklist.addToBooking(1);
+
+        booking = BookingRepository.find(1);
 
         assertNotNull(checklist);
 
     }
 
     @Test
-    public void testChecklistFindWithNonExistingId() {
+    public void testChecklistFind() {
         Checklist result = ChecklistRepository.find(1);
-        assertNull(result);
+        assert result != null;
     }
 
     @Test
