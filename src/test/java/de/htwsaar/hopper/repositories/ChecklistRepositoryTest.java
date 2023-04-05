@@ -74,7 +74,6 @@ public class ChecklistRepositoryTest {
     }
 
 
-
     @Test
     public void addToBookingTest() {
         Checklist checklist = new Checklist(true,true,true,true);
@@ -83,13 +82,10 @@ public class ChecklistRepositoryTest {
 
         Booking booking = new Booking(1, 1, pickUpDate, dropOffDate);
         BookingRepository.persist(booking);
-        booking = BookingRepository.find(1);
-
 
         checklist.addToBooking(1);
-
         Checklist result = ChecklistRepository.find(checklist.getChecklistId());
-
+        booking = BookingRepository.find(1);
 
         assertTrue(booking.getChecklistId() == result.getChecklistId());
     }
