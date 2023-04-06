@@ -171,9 +171,9 @@ public class CarReadController implements Initializable {
         labelTransType.setText(bundle.getString(car.getTransmissionType().name()));
         labelModel.setText(car.getModel());
         if (car.getSatNav()) {
-            labelSatNav.setText(bundle.getString("YES"));
+            labelSatNav.setText(bundle.getString("JA"));
         } else {
-            labelSatNav.setText(bundle.getString("NO"));
+            labelSatNav.setText(bundle.getString("NEIN"));
         }
         labelMileage.setText(String.valueOf(car.getMileage()));
         labelHorsePower.setText(String.valueOf(car.getHorsepower()));

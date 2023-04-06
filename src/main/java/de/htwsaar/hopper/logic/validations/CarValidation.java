@@ -3,12 +3,14 @@ package de.htwsaar.hopper.logic.validations;
 import de.htwsaar.hopper.logic.enums.*;
 
 import java.util.Calendar;
+import java.util.ResourceBundle;
 
 /**
  * Validierungsklasse fuer Buchungen.
  * @author Bennet
  */
 public class CarValidation extends Validation {
+    private static ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
 
     /**
      * Prüft, ob der übergebene Grundpreis gültig ist.
@@ -17,7 +19,7 @@ public class CarValidation extends Validation {
      * @throws IllegalArgumentException Falls der Grundpreis kleiner als 0 ist
      */
     public static double validateBasePrice(double basePrice) {
-        Utils.check(basePrice > 0.00, "Der Basispreis muss größer als 0 sein!");
+        Utils.check(basePrice > 0.00, bundle.getString("BASE_PRICE_GREATER_THAN_ZERO"));
         return basePrice;
     }
 
@@ -28,7 +30,7 @@ public class CarValidation extends Validation {
      * @throws IllegalArgumentException Falls der Tagespreis kleiner als 0 ist
      */
     public static double validateCurrentPrice(double currentPrice) {
-        Utils.check(currentPrice > 0.00, "Der aktuelle Preis muss größer als 0 sein!");
+        Utils.check(currentPrice > 0.00, bundle.getString("CURRENT_PRICE_GREATER_THAN_ZERO"));
         return currentPrice;
     }
 
@@ -53,9 +55,9 @@ public class CarValidation extends Validation {
      * @throws IllegalArgumentException Falls ein Nummernschild nicht gültig ist
      */
     public static String validateLicensePlate(String licensePlate) {
-        licensePlate = validateString(licensePlate, "Die Kennzeichen dürfen nicht leer sein!");
+        licensePlate = validateString(licensePlate, bundle.getString("LICENSE_PLATE_EMPTY"));
         licensePlate = licensePlate.toUpperCase();
-        Utils.check(licensePlate.matches(ValidationRegexEnum.LICENSE_PLATE.getRegex()), "Kennzeichen ist nicht valide!");
+        Utils.check(licensePlate.matches(ValidationRegexEnum.LICENSE_PLATE.getRegex()), bundle.getString("LICENSE_PLATE_NOT_VALID"));
         return licensePlate;
     }
 
@@ -67,9 +69,8 @@ public class CarValidation extends Validation {
      * @throws IllegalArgumentException Falls die Anzahl der Sitze nicht stimmen kann
      */
     public static int validateSeats(int seats) {
-        Utils.check(seats > 0, "Die Anzahl der Sitze muss größer als 0 sein!");
-        Utils.check(seats < 302, "Die Anzahl der Sitze darf nicht größer als 301 sein!\n" +
-                "Der Volvo Gran Artic 300 mit 301 Sitzen ist der größte Bus der Welt!"); //Schleichwerbung? rausnehmen? :D
+        Utils.check(seats > 0, bundle.getString("SEATS_GREATER_THAN_ZERO"));
+        Utils.check(seats < 302, bundle.getString("SEATS_LESS_THAN_301"));
         return seats;
     }
 
@@ -81,7 +82,7 @@ public class CarValidation extends Validation {
      * @throws IllegalArgumentException Falls der Typ null ist
      */
     public static CarTypeEnum validateCarType(CarTypeEnum type){
-        Utils.check(type !=null, "Der Auto-Typ darf nicht null sein.");
+        Utils.check(type !=null, bundle.getString("CAR_TYPE_EMPTY"));
         return type;
     }
 
@@ -92,7 +93,7 @@ public class CarValidation extends Validation {
      * @throws IllegalArgumentException Falls die Pferdstärke nicht stimmt
      */
     public static int validateHorsepower(int horsepower){
-        Utils.check(horsepower > 0, "Die Pferdstärke darf nicht kleiner gleich null sein.");
+        Utils.check(horsepower > 0, bundle.getString("HORSEPOWER_GREATER_THAN_ZERO"));
         return horsepower;
     }
 
@@ -104,7 +105,7 @@ public class CarValidation extends Validation {
      * @throws IllegalArgumentException Falls der Typ null ist
      */
     public static TransmissionTypeEnum validateTransmissionType(TransmissionTypeEnum type){
-        Utils.check(type != null, "Das Schaltgetriebe darf nicht null sein.");
+        Utils.check(type != null, bundle.getString("TRANSMISSION_TYPE_EMPTY"));
         return type;
     }
 
@@ -116,7 +117,7 @@ public class CarValidation extends Validation {
      * @throws IllegalArgumentException Falls der Typ null ist
      */
     public static FuelTypeEnum validateFuelType(FuelTypeEnum type){
-        Utils.check(type != null, "Der Kraftstoff eines Autos darf nicht null sein.");
+        Utils.check(type != null, bundle.getString("FUEL_TYPE_EMPTY"));
         return type;
     }
 
@@ -127,7 +128,7 @@ public class CarValidation extends Validation {
      * @throws IllegalArgumentException Falls der Kilometerstand nicht stimmt
      */
     public static int validateMileage(int mileage){
-        Utils.check(mileage >= 0, "Der Kilometerstand eines Autos darf nicht kleiner als null sein.");
+        Utils.check(mileage >= 0, bundle.getString("MILEAGE_GREATER_THAN_ZERO"));
         return mileage;
     }
 }

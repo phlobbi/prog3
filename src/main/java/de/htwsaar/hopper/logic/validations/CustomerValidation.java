@@ -6,8 +6,10 @@ import org.apache.commons.validator.routines.DomainValidator;
 import org.apache.commons.validator.routines.EmailValidator;
 
 import java.util.Calendar;
+import java.util.ResourceBundle;
 
 public class CustomerValidation extends Validation{
+    private static ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
 
     /**
      * Prüft, ob eine IBAN gültig ist.
@@ -19,7 +21,7 @@ public class CustomerValidation extends Validation{
      * @throws IllegalArgumentException Falls die IBAN null ist
      */
     public static String validateIBAN(String iban) {
-        IBAN ibanObject = IBAN.valueOf(validateString(iban, "Die IBAN darf nicht leer sein."));
+        IBAN ibanObject = IBAN.valueOf(validateString(iban, bundle.getString("IBAN_EMPTY")));
         return ibanObject.toPlainString();
     }
 
@@ -40,13 +42,13 @@ public class CustomerValidation extends Validation{
         EmailValidator emailValidator = new EmailValidator(false, false, domainValidator);
 
         //trimmen
-        email = validateString(email, "Die E-Mail darf nicht leer sein.");
+        email = validateString(email, bundle.getString("EMAIL_EMPTY"));
 
         //prüfen ob Mail gültig ist
         if (emailValidator.isValid(email)) {
             return email;
         } else {
-            throw new IllegalArgumentException("Die E-Mail ist ungültig!");
+            throw new IllegalArgumentException(bundle.getString("EMAIL_NOT_VALID"));
         }
     }
 
@@ -77,7 +79,7 @@ public class CustomerValidation extends Validation{
      * @throws IllegalArgumentException Falls die Telefonnummer null ist
      */
     public static String validatePhoneNumber(String phoneNumber) {
-        return validateStringViaRegex(phoneNumber, ValidationRegexEnum.PHONE_NUMBER.getRegex(), "Die Telefonnummer darf nicht leer sein.");
+        return validateStringViaRegex(phoneNumber, ValidationRegexEnum.PHONE_NUMBER.getRegex(), bundle.getString("TELEPHONE_EMPTY"));
     }
 
 
@@ -93,9 +95,9 @@ public class CustomerValidation extends Validation{
      */
     public static String validateDriverLicenseNumber(String driverLicenseNumber) {
         //  Führerscheinnummer überprüfen
-        driverLicenseNumber = validateString(driverLicenseNumber, "Die Führerscheinnummer darf nicht leer sein!");
+        driverLicenseNumber = validateString(driverLicenseNumber, bundle.getString("DRIVER_LICENSE_NUMBER_EMPTY"));
         Utils.check(driverLicenseNumber.matches(ValidationRegexEnum.DRIVER_LICENSE_NUMBER.getRegex()),
-                "Die Führerscheinnummer ist ungültig!");
+                bundle.getString("DRIVER_LICENSE_NUMBER_NOT_VALID"));
 
         //  String nur in Großbuchstaben darstellen
         driverLicenseNumber = driverLicenseNumber.toUpperCase();
@@ -122,7 +124,7 @@ public class CustomerValidation extends Validation{
         checkNumber = checkNumber % 11;
 
         // Prüfziffer prüfen
-        Utils.check(checkNumber == intArray[9], "Prüfziffer stimmt nicht überein");
+        Utils.check(checkNumber == intArray[9], bundle.getString("CHECKNUMBER_NOT_VALID"));
 
         return driverLicenseNumber;
     }
@@ -166,7 +168,7 @@ public class CustomerValidation extends Validation{
      * @throws IllegalArgumentException Falls die Hausnummer null ist
      */
     public static String validateHouseNumber(String houseNumber) {
-        return validateStringViaRegex(houseNumber, ValidationRegexEnum.HOUSE_NUMBER.getRegex(), "Die Hausnummer ist ungültig");
+        return validateStringViaRegex(houseNumber, ValidationRegexEnum.HOUSE_NUMBER.getRegex(), bundle.getString("HOUSE_NUMBER_NOT_VALID"));
     }
 
     /**
@@ -196,7 +198,7 @@ public class CustomerValidation extends Validation{
      * @throws IllegalArgumentException Falls die PLZ null ist
      */
     public static String validateZipCode(String zipCode){
-        return validateStringViaRegex(zipCode, ValidationRegexEnum.GERMAN_ZIP_CODE.getRegex(), "Die Postleitzahl ist ungültig");
+        return validateStringViaRegex(zipCode, ValidationRegexEnum.GERMAN_ZIP_CODE.getRegex(), bundle.getString("ZIP_CODE_NOT_VALID"));
     }
 
 }
