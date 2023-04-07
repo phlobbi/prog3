@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 /**
  * Controller für die Kundenverwaltung
  */
-public class CustomerManagementController implements Initializable {
+public final class CustomerManagementController implements Initializable {
 
     @FXML
     private Button btnCreate;
@@ -110,7 +110,7 @@ public class CustomerManagementController implements Initializable {
      * @param event button click
      */
     @FXML
-    void switchToFirstView(ActionEvent event) throws IOException {
+    private void switchToFirstView(ActionEvent event) throws IOException {
         App.setRoot("fxml/first-view.fxml");
     }
 
@@ -120,7 +120,7 @@ public class CustomerManagementController implements Initializable {
      * @param event button click
      */
     @FXML
-    void searchCustomers(ActionEvent event) {
+    private void searchCustomers(ActionEvent event) {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
             String searchCriteria = textFieldSearch.getText();
@@ -182,7 +182,7 @@ public class CustomerManagementController implements Initializable {
      * @param event Event
      */
     @FXML
-    void searchCustomersViaEnter(KeyEvent event) {
+    private void searchCustomersViaEnter(KeyEvent event) {
         if (event.getCode().toString().equals("ENTER")) {
             searchCustomers(new ActionEvent());
         }
@@ -195,7 +195,7 @@ public class CustomerManagementController implements Initializable {
      * @param event Event
      */
     @FXML
-    void resetSearch(ActionEvent event) {
+    private void resetSearch(ActionEvent event) {
         uncheckFilters(new ActionEvent());
         reloadTable();
         textFieldSearch.clear();
@@ -208,7 +208,7 @@ public class CustomerManagementController implements Initializable {
      * @throws IOException wenn die Szene nicht geladen werden kann
      */
     @FXML
-    void switchToSceneAddCustomer(ActionEvent event) throws IOException {
+    private void switchToSceneAddCustomer(ActionEvent event) throws IOException {
         Stage stage;
         URL url = getClass().getResource("fxml/Customer-creation-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
@@ -235,7 +235,8 @@ public class CustomerManagementController implements Initializable {
     /**
      * Löscht einen in der Tabelle ausgewählten Kunden.
      */
-    public void deleteCustomer() {
+    @FXML
+    private void deleteCustomer() {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         setSelectedCustomer(tableView.getSelectionModel().getSelectedItem());
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, bundle.getString("CUSTOMER_CONFIRM_DELETE"));
@@ -257,7 +258,7 @@ public class CustomerManagementController implements Initializable {
     /**
      * Lädt die Tabelle neu.
      */
-    public void reloadTable() {
+    private void reloadTable() {
         tableView.getItems().clear();
 
         customerIDColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
@@ -285,7 +286,7 @@ public class CustomerManagementController implements Initializable {
      * Deaktiviert die Buttons und Menüs, sodass der Benutzer nicht mehr auf die Buttons klicken kann und
      * das Fenster nicht mehr geschlossen werden kann.
      */
-    void disableWindow() {
+    private void disableWindow() {
         btnSearch.setDisable(true);
         btnResetSearch.setDisable(true);
         btnCreate.setDisable(true);
@@ -305,7 +306,7 @@ public class CustomerManagementController implements Initializable {
      * Aktiviert die Buttons und Menüs, sodass der Benutzer wieder auf die Buttons klicken kann und
      * das Fenster wieder geschlossen werden kann.
      */
-    void enableWindow() {
+    private void enableWindow() {
         btnSearch.setDisable(false);
         btnResetSearch.setDisable(false);
         btnCreate.setDisable(false);
@@ -329,7 +330,7 @@ public class CustomerManagementController implements Initializable {
      * @throws IOException IOException
      */
     @FXML
-    void switchToSceneReadCustomer(ActionEvent event) throws IOException {
+    private void switchToSceneReadCustomer(ActionEvent event) throws IOException {
         setSelectedCustomer(tableView.getSelectionModel().getSelectedItem());
         App.setRoot("fxml/Customer-read-view.fxml");
     }
@@ -340,7 +341,7 @@ public class CustomerManagementController implements Initializable {
      * @param event Event
      */
     @FXML
-    void switchToSceneUpdateCustomer(ActionEvent event) {
+    private void switchToSceneUpdateCustomer(ActionEvent event) {
         setSelectedCustomer(tableView.getSelectionModel().getSelectedItem());
         Stage stage;
         URL url = getClass().getResource("fxml/Customer-edit-view.fxml");
@@ -371,7 +372,7 @@ public class CustomerManagementController implements Initializable {
      * @param event Event
      */
     @FXML
-    void uncheckFilters(ActionEvent event) {
+    private void uncheckFilters(ActionEvent event) {
         filterCity.setSelected(false);
         filterEmail.setSelected(false);
         filterFirstName.setSelected(false);

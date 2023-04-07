@@ -26,7 +26,7 @@ import java.util.Calendar;
  *
  * @author philipdausend
  */
-public class Invoice {
+public final class Invoice {
     private static final double DEFECT_RATE = 0.5;
     private static final double LATENESS_RATE = 1.5;
     private static final double TAX_RATE = 0.19;

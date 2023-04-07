@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 /**
  * Controller für die Ansicht einer Buchung
  */
-public class BookingReadController implements Initializable {
+public final class BookingReadController implements Initializable {
 
     @FXML
     private Button btnBack;
@@ -76,14 +76,14 @@ public class BookingReadController implements Initializable {
      * @throws IOException IOException
      */
     @FXML
-    void close(ActionEvent event) throws IOException {
+    private void close(ActionEvent event) throws IOException {
         App.setRoot("fxml/Booking-management-view.fxml");
     }
 
     /**
      * deaktiviert das Fenster
      */
-    void disableWindow() {
+    private void disableWindow() {
         btnDelete.setDisable(true);
         btnBack.setDisable(true);
 
@@ -95,7 +95,7 @@ public class BookingReadController implements Initializable {
     /**
      * aktiviert das Fenster
      */
-    void enableWindow() {
+    private void enableWindow() {
         btnDelete.setDisable(false);
         btnBack.setDisable(false);
 
@@ -111,7 +111,7 @@ public class BookingReadController implements Initializable {
      * @throws IOException IOException
      */
     @FXML
-    void switchToSceneReturnCar(ActionEvent event) throws IOException {
+    private void switchToSceneReturnCar(ActionEvent event) throws IOException {
         URL url = getClass().getResource("fxml/Booking-car-return-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
 

@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 @EntityListeners(PreventNullPersistForBooking.class)
 @Entity
 @Table(name = "Bookings")
-public class Booking implements BookingInterface {
+public final class Booking implements BookingInterface {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

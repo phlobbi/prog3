@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 /**
  * Controller für die Anzeige eines Autos
  */
-public class CarReadController implements Initializable {
+public final class CarReadController implements Initializable {
 
     @FXML
     private Button btnGoBack;
@@ -78,7 +78,7 @@ public class CarReadController implements Initializable {
      * @throws IOException IOException
      */
     @FXML
-    void removeCar(ActionEvent event) throws IOException {
+    private void removeCar(ActionEvent event) throws IOException {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         Car selectedCar = CarManagementController.getSelectedCar();
         CarManagementController.setSelectedCar(selectedCar);
@@ -106,7 +106,7 @@ public class CarReadController implements Initializable {
      * @throws IOException IOException
      */
     @FXML
-    void switchToCarView(ActionEvent event) throws IOException {
+    private void switchToCarView(ActionEvent event) throws IOException {
         App.setRoot("fxml/Car-view.fxml");
 
     }
@@ -116,7 +116,7 @@ public class CarReadController implements Initializable {
      * @param event Event
      */
     @FXML
-    void updateCar(ActionEvent event) {
+    private void updateCar(ActionEvent event) {
         Stage stage;
         URL url = getClass().getResource("fxml/Car-edit-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
@@ -140,7 +140,7 @@ public class CarReadController implements Initializable {
     /**
      * Deaktiviert das Fenster
      */
-    void disableWindow() {
+    private void disableWindow() {
         btnRemove.setDisable(true);
         btnUpdate.setDisable(true);
         btnGoBack.setDisable(true);
@@ -152,7 +152,7 @@ public class CarReadController implements Initializable {
     /**
      * Aktiviert das Fenster
      */
-    void enableWindow() {
+    private void enableWindow() {
         btnRemove.setDisable(false);
         btnUpdate.setDisable(false);
         btnGoBack.setDisable(false);
@@ -175,7 +175,7 @@ public class CarReadController implements Initializable {
     /**
      * Aktualisiert die Tabelle
      */
-    public void reloadTable() {
+    private void reloadTable() {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         Car car = CarManagementController.getSelectedCar();
         labelCarBasePrice.setText(String.valueOf(car.getBasePrice()));

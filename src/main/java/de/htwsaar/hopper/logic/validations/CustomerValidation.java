@@ -11,9 +11,15 @@ import java.util.ResourceBundle;
 /**
  * Stellt statische Methoden zur Verfügung, um die Felder für die Klasse Customer zu validieren.
  */
-public class CustomerValidation extends Validation {
+public final class CustomerValidation extends Validation {
+
     private static ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
 
+    /**
+     * Privater Konstruktor, um eine Instanziierung zu verhindern.
+     */
+    private CustomerValidation() {
+    }
     /**
      * Prüft, ob eine IBAN gültig ist.
      * Die Methode entfernt außerdem sämtliche Leerzeichen um die IBAN.

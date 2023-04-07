@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "CarId"),
                 @UniqueConstraint(columnNames = "LicensePlate")})
-public class Car implements CarInterface {
+public final class Car implements CarInterface {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

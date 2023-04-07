@@ -27,7 +27,7 @@ import static java.util.Calendar.MINUTE;
 /**
  * Controller für die Rückgabe eines Autos bei einer Buchung
  */
-public class BookingCarReturnController {
+public final class BookingCarReturnController {
 
 
     @FXML
@@ -60,7 +60,7 @@ public class BookingCarReturnController {
      * @param event Event (hier Mausklick)
      */
     @FXML
-    void returnCar(ActionEvent event) {
+    private void returnCar(ActionEvent event) {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         Booking booking = BookingManagementController.getSelectedBooking();
 
@@ -131,7 +131,7 @@ public class BookingCarReturnController {
      * @param event Event (hier Mausklick)
      */
     @FXML
-    void closeWindow(ActionEvent event) {
+    private void closeWindow(ActionEvent event) {
         Stage stage1 = (Stage) root.getScene().getWindow();
         stage1.close();
     }

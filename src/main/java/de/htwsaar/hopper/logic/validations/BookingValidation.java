@@ -13,7 +13,13 @@ import java.util.ResourceBundle;
 /**
  * Diese Klasse stellt Methoden zur Validierung von Feldern in der Klasse Booking zur Verfügung.
  */
-public class BookingValidation extends Validation {
+public final class BookingValidation extends Validation {
+
+    /**
+     * Privater Konstruktor, um eine Instanziierung zu verhindern.
+     */
+    private BookingValidation() {
+    }
 
     /**
      * Diese Konstante wird verwendet, um anzuzeigen, dass die ChecklistId nicht gesetzt ist.

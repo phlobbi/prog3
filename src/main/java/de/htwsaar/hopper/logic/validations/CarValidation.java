@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
  *
  * @author Bennet
  */
-public class CarValidation extends Validation {
+public final class CarValidation extends Validation {
     private static ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
 
     /**

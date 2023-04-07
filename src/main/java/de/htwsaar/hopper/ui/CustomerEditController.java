@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 /**
  * Controller für die Bearbeitung eines Kunden
  */
-public class CustomerEditController implements Initializable {
+public final class CustomerEditController implements Initializable {
 
     @FXML
     private Button btnCancel;
@@ -96,7 +96,7 @@ public class CustomerEditController implements Initializable {
      * @throws IOException IOException
      */
     @FXML
-    void cancelCreation(ActionEvent event) throws IOException {
+    private void cancelCreation(ActionEvent event) throws IOException {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
@@ -118,7 +118,7 @@ public class CustomerEditController implements Initializable {
      * Lädt den ausgewählten Kunden in die Felder der View
      */
     @FXML
-    void loadCustomer() {
+    private void loadCustomer() {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
             Customer customer = CustomerManagementController.getSelectedCustomer();
@@ -149,7 +149,7 @@ public class CustomerEditController implements Initializable {
      * @param event Event
      */
     @FXML
-    void updateCustomer(ActionEvent event) {
+    private void updateCustomer(ActionEvent event) {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
             validateTextField(textFieldFirstName, labelFirstName.getText() + " " + bundle.getString("EMPTY"));

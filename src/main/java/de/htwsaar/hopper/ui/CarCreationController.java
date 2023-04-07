@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 /**
  * Controller für die Erstellung eines Autos
  */
-public class CarCreationController implements Initializable {
+public final class CarCreationController implements Initializable {
 
     private String carTypeStr;
     private String transmissionStr;
@@ -120,7 +120,7 @@ public class CarCreationController implements Initializable {
      * @throws IOException Fehler beim Laden einer Datei
      */
     @FXML
-    void cancelCreation(ActionEvent event) throws IOException {
+    private void cancelCreation(ActionEvent event) throws IOException {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
@@ -131,7 +131,7 @@ public class CarCreationController implements Initializable {
      * @param event Event
      */
     @FXML
-    void createCar(ActionEvent event) {
+    private void createCar(ActionEvent event) {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
             validateTextField(textFieldBrand, labelBrand.getText() + " " + bundle.getString("EMPTY"));
@@ -165,7 +165,6 @@ public class CarCreationController implements Initializable {
             for (CarTypeEnum type : CarTypeEnum.values()) {
                 if (type.getLabel().equals(carTypeStr)) {
                     concreteType = type;
-
                 }
             }
 

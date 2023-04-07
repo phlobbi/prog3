@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 /**
  * Controller für die Erstellung eines Kunden
  */
-public class CustomerCreationController {
+public final class CustomerCreationController {
 
     @FXML
     private Button btnCancel;
@@ -94,7 +94,7 @@ public class CustomerCreationController {
      * @throws IOException IOException
      */
     @FXML
-    void cancelCreation(ActionEvent event) throws IOException {
+    private void cancelCreation(ActionEvent event) throws IOException {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
@@ -105,7 +105,7 @@ public class CustomerCreationController {
      * @param event ActionEvent
      */
     @FXML
-    void createCustomer(ActionEvent event) {
+    private void createCustomer(ActionEvent event) {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
             validateTextField(textFieldFirstName, labelFirstName.getText() + " " + bundle.getString("EMPTY"));

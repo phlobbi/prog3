@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Ronny
  */
-public class CarRepository {
+public final class CarRepository {
     /**
      * Findet ein Car über seine ID.
      *

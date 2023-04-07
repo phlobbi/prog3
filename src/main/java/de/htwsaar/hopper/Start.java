@@ -5,7 +5,14 @@ import de.htwsaar.hopper.ui.App;
 /**
  * Eine Hilfsklasse, die die JavaFX Applikation startet.
  */
-public class Start {
+public final class Start {
+
+    /**
+     * Privater Konstruktor, damit die Klasse nicht instanziiert werden kann.
+     */
+    private Start() {
+    }
+
     /**
      * Einstiegspunkt für die Anwendung.
      * Die Methode ruft die main-Methode der Klasse App auf.

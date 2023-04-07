@@ -19,7 +19,7 @@ public final class FirstViewController {
      * @param event mouse click
      */
     @FXML
-    void switchToCarRental(MouseEvent event) throws IOException {
+    private void switchToCarRental(MouseEvent event) throws IOException {
         App.setRoot("fxml/Booking-management-view.fxml");
     }
 
@@ -29,7 +29,7 @@ public final class FirstViewController {
      * @param event mouse click
      */
     @FXML
-    void switchToCustomerView(MouseEvent event) throws IOException {
+    private void switchToCustomerView(MouseEvent event) throws IOException {
         App.setRoot("fxml/Customer-management-view.fxml");
     }
 
@@ -39,7 +39,7 @@ public final class FirstViewController {
      * @param event mouse click
      */
     @FXML
-    void switchToHelpView(MouseEvent event) throws URISyntaxException, IOException {
+    private void switchToHelpView(MouseEvent event) throws URISyntaxException, IOException {
         Desktop.getDesktop().browse(new URI("https://phlobbi.github.io/prog3/"));
     }
 
@@ -49,7 +49,7 @@ public final class FirstViewController {
      * @param event mouse click
      */
     @FXML
-    void switchToCarManagementView(MouseEvent event) throws IOException {
+    private void switchToCarManagementView(MouseEvent event) throws IOException {
         App.setRoot("fxml/Car-view.fxml");
     }
 
@@ -59,7 +59,7 @@ public final class FirstViewController {
      * @param event mouse click
      */
     @FXML
-    void switchToSettingsView(MouseEvent event) throws IOException {
+    private void switchToSettingsView(MouseEvent event) throws IOException {
         App.setRoot("fxml/settings-view.fxml");
     }
 }
