@@ -14,7 +14,14 @@ import java.util.ResourceBundle;
  * @author Bennet
  */
 public final class CarValidation extends Validation {
+
     private static ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
+
+    /**
+     * Privater Konstruktor, um Instanziierung zu verhindern.
+     */
+    private CarValidation() {
+    }
 
     /**
      * Prüft, ob der übergebene Grundpreis gültig ist.
@@ -103,7 +110,7 @@ public final class CarValidation extends Validation {
      * @return horsepower, falls gültig
      * @throws IllegalArgumentException Falls die Pferdestärke nicht stimmt
      */
-    public static int validateHorsepower(int horsepower){
+    public static int validateHorsepower(int horsepower) {
         Utils.check(horsepower > 0, bundle.getString("HORSEPOWER_GREATER_THAN_ZERO"));
         return horsepower;
     }

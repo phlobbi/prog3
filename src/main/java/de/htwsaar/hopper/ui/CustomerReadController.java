@@ -98,7 +98,8 @@ public final class CustomerReadController implements Initializable {
         Customer selectedCustomer = CustomerManagementController.getSelectedCustomer();
         CustomerManagementController.setSelectedCustomer(selectedCustomer);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, bundle.getString("CUSTOMER_CONFIRM_DELETE"));
-        alert.setHeaderText(bundle.getString("CUSTOMER_HEADER_CONFIRM_DELETE"));;
+        alert.setHeaderText(bundle.getString("CUSTOMER_HEADER_CONFIRM_DELETE"));
+        ;
         alert.setContentText(bundle.getString("CUSTOMER_CONTENT_TEXT") + " " + selectedCustomer.getCustomerId() + " " + selectedCustomer.getFirstName() + " " + selectedCustomer.getLastName());
         alert.showAndWait();
         if (alert.getResult().getText().equals("OK")) {

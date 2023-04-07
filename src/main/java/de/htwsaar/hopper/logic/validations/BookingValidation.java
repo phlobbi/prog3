@@ -16,16 +16,16 @@ import java.util.ResourceBundle;
 public final class BookingValidation extends Validation {
 
     /**
-     * Privater Konstruktor, um eine Instanziierung zu verhindern.
-     */
-    private BookingValidation() {
-    }
-
-    /**
      * Diese Konstante wird verwendet, um anzuzeigen, dass die ChecklistId nicht gesetzt ist.
      */
     public static final int CHECKLIST_NULL = -1;
     private static ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
+
+    /**
+     * Privater Konstruktor, um eine Instanziierung zu verhindern.
+     */
+    private BookingValidation() {
+    }
 
     /**
      * Prüft, ob die CarId existiert und ob das Auto bereits vergeben ist

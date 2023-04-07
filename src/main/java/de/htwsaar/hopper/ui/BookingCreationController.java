@@ -192,7 +192,7 @@ public final class BookingCreationController {
     @FXML
     private void createBooking(ActionEvent event) {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
-        try{
+        try {
             if (datePickerPickUpDate.getValue() == null) {
                 throw new IllegalArgumentException(labelPickUpDate.getText() + " " + bundle.getString("EMPTY"));
             }

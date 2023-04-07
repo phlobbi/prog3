@@ -189,13 +189,13 @@ public final class Customer implements CustomerInterface {
     @Override
     public void setFirstName(String firstName) {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
-        this.firstName = CustomerValidation.validateString(firstName,bundle.getString("FIRSTNAME_NOT_VALID"));
+        this.firstName = CustomerValidation.validateString(firstName, bundle.getString("FIRSTNAME_NOT_VALID"));
     }
 
     @Override
     public void setLastName(String lastName) {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
-        this.lastName = CustomerValidation.validateString(lastName,bundle.getString("LASTNAME_NOT_VALID"));
+        this.lastName = CustomerValidation.validateString(lastName, bundle.getString("LASTNAME_NOT_VALID"));
     }
 
     @Override
@@ -206,7 +206,7 @@ public final class Customer implements CustomerInterface {
     @Override
     public void setStreet(String street) {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
-        this.street = CustomerValidation.validateString(street,bundle.getString("STREET_NOT_VALID"));
+        this.street = CustomerValidation.validateString(street, bundle.getString("STREET_NOT_VALID"));
     }
 
     @Override
@@ -222,7 +222,7 @@ public final class Customer implements CustomerInterface {
     @Override
     public void setCity(String city) {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
-        this.city = CustomerValidation.validateString(city,bundle.getString("CITY_NOT_VALID"));
+        this.city = CustomerValidation.validateString(city, bundle.getString("CITY_NOT_VALID"));
     }
 
     @Override

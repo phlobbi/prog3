@@ -133,7 +133,7 @@ public final class Booking implements BookingInterface {
     @Override
     public String getRealDropOffDateShowField() {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles/i18n");
-        if (this.realDropOffDate == null){
+        if (this.realDropOffDate == null) {
             return bundle.getString("NOT_RETURNED_YET");
         } else {
             return Utils.calendarToString(this.realDropOffDate);

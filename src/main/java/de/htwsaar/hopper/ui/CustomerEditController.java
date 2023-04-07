@@ -153,7 +153,8 @@ public final class CustomerEditController implements Initializable {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
             validateTextField(textFieldFirstName, labelFirstName.getText() + " " + bundle.getString("EMPTY"));
-            validateTextField(textFieldLastName, labelLastName.getText() + " " + bundle.getString("EMPTY"));;
+            validateTextField(textFieldLastName, labelLastName.getText() + " " + bundle.getString("EMPTY"));
+            ;
             validateTextField(textFieldPhoneNumber, labelPhoneNumber.getText() + " " + bundle.getString("EMPTY"));
             validateTextField(textFieldEmail, labelEmail.getText() + " " + bundle.getString("EMPTY"));
             validateTextField(textFieldIBAN, labelIBAN.getText() + " " + bundle.getString("EMPTY"));

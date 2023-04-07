@@ -20,6 +20,7 @@ public final class CustomerValidation extends Validation {
      */
     private CustomerValidation() {
     }
+
     /**
      * Prüft, ob eine IBAN gültig ist.
      * Die Methode entfernt außerdem sämtliche Leerzeichen um die IBAN.

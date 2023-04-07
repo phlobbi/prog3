@@ -254,7 +254,7 @@ public final class Car implements CarInterface {
     @Override
     public void setModel(String model) {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles/i18n");
-        this.model = CarValidation.validateString(model,bundle.getString("CARMODEL_NOT_VALID"));
+        this.model = CarValidation.validateString(model, bundle.getString("CARMODEL_NOT_VALID"));
     }
 
     @Override
