@@ -112,7 +112,7 @@ public final class BookingCustomerChooseController implements Initializable {
 
 
             tableView.getItems().clear();
-            for (Customer customer : CustomerRepository.findAll()) {
+            for (Customer customer : CustomerRepository.findAvailable()) {
                 for (CheckMenuItem item : checkMenuItems) {
                     boolean allowedToInsert = false;
                     if (item.equals(searchCritFirstName)) {
@@ -211,14 +211,13 @@ public final class BookingCustomerChooseController implements Initializable {
         customerCityColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
 
         ObservableList<Customer> observableList = FXCollections.observableArrayList();
-        observableList.addAll(CustomerRepository.findAll());
+        observableList.addAll(CustomerRepository.findAvailable());
 
         tableView.getItems().addAll(observableList);
         tableView.getSelectionModel().selectFirst();
         if (tableView.getSelectionModel().isEmpty()) {
             btnSave.setDisable(true);
             btnSearch.setDisable(true);
-            btnCancel.setDisable(true);
         }
     }
 
