@@ -167,7 +167,7 @@ public class CarCreationController implements Initializable{
                 }
             }
 
-            if (satNavStr.equals(bundle.getString("NEIN"))){
+            if (satNavStr.equals("Nein")){
                     concreteSatNav = false;
             }
 
