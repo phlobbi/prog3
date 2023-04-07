@@ -31,11 +31,6 @@ public class CarRepositoryTest {
 
         creationDate = Calendar.getInstance();
         creationDate.add(Calendar.YEAR, -1);
-
-        pickUpDate = Calendar.getInstance();
-
-        dropOffDate = Calendar.getInstance();
-        dropOffDate.add(Calendar.DAY_OF_MONTH, 1);
     }
 
     @Before
@@ -43,6 +38,7 @@ public class CarRepositoryTest {
         TestDBUtils.reloadTestDB();
 
         pickUpDate = Calendar.getInstance();
+        pickUpDate.add(Calendar.MINUTE, 5);
 
         dropOffDate = Calendar.getInstance();
         dropOffDate.add(Calendar.DAY_OF_MONTH, 1);

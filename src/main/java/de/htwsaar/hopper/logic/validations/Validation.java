@@ -68,28 +68,8 @@ public abstract class Validation {
         validateHour(date.get(Calendar.HOUR_OF_DAY));
         validateMinute(date.get(Calendar.MINUTE));
 
-        // Fall: Stunde gleich, Minute kleiner als jetzt
-        if (date.get(Calendar.MINUTE) < (currentCalendar.get(Calendar.MINUTE))
-                && date.get(Calendar.HOUR_OF_DAY) == (currentCalendar.get(Calendar.HOUR_OF_DAY))) {
-            throw new IllegalArgumentException(errorMessage);
-        }
-
-        // Fall: Tag gleich, Stunde kleiner als jetzt
-        if (date.get(Calendar.HOUR_OF_DAY) < (currentCalendar.get(Calendar.HOUR_OF_DAY))
-                && date.get(Calendar.DAY_OF_YEAR) == (currentCalendar.get(Calendar.DAY_OF_YEAR))) {
-            throw new IllegalArgumentException(errorMessage);
-        }
-
-        // Fall: Jahr gleich, Tag kleiner als jetzt
-        if (date.get(Calendar.DAY_OF_YEAR) < (currentCalendar.get(Calendar.DAY_OF_YEAR))
-                && date.get(Calendar.YEAR) == (currentCalendar.get(Calendar.YEAR))) {
-            throw new IllegalArgumentException(errorMessage);
-        }
-
-        // Fall: Jahr kleiner als jetzt
-        if (date.get(Calendar.YEAR) < (currentCalendar.get(Calendar.YEAR))) {
-            throw new IllegalArgumentException(errorMessage);
-        }
+        if(date.before(currentCalendar))
+        	throw new IllegalArgumentException(errorMessage);
 
         return date;
     }
@@ -122,26 +102,7 @@ public abstract class Validation {
         validateHour(date.get(Calendar.HOUR_OF_DAY));
         validateMinute(date.get(Calendar.MINUTE));
 
-        // Fall: Stunde gleich, Minute später als jetzt
-        if (date.get(Calendar.MINUTE) > (currentCalendar.get(Calendar.MINUTE))
-                && date.get(Calendar.HOUR_OF_DAY) == (currentCalendar.get(Calendar.HOUR_OF_DAY))) {
-            throw new IllegalArgumentException(errorMessage);
-        }
-
-        // Fall: Tag gleich, Stunde später als jetzt
-        if (date.get(Calendar.HOUR_OF_DAY) > (currentCalendar.get(Calendar.HOUR_OF_DAY))
-                && date.get(Calendar.DAY_OF_YEAR) == (currentCalendar.get(Calendar.DAY_OF_YEAR))) {
-            throw new IllegalArgumentException(errorMessage);
-        }
-
-        // Fall: Jahr gleich, Tag später als jetzt
-        if (date.get(Calendar.DAY_OF_YEAR) > (currentCalendar.get(Calendar.DAY_OF_YEAR))
-                && date.get(Calendar.YEAR) == (currentCalendar.get(Calendar.YEAR))) {
-            throw new IllegalArgumentException(errorMessage);
-        }
-
-        // Fall: Jahr später als jetzt
-        if (date.get(Calendar.YEAR) > (currentCalendar.get(Calendar.YEAR))) {
+        if (date.after(currentCalendar)) {
             throw new IllegalArgumentException(errorMessage);
         }
 

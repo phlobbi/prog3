@@ -56,12 +56,13 @@ public class BookingTest {
         CustomerRepository.persist(customer2);
 
         pickUpDate = Calendar.getInstance();
+        pickUpDate.add(Calendar.MINUTE, 5);
 
         dropOffDate = Calendar.getInstance();
         dropOffDate.add(Calendar.DAY_OF_YEAR, 1);
 
         sameDayDropOffDate = Calendar.getInstance();
-        sameDayDropOffDate.add(Calendar.MINUTE, 1);
+        sameDayDropOffDate.add(Calendar.MINUTE, 6);
 
         booking = new Booking(1, 1, pickUpDate, dropOffDate);
     }
