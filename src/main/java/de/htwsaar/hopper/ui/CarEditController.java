@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 /**
  * Controller für die Bearbeitung eines Autos
  */
-public class CarEditController implements Initializable {
+public final class CarEditController implements Initializable {
 
     private String carTypeStr;
     private String transmissionStr;
