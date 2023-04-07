@@ -11,7 +11,7 @@ import java.util.stream.Stream;
  *
  * @author roblin
  */
-public class PreventNullPersistForCar {
+public final class PreventNullPersistForCar {
 
     /**
      * Wird automatisiert aufgerufen, wann immer eine Car-Entität persistiert werden soll.

@@ -10,7 +10,13 @@ import java.util.Calendar;
 /**
  * Stellt statische Methoden zur Verfügung, um die Felder für die Klasse Customer zu validieren.
  */
-public class CustomerValidation extends Validation {
+public final class CustomerValidation extends Validation {
+
+    /**
+     * Privater Konstruktor, um eine Instanziierung zu verhindern.
+     */
+    private CustomerValidation() {
+    }
 
     /**
      * Prüft, ob eine IBAN gültig ist.

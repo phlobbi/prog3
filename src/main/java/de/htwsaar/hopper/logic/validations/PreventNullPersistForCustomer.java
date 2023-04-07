@@ -11,7 +11,7 @@ import java.util.stream.Stream;
  *
  * @author roblin
  */
-public class PreventNullPersistForCustomer {
+public final class PreventNullPersistForCustomer {
 
     /**
      * Wird automatisiert aufgerufen, wann immer eine Customer-Entität persistiert werden soll.

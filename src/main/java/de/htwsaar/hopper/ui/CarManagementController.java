@@ -126,7 +126,7 @@ public final class CarManagementController implements Initializable {
      * @throws IOException IOException
      */
     @FXML
-    void switchToSceneAddCar(ActionEvent event) throws IOException {
+    private void switchToSceneAddCar(ActionEvent event) throws IOException {
         Stage stage;
         URL url = getClass().getResource("fxml/Car-creation-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
@@ -154,7 +154,7 @@ public final class CarManagementController implements Initializable {
      * Deaktiviert das Fenster, sodass es nicht mehr geschlossen werden kann und keine
      * weiteren Aktionen ausgeführt werden können.
      */
-    void disableWindow() {
+    private void disableWindow() {
         menuButtonFilter.setDisable(true);
         menuItemUncheck.setDisable(true);
         textFieldSearch.setDisable(true);
@@ -174,7 +174,7 @@ public final class CarManagementController implements Initializable {
      * Aktiviert das Fenster, sodass es wieder geschlossen werden kann und Aktionen
      * ausgeführt werden können.
      */
-    void enableWindow() {
+    private void enableWindow() {
         menuButtonFilter.setDisable(false);
         menuItemUncheck.setDisable(false);
         textFieldSearch.setDisable(false);
@@ -197,13 +197,13 @@ public final class CarManagementController implements Initializable {
      * @param event button click
      */
     @FXML
-    void switchToSceneReadCar(ActionEvent event) throws IOException {
+    private void switchToSceneReadCar(ActionEvent event) throws IOException {
         setSelectedCar(tableView.getSelectionModel().getSelectedItem());
         App.setRoot("fxml/Car-read-view.fxml");
     }
 
     @FXML
-    void switchToSceneUpdateCar(ActionEvent event) throws IOException {
+    private void switchToSceneUpdateCar(ActionEvent event) throws IOException {
         Stage stage;
         URL url = getClass().getResource("fxml/Car-edit-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
@@ -240,7 +240,7 @@ public final class CarManagementController implements Initializable {
      * @param event button click
      */
     @FXML
-    void switchToFirstView(ActionEvent event) throws IOException {
+    private void switchToFirstView(ActionEvent event) throws IOException {
         App.setRoot("fxml/first-view.fxml");
     }
 
@@ -259,7 +259,7 @@ public final class CarManagementController implements Initializable {
     /**
      * Quasi wie Initialisierung,
      */
-    public void reloadTable() {
+    private void reloadTable() {
         tableView.getItems().clear();
 
         carIDColumn.setCellValueFactory(new PropertyValueFactory<>("carId"));
@@ -291,7 +291,7 @@ public final class CarManagementController implements Initializable {
      * Löscht das ausgewählte Fahrzeug aus der Datenbank.
      */
     @FXML
-    public void deleteCar() {
+    private void deleteCar() {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
 
         setSelectedCar(tableView.getSelectionModel().getSelectedItem());
@@ -318,7 +318,7 @@ public final class CarManagementController implements Initializable {
      * @param event button click
      */
     @FXML
-    void resetSearch(ActionEvent event) {
+    private void resetSearch(ActionEvent event) {
         uncheckFilters(new ActionEvent());
         textFieldSearch.clear();
         reloadTable();
@@ -330,7 +330,7 @@ public final class CarManagementController implements Initializable {
      * @param event button click
      */
     @FXML
-    void searchCars(ActionEvent event) {
+    private void searchCars(ActionEvent event) {
         try {
             String searchCriteria = textFieldSearch.getText();
 
@@ -397,7 +397,7 @@ public final class CarManagementController implements Initializable {
      * @param event Enter Taste
      */
     @FXML
-    void searchCarsViaEnter(KeyEvent event) {
+    private void searchCarsViaEnter(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER)
             searchCars(new ActionEvent());
     }
@@ -433,7 +433,7 @@ public final class CarManagementController implements Initializable {
      * @param event button click
      */
     @FXML
-    void uncheckFilters(ActionEvent event) {
+    private void uncheckFilters(ActionEvent event) {
         filterBrand.setSelected(false);
         filterModel.setSelected(false);
         filterType.setSelected(false);

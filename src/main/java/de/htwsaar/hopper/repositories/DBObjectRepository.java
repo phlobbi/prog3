@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Ronny
  */
-public class DBObjectRepository {
+public final class DBObjectRepository {
 
     /**
      * Findet ein DB-Objekt über seine ID

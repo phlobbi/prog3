@@ -16,13 +16,13 @@ import java.util.ResourceBundle;
  * Controller für die Einstellungen
  */
 @SuppressWarnings("MissingJavadoc")
-public class SettingsViewController implements Initializable {
+public final class SettingsViewController implements Initializable{
 
     @FXML
-    public Button saveButton;
+    private Button saveButton;
 
     @FXML
-    public ChoiceBox<String> languageSelection;
+    private ChoiceBox<String> languageSelection;
 
     /**
      * Speichert die Spracheinstellung und wechselt zur ersten Ansicht
@@ -31,7 +31,7 @@ public class SettingsViewController implements Initializable {
      * @throws IOException Wenn die Datei nicht gefunden werden kann
      */
     @FXML
-    public void saveButtonAction(ActionEvent actionEvent) throws IOException {
+    private void saveButtonAction(ActionEvent actionEvent) throws IOException {
         System.out.println(languageSelection.getValue());
         switch (languageSelection.getValue()) {
             case "English":

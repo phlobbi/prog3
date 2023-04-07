@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Ronny
  */
-public class BookingRepository {
+public final class BookingRepository {
 
     /**
      * Findet ein Booking über seine ID.

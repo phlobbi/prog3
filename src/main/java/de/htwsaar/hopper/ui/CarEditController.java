@@ -119,7 +119,7 @@ public class CarEditController implements Initializable {
      * @param event Event
      */
     @FXML
-    void cancelCreation(ActionEvent event) throws IOException {
+    private void cancelCreation(ActionEvent event) throws IOException {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
@@ -130,7 +130,7 @@ public class CarEditController implements Initializable {
      * @param event Event
      */
     @FXML
-    void updateCar(ActionEvent event) {
+    private void updateCar(ActionEvent event) {
         try {
             validateTextField(textFieldBrand, labelBrand.getText() + " leer");
             validateTextField(textFieldSeats, labelSeats.getText() + " leer");
@@ -341,7 +341,7 @@ public class CarEditController implements Initializable {
      * Lädt das Auto aus der Klasse
      */
     @FXML
-    void loadCar() {
+    private void loadCar() {
         try {
             Car loadedCar = CarManagementController.getSelectedCar();
             textFieldBrand.setText(loadedCar.getBrand());

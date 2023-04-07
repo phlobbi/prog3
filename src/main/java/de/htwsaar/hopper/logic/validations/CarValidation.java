@@ -12,7 +12,7 @@ import java.util.Calendar;
  *
  * @author Bennet
  */
-public class CarValidation extends Validation {
+public final class CarValidation extends Validation {
 
     /**
      * Prüft, ob der übergebene Grundpreis gültig ist.

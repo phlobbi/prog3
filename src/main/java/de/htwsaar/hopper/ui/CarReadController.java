@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 /**
  * Controller für die Anzeige eines Autos
  */
-public class CarReadController implements Initializable {
+public final class CarReadController implements Initializable {
 
     @FXML
     private Button btnGoBack;
@@ -78,7 +78,7 @@ public class CarReadController implements Initializable {
      * @throws IOException IOException
      */
     @FXML
-    void removeCar(ActionEvent event) throws IOException {
+    private void removeCar(ActionEvent event) throws IOException {
         Car selectedCar = CarManagementController.getSelectedCar();
         CarManagementController.setSelectedCar(selectedCar);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wollen Sie den Wagen wirklich löschen?");
@@ -105,7 +105,7 @@ public class CarReadController implements Initializable {
      * @throws IOException IOException
      */
     @FXML
-    void switchToCarView(ActionEvent event) throws IOException {
+    private void switchToCarView(ActionEvent event) throws IOException {
         App.setRoot("fxml/Car-view.fxml");
 
     }
@@ -115,7 +115,7 @@ public class CarReadController implements Initializable {
      * @param event Event
      */
     @FXML
-    void updateCar(ActionEvent event) {
+    private void updateCar(ActionEvent event) {
         Stage stage;
         try {
             Car selectedCar = CarManagementController.getSelectedCar();
@@ -137,7 +137,7 @@ public class CarReadController implements Initializable {
     /**
      * Deaktiviert das Fenster
      */
-    void disableWindow() {
+    private void disableWindow() {
         btnRemove.setDisable(true);
         btnUpdate.setDisable(true);
         btnGoBack.setDisable(true);
@@ -149,7 +149,7 @@ public class CarReadController implements Initializable {
     /**
      * Aktiviert das Fenster
      */
-    void enableWindow() {
+    private void enableWindow() {
         btnRemove.setDisable(false);
         btnUpdate.setDisable(false);
         btnGoBack.setDisable(false);
@@ -172,7 +172,7 @@ public class CarReadController implements Initializable {
     /**
      * Aktualisiert die Tabelle
      */
-    public void reloadTable() {
+    private void reloadTable() {
         Car car = CarManagementController.getSelectedCar();
         labelCarBasePrice.setText(String.valueOf(car.getBasePrice()));
         labelCarBrand.setText(String.valueOf(car.getBrand()));
