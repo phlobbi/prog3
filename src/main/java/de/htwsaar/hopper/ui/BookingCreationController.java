@@ -101,7 +101,7 @@ public final class BookingCreationController {
      * @param event Event (hier Mausklick)
      */
     @FXML
-    void chooseCar(ActionEvent event) {
+    private void chooseCar(ActionEvent event) {
         Stage stage;
         URL url = getClass().getResource("fxml/Booking-car-choose-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
