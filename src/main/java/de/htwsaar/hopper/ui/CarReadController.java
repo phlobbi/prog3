@@ -79,20 +79,21 @@ public final class CarReadController implements Initializable {
      */
     @FXML
     private void removeCar(ActionEvent event) throws IOException {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         Car selectedCar = CarManagementController.getSelectedCar();
         CarManagementController.setSelectedCar(selectedCar);
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wollen Sie den Wagen wirklich löschen?");
-        alert.setHeaderText("Wagen wirklich löschen?");
-        alert.setContentText("Wagen: " + selectedCar.getCarId() + " " + selectedCar.getBrand() + " " + selectedCar.getType());
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, bundle.getString("CAR_CONFIRM_DELETE"));
+        alert.setHeaderText(bundle.getString("CAR_HEADER_CONFIRM_DELETE"));
+        alert.setContentText(bundle.getString("CAR_CONTENT_TEXT") + selectedCar.getCarId() + " " + selectedCar.getBrand() + " " + selectedCar.getType());
         alert.showAndWait();
         if (alert.getResult().getText().equals("OK")) {
             CarRepository.delete(selectedCar);
             reloadTable();
-            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Wagen wurde gelöscht.");
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, bundle.getString("CAR_DELETED"));
             alert2.show();
             App.setRoot("fxml/Car-view.fxml");
         } else {
-            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Wagen wurde nicht gelöscht.");
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, bundle.getString("CAR_NOT_DELETED"));
             alert2.show();
             alert.close();
         }
@@ -112,15 +113,18 @@ public final class CarReadController implements Initializable {
 
     /**
      * Öffnet das Fenster zum Bearbeiten des Autos
+     *
      * @param event Event
      */
     @FXML
     private void updateCar(ActionEvent event) {
         Stage stage;
+        URL url = getClass().getResource("fxml/Car-edit-view.fxml");
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
             Car selectedCar = CarManagementController.getSelectedCar();
             CarManagementController.setSelectedCar(selectedCar);
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Car-edit-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(url, bundle);
             Parent root1 = fxmlLoader.load();
             stage = new Stage();
             stage.setScene(new Scene(root1));
@@ -173,6 +177,7 @@ public final class CarReadController implements Initializable {
      * Aktualisiert die Tabelle
      */
     private void reloadTable() {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         Car car = CarManagementController.getSelectedCar();
         labelCarBasePrice.setText(String.valueOf(car.getBasePrice()));
         labelCarBrand.setText(String.valueOf(car.getBrand()));
@@ -181,15 +186,15 @@ public final class CarReadController implements Initializable {
         labelCarCreationDate.setText((date));
         labelCarCurrentPrise.setText(String.valueOf(car.getCurrentPrice()));
         labelCarSeats.setText(String.valueOf(car.getSeats()));
-        labelCarType.setText(car.getType().getLabel());
+        labelCarType.setText(bundle.getString(car.getType().name()));
         labelcarLicensePlate.setText(car.getLicensePlate());
-        labelFuelType.setText(car.getFuelType().getLabel());
-        labelTransType.setText(car.getTransmissionType().getLabel());
+        labelFuelType.setText(bundle.getString(car.getFuelType().name()));
+        labelTransType.setText(bundle.getString(car.getTransmissionType().name()));
         labelModel.setText(car.getModel());
         if (car.getSatNav()) {
-            labelSatNav.setText("Ja");
+            labelSatNav.setText(bundle.getString("JA"));
         } else {
-            labelSatNav.setText("Nein");
+            labelSatNav.setText(bundle.getString("NEIN"));
         }
         labelMileage.setText(String.valueOf(car.getMileage()));
         labelHorsePower.setText(String.valueOf(car.getHorsepower()));

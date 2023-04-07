@@ -66,7 +66,7 @@
               </graphic>
            </Button>
            <MenuButton fx:id="menuButtonFilter" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0"
-                       prefWidth="125.0" text="%CRITERIA">
+                       prefWidth="125.0" text="%MENU_FILTER">
               <items>
                   <CheckMenuItem fx:id="filterType" mnemonicParsing="false" text="%CAR_CARTYPE"/>
                   <CheckMenuItem fx:id="filterBrand" mnemonicParsing="false" text="%CAR_CARBRAND"/>
@@ -75,7 +75,7 @@
                   <CheckMenuItem fx:id="filterFuelType" mnemonicParsing="false" text="%CAR_FUELTYPE"/>
                   <CheckMenuItem fx:id="filterLicensePlate" mnemonicParsing="false" text="%CAR_LICENSE_PLATE"/>
                   <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckFilters"
-                            text="%DELETE_CRITERIA"/>
+                            text="%MENU_REMOVE_FILTER"/>
               </items>
            </MenuButton>
            <Button fx:id="btnResetSearch" mnemonicParsing="false" onAction="#resetSearch" prefHeight="25.0"
@@ -97,7 +97,7 @@
             <TableColumn fx:id="carModelColumn" prefWidth="155.0" text="%CAR_CARMODEL" />
             <TableColumn fx:id="carTransmissionColumn" prefWidth="100.0" text="%CAR_TRANSMISSION" />
             <TableColumn fx:id="carFuelTypeColumn" prefWidth="97.0" text="%CAR_FUELTYPE" />
-            <TableColumn fx:id="carHorsepowerColumn" prefWidth="60.0" text="%CAR_HORSEPOWER" />
+            <TableColumn fx:id="carHorsepowerColumn" prefWidth="60.0" text="%CAR_CARHP" />
             <TableColumn fx:id="carSatNavColumn" prefWidth="60.0" text="%CAR_SATNAV" />
             <TableColumn fx:id="carMileageColumn" prefWidth="90.0" text="%CAR_MILEAGE" />
             <TableColumn fx:id="carLicensePlateColumn" prefWidth="120.0" text="%CAR_LICENSE_PLATE" />

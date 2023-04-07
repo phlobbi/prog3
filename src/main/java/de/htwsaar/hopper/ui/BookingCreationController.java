@@ -101,7 +101,7 @@ public final class BookingCreationController {
      * @param event Event (hier Mausklick)
      */
     @FXML
-    void chooseCar(ActionEvent event) {
+    private void chooseCar(ActionEvent event) {
         Stage stage;
         URL url = getClass().getResource("fxml/Booking-car-choose-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
@@ -191,19 +191,19 @@ public final class BookingCreationController {
      */
     @FXML
     private void createBooking(ActionEvent event) {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
-
             if (datePickerPickUpDate.getValue() == null) {
-                throw new IllegalArgumentException(labelPickUpDate.getText() + " leer");
+                throw new IllegalArgumentException(labelPickUpDate.getText() + " " + bundle.getString("EMPTY"));
             }
             if (datePickerDropOffDate.getValue() == null) {
-                throw new IllegalArgumentException(labelDropOffDate.getText() + " leer");
+                throw new IllegalArgumentException(labelDropOffDate.getText() + " " + bundle.getString("EMPTY"));
             }
             if (chosenCar == null) {
-                throw new IllegalArgumentException("Kein Auto ausgewählt");
+                throw new IllegalArgumentException(bundle.getString("NO_CAR_SELECTED"));
             }
             if (chosenCustomer == null) {
-                throw new IllegalArgumentException("Kein Kunde ausgewählt");
+                throw new IllegalArgumentException(bundle.getString("NO_CAR_SELECTED"));
             }
 
 
@@ -241,14 +241,14 @@ public final class BookingCreationController {
 
             BookingRepository.persist(booking);
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Buchung erfolgreich erstellt");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, bundle.getString("BOOKING_CREATED"));
             alert.showAndWait();
             Stage stage = (Stage) btnSave.getScene().getWindow();
             stage.close();
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Fehler");
-            alert.setHeaderText("Fehler beim Erstellen der Buchung");
+            alert.setTitle(bundle.getString("MENU_ERROR"));
+            alert.setHeaderText(bundle.getString("MENU_ERROR_BOOKING"));
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }

@@ -18,7 +18,7 @@
        <VBox alignment="CENTER" prefHeight="282.0" prefWidth="854.0">
            <HBox alignment="CENTER" prefHeight="82.0" prefWidth="854.0">
                <Button fx:id="btnBack" contentDisplay="BOTTOM" mnemonicParsing="false" onAction="#close"
-                       prefHeight="82.0" prefWidth="118.0" text="Zurueck">
+                       prefHeight="82.0" prefWidth="118.0" text="%MENU_GO_BACK">
                    <graphic>
                        <ImageView fitHeight="53.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
                            <Image url="@../icons/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png"/>
@@ -26,7 +26,7 @@
                    </graphic>
                </Button>
                <Button fx:id="btnDelete" contentDisplay="BOTTOM" mnemonicParsing="false"
-                       onAction="#switchToSceneReturnCar" prefHeight="82.0" prefWidth="120.0" text="Zurueckgeben">
+                       onAction="#switchToSceneReturnCar" prefHeight="82.0" prefWidth="120.0" text="%MENU_RETURN">
                    <graphic>
                        <ImageView fitHeight="52.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                            <Image url="@../icons/delete_FILL0_wght400_GRAD0_opsz48.png"/>
@@ -35,7 +35,7 @@
                </Button>
            </HBox>
            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <Label text="Eigenschaften" textFill="WHITE" underline="true">
+               <Label text="%PROPERTIES" textFill="WHITE" underline="true">
                    <font>
                        <Font size="25.0"/>
                    </font>
@@ -60,7 +60,7 @@
                        <padding>
                            <Insets bottom="35.0" left="125.0" right="125.0"/>
                        </padding>
-                       <Label text="Kunde" textFill="WHITE" GridPane.rowIndex="1">
+                       <Label text="%CUSTOMER" textFill="WHITE" GridPane.rowIndex="1">
                            <font>
                                <Font size="14.0"/>
                            </font>
@@ -82,7 +82,7 @@
                                <Font size="14.0"/>
                            </font>
                        </Label>
-                       <Label text="Auto" textFill="WHITE" GridPane.rowIndex="3">
+                       <Label text="%CAR" textFill="WHITE" GridPane.rowIndex="3">
                            <font>
                                <Font size="14.0"/>
                            </font>
@@ -93,17 +93,17 @@
                                <Font size="14.0"/>
                            </font>
                        </Label>
-                       <Label text="Abholdatum" textFill="WHITE" GridPane.rowIndex="4">
+                       <Label text="%BOOKING_PICK_UP_DATE" textFill="WHITE" GridPane.rowIndex="4">
                            <font>
                                <Font size="14.0"/>
                            </font>
                        </Label>
-                       <Label text="Rückgabedatum" textFill="WHITE" GridPane.rowIndex="5">
+                       <Label text="%BOOKING_DROP_OFF_DATE" textFill="WHITE" GridPane.rowIndex="5">
                            <font>
                                <Font size="14.0"/>
                            </font>
                        </Label>
-                       <Label text="Tatsaechliche Rückgabe" textFill="WHITE" GridPane.rowIndex="6">
+                       <Label text="%BOOKING_REAL_DROP_OFF_DATE" textFill="WHITE" GridPane.rowIndex="6">
                            <font>
                                <Font size="14.0"/>
                            </font>
@@ -134,7 +134,7 @@
    <top>
        <HBox alignment="CENTER" prefHeight="74.0" prefWidth="816.0" BorderPane.alignment="CENTER">
            <VBox alignment="CENTER" prefHeight="74.0" prefWidth="909.0">
-               <Label text="Buchungsverwaltung" textFill="WHITE">
+               <Label text="%BOOKING_MANAGEMENT" textFill="WHITE">
                    <font>
                        <Font size="40.0"/>
                    </font>

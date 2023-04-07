@@ -113,18 +113,19 @@ public final class BookingCarChooseController implements Initializable {
      */
     @FXML
     private void searchForCar(ActionEvent event) {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
             String searchCriteria = textFieldSearch.getText();
 
             if (searchCriteria.trim().isEmpty()) {
-                throw new IllegalArgumentException("Kein Suchkriterium eingegeben");
+                throw new IllegalArgumentException(bundle.getString("NO_CRITERIA_ENTERED"));
             }
 
             ObservableList<CheckMenuItem> checkMenuItems;
             checkMenuItems = getAllSelectedCriteria();
 
             if (checkMenuItems.isEmpty())
-                throw new IllegalArgumentException("Kein Kriterium ausgewählt");
+                throw new IllegalArgumentException(bundle.getString("NO_CRITERIA_SELECTED"));
 
 
             tableView.getItems().clear();
@@ -156,15 +157,15 @@ public final class BookingCarChooseController implements Initializable {
             }
             if (tableView.getItems().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Keine Autos gefunden");
-                alert.setHeaderText("Keine Autos gefunden");
-                alert.setContentText("Es wurden keine Autos gefunden, die den Suchkriterien entsprechen");
+                alert.setTitle(bundle.getString("CARS_NOT_FOUND"));
+                alert.setHeaderText(bundle.getString("CARS_NOT_FOUND"));
+                alert.setContentText(bundle.getString("CARS_NOT_FOUND_BY_CRITERIA"));
                 alert.showAndWait();
             }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Fehler");
-            alert.setHeaderText("Fehler bei der Suche");
+            alert.setTitle(bundle.getString("MENU_ERROR"));
+            alert.setHeaderText(bundle.getString("MENU_ERROR_SEARCH"));
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
@@ -251,13 +252,11 @@ public final class BookingCarChooseController implements Initializable {
 
     /**
      * Initialisiert die Controller-Klasse. Diese Methode wird automatisch aufgerufen
-     * @param url
-     * The location used to resolve relative paths for the root object, or
-     * {@code null} if the location is not known.
      *
-     * @param resourceBundle
-     * The resources used to localize the root object, or {@code null} if
-     * the root object was not localized.
+     * @param url            The location used to resolve relative paths for the root object, or
+     *                       {@code null} if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or {@code null} if
+     *                       the root object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

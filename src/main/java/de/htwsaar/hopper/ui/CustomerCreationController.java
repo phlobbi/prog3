@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 /**
  * Controller für die Erstellung eines Kunden
@@ -105,19 +106,20 @@ public final class CustomerCreationController {
      */
     @FXML
     private void createCustomer(ActionEvent event) {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
-            validateTextField(textFieldFirstName, labelFirstName.getText() + " leer");
-            validateTextField(textFieldLastName, labelLastName.getText() + " leer");
-            validateTextField(textFieldPhoneNumber, labelPhoneNumber.getText() + " leer");
-            validateTextField(textFieldEmail, labelEmail.getText() + " leer");
-            validateTextField(textFieldIBAN, labelIBAN.getText() + " leer");
-            validateTextField(textFieldStreet, labelAdressHouseNumber.getText() + " leer");
-            validateTextField(textFieldStreetNumber, labelAdressHouseNumber.getText() + " leer");
-            validateTextField(textFieldZipCode, labelZipCode.getText() + " leer");
-            validateTextField(textFieldCity, labelCity.getText() + " leer");
-            validateTextField(textFieldDLNumber, labelDLNumber.getText() + " leer");
+            validateTextField(textFieldFirstName, labelFirstName.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldLastName, labelLastName.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldPhoneNumber, labelPhoneNumber.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldEmail, labelEmail.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldIBAN, labelIBAN.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldStreet, labelAdressHouseNumber.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldStreetNumber, labelAdressHouseNumber.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldZipCode, labelZipCode.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldCity, labelCity.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldDLNumber, labelDLNumber.getText() + " " + bundle.getString("EMPTY"));
             if (datePickDLExpirationDate.getValue() == null) {
-                throw new IllegalArgumentException(labelDLExpirationDate.getText() + " leer");
+                throw new IllegalArgumentException(labelDLExpirationDate.getText() + " " + bundle.getString("EMPTY"));
             }
 
             String firstName = textFieldFirstName.getText();
@@ -143,15 +145,15 @@ public final class CustomerCreationController {
 
 
             CustomerRepository.persist(customer);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Kunde erfolgreich erstellt");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, bundle.getString("CUSTOMER_CREATED"));
             alert.showAndWait();
             Stage stage = (Stage) btnSave.getScene().getWindow();
             stage.close();
 
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Fehler");
-            alert.setHeaderText("Fehler beim Erstellen des Kunden");
+            alert.setTitle(bundle.getString("MENU_ERROR"));
+            alert.setHeaderText(bundle.getString("MENU_ERROR_CUSTOMER_CREATION"));
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }

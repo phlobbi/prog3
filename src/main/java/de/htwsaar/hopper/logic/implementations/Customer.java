@@ -6,6 +6,7 @@ import de.htwsaar.hopper.logic.validations.PreventNullPersistForCustomer;
 
 import javax.persistence.*;
 import java.util.Calendar;
+import java.util.ResourceBundle;
 
 /**
  * Implementierung des Customer-Interface.
@@ -187,12 +188,14 @@ public final class Customer implements CustomerInterface {
     /* SETTER */
     @Override
     public void setFirstName(String firstName) {
-        this.firstName = CustomerValidation.validateString(firstName, "keine gültiger Vorname!");
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
+        this.firstName = CustomerValidation.validateString(firstName, bundle.getString("FIRSTNAME_NOT_VALID"));
     }
 
     @Override
     public void setLastName(String lastName) {
-        this.lastName = CustomerValidation.validateString(lastName, "keine gültiger Nachname!");
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
+        this.lastName = CustomerValidation.validateString(lastName, bundle.getString("LASTNAME_NOT_VALID"));
     }
 
     @Override
@@ -202,7 +205,8 @@ public final class Customer implements CustomerInterface {
 
     @Override
     public void setStreet(String street) {
-        this.street = CustomerValidation.validateString(street, "keine gültige Straße!");
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
+        this.street = CustomerValidation.validateString(street, bundle.getString("STREET_NOT_VALID"));
     }
 
     @Override
@@ -217,7 +221,8 @@ public final class Customer implements CustomerInterface {
 
     @Override
     public void setCity(String city) {
-        this.city = CustomerValidation.validateString(city, "keine gültige Stadt!");
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
+        this.city = CustomerValidation.validateString(city, bundle.getString("CITY_NOT_VALID"));
     }
 
     @Override

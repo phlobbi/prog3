@@ -64,7 +64,7 @@
                             GridPane.columnIndex="2" GridPane.rowIndex="7"/>
                     <DatePicker fx:id="datePicker" prefHeight="25.0" prefWidth="104.0"
                                 GridPane.columnIndex="1"/>
-                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%BOOKING_RETURN_DATE"
+                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%BOOKING_DROP_OFF_DATE"
                           wrappingWidth="96.34375" GridPane.columnIndex="3"/>
                     <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeWindow" text="%MENU_CANCEL"
                             GridPane.columnIndex="1" GridPane.rowIndex="7"/>

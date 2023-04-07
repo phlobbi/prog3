@@ -11,6 +11,7 @@ import static org.junit.Assert.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * Testklasse fuer die Klasse Car.
@@ -344,7 +345,14 @@ public class CarTest {
     public void testToString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
         String date = sdf.format(cal.getTime());
-        String expected = String.format("Car{carId=0, type=AUTO, brand='BMW', creationDate=%s, seats=5, basePrice=100.0, currentPrice=50.0, licensePlate='SB-AB-12', model='M3', horsepower=300, transmissionType=AUTOMATIK, fuelType=BENZIN, satNav=true, mileage=10000}", date);
+        String expected;
+
+        if(Locale.getDefault() == Locale.ENGLISH) {
+            expected = String.format("Car{carId=0, type=Car, brand='BMW', creationDate=%s, seats=5, basePrice=100.0, currentPrice=50.0, licensePlate='SB-AB-12', model='M3', horsepower=300, transmissionType=Automatic, fuelType=Gasoline, satNav=true, mileage=10000}", date);
+        } else {
+            expected = String.format("Car{carId=0, type=Auto, brand='BMW', creationDate=%s, seats=5, basePrice=100.0, currentPrice=50.0, licensePlate='SB-AB-12', model='M3', horsepower=300, transmissionType=Automatik, fuelType=Benzin, satNav=true, mileage=10000}", date);
+        }
+
         assertEquals(expected, setterTestCar.toString());
     }
 

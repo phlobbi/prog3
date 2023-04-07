@@ -1,11 +1,13 @@
 package de.htwsaar.hopper.logic.validations;
 
 import java.util.Calendar;
+import java.util.ResourceBundle;
 
 /**
  * Diese abstrakte Klasse enthält Methoden, die in allen Validierungen verwendet werden können.
  */
 public abstract class Validation {
+    private static ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
 
     /**
      * Prüft, ob ein String leer oder null ist.
@@ -42,7 +44,7 @@ public abstract class Validation {
         string = validateString(string, message);
 
         if (string.isEmpty())
-            throw new IllegalArgumentException("Der String darf nicht leer sein");
+            throw new IllegalArgumentException(bundle.getString("STRING_EMPTY"));
 
         Utils.check(string.matches(regex), message);
 
@@ -60,7 +62,7 @@ public abstract class Validation {
      * @throws IllegalArgumentException Falls das Datum null ist
      */
     public static Calendar validateDatePastForbiddenMinute(Calendar date, String errorMessage) {
-        Utils.check(date != null, "Das Datum darf nicht leer sein!");
+        Utils.check(date != null, bundle.getString("DATE_EMPTY"));
         Calendar currentCalendar = Calendar.getInstance();
 
         validateHour(date.get(Calendar.HOUR_OF_DAY));
@@ -99,7 +101,7 @@ public abstract class Validation {
      * @return Datum, falls gültig
      */
     public static Calendar validateDatePastForbiddenMinute(Calendar date) {
-        return validateDatePastForbiddenMinute(date, "Das Datum darf nicht in der Vergangenheit liegen!");
+        return validateDatePastForbiddenMinute(date, bundle.getString("DATE_IN_PAST"));
     }
 
 
@@ -114,7 +116,7 @@ public abstract class Validation {
      * @throws IllegalArgumentException Falls das Datum null ist
      */
     public static Calendar validateDateFutureForbiddenMinute(Calendar date, String errorMessage) {
-        Utils.check(date != null, "Das Datum darf nicht leer sein!");
+        Utils.check(date != null, bundle.getString("DATE_EMPTY"));
         Calendar currentCalendar = Calendar.getInstance();
 
         validateHour(date.get(Calendar.HOUR_OF_DAY));
@@ -153,7 +155,7 @@ public abstract class Validation {
      * @return Datum, falls gültig
      */
     public static Calendar validateDateFutureForbiddenMinute(Calendar date) {
-        return validateDatePastForbiddenMinute(date, "Das Datum darf nicht in der Vergangenheit liegen!");
+        return validateDatePastForbiddenMinute(date, bundle.getString("DATE_IN_PAST"));
     }
 
 
@@ -167,12 +169,12 @@ public abstract class Validation {
      * @throws IllegalArgumentException Falls das Datum null ist
      */
     public static Calendar validateDatePastForbidden(Calendar date) {
-        Utils.check(date != null, "Das Datum darf nicht leer sein!");
+        Utils.check(date != null, bundle.getString("DATE_EMPTY"));
         Calendar currentCalendar = Calendar.getInstance();
         if (date.after(currentCalendar)) {
             return date;
         } else {
-            throw new IllegalArgumentException("Das Datum darf nicht in der Vergangenheit liegen!");
+            throw new IllegalArgumentException(bundle.getString("DATE_IN_PAST"));
         }
     }
 
@@ -186,12 +188,12 @@ public abstract class Validation {
      * @throws IllegalArgumentException Falls das Datum null ist
      */
     public static Calendar validateDateFutureForbidden(Calendar date) {
-        Utils.check(date != null, "Das Datum darf nicht leer sein!");
+        Utils.check(date != null, bundle.getString("DATE_EMPTY"));
         Calendar currentCalendar = Calendar.getInstance();
         if (date.before(currentCalendar)) {
             return date;
         } else {
-            throw new IllegalArgumentException("Das Datum darf nicht in der Zukunft liegen!");
+            throw new IllegalArgumentException(bundle.getString("DATE_IN_FUTURE"));
         }
     }
 
@@ -204,7 +206,7 @@ public abstract class Validation {
      */
     public static int validateHour(int hour) {
         if (hour < 0 || hour > 23) {
-            throw new IllegalArgumentException("Die Stunde muss zwischen 0 und 23 liegen!");
+            throw new IllegalArgumentException(bundle.getString("HOUR_BETWEEN_0_AND_23"));
         }
         return hour;
     }
@@ -218,7 +220,7 @@ public abstract class Validation {
      */
     public static int validateMinute(int minute) {
         if (minute < 0 || minute > 59) {
-            throw new IllegalArgumentException("Die Minute muss zwischen 0 und 59 liegen!");
+            throw new IllegalArgumentException(bundle.getString("MINUTE_BETWEEN_0_AND_59"));
         }
         return minute;
 

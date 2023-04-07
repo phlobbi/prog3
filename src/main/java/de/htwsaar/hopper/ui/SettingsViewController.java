@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
  * Controller für die Einstellungen
  */
 @SuppressWarnings("MissingJavadoc")
-public final class SettingsViewController implements Initializable{
+public final class SettingsViewController implements Initializable {
 
     @FXML
     private Button saveButton;

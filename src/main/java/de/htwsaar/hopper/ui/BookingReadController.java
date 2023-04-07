@@ -127,6 +127,4 @@ public final class BookingReadController implements Initializable {
         enableWindow();
         App.setRoot("fxml/Booking-management-view.fxml");
     }
-
-
 }

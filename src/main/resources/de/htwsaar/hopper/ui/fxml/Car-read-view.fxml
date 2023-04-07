@@ -1,203 +1,197 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/readviewstyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CarReadController">
-   <top>
-       <HBox alignment="CENTER" prefHeight="56.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-           <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="654.0" text="%CAR_MANAGEMENT"
-                  textFill="WHITE">
-              <font>
-                  <Font size="40.0"/>
-              </font>
-           </Label>
-       </HBox>
-   </top>
-   <center>
-       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-           <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0">
-               <Button fx:id="btnGoBack" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false"
-                       onAction="#switchToCarView" prefHeight="79.0" prefWidth="112.0" text="%MENU_GO_BACK"
-                       textAlignment="CENTER">
-                   <graphic>
-                       <ImageView fitHeight="29.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                           <Image url="@../icons/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png"/>
-                       </ImageView>
-                   </graphic>
-               </Button>
-               <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false"
-                       onAction="#updateCar" prefHeight="79.0" prefWidth="122.0" text="%MENU_EDIT">
-                   <graphic>
-                       <ImageView fitHeight="50.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
-                           <Image url="@../icons/manage_accounts_FILL0_wght400_GRAD0_opsz48.png"/>
-                       </ImageView>
-                   </graphic>
-               </Button>
-               <Button fx:id="btnRemove" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false"
-                       onAction="#removeCar" prefHeight="79.0" prefWidth="114.0" text="%MENU_DELETE">
-                   <graphic>
-                       <ImageView fitHeight="45.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
-                           <Image url="@../icons/delete_FILL0_wght400_GRAD0_opsz48.png"/>
-                       </ImageView>
-                   </graphic>
-               </Button>
-           </HBox>
-           <HBox alignment="CENTER" stylesheets="@../css/firstview.css">
-               <Label prefHeight="30.0" prefWidth="162.0" text="%PROPERTIES" textFill="WHITE" underline="true">
-                   <font>
-                       <Font size="25.0"/>
-                   </font>
-                   <HBox.margin>
-                       <Insets left="12.0"/>
-                   </HBox.margin>
-               </Label>
-           </HBox>
-           <HBox alignment="CENTER" prefHeight="166.0" prefWidth="624.0" stylesheets="@../css/readviewstyle.css">
-               <VBox.margin>
-                   <Insets/>
-               </VBox.margin>
-               <VBox alignment="CENTER" prefHeight="166.0" prefWidth="639.0">
-                   <GridPane alignment="CENTER" hgap="50.0" prefHeight="166.0" prefWidth="703.0">
-                       <columnConstraints>
-                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0"
-                                              prefWidth="124.0"/>
-                           <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="180.0"
-                                              prefWidth="76.0"/>
-                       </columnConstraints>
-                       <rowConstraints>
-                           <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES"/>
-                           <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES"/>
-                           <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES"/>
-                           <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                           <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES"/>
-                           <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES"/>
-                           <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                           <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                           <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                           <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                           <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                           <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES"/>
-                           <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES"/>
-                       </rowConstraints>
-                       <VBox.margin>
-                           <Insets/>
-                       </VBox.margin>
-                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Typ:" wrappingWidth="28.0">
-                           <font>
-                               <Font size="14.0"/>
-                           </font>
-                       </Text>
-                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kennzeichen:"
-                             GridPane.rowIndex="1">
-                           <font>
-                               <Font size="14.0"/>
-                           </font>
-                       </Text>
-                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Marke:"
-                             GridPane.rowIndex="2">
-                           <font>
-                               <Font size="14.0"/>
-                           </font>
-                       </Text>
-                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Herstellungsdatum:"
-                             GridPane.rowIndex="5">
-                           <font>
-                               <Font size="14.0"/>
-                           </font>
-                       </Text>
-                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Sitze:"
-                             GridPane.rowIndex="4">
-                           <font>
-                               <Font size="14.0"/>
-                           </font>
-                       </Text>
-                       <Label fx:id="labelCarType" textFill="WHITE" GridPane.columnIndex="1"/>
-                       <Label fx:id="labelcarLicensePlate" textFill="WHITE" GridPane.columnIndex="1"
-                              GridPane.rowIndex="1"/>
-                       <Label fx:id="labelCarBrand" textFill="WHITE" GridPane.columnIndex="1"
-                              GridPane.rowIndex="2"/>
-                       <Label fx:id="labelCarSeats" textFill="WHITE" GridPane.columnIndex="1"
-                              GridPane.rowIndex="4"/>
-                       <Label fx:id="labelCarCreationDate" textFill="WHITE" GridPane.columnIndex="1"
-                              GridPane.rowIndex="5"/>
-                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Grundpreis:"
-                             GridPane.rowIndex="11">
-                           <font>
-                               <Font size="14.0"/>
-                           </font>
-                       </Text>
-                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tagespreis:"
-                             GridPane.rowIndex="12">
-                           <font>
-                               <Font size="14.0"/>
-                           </font>
-                       </Text>
-                       <Label fx:id="labelCarBasePrice" textFill="WHITE" GridPane.columnIndex="1"
-                              GridPane.rowIndex="11"/>
-                       <Label fx:id="labelCarCurrentPrise" textFill="WHITE" GridPane.columnIndex="1"
-                              GridPane.rowIndex="12"/>
-                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Model:"
-                             GridPane.rowIndex="3">
-                           <font>
-                               <Font size="14.0"/>
-                           </font>
-                       </Text>
-                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Pferdestärke:"
-                             GridPane.rowIndex="6">
-                           <font>
-                               <Font size="14.0"/>
-                           </font>
-                       </Text>
-                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Getriebeart:"
-                             GridPane.rowIndex="8">
-                           <font>
-                               <Font size="14.0"/>
-                           </font>
-                       </Text>
-                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kraftstoffart:"
-                             GridPane.rowIndex="9">
-                           <font>
-                               <Font size="14.0"/>
-                           </font>
-                       </Text>
-                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Kilometerstand:"
-                             GridPane.rowIndex="7">
-                           <font>
-                               <Font size="14.0"/>
-                           </font>
-                       </Text>
-                       <Label fx:id="labelModel" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-                       <Label fx:id="labelMileage" textFill="WHITE" GridPane.columnIndex="1"
-                              GridPane.rowIndex="7"/>
-                       <Label fx:id="labelHorsePower" textFill="WHITE" GridPane.columnIndex="1"
-                              GridPane.rowIndex="6"/>
-                       <Label fx:id="labelTransType" textFill="WHITE" GridPane.columnIndex="1"
-                              GridPane.rowIndex="8"/>
-                       <Label fx:id="labelFuelType" textFill="WHITE" GridPane.columnIndex="1"
-                              GridPane.rowIndex="9"/>
-                       <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Navi:"
-                             GridPane.rowIndex="10">
-                           <font>
-                               <Font size="14.0"/>
-                           </font>
-                       </Text>
-                       <Label fx:id="labelSatNav" textFill="WHITE" GridPane.columnIndex="1"
-                              GridPane.rowIndex="10"/>
-                   </GridPane>
-               </VBox>
-           </HBox>
-       </VBox>
-   </center>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" stylesheets="@../css/readviewstyle.css" xmlns="http://javafx.com/javafx/19"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.CarReadController">
+    <top>
+        <HBox alignment="CENTER" prefHeight="56.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="654.0" text="%CAR_MANAGEMENT"
+                   textFill="WHITE">
+                <font>
+                    <Font size="40.0"/>
+                </font>
+            </Label>
+        </HBox>
+    </top>
+    <center>
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" prefHeight="88.0" prefWidth="600.0">
+                <Button fx:id="btnGoBack" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false"
+                        onAction="#switchToCarView" prefHeight="79.0" prefWidth="112.0" text="%MENU_GO_BACK"
+                        textAlignment="CENTER">
+                    <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../icons/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png"/>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="btnUpdate" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false"
+                        onAction="#updateCar" prefHeight="79.0" prefWidth="122.0" text="%MENU_EDIT">
+                    <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../icons/manage_accounts_FILL0_wght400_GRAD0_opsz48.png"/>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button fx:id="btnRemove" alignment="CENTER" contentDisplay="BOTTOM" mnemonicParsing="false"
+                        onAction="#removeCar" prefHeight="79.0" prefWidth="114.0" text="%MENU_DELETE">
+                    <graphic>
+                        <ImageView fitHeight="45.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../icons/delete_FILL0_wght400_GRAD0_opsz48.png"/>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </HBox>
+            <HBox alignment="CENTER" stylesheets="@../css/firstview.css">
+                <Label prefHeight="30.0" prefWidth="162.0" text="%PROPERTIES" textFill="WHITE" underline="true">
+                    <font>
+                        <Font size="25.0"/>
+                    </font>
+                    <HBox.margin>
+                        <Insets left="12.0"/>
+                    </HBox.margin>
+                </Label>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="166.0" prefWidth="624.0" stylesheets="@../css/readviewstyle.css">
+                <VBox.margin>
+                    <Insets/>
+                </VBox.margin>
+                <VBox alignment="CENTER" prefHeight="166.0" prefWidth="639.0">
+                    <GridPane alignment="CENTER" hgap="50.0" prefHeight="166.0" prefWidth="703.0">
+                        <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0"
+                                               prefWidth="124.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="180.0"
+                                               prefWidth="76.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES"/>
+                            <RowConstraints maxHeight="20.0" minHeight="20.0" vgrow="SOMETIMES"/>
+                        </rowConstraints>
+                        <VBox.margin>
+                            <Insets/>
+                        </VBox.margin>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CARTYPE"
+                              wrappingWidth="28.0">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_LICENSE_PLATE"
+                              GridPane.rowIndex="1">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CARBRAND"
+                              GridPane.rowIndex="2">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CREATION_DATE"
+                              GridPane.rowIndex="5">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_SEATS"
+                              GridPane.rowIndex="4">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Label fx:id="labelCarType" textFill="WHITE" GridPane.columnIndex="1"/>
+                        <Label fx:id="labelcarLicensePlate" textFill="WHITE" GridPane.columnIndex="1"
+                               GridPane.rowIndex="1"/>
+                        <Label fx:id="labelCarBrand" textFill="WHITE" GridPane.columnIndex="1"
+                               GridPane.rowIndex="2"/>
+                        <Label fx:id="labelCarSeats" textFill="WHITE" GridPane.columnIndex="1"
+                               GridPane.rowIndex="4"/>
+                        <Label fx:id="labelCarCreationDate" textFill="WHITE" GridPane.columnIndex="1"
+                               GridPane.rowIndex="5"/>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_BASE_PRICE"
+                              GridPane.rowIndex="11">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CURRENT_PRICE"
+                              GridPane.rowIndex="12">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Label fx:id="labelCarBasePrice" textFill="WHITE" GridPane.columnIndex="1"
+                               GridPane.rowIndex="11"/>
+                        <Label fx:id="labelCarCurrentPrise" textFill="WHITE" GridPane.columnIndex="1"
+                               GridPane.rowIndex="12"/>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_CARMODEL"
+                              GridPane.rowIndex="3">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_HORSEPOWER"
+                              GridPane.rowIndex="6">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_TRANSMISSION"
+                              GridPane.rowIndex="8">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_FUELTYPE"
+                              GridPane.rowIndex="9">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_MILEAGE"
+                              GridPane.rowIndex="7">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Label fx:id="labelModel" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        <Label fx:id="labelMileage" textFill="WHITE" GridPane.columnIndex="1"
+                               GridPane.rowIndex="7"/>
+                        <Label fx:id="labelHorsePower" textFill="WHITE" GridPane.columnIndex="1"
+                               GridPane.rowIndex="6"/>
+                        <Label fx:id="labelTransType" textFill="WHITE" GridPane.columnIndex="1"
+                               GridPane.rowIndex="8"/>
+                        <Label fx:id="labelFuelType" textFill="WHITE" GridPane.columnIndex="1"
+                               GridPane.rowIndex="9"/>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="%CAR_SATNAV"
+                              GridPane.rowIndex="10">
+                            <font>
+                                <Font size="14.0"/>
+                            </font>
+                        </Text>
+                        <Label fx:id="labelSatNav" textFill="WHITE" GridPane.columnIndex="1"
+                               GridPane.rowIndex="10"/>
+                    </GridPane>
+                </VBox>
+            </HBox>
+        </VBox>
+    </center>
 </BorderPane>

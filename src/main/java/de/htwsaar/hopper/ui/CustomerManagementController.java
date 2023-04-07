@@ -121,18 +121,19 @@ public final class CustomerManagementController implements Initializable {
      */
     @FXML
     private void searchCustomers(ActionEvent event) {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
             String searchCriteria = textFieldSearch.getText();
 
             if (searchCriteria.trim().isEmpty()) {
-                throw new IllegalArgumentException("Kein Suchkriterium eingegeben");
+                throw new IllegalArgumentException(bundle.getString("NO_CRITERIA_ENTERED"));
             }
 
             ObservableList<CheckMenuItem> checkMenuItems;
             checkMenuItems = getAllSelectedCriteria();
 
             if (checkMenuItems.isEmpty())
-                throw new IllegalArgumentException("Kein Kriterium ausgewählt");
+                throw new IllegalArgumentException(bundle.getString("NO_CRITERIA_SELECTED"));
 
 
             tableView.getItems().clear();
@@ -161,15 +162,15 @@ public final class CustomerManagementController implements Initializable {
             }
             if (tableView.getItems().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Keine Treffer");
-                alert.setHeaderText("Keine Treffer");
-                alert.setContentText("Es wurden keine Kunden gefunden, die den Suchkriterien entsprechen");
+                alert.setTitle(bundle.getString("CUSTOMERS_NOT_FOUND"));
+                alert.setHeaderText(bundle.getString("CUSTOMERS_NOT_FOUND"));
+                alert.setContentText(bundle.getString("CUSTOMERS_NOT_FOUND_BY_CRITERIA"));
                 alert.showAndWait();
             }
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Fehler");
-            alert.setHeaderText("Fehler bei der Suche");
+            alert.setTitle(bundle.getString("MENU_ERROR"));
+            alert.setHeaderText(bundle.getString("MENU_ERROR_SEARCH"));
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
@@ -215,7 +216,7 @@ public final class CustomerManagementController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(url, bundle);
             Parent root1 = (Parent) fxmlLoader.load();
             stage = new Stage();
-            stage.setTitle("Neuen Kunden hinzufuegen");
+            stage.setTitle(bundle.getString("CUSTOMER_ADD_TITLE"));
             URL iconURL = getClass().getResource("icons/car-icon.png");
             stage.getIcons().add(new Image(iconURL.toString()));
             stage.setMinHeight(660);
@@ -349,7 +350,7 @@ public final class CustomerManagementController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader(url, bundle);
             Parent root1 = fxmlLoader.load();
             stage = new Stage();
-            stage.setTitle("Kundendaten bearbeiten");
+            stage.setTitle(bundle.getString("CUSTOMER_EDIT_TITLE"));
             URL iconURL = getClass().getResource("icons/car-icon.png");
             stage.getIcons().add(new Image(iconURL.toString()));
             stage.setMinHeight(660);

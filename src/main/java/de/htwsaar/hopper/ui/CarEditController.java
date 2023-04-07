@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 /**
  * Controller für die Bearbeitung eines Autos
  */
-public class CarEditController implements Initializable {
+public final class CarEditController implements Initializable {
 
     private String carTypeStr;
     private String transmissionStr;
@@ -131,17 +131,18 @@ public class CarEditController implements Initializable {
      */
     @FXML
     private void updateCar(ActionEvent event) {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
-            validateTextField(textFieldBrand, labelBrand.getText() + " leer");
-            validateTextField(textFieldSeats, labelSeats.getText() + " leer");
-            validateTextField(textFieldModel, labelModel.getText() + " leer");
-            validateTextField(textFieldCurrentPrice, labelCurrentPrice.getText() + " leer");
-            validateTextField(textFieldBasePrice, labelBasePrice.getText() + " leer");
-            validateTextField(textFieldLicensePlate, labelLicensePlate.getText() + " leer");
-            validateTextField(textFieldHorsePower, labelHorsePower.getText() + "leer");
-            validateTextField(textFieldMileage, labelMileage.getText() + "leer");
+            validateTextField(textFieldBrand, labelBrand.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldSeats, labelSeats.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldModel, labelModel.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldCurrentPrice, labelCurrentPrice.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldBasePrice, labelBasePrice.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldLicensePlate, labelLicensePlate.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldHorsePower, labelHorsePower.getText() + " " + bundle.getString("EMPTY"));
+            validateTextField(textFieldMileage, labelMileage.getText() + " " + bundle.getString("EMPTY"));
             if (datePickCreationDate.getValue() == null) {
-                throw new IllegalArgumentException(labelCreationDate.getText() + " leer");
+                throw new IllegalArgumentException(labelCreationDate.getText() + " " + bundle.getString("EMPTY"));
             }
 
             String brand = textFieldBrand.getText();
@@ -178,7 +179,7 @@ public class CarEditController implements Initializable {
                 }
             }
 
-            if (satNavStr.equals("Nein")) {
+            if (satNavStr.equals(bundle.getString("NEIN"))) {
                 concreteSatNav = false;
             }
 
@@ -208,11 +209,11 @@ public class CarEditController implements Initializable {
             car.setMileage(mileage);
 
             if (car.equals(temp)) {
-                throw new IllegalArgumentException("Keine Änderungen vorgenommen");
+                throw new IllegalArgumentException(bundle.getString("NO_CHANGES_MADE"));
             } else {
                 CarRepository.persist(car);
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Auto erfolgreich geandert!");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, bundle.getString("CAR_UPDATED"));
                 alert.showAndWait();
                 Stage stage = (Stage) btnSave.getScene().getWindow();
                 stage.close();
@@ -220,8 +221,8 @@ public class CarEditController implements Initializable {
 
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Fehler");
-            alert.setHeaderText("Fehler beim Erstellen des Autos");
+            alert.setTitle(bundle.getString("MENU_ERROR"));
+            alert.setHeaderText(bundle.getString("MENU_ERROR_CAR_UPDATE"));
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
@@ -250,13 +251,14 @@ public class CarEditController implements Initializable {
      * die lokale Variable carType mit dem neuen Typen ersetzt
      */
     private void setChosenCarType() {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         // basistyp, falls kein Typ ausgewählt
-        carTypeStr = CarTypeEnum.ANDERE.getLabel();
+        carTypeStr = bundle.getString(CarTypeEnum.ANDERE.name());
         menuType.setText(carTypeStr);
 
         // Iteration über alle Enums und für jedes 1 Menü-Item erstellen
         for (CarTypeEnum type : CarTypeEnum.values()) {
-            MenuItem item = new MenuItem(type.getLabel());
+            MenuItem item = new MenuItem(bundle.getString(type.name()));
             menuType.getItems().add(item);
             // wird Action auf Item bemerkt -> carType aktualisieren und Text
             item.setOnAction(e -> {
@@ -272,13 +274,14 @@ public class CarEditController implements Initializable {
      * die lokale Variable transmission mit dem neuen Typen ersetzt
      */
     private void setChosenTransmission() {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         // basistyp, falls kein Typ ausgewählt
-        transmissionStr = TransmissionTypeEnum.MANUELL.getLabel();
+        transmissionStr = bundle.getString(TransmissionTypeEnum.MANUELL.name());
         menuTransmission.setText(transmissionStr);
 
         // Iteration über alle Enums und für jedes 1 Menü-Item erstellen
         for (TransmissionTypeEnum transmission : TransmissionTypeEnum.values()) {
-            MenuItem item = new MenuItem(transmission.getLabel());
+            MenuItem item = new MenuItem(bundle.getString(transmission.name()));
             menuTransmission.getItems().add(item);
             // wird Action auf Item bemerkt -> carType aktualisieren und Text
             item.setOnAction(e -> {
@@ -294,13 +297,14 @@ public class CarEditController implements Initializable {
      * die lokale Variable fuel mit dem neuen Typen ersetzt
      */
     private void setChosenFuel() {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         // basistyp, falls kein Typ ausgewählt
-        fuelStr = FuelTypeEnum.BENZIN.getLabel();
+        fuelStr = bundle.getString(FuelTypeEnum.BENZIN.name());
         menuFuel.setText(fuelStr);
 
         // Iteration über alle Enums und für jedes 1 Menü-Item erstellen
         for (FuelTypeEnum fuel : FuelTypeEnum.values()) {
-            MenuItem item = new MenuItem(fuel.getLabel());
+            MenuItem item = new MenuItem(bundle.getString(fuel.name()));
             menuFuel.getItems().add(item);
             // wird Action auf Item bemerkt -> carType aktualisieren und Text
             item.setOnAction(e -> {
@@ -316,13 +320,14 @@ public class CarEditController implements Initializable {
      * die lokale Variable satNav mit dem neuen Typen ersetzt
      */
     private void setChosenSatNav() {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         // basistyp, falls kein Typ ausgewählt
-        satNavStr = "Ja";
+        satNavStr = bundle.getString("JA");
         menuSatNav.setText(satNavStr);
 
-        MenuItem item = new MenuItem("Ja");
+        MenuItem item = new MenuItem(bundle.getString("JA"));
         menuSatNav.getItems().add(item);
-        MenuItem item2 = new MenuItem("Nein");
+        MenuItem item2 = new MenuItem(bundle.getString("NEIN"));
         menuSatNav.getItems().add(item2);
 
         // wird Action auf Item bemerkt -> carType aktualisieren und Text
@@ -342,6 +347,7 @@ public class CarEditController implements Initializable {
      */
     @FXML
     private void loadCar() {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
             Car loadedCar = CarManagementController.getSelectedCar();
             textFieldBrand.setText(loadedCar.getBrand());
@@ -353,18 +359,18 @@ public class CarEditController implements Initializable {
             textFieldLicensePlate.setText(loadedCar.getLicensePlate());
             textFieldHorsePower.setText(String.valueOf(loadedCar.getHorsepower()));
             textFieldMileage.setText(String.valueOf(loadedCar.getMileage()));
-            menuType.setText(loadedCar.getType().getLabel());
-            menuTransmission.setText(loadedCar.getTransmissionType().getLabel());
-            menuFuel.setText(loadedCar.getFuelType().getLabel());
-            menuSatNav.setText(translateSatNavtoSatNavString(loadedCar.getSatNav()));
+            menuType.setText(bundle.getString(loadedCar.getType().name()));
+            menuTransmission.setText(bundle.getString(loadedCar.getTransmissionType().name()));
+            menuFuel.setText(bundle.getString(loadedCar.getFuelType().name()));
+            menuSatNav.setText(bundle.getString(translateSatNavtoSatNavString(loadedCar.getSatNav()).toUpperCase()));
             carTypeStr = loadedCar.getType().getLabel();
             transmissionStr = loadedCar.getTransmissionType().getLabel();
             fuelStr = loadedCar.getFuelType().getLabel();
             satNavStr = translateSatNavtoSatNavString(loadedCar.getSatNav());
         } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Fehler");
-            alert.setHeaderText("Fehler beim Laden des Autos");
+            alert.setTitle(bundle.getString("MENU_ERROR"));
+            alert.setHeaderText(bundle.getString("MENU_ERROR_CAR_LOAD"));
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }

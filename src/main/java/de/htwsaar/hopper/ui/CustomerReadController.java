@@ -67,10 +67,12 @@ public final class CustomerReadController implements Initializable {
     @FXML
     private void updateCustomer(ActionEvent event) {
         Stage stage;
+        URL url = getClass().getResource("fxml/Customer-edit-view.fxml");
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
             Customer selectedCustomer = CustomerManagementController.getSelectedCustomer();
             CustomerManagementController.setSelectedCustomer(selectedCustomer);
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Customer-edit-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(url, bundle);
             Parent root1 = fxmlLoader.load();
             stage = new Stage();
             stage.setScene(new Scene(root1));
@@ -92,20 +94,22 @@ public final class CustomerReadController implements Initializable {
      */
     @FXML
     private void deleteCustomer(ActionEvent event) throws IOException {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         Customer selectedCustomer = CustomerManagementController.getSelectedCustomer();
         CustomerManagementController.setSelectedCustomer(selectedCustomer);
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wollen Sie den Kunden wirklich löschen?");
-        alert.setHeaderText("Kunde wirklich löschen?");
-        alert.setContentText("Kunde: " + selectedCustomer.getCustomerId() + " " + selectedCustomer.getFirstName() + " " + selectedCustomer.getLastName());
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, bundle.getString("CUSTOMER_CONFIRM_DELETE"));
+        alert.setHeaderText(bundle.getString("CUSTOMER_HEADER_CONFIRM_DELETE"));
+        ;
+        alert.setContentText(bundle.getString("CUSTOMER_CONTENT_TEXT") + " " + selectedCustomer.getCustomerId() + " " + selectedCustomer.getFirstName() + " " + selectedCustomer.getLastName());
         alert.showAndWait();
         if (alert.getResult().getText().equals("OK")) {
             CustomerRepository.delete(selectedCustomer);
             reloadTable();
-            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Kunde wurde gelöscht.");
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, bundle.getString("CUSTOMER_DELETED"));
             alert2.show();
             App.setRoot("fxml/Customer-management-view.fxml");
         } else {
-            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, "Der Kunde wurde nicht gelöscht.");
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION, bundle.getString("CUSTOMER_NOT_DELETED"));
             alert2.show();
             alert.close();
         }

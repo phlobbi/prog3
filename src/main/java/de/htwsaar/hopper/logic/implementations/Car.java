@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 /**
  * Implementierung des CarInterface.
@@ -88,6 +89,7 @@ public final class Car implements CarInterface {
     @Basic
     @Column(name = "Mileage")
     private int mileage;
+
 
     /**
      * Leerer Konstruktor, der von Hibernate benötigt wird.
@@ -184,6 +186,7 @@ public final class Car implements CarInterface {
 
     @Override
     public TransmissionTypeEnum getTransmissionType() {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         return transmissionType;
     }
 
@@ -199,10 +202,11 @@ public final class Car implements CarInterface {
 
     @Override
     public String getSatNavShowField() {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         if (satNav)
-            return "Ja";
+            return bundle.getString("JA");
         else
-            return "Nein";
+            return bundle.getString("NEIN");
     }
 
     @Override
@@ -218,7 +222,8 @@ public final class Car implements CarInterface {
 
     @Override
     public void setBrand(String brand) {
-        this.brand = CarValidation.validateString(brand, "Die Automarke darf nicht leer sein.");
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles/i18n");
+        this.brand = CarValidation.validateString(brand, bundle.getString("CARBRAND_EMPTY"));
     }
 
     @Override
@@ -248,7 +253,8 @@ public final class Car implements CarInterface {
 
     @Override
     public void setModel(String model) {
-        this.model = CarValidation.validateString(model, "Kein gültiges Modell!");
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles/i18n");
+        this.model = CarValidation.validateString(model, bundle.getString("CARMODEL_NOT_VALID"));
     }
 
     @Override
@@ -278,12 +284,13 @@ public final class Car implements CarInterface {
 
     @Override
     public String toString() {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles/i18n");
         SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
 
         return "Car{" +
                 "carId=" + carId +
-                ", type=" + type +
+                ", type=" + bundle.getString(type.name()) +
                 ", brand='" + brand + '\'' +
                 ", creationDate=" + sdf.format(creationDate.getTime()) +
                 ", seats=" + seats +
@@ -292,8 +299,8 @@ public final class Car implements CarInterface {
                 ", licensePlate='" + licensePlate + '\'' +
                 ", model='" + model + '\'' +
                 ", horsepower=" + horsepower +
-                ", transmissionType=" + transmissionType +
-                ", fuelType=" + fuelType +
+                ", transmissionType=" + bundle.getString(transmissionType.name()) +
+                ", fuelType=" + bundle.getString(fuelType.name()) +
                 ", satNav=" + satNav +
                 ", mileage=" + mileage +
                 '}';

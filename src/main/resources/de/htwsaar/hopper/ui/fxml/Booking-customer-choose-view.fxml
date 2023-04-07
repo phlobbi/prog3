@@ -68,20 +68,20 @@
               </graphic>
            </Button>
            <MenuButton fx:id="menuButtonCriteria" contentDisplay="TOP" mnemonicParsing="false" prefHeight="25.0"
-                       prefWidth="90.0" text="%CRITERIA" textAlignment="CENTER">
+                       prefWidth="90.0" text="%MENU_FILTER" textAlignment="CENTER">
                <items>
                    <CheckMenuItem fx:id="searchCritFirstName" mnemonicParsing="false" text="%CUSTOMER_FIRSTNAME"/>
                    <CheckMenuItem fx:id="searchCritLastName" mnemonicParsing="false" text="%CUSTOMER_LASTNAME"/>
                    <CheckMenuItem fx:id="searchCritEmail" mnemonicParsing="false" text="%CUSTOMER_EMAIL"/>
                    <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckCriteria"
-                             text="%DELETE_CHECK"/>
+                             text="%MENU_REMOVE_FILTER"/>
                </items>
               <padding>
                   <Insets left="2.0"/>
               </padding>
            </MenuButton>
            <Button mnemonicParsing="false" onAction="#resetSearch" prefHeight="25.0" prefWidth="90.0"
-                   text="%MENU_SET_BACK">
+                   text="%MENU_REMOVE_FILTER">
               <graphic>
                   <ImageView fitHeight="14.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                       <Image url="@../icons/undo_FILL0_wght400_GRAD0_opsz48.png"/>
