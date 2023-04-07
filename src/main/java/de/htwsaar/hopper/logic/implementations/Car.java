@@ -16,7 +16,8 @@ import java.util.ResourceBundle;
 
 /**
  * Implementierung des CarInterface.
- * Annotiert fuer die Datenbank.
+ * Annotiert für die Datenbank.
+ *
  * @author gitroba
  */
 @EntityListeners(PreventNullPersistForCar.class)
@@ -91,26 +92,28 @@ public class Car implements CarInterface {
 
 
     /**
-     * Standard-Konstruktor
+     * Leerer Konstruktor, der von Hibernate benötigt wird.
+     * Nicht verwenden, da sonst die anderen Felder möglicherweise nicht gesetzt werden können.
      */
     public Car() {
     }
 
     /**
      * Konstruktor mit allen Werten.
-     * @param type Typ des Autos
-     * @param brand Marke des Autos
-     * @param creationDate Herstellungsdatum des Autos
-     * @param seats Sitzanzahl des Autos
-     * @param basePrice Grundpreis des Autos
-     * @param currentPrice Tagespreis des Autos
-     * @param licensePlate Kennzeichen des Autos
-     * @param model Modell des Autos
-     * @param horsepower Pferdstärke des Autos
+     *
+     * @param type             Typ des Autos
+     * @param brand            Marke des Autos
+     * @param creationDate     Herstellungsdatum des Autos
+     * @param seats            Sitzanzahl des Autos
+     * @param basePrice        Grundpreis des Autos
+     * @param currentPrice     Tagespreis des Autos
+     * @param licensePlate     Kennzeichen des Autos
+     * @param model            Modell des Autos
+     * @param horsepower       Pferdstärke des Autos
      * @param transmissionType Schaltgetriebe des Autos
-     * @param fuelType Kraftstoff des Autos
-     * @param satNav integriertes Navi im Autos
-     * @param mileage Kilometerstand des Autos
+     * @param fuelType         Kraftstoff des Autos
+     * @param satNav           integriertes Navi im Autos
+     * @param mileage          Kilometerstand des Autos
      */
     public Car(CarTypeEnum type, String brand, Calendar creationDate, int seats, double basePrice,
                double currentPrice, String licensePlate, String model, int horsepower, TransmissionTypeEnum transmissionType,
@@ -198,7 +201,7 @@ public class Car implements CarInterface {
     }
 
     @Override
-    public String getSatNavShowField(){
+    public String getSatNavShowField() {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         if (satNav)
             return bundle.getString("JA");
@@ -255,7 +258,9 @@ public class Car implements CarInterface {
     }
 
     @Override
-    public void setHorsepower(int horsepower) { this.horsepower = CarValidation.validateHorsepower(horsepower); }
+    public void setHorsepower(int horsepower) {
+        this.horsepower = CarValidation.validateHorsepower(horsepower);
+    }
 
     @Override
     public void setTransmissionType(TransmissionTypeEnum transmissionType) {

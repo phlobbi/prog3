@@ -19,7 +19,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class CarCreationController implements Initializable{
+/**
+ * Controller für die Erstellung eines Autos
+ */
+public class CarCreationController implements Initializable {
 
     private String carTypeStr;
     private String transmissionStr;
@@ -110,19 +113,30 @@ public class CarCreationController implements Initializable{
     @FXML
     private TextField textFieldMileage;
 
+    /**
+     * Bricht die Erstellung eines Autos ab
+     *
+     * @param event Event
+     * @throws IOException Fehler beim Laden einer Datei
+     */
     @FXML
     void cancelCreation(ActionEvent event) throws IOException {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Erstellt ein Auto
+     *
+     * @param event Event
+     */
     @FXML
     void createCar(ActionEvent event) {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
             validateTextField(textFieldBrand, labelBrand.getText() + " " + bundle.getString("EMPTY"));
             validateTextField(textFieldModel, labelModel.getText() + " " + bundle.getString("EMPTY"));
-            if (datePickCreationDate.getValue() == null){
+            if (datePickCreationDate.getValue() == null) {
                 throw new IllegalArgumentException(labelCreationDate.getText() + " " + bundle.getString("EMPTY"));
             }
             validateTextField(textFieldSeats, labelSeats.getText() + " " + bundle.getString("EMPTY"));
@@ -148,27 +162,27 @@ public class CarCreationController implements Initializable{
             FuelTypeEnum concreteFuel = FuelTypeEnum.BENZIN;
             boolean concreteSatNav = true;
 
-            for (CarTypeEnum type : CarTypeEnum.values()){
-                if (type.getLabel().equals(carTypeStr)){
+            for (CarTypeEnum type : CarTypeEnum.values()) {
+                if (type.getLabel().equals(carTypeStr)) {
                     concreteType = type;
 
                 }
             }
 
-            for (TransmissionTypeEnum transmission : TransmissionTypeEnum.values()){
-                if (transmission.getLabel().equals(transmissionStr)){
+            for (TransmissionTypeEnum transmission : TransmissionTypeEnum.values()) {
+                if (transmission.getLabel().equals(transmissionStr)) {
                     concreteTransmission = transmission;
                 }
             }
 
-            for (FuelTypeEnum type : FuelTypeEnum.values()){
-                if (type.getLabel().equals(fuelStr)){
+            for (FuelTypeEnum type : FuelTypeEnum.values()) {
+                if (type.getLabel().equals(fuelStr)) {
                     concreteFuel = type;
                 }
             }
 
-            if (satNavStr.equals(bundle.getString("NEIN"))){
-                    concreteSatNav = false;
+            if (satNavStr.equals(bundle.getString("NEIN")) ){
+                concreteSatNav = false;
             }
 
             // LocalDate vom DatePicker zu Calender-Format
@@ -176,8 +190,8 @@ public class CarCreationController implements Initializable{
             Calendar creationDateCal = Calendar.getInstance();
             creationDateCal.setTime(creationDate);
 
-            Car car = new Car(concreteType,brand,creationDateCal,seats,basePrice,curPrice,
-                    licensePlate,model,horsePower,concreteTransmission,concreteFuel,concreteSatNav,mileage);
+            Car car = new Car(concreteType, brand, creationDateCal, seats, basePrice, curPrice,
+                    licensePlate, model, horsePower, concreteTransmission, concreteFuel, concreteSatNav, mileage);
 
             CarRepository.persist(car);
 
@@ -195,6 +209,14 @@ public class CarCreationController implements Initializable{
         }
     }
 
+    /**
+     * Initialisiert die Controller-Klasse
+     *
+     * @param url            The location used to resolve relative paths for the root object, or
+     *                       {@code null} if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or {@code null} if
+     *                       the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setChosenCarType();
@@ -208,18 +230,18 @@ public class CarCreationController implements Initializable{
      * Klick auf ein Menü-Item der Text im Menü-Button ersetzt und
      * die lokale Variable carType mit dem neuen Typen ersetzt
      */
-    private void setChosenCarType(){
+    private void setChosenCarType() {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         // basistyp, falls kein Typ ausgewählt
         carTypeStr = bundle.getString(CarTypeEnum.ANDERE.name());
         menuType.setText(carTypeStr);
 
         // Iteration über alle Enums und für jedes 1 Menü-Item erstellen
-        for (CarTypeEnum type : CarTypeEnum.values()){
+        for (CarTypeEnum type : CarTypeEnum.values()) {
             MenuItem item = new MenuItem(bundle.getString(type.name()));
             menuType.getItems().add(item);
             // wird Action auf Item bemerkt -> carType aktualisieren und Text
-            item.setOnAction(e ->{
+            item.setOnAction(e -> {
                 menuType.setText(item.getText());
                 carTypeStr = item.getText();
             });
@@ -231,18 +253,18 @@ public class CarCreationController implements Initializable{
      * Klick auf ein Menü-Item der Text im Menü-Button ersetzt und
      * die lokale Variable transmission mit dem neuen Typen ersetzt
      */
-    private void setChosenTransmission(){
+    private void setChosenTransmission() {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         // basistyp, falls kein Typ ausgewählt
         transmissionStr = bundle.getString(TransmissionTypeEnum.MANUELL.name());
         menuTransmission.setText(transmissionStr);
 
         // Iteration über alle Enums und für jedes 1 Menü-Item erstellen
-        for (TransmissionTypeEnum transmission : TransmissionTypeEnum.values()){
+        for (TransmissionTypeEnum transmission : TransmissionTypeEnum.values()) {
             MenuItem item = new MenuItem(bundle.getString(transmission.name()));
             menuTransmission.getItems().add(item);
             // wird Action auf Item bemerkt -> carType aktualisieren und Text
-            item.setOnAction(e ->{
+            item.setOnAction(e -> {
                 menuTransmission.setText(item.getText());
                 transmissionStr = item.getText();
             });
@@ -254,18 +276,18 @@ public class CarCreationController implements Initializable{
      * Klick auf ein Menü-Item der Text im Menü-Button ersetzt und
      * die lokale Variable fuel mit dem neuen Typen ersetzt
      */
-    private void setChosenFuel(){
+    private void setChosenFuel() {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         // basistyp, falls kein Typ ausgewählt
         fuelStr = bundle.getString(FuelTypeEnum.BENZIN.name());
         menuFuel.setText(fuelStr);
 
         // Iteration über alle Enums und für jedes 1 Menü-Item erstellen
-        for (FuelTypeEnum fuel : FuelTypeEnum.values()){
+        for (FuelTypeEnum fuel : FuelTypeEnum.values()) {
             MenuItem item = new MenuItem(bundle.getString(fuel.name()));
             menuFuel.getItems().add(item);
             // wird Action auf Item bemerkt -> carType aktualisieren und Text
-            item.setOnAction(e ->{
+            item.setOnAction(e -> {
                 menuFuel.setText(item.getText());
                 fuelStr = item.getText();
             });
@@ -277,7 +299,7 @@ public class CarCreationController implements Initializable{
      * Klick auf ein Menü-Item der Text im Menü-Button ersetzt und
      * die lokale Variable satNav mit dem neuen Typen ersetzt
      */
-    private void setChosenSatNav(){
+    private void setChosenSatNav() {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         // basistyp, falls kein Typ ausgewählt
         satNavStr = bundle.getString("JA");
@@ -289,11 +311,11 @@ public class CarCreationController implements Initializable{
         menuSatNav.getItems().add(item2);
 
         // wird Action auf Item bemerkt -> carType aktualisieren und Text
-        item.setOnAction(e ->{
+        item.setOnAction(e -> {
             menuSatNav.setText(item.getText());
             satNavStr = item.getText();
         });
-        item2.setOnAction(e ->{
+        item2.setOnAction(e -> {
             menuSatNav.setText(item2.getText());
             satNavStr = item2.getText();
             System.out.println(satNavStr);
@@ -302,11 +324,12 @@ public class CarCreationController implements Initializable{
 
     /**
      * Überprüft Textfelder auf Gültigkeit
-     * @param textField betreffendes Textfeld
+     *
+     * @param textField    betreffendes Textfeld
      * @param errorMessage Fehlermeldung
      */
-    private void validateTextField(TextField textField, String errorMessage){
-        if(textField.getText() == null || textField.getText().isEmpty()){
+    private void validateTextField(TextField textField, String errorMessage) {
+        if (textField.getText() == null || textField.getText().isEmpty()) {
             throw new IllegalArgumentException(errorMessage);
         }
     }

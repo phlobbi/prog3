@@ -6,6 +6,7 @@ import de.htwsaar.hopper.logic.implementations.Customer;
 import de.htwsaar.hopper.logic.validations.Validation;
 import de.htwsaar.hopper.repositories.BookingRepository;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,6 +24,9 @@ import java.util.ResourceBundle;
 
 import static java.util.Calendar.*;
 
+/**
+ * Controller für die Wahl eines Kunden bei der Buchung
+ */
 public class BookingCreationController {
 
     private Car chosenCar;
@@ -79,7 +83,11 @@ public class BookingCreationController {
     @FXML
     private TextField textFieldPickUpMinute;
 
-
+    /**
+     * bricht die Wahl eines Kunden für die Buchung ab und schließt das Fenster.
+     *
+     * @param event Event (hier Mausklick)
+     */
     @FXML
     void cancelCreation(ActionEvent event) {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
@@ -90,11 +98,11 @@ public class BookingCreationController {
      * Öffnet ein Fenster, in dem das Auto ausgewählt werden kann, welches für die Buchung ausgeliehen werden soll.
      * Dabei wird die Methode getChosenCar() der Klasse BookingCarChooseController aufgerufen.
      *
-     * @param event
+     * @param event Event (hier Mausklick)
      */
     @FXML
     void chooseCar(ActionEvent event) {
-        Stage stage = new Stage();
+        Stage stage;
         URL url = getClass().getResource("fxml/Booking-car-choose-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
@@ -114,13 +122,13 @@ public class BookingCreationController {
             BookingCarChooseController controller = fxmlLoader.getController();
             chosenCar = controller.getChosenCar();
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.showAndWait();
         }
         enableWindow();
 
-        if(chosenCar != null){
+        if (chosenCar != null) {
             textFieldChosenCar.setText(chosenCar.getBrand() + " " + chosenCar.getModel());
         } else {
             textFieldChosenCar.setText("");
@@ -134,11 +142,11 @@ public class BookingCreationController {
      * Öffnet ein neues Fenster, in dem der Kunde ausgewählt werden kann, der den Wagen ausleihen möchte.
      * Dabei wird die Methode getChosenCustomer() der Klasse BookingCustomerChooseController aufgerufen.
      *
-     * @param event
+     * @param event Event (hier Mausklick)
      */
     @FXML
     void chooseCustomer(ActionEvent event) {
-        Stage stage = new Stage();
+        Stage stage;
         URL url = getClass().getResource("fxml/Booking-customer-choose-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
@@ -158,13 +166,13 @@ public class BookingCreationController {
             BookingCustomerChooseController controller = fxmlLoader.getController();
             chosenCustomer = controller.getChosenCustomer();
 
-        } catch(Exception e) {
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage());
             alert.showAndWait();
         }
         enableWindow();
 
-        if(chosenCustomer != null){
+        if (chosenCustomer != null) {
             textFieldChosenCustomer.setText(chosenCustomer.getFirstName() + " " + chosenCustomer.getLastName());
         } else {
             textFieldChosenCustomer.setText("");
@@ -174,21 +182,27 @@ public class BookingCreationController {
         }
     }
 
-
+    /**
+     * Speichert die Buchung in der Datenbank.
+     * Nimmt die Daten aus den Textfeldern und DatePickern
+     * und übergibt sie an die Methode createBooking() der Klasse BookingRepo.
+     *
+     * @param event Klick auf den Button "Speichern"
+     */
     @FXML
     void createBooking(ActionEvent event) {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try{
-            if (datePickerPickUpDate.getValue() == null){
+            if (datePickerPickUpDate.getValue() == null) {
                 throw new IllegalArgumentException(labelPickUpDate.getText() + " " + bundle.getString("EMPTY"));
             }
-            if (datePickerDropOffDate.getValue() == null){
+            if (datePickerDropOffDate.getValue() == null) {
                 throw new IllegalArgumentException(labelDropOffDate.getText() + " " + bundle.getString("EMPTY"));
             }
-            if(chosenCar == null){
+            if (chosenCar == null) {
                 throw new IllegalArgumentException(bundle.getString("NO_CAR_SELECTED"));
             }
-            if(chosenCustomer == null){
+            if (chosenCustomer == null) {
                 throw new IllegalArgumentException(bundle.getString("NO_CAR_SELECTED"));
             }
 
@@ -231,7 +245,7 @@ public class BookingCreationController {
             alert.showAndWait();
             Stage stage = (Stage) btnSave.getScene().getWindow();
             stage.close();
-        } catch (Exception e){
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(bundle.getString("MENU_ERROR"));
             alert.setHeaderText(bundle.getString("MENU_ERROR_BOOKING"));
@@ -241,8 +255,11 @@ public class BookingCreationController {
 
     }
 
-
-    void disableWindow(){
+    /**
+     * Deaktiviert die Buttons und den X-Button, damit das Hauptfenster nicht geschlossen werden kann
+     * und die BookingManagement View nicht mehr bedient werden kann.
+     */
+    void disableWindow() {
         btnCancel.setDisable(true);
         btnChooseCustomer.setDisable(true);
         btnChooseCar.setDisable(true);
@@ -250,12 +267,14 @@ public class BookingCreationController {
 
 
         Stage primaryStage = (Stage) btnSave.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            e.consume();
-        });
+        primaryStage.onCloseRequestProperty().set(Event::consume);
     }
 
-    void enableWindow(){
+    /**
+     * Aktiviert die Buttons und den X-Button, damit das Hauptfenster wieder geschlossen werden kann
+     * und die BookingManagement View wieder bedient werden kann.
+     */
+    void enableWindow() {
         btnCancel.setDisable(false);
         btnChooseCustomer.setDisable(false);
         btnChooseCar.setDisable(false);
@@ -263,9 +282,7 @@ public class BookingCreationController {
 
         // Roten Kreuz Button wieder aktivieren
         Stage primaryStage = (Stage) btnSave.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            primaryStage.close();
-        });
+        primaryStage.onCloseRequestProperty().set(e -> primaryStage.close());
     }
 
 

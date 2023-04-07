@@ -1,8 +1,8 @@
 package de.htwsaar.hopper.logic.implementations;
 
 import de.htwsaar.hopper.logic.interfaces.CustomerInterface;
-import de.htwsaar.hopper.logic.validations.PreventNullPersistForCustomer;
 import de.htwsaar.hopper.logic.validations.CustomerValidation;
+import de.htwsaar.hopper.logic.validations.PreventNullPersistForCustomer;
 
 import javax.persistence.*;
 import java.util.Calendar;
@@ -10,19 +10,20 @@ import java.util.ResourceBundle;
 
 /**
  * Implementierung des Customer-Interface.
- * Annotiert fuer die Verwendung mit der Datenbank.
+ * Annotiert für die Verwendung mit der Datenbank.
+ *
  * @author gitroba
  */
 @EntityListeners(PreventNullPersistForCustomer.class)
 @Entity
 @Table(name = "Customers",
-    uniqueConstraints = {
-        @UniqueConstraint(columnNames = "CustomerId"),
-        @UniqueConstraint(columnNames = "Email"),
-        @UniqueConstraint(columnNames = "PhoneNumber"),
-        @UniqueConstraint(columnNames = "IBAN"),
-        @UniqueConstraint(columnNames = "DriverLicenseNumber")
-    })
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "CustomerId"),
+                @UniqueConstraint(columnNames = "Email"),
+                @UniqueConstraint(columnNames = "PhoneNumber"),
+                @UniqueConstraint(columnNames = "IBAN"),
+                @UniqueConstraint(columnNames = "DriverLicenseNumber")
+        })
 public class Customer implements CustomerInterface {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,21 +76,26 @@ public class Customer implements CustomerInterface {
     @Temporal(TemporalType.DATE)
     Calendar driverLicenseExpirationDate;
 
+    /**
+     * Leerer Konstruktor, der von Hibernate benötigt wird.
+     * Nicht verwenden, da sonst die anderen Felder möglicherweise nicht gesetzt werden können.
+     */
     public Customer() {
     }
 
     /**
      * Konstruktor für alle Parameter
-     * @param firstName Vorname des Kunden
-     * @param lastName Nachname des Kunden
-     * @param email E-Mail des Kunden
-     * @param street Straße des Kunden
-     * @param houseNumber Hausnummer des Kunden
-     * @param zipCode Postleitzahl des Kunden
-     * @param city Stadt des Kunden
-     * @param phoneNumber Telefonnummer des Kunden
-     * @param iban IBAN des Kunden
-     * @param driverLicenseNumber Führerscheinnnummer des Kunden
+     *
+     * @param firstName                   Vorname des Kunden
+     * @param lastName                    Nachname des Kunden
+     * @param email                       E-Mail des Kunden
+     * @param street                      Straße des Kunden
+     * @param houseNumber                 Hausnummer des Kunden
+     * @param zipCode                     Postleitzahl des Kunden
+     * @param city                        Stadt des Kunden
+     * @param phoneNumber                 Telefonnummer des Kunden
+     * @param iban                        IBAN des Kunden
+     * @param driverLicenseNumber         Führerscheinnummer des Kunden
      * @param driverLicenseExpirationDate Ablaufdatum des Führerscheins des Kunden
      */
     public Customer(String firstName, String lastName, String email, String street,
@@ -110,9 +116,10 @@ public class Customer implements CustomerInterface {
 
     /**
      * Gibt zurück, ob der in der Datenbank gesetzte Führerschein noch gültig ist.
+     *
      * @return true, falls das Datum noch nicht abgelaufen ist; sonst false
      */
-    public boolean isDriverLicenseValid(){
+    public boolean isDriverLicenseValid() {
         Calendar currentDate = Calendar.getInstance();
         return !driverLicenseExpirationDate.before(currentDate);
     }
@@ -245,7 +252,6 @@ public class Customer implements CustomerInterface {
 
         Customer customer = (Customer) o;
 
-        //if (getCustomerId() != customer.getCustomerId()) return false;
         if (!getFirstName().equals(customer.getFirstName())) return false;
         if (!getLastName().equals(customer.getLastName())) return false;
         if (!getEmail().equals(customer.getEmail())) return false;

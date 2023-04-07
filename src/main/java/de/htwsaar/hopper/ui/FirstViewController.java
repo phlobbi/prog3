@@ -3,8 +3,14 @@ package de.htwsaar.hopper.ui;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
+/**
+ * Controller für die Startseite
+ */
 public final class FirstViewController {
 
     /**
@@ -33,8 +39,8 @@ public final class FirstViewController {
      * @param event mouse click
      */
     @FXML
-    void switchToHelpView(MouseEvent event) {
-        System.out.println("Help");
+    void switchToHelpView(MouseEvent event) throws URISyntaxException, IOException {
+        Desktop.getDesktop().browse(new URI("https://phlobbi.github.io/prog3/"));
     }
 
     /**
@@ -47,6 +53,11 @@ public final class FirstViewController {
         App.setRoot("fxml/Car-view.fxml");
     }
 
+    /**
+     * Wechselt bei Aufruf auf die Einstellungen.
+     *
+     * @param event mouse click
+     */
     @FXML
     void switchToSettingsView(MouseEvent event) throws IOException {
         App.setRoot("fxml/settings-view.fxml");

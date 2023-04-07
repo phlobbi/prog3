@@ -5,6 +5,7 @@ import de.htwsaar.hopper.repositories.CarRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -21,7 +23,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
+/**
+ * Controller für die Verwaltung von Autos
+ */
 public final class CarManagementController implements Initializable {
     private static Car selectedCar;
 
@@ -115,9 +119,15 @@ public final class CarManagementController implements Initializable {
     @FXML
     private TextField textFieldSearch;
 
+    /**
+     * Wechselt zum Fenster, um ein Fahrzeug zu erstellen
+     *
+     * @param event Event
+     * @throws IOException IOException
+     */
     @FXML
     void switchToSceneAddCar(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
+        Stage stage;
         URL url = getClass().getResource("fxml/Car-creation-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
@@ -140,6 +150,10 @@ public final class CarManagementController implements Initializable {
         reloadTable();
     }
 
+    /**
+     * Deaktiviert das Fenster, sodass es nicht mehr geschlossen werden kann und keine
+     * weiteren Aktionen ausgeführt werden können.
+     */
     void disableWindow() {
         menuButtonFilter.setDisable(true);
         menuItemUncheck.setDisable(true);
@@ -153,11 +167,13 @@ public final class CarManagementController implements Initializable {
         btnGoBack.setDisable(true);
 
         Stage primaryStage = (Stage) btnCreate.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            e.consume();
-        });
+        primaryStage.onCloseRequestProperty().set(Event::consume);
     }
 
+    /**
+     * Aktiviert das Fenster, sodass es wieder geschlossen werden kann und Aktionen
+     * ausgeführt werden können.
+     */
     void enableWindow() {
         menuButtonFilter.setDisable(false);
         menuItemUncheck.setDisable(false);
@@ -172,9 +188,7 @@ public final class CarManagementController implements Initializable {
 
         // Roten Kreuz Button wieder aktivieren
         Stage primaryStage = (Stage) btnCreate.getScene().getWindow();
-        primaryStage.onCloseRequestProperty().set(e -> {
-            primaryStage.close();
-        });
+        primaryStage.onCloseRequestProperty().set(e -> primaryStage.close());
     }
 
     /**
@@ -190,7 +204,7 @@ public final class CarManagementController implements Initializable {
 
     @FXML
     void switchToSceneUpdateCar(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
+        Stage stage;
         URL url = getClass().getResource("fxml/Car-edit-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         try {
@@ -215,6 +229,7 @@ public final class CarManagementController implements Initializable {
         reloadTable();
     }
 
+    @SuppressWarnings("MissingJavadoc")
     public static Car getSelectedCar() {
         return selectedCar;
     }
@@ -272,6 +287,9 @@ public final class CarManagementController implements Initializable {
     }
 
 
+    /**
+     * Löscht das ausgewählte Fahrzeug aus der Datenbank.
+     */
     @FXML
     public void deleteCar() {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
@@ -279,10 +297,9 @@ public final class CarManagementController implements Initializable {
         setSelectedCar(tableView.getSelectionModel().getSelectedItem());
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, bundle.getString("CAR_CONFIRM_DELETE"));
         alert.setHeaderText(bundle.getString("CAR_HEADER_CONFIRM_DELETE"));
-        alert.setContentText(bundle.getString("CAR_CONTENT_TEXT")+ " " +selectedCar.getCarId()+" "+selectedCar.getBrand()+" "+selectedCar.getType());
+        alert.setContentText(bundle.getString("CAR_CONTENT_TEXT") + " " + selectedCar.getCarId() + " " + selectedCar.getBrand() + " " + selectedCar.getType());
         alert.showAndWait();
-        if(alert.getResult().getText().equals("OK"))
-        {
+        if (alert.getResult().getText().equals("OK")) {
             CarRepository.delete(selectedCar);
             reloadTable();
             Alert alert2 = new Alert(Alert.AlertType.INFORMATION, bundle.getString("CAR_DELETED"));
@@ -295,6 +312,11 @@ public final class CarManagementController implements Initializable {
 
     }
 
+    /**
+     * Setzt die Suche zurück.
+     *
+     * @param event button click
+     */
     @FXML
     void resetSearch(ActionEvent event) {
         uncheckFilters(new ActionEvent());
@@ -302,17 +324,22 @@ public final class CarManagementController implements Initializable {
         reloadTable();
     }
 
+    /**
+     * Sucht nach Fahrzeugen, die den Suchkriterien entsprechen.
+     *
+     * @param event button click
+     */
     @FXML
     void searchCars(ActionEvent event) {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
-        try{
+        try {
             String searchCriteria = textFieldSearch.getText();
 
-            if(searchCriteria.trim().isEmpty()){
+            if (searchCriteria.trim().isEmpty()) {
                 throw new IllegalArgumentException(bundle.getString("NO_CRITERIA_ENTERED"));
             }
 
-            ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
+            ObservableList<CheckMenuItem> checkMenuItems;
             checkMenuItems = getAllSelectedCriteria();
 
             if (checkMenuItems.isEmpty())
@@ -342,21 +369,21 @@ public final class CarManagementController implements Initializable {
                         if (car.getLicensePlate().toLowerCase().contains(searchCriteria.toLowerCase()))
                             allowedToInsert = true;
                     }
-                    if (!IsCarAlreadyInTable(car)){
+                    if (!IsCarAlreadyInTable(car)) {
                         if (allowedToInsert)
                             tableView.getItems().add(car);
                     }
 
                 }
             }
-            if (tableView.getItems().isEmpty()){
+            if (tableView.getItems().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle(bundle.getString("CARS_NOT_FOUND"));
                 alert.setHeaderText(bundle.getString("CARS_NOT_FOUND"));
                 alert.setContentText(bundle.getString("CARS_NOT_FOUND_BY_CRITERIA"));
                 alert.showAndWait();
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(bundle.getString("MENU_ERROR"));
             alert.setHeaderText(bundle.getString("MENU_ERROR_SEARCH"));
@@ -365,17 +392,24 @@ public final class CarManagementController implements Initializable {
         }
     }
 
+    /**
+     * Sucht nach Fahrzeugen mit Enter Taste
+     *
+     * @param event Enter Taste
+     */
     @FXML
     void searchCarsViaEnter(KeyEvent event) {
-
+        if (event.getCode() == KeyCode.ENTER)
+            searchCars(new ActionEvent());
     }
 
 
     /**
      * Gibt eine Liste aus mit allen Suchkriterien, die ausgewählt sind
+     *
      * @return Liste mit allen ausgewählten Suchkriterien
      */
-    private ObservableList<CheckMenuItem> getAllSelectedCriteria(){
+    private ObservableList<CheckMenuItem> getAllSelectedCriteria() {
         ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
 
         if (filterBrand.isSelected())
@@ -394,6 +428,11 @@ public final class CarManagementController implements Initializable {
         return checkMenuItems;
     }
 
+    /**
+     * Setzt alle Suchkriterien zurück.
+     *
+     * @param event button click
+     */
     @FXML
     void uncheckFilters(ActionEvent event) {
         filterBrand.setSelected(false);
@@ -405,16 +444,18 @@ public final class CarManagementController implements Initializable {
     }
 
     /**
-     * Prüft ob das Auto bereits in der Liste ist
+     * Prüft, ob das Auto bereits in der Liste ist
+     *
      * @param car Auto was zu prüfen ist
-     * @return true wenn Auto bereits in der Liste ist, sonst false
+     * @return true, wenn Auto bereits in der Liste ist, sonst false
      */
-    private boolean IsCarAlreadyInTable(Car car){
+    private boolean IsCarAlreadyInTable(Car car) {
         return tableView.getItems().contains(car);
     }
 
     /**
      * Setzt die Variable selectedCar auf ein angegebenes Car-Objekt.
+     *
      * @param car Zu setzendes Car-Objekt
      */
     public static void setSelectedCar(Car car) {

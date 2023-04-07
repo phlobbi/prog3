@@ -15,6 +15,9 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller für die Auswahl eines Autos für eine Buchung
+ */
 public class BookingCarChooseController implements Initializable {
 
     private Car chosenCar;
@@ -92,7 +95,8 @@ public class BookingCarChooseController implements Initializable {
     }
 
     /**
-     * Speichert das ausgeählte Auto
+     * Speichert das ausgewählte Auto
+     *
      * @param event Event
      */
     @FXML
@@ -104,19 +108,20 @@ public class BookingCarChooseController implements Initializable {
 
     /**
      * Sucht nach ausgewählten Autos anhand der Filterkriterien
+     *
      * @param event Event
      */
     @FXML
     void searchForCar(ActionEvent event) {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
-        try{
+        try {
             String searchCriteria = textFieldSearch.getText();
 
-            if(searchCriteria.trim().isEmpty()){
+            if (searchCriteria.trim().isEmpty()) {
                 throw new IllegalArgumentException(bundle.getString("NO_CRITERIA_ENTERED"));
             }
 
-            ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
+            ObservableList<CheckMenuItem> checkMenuItems;
             checkMenuItems = getAllSelectedCriteria();
 
             if (checkMenuItems.isEmpty())
@@ -143,21 +148,21 @@ public class BookingCarChooseController implements Initializable {
                         if (car.getTransmissionType().getLabel().toLowerCase().contains(searchCriteria.toLowerCase()))
                             allowedToInsert = true;
                     }
-                    if (!IsCarAlreadyInTable(car)){
+                    if (!IsCarAlreadyInTable(car)) {
                         if (allowedToInsert)
                             tableView.getItems().add(car);
                     }
 
                 }
             }
-            if (tableView.getItems().isEmpty()){
+            if (tableView.getItems().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle(bundle.getString("CARS_NOT_FOUND"));
                 alert.setHeaderText(bundle.getString("CARS_NOT_FOUND"));
                 alert.setContentText(bundle.getString("CARS_NOT_FOUND_BY_CRITERIA"));
                 alert.showAndWait();
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(bundle.getString("MENU_ERROR"));
             alert.setHeaderText(bundle.getString("MENU_ERROR_SEARCH"));
@@ -168,28 +173,31 @@ public class BookingCarChooseController implements Initializable {
 
     /**
      * Sucht nach Autos, wenn die Enter-Taste gedrückt wird
+     *
      * @param event Event
      */
     @FXML
     void searchForCarViaEnter(KeyEvent event) {
-        if(event.getCode().toString().equals("ENTER")){
+        if (event.getCode().toString().equals("ENTER")) {
             searchForCar(new ActionEvent());
         }
     }
 
     /**
      * Speichert das ausgewählte Auto durch Drücken der Enter-Taste
-     * @param event
+     *
+     * @param event Event
      */
     @FXML
     void saveCarViaEnter(KeyEvent event) {
-        if(event.getCode().toString().equals("ENTER")){
+        if (event.getCode().toString().equals("ENTER")) {
             saveChosenCar(new ActionEvent());
         }
     }
 
     /**
      * Entfernt die Auswahl aller Filterkriterien
+     *
      * @param event Event
      */
     @FXML
@@ -204,6 +212,7 @@ public class BookingCarChooseController implements Initializable {
     /**
      * Setzt die Suche zurück, sodass keine Filterkriterien mehr aktiviert sind,
      * die Tabelle wieder auf original zurückgesetzt wird und das Suchfeld geleert wird
+     *
      * @param event Event
      */
     @FXML
@@ -216,7 +225,7 @@ public class BookingCarChooseController implements Initializable {
     /**
      * Lädt die Tabelle mit allen verfügbaren Autos
      */
-    public void reloadTable(){
+    public void reloadTable() {
         tableView.getItems().clear();
 
         carIdColumn.setCellValueFactory(new PropertyValueFactory<>("carId"));
@@ -240,20 +249,37 @@ public class BookingCarChooseController implements Initializable {
             btnCancel.setDisable(true);
         }
     }
+
+    /**
+     * Initialisiert die Controller-Klasse. Diese Methode wird automatisch aufgerufen
+     * @param url
+     * The location used to resolve relative paths for the root object, or
+     * {@code null} if the location is not known.
+     *
+     * @param resourceBundle
+     * The resources used to localize the root object, or {@code null} if
+     * the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         reloadTable();
     }
 
-    public Car getChosenCar(){
+    /**
+     * Gibt das ausgewählte Auto zurück
+     *
+     * @return ausgewähltes Auto
+     */
+    public Car getChosenCar() {
         return chosenCar;
     }
 
     /**
      * Gibt eine Liste aus mit allen Suchkriterien, die ausgewählt sind
+     *
      * @return Liste mit allen ausgewählten Suchkriterien
      */
-    private ObservableList<CheckMenuItem> getAllSelectedCriteria(){
+    private ObservableList<CheckMenuItem> getAllSelectedCriteria() {
         ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
 
         if (searchCritBrand.isSelected())
@@ -267,15 +293,16 @@ public class BookingCarChooseController implements Initializable {
         if (searchCritFuelType.isSelected())
             checkMenuItems.add(searchCritFuelType);
 
-       return checkMenuItems;
+        return checkMenuItems;
     }
 
     /**
-     * Prüft ob das Auto bereits in der Liste ist
+     * Prüft, ob das Auto bereits in der Liste ist
+     *
      * @param car Auto was zu prüfen ist
-     * @return true wenn Auto bereits in der Liste ist, sonst false
+     * @return true, wenn Auto bereits in der Liste ist, sonst false
      */
-    private boolean IsCarAlreadyInTable(Car car){
+    private boolean IsCarAlreadyInTable(Car car) {
         return tableView.getItems().contains(car);
     }
 

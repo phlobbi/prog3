@@ -2,8 +2,10 @@ package de.htwsaar.hopper.logic.enums;
 
 /**
  * Enum für die regulären Ausdrücke, die zur Validierung von Eingaben verwendet werden.
+ *
  * @author Bennet
  */
+@SuppressWarnings("MissingJavadoc")
 public enum ValidationRegexEnum {
 
     PHONE_NUMBER("^(\\+49|0)[0-9]{1,5}(\\/| )?[0-9]{4,10}"),
@@ -22,6 +24,11 @@ public enum ValidationRegexEnum {
         this.regex = label;
     }
 
+    /**
+     * Gibt den regulären Ausdruck des Enums zurück.
+     *
+     * @return Regulärer Ausdruck des Enums
+     */
     public String getRegex() {
         return regex;
     }

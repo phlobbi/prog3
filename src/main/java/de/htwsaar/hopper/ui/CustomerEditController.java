@@ -17,7 +17,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class CustomerEditController implements Initializable{
+/**
+ * Controller für die Bearbeitung eines Kunden
+ */
+public class CustomerEditController implements Initializable {
 
     @FXML
     private Button btnCancel;
@@ -86,35 +89,51 @@ public class CustomerEditController implements Initializable{
     @FXML
     private TextField textFieldDLNumber;
 
-
+    /**
+     * Bricht die Bearbeitung eines Kunden ab
+     *
+     * @param event Event
+     * @throws IOException IOException
+     */
     @FXML
     void cancelCreation(ActionEvent event) throws IOException {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Initialisiert die View
+     *
+     * @param url            The location used to resolve relative paths for the root object, or
+     *                       {@code null} if the location is not known.
+     * @param resourcebundle The resources used to localize the root object, or {@code null} if
+     *                       the root object was not localized.
+     */
     @Override
     public void initialize(URL url, java.util.ResourceBundle resourcebundle) {
         loadCustomer();
     }
 
+    /**
+     * Lädt den ausgewählten Kunden in die Felder der View
+     */
     @FXML
-    void loadCustomer(){
+    void loadCustomer() {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
-        try{
-        Customer customer = CustomerManagementController.getSelectedCustomer();
-        textFieldFirstName.setText(customer.getFirstName());
-        textFieldLastName.setText(customer.getLastName());
-        textFieldEmail.setText(customer.getEmail());
-        textFieldStreet.setText(customer.getStreet());
-        textFieldStreetNumber.setText(customer.getHouseNumber());
-        textFieldZipCode.setText(customer.getZipCode());
-        textFieldCity.setText(customer.getCity());
-        textFieldPhoneNumber.setText(customer.getPhoneNumber());
-        textFieldDLNumber.setText(customer.getDriverLicenseNumber());
-        textFieldIBAN.setText(customer.getIBAN());
-        datePickDLExpirationDate.setValue(customer.getDriverLicenseExpirationDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-        } catch (Exception e){
+        try {
+            Customer customer = CustomerManagementController.getSelectedCustomer();
+            textFieldFirstName.setText(customer.getFirstName());
+            textFieldLastName.setText(customer.getLastName());
+            textFieldEmail.setText(customer.getEmail());
+            textFieldStreet.setText(customer.getStreet());
+            textFieldStreetNumber.setText(customer.getHouseNumber());
+            textFieldZipCode.setText(customer.getZipCode());
+            textFieldCity.setText(customer.getCity());
+            textFieldPhoneNumber.setText(customer.getPhoneNumber());
+            textFieldDLNumber.setText(customer.getDriverLicenseNumber());
+            textFieldIBAN.setText(customer.getIBAN());
+            datePickDLExpirationDate.setValue(customer.getDriverLicenseExpirationDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(bundle.getString("MENU_ERROR"));
             alert.setHeaderText(bundle.getString("MENU_ERROR_CUSTOMER_LOAD"));
@@ -124,6 +143,11 @@ public class CustomerEditController implements Initializable{
     }
 
 
+    /**
+     * Validiert die Eingabe und speichert den geänderten Kunden
+     *
+     * @param event Event
+     */
     @FXML
     void updateCustomer(ActionEvent event) {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
@@ -138,7 +162,7 @@ public class CustomerEditController implements Initializable{
             validateTextField(textFieldZipCode, labelZipCode.getText() + " " + bundle.getString("EMPTY"));
             validateTextField(textFieldCity, labelCity.getText() + " " + bundle.getString("EMPTY"));
             validateTextField(textFieldDLNumber, labelDLNumber.getText() + " " + bundle.getString("EMPTY"));
-            if (datePickDLExpirationDate.getValue() == null){
+            if (datePickDLExpirationDate.getValue() == null) {
                 throw new IllegalArgumentException(labelDLExpirationDate.getText() + " " + bundle.getString("EMPTY"));
             }
 
@@ -178,7 +202,7 @@ public class CustomerEditController implements Initializable{
             customer.setIBAN(iban);
             customer.setDriverLicenseExpirationDate(expirationDateCal);
 
-            if (customer.equals(temp)){
+            if (customer.equals(temp)) {
                 throw new IllegalArgumentException(bundle.getString("NO_CHANGES_MADE"));
             } else {
                 CustomerRepository.persist(customer);
@@ -199,11 +223,12 @@ public class CustomerEditController implements Initializable{
 
     /**
      * Überprüft Textfelder auf Gültigkeit
-     * @param textField betreffendes Textfeld
+     *
+     * @param textField    betreffendes Textfeld
      * @param errorMessage Fehlermeldung
      */
-    private void validateTextField(TextField textField, String errorMessage){
-        if(textField.getText() == null || textField.getText().isEmpty()){
+    private void validateTextField(TextField textField, String errorMessage) {
+        if (textField.getText() == null || textField.getText().isEmpty()) {
             throw new IllegalArgumentException(errorMessage);
         }
     }

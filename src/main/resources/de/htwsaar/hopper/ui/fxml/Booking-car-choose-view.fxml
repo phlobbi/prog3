@@ -19,29 +19,27 @@
       <VBox prefHeight="558.0" prefWidth="40.0" BorderPane.alignment="CENTER" />
    </left>
    <bottom>
-      <HBox alignment="CENTER_LEFT" prefHeight="86.0" prefWidth="980.0" spacing="20.0" BorderPane.alignment="CENTER">
-         <padding>
-            <Insets bottom="20.0" left="20.0" top="20.0" />
-         </padding>
-         <children>
-            <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveChosenCar" prefHeight="25.0" prefWidth="90.0" text="%MENU_SAVE">
-               <graphic>
+       <HBox alignment="CENTER_LEFT" prefHeight="86.0" prefWidth="980.0" spacing="20.0" BorderPane.alignment="CENTER">
+           <padding>
+               <Insets bottom="20.0" left="20.0" top="20.0"/>
+           </padding>
+           <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveChosenCar" prefHeight="25.0" prefWidth="90.0"
+                   text="%MENU_SAVE">
+              <graphic>
                   <ImageView fitHeight="48.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/done_FILL0_wght400_GRAD0_opsz48.png" />
-                     </image>
+                      <Image url="@../icons/done_FILL0_wght400_GRAD0_opsz48.png"/>
                   </ImageView>
-               </graphic></Button>
-            <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="90.0" text="%MENU_CANCEL">
-               <graphic>
+              </graphic>
+           </Button>
+           <Button fx:id="btnCancel" mnemonicParsing="false" onAction="#cancel" prefHeight="25.0" prefWidth="90.0"
+                   text="%MENU_CANCEL">
+              <graphic>
                   <ImageView fitHeight="80.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png" />
-                     </image>
+                      <Image url="@../icons/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png"/>
                   </ImageView>
-               </graphic></Button>
-         </children>
-      </HBox>
+              </graphic>
+           </Button>
+       </HBox>
    </bottom>
    <center>
       <TableView fx:id="tableView" onKeyPressed="#saveCarViaEnter" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -58,43 +56,43 @@
          </columns></TableView>
    </center>
    <top>
-      <HBox alignment="CENTER" prefHeight="67.0" prefWidth="826.0" spacing="20.0" BorderPane.alignment="CENTER">
-         <padding>
-            <Insets bottom="20.0" left="20.0" top="20.0" />
-         </padding>
-         <children>
-            <TextField fx:id="textFieldSearch" onKeyPressed="#searchForCarViaEnter" prefHeight="27.0" prefWidth="267.0" />
-            <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchForCar" prefHeight="25.0" prefWidth="90.0" text="%MENU_SEARCH">
-               <graphic>
+       <HBox alignment="CENTER" prefHeight="67.0" prefWidth="826.0" spacing="20.0" BorderPane.alignment="CENTER">
+           <padding>
+               <Insets bottom="20.0" left="20.0" top="20.0"/>
+           </padding>
+           <TextField fx:id="textFieldSearch" onKeyPressed="#searchForCarViaEnter" prefHeight="27.0" prefWidth="267.0"/>
+           <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchForCar" prefHeight="25.0" prefWidth="90.0"
+                   text="%MENU_SEARCH">
+              <graphic>
                   <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/done_FILL0_wght400_GRAD0_opsz48.png" />
-                     </image>
+                      <Image url="@../icons/done_FILL0_wght400_GRAD0_opsz48.png"/>
                   </ImageView>
-               </graphic></Button>
-            <MenuButton fx:id="menuButtonCriteria" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="%MENU_FILTER">
-              <items>
-                  <CheckMenuItem fx:id="searchCritType" mnemonicParsing="false" text="%CAR_CARTYPE" />
-                  <CheckMenuItem fx:id="searchCritBrand" mnemonicParsing="false" text="%CAR_CARBRAND" />
-                  <CheckMenuItem fx:id="searchCritModel" mnemonicParsing="false" text="%CAR_CARMODEL" />
-                  <CheckMenuItem fx:id="searchCritTransmissionType" mnemonicParsing="false" text="%CAR_TRANSMISSION" />
-                  <CheckMenuItem fx:id="searchCritFuelType" mnemonicParsing="false" text="%CAR_FUELTYPE" />
-                <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckCriteria" text="%MENU_REMOVE_FILTER" />
-              </items>
-               <padding>
-                  <Insets left="2.0" />
-               </padding>
-            </MenuButton>
-            <Button fx:id="btnResetSearch" mnemonicParsing="false" onAction="#resetSearch" prefHeight="25.0" prefWidth="90.0" text="%MENU_REMOVE_FILTER">
-               <graphic>
+              </graphic>
+           </Button>
+           <MenuButton fx:id="menuButtonCriteria" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0"
+                       text="%MENU_FILTER">
+               <items>
+                   <CheckMenuItem fx:id="searchCritType" mnemonicParsing="false" text="%CAR_CARTYPE"/>
+                   <CheckMenuItem fx:id="searchCritBrand" mnemonicParsing="false" text="%CAR_CARBRAND"/>
+                   <CheckMenuItem fx:id="searchCritModel" mnemonicParsing="false" text="%CAR_CARMODEL"/>
+                   <CheckMenuItem fx:id="searchCritTransmissionType" mnemonicParsing="false" text="%CAR_TRANSMISSION"/>
+                   <CheckMenuItem fx:id="searchCritFuelType" mnemonicParsing="false" text="%CAR_FUELTYPE"/>
+                   <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckCriteria"
+                             text="%MENU_REMOVE_FILTER"/>
+               </items>
+              <padding>
+                  <Insets left="2.0"/>
+              </padding>
+           </MenuButton>
+           <Button fx:id="btnResetSearch" mnemonicParsing="false" onAction="#resetSearch" prefHeight="25.0"
+                   prefWidth="90.0" text="%MENU_REMOVE_FILTER">
+              <graphic>
                   <ImageView fitHeight="16.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/undo_FILL0_wght400_GRAD0_opsz48.png" />
-                     </image>
+                      <Image url="@../icons/undo_FILL0_wght400_GRAD0_opsz48.png"/>
                   </ImageView>
-               </graphic></Button>
-         </children>
-      </HBox>
+              </graphic>
+           </Button>
+       </HBox>
    </top>
    <right>
       <VBox prefHeight="558.0" prefWidth="46.0" BorderPane.alignment="CENTER" />

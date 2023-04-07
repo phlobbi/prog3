@@ -1,8 +1,6 @@
 package de.htwsaar.hopper.ui;
 
-import de.htwsaar.hopper.logic.implementations.Car;
 import de.htwsaar.hopper.logic.implementations.Customer;
-import de.htwsaar.hopper.repositories.CarRepository;
 import de.htwsaar.hopper.repositories.CustomerRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +15,9 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller für die Auswahl eines Kunden für eine Buchung
+ */
 public class BookingCustomerChooseController implements Initializable {
 
     private Customer chosenCustomer;
@@ -69,12 +70,18 @@ public class BookingCustomerChooseController implements Initializable {
     @FXML
     private TextField textFieldSearch;
 
+    /**
+     * Bricht die Auswahl ab und schließt das Fenster
+     */
     @FXML
     void cancel(ActionEvent event) {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Speichert den ausgewählten Kunden und schließt das Fenster
+     */
     @FXML
     void saveChosenCustomer(ActionEvent event) {
         chosenCustomer = tableView.getSelectionModel().getSelectedItem();
@@ -84,19 +91,20 @@ public class BookingCustomerChooseController implements Initializable {
 
     /**
      * Sucht nach ausgewählten Autos anhand der Filterkriterien
+     *
      * @param event Event
      */
     @FXML
     void searchForCustomer(ActionEvent event) {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
-        try{
+        try {
             String searchCriteria = textFieldSearch.getText();
 
-            if(searchCriteria.trim().isEmpty()){
+            if (searchCriteria.trim().isEmpty()) {
                 throw new IllegalArgumentException(bundle.getString("NO_CRITERIA_ENTERED"));
             }
 
-            ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
+            ObservableList<CheckMenuItem> checkMenuItems;
             checkMenuItems = getAllSelectedCriteria();
 
             if (checkMenuItems.isEmpty())
@@ -117,21 +125,21 @@ public class BookingCustomerChooseController implements Initializable {
                         if (customer.getEmail().toLowerCase().contains(searchCriteria.toLowerCase()))
                             allowedToInsert = true;
                     }
-                    if (!IsCustomerAlreadyInTable(customer)){
+                    if (!IsCustomerAlreadyInTable(customer)) {
                         if (allowedToInsert)
                             tableView.getItems().add(customer);
                     }
 
                 }
             }
-            if (tableView.getItems().isEmpty()){
+            if (tableView.getItems().isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle(bundle.getString("CUSTOMERS_NOT_FOUND"));
                 alert.setHeaderText(bundle.getString("CUSTOMERS_NOT_FOUND"));
                 alert.setContentText(bundle.getString("CUSTOMERS_NOT_FOUND_BY_CRITERIA"));
                 alert.showAndWait();
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle(bundle.getString("MENU_ERROR"));
             alert.setHeaderText(bundle.getString("MENU_ERROR_SEARCH"));
@@ -142,28 +150,31 @@ public class BookingCustomerChooseController implements Initializable {
 
     /**
      * Sucht nach Autos, wenn die Enter-Taste gedrückt wird
+     *
      * @param event Event
      */
     @FXML
     void searchForCustomerViaEnter(KeyEvent event) {
-        if(event.getCode().toString().equals("ENTER")){
+        if (event.getCode().toString().equals("ENTER")) {
             searchForCustomer(new ActionEvent());
         }
     }
 
     /**
      * Speichert den ausgewählten Kunden durch Drücken der Enter-Taste
-     * @param event
+     *
+     * @param event KeyEvent, das die Enter-Taste repräsentiert
      */
     @FXML
     void saveCustomerViaEnter(KeyEvent event) {
-        if(event.getCode().toString().equals("ENTER")){
+        if (event.getCode().toString().equals("ENTER")) {
             saveChosenCustomer(new ActionEvent());
         }
     }
 
     /**
      * Entfernt die Auswahl aller Filterkriterien
+     *
      * @param event Event
      */
     @FXML
@@ -176,6 +187,7 @@ public class BookingCustomerChooseController implements Initializable {
     /**
      * Setzt die Suche zurück, sodass keine Filterkriterien mehr aktiviert sind,
      * die Tabelle wieder auf original zurückgesetzt wird und das Suchfeld geleert wird
+     *
      * @param event Event
      */
     @FXML
@@ -188,7 +200,7 @@ public class BookingCustomerChooseController implements Initializable {
     /**
      * Lädt die Tabelle mit allen verfügbaren Autos
      */
-    public void reloadTable(){
+    public void reloadTable() {
         tableView.getItems().clear();
 
         customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));
@@ -210,20 +222,35 @@ public class BookingCustomerChooseController implements Initializable {
         }
     }
 
+    /**
+     * Initialisiert die Controller-Klasse. Diese Methode wird automatisch aufgerufen
+     *
+     * @param url            The location used to resolve relative paths for the root object, or
+     *                       {@code null} if the location is not known.
+     * @param resourceBundle The resources used to localize the root object, or {@code null} if
+     *                       the root object was not localized.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         reloadTable();
     }
 
+
+    /**
+     * Gibt den ausgewählten Kunden zurück
+     *
+     * @return ausgewählter Kunde
+     */
     public Customer getChosenCustomer() {
         return chosenCustomer;
     }
 
     /**
      * Gibt eine Liste aus mit allen Suchkriterien, die ausgewählt sind
+     *
      * @return Liste mit allen ausgewählten Suchkriterien
      */
-    private ObservableList<CheckMenuItem> getAllSelectedCriteria(){
+    private ObservableList<CheckMenuItem> getAllSelectedCriteria() {
         ObservableList<CheckMenuItem> checkMenuItems = FXCollections.observableArrayList();
 
         if (searchCritFirstName.isSelected())
@@ -237,11 +264,12 @@ public class BookingCustomerChooseController implements Initializable {
     }
 
     /**
-     * Prüft ob das Auto bereits in der Liste ist
+     * Prüft, ob das Auto bereits in der Liste ist
+     *
      * @param customer Auto was zu prüfen ist
-     * @return true wenn Auto bereits in der Liste ist, sonst false
+     * @return true, wenn Auto bereits in der Liste ist, sonst false
      */
-    private boolean IsCustomerAlreadyInTable(Customer customer){
+    private boolean IsCustomerAlreadyInTable(Customer customer) {
         return tableView.getItems().contains(customer);
     }
 

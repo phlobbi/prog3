@@ -3,15 +3,11 @@ package de.htwsaar.hopper.repositories;
 import de.htwsaar.hopper.logic.implementations.Booking;
 import de.htwsaar.hopper.logic.implementations.Checklist;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Repository-Klasse für das Booking. Dient zum Abrufbarmachen über die Datenbank.
+ * Repository-Klasse für das Booking.
  *
  * @author Ronny
  */
@@ -33,14 +29,14 @@ public class BookingRepository {
      * @return Alle Bookings in der Datenbank; null, falls keine existieren.
      */
     public static List<Booking> findAll() {
-        return (List<Booking>) DBObjectRepository.findAll(Booking.class,"Booking");
+        return (List<Booking>) DBObjectRepository.findAll("Booking");
     }
 
     /**
-     * Nimmt ein Booking entgegen und loescht dieses aus der DB.
+     * Nimmt ein Booking entgegen und löscht dieses aus der DB.
      * Wird dieses Booking nicht in der DB gefunden, wird eine IllegalArgumentException geworfen.
      *
-     * @param booking Die uebergebene / zu loeschende Entitaet.
+     * @param booking Die übergebene / zu löschende Entität.
      * @throws IllegalArgumentException wenn Objekt nicht in DB
      */
     public static void delete(Booking booking) {
@@ -52,7 +48,7 @@ public class BookingRepository {
     /**
      * Nimmt ein Booking-Objekt entgegen und persistiert es in der Datenbank.
      *
-     * @param booking Das uebergebene Objekt.
+     * @param booking Das übergebene Objekt.
      */
     public static void persist(Booking booking) {
         DBObjectRepository.persist(booking);
@@ -75,12 +71,12 @@ public class BookingRepository {
      *
      * @return Liste der nicht-abgeschlossenen Buchungen
      */
-    public static List<Booking> findUncompleted(){
+    public static List<Booking> findUncompleted() {
         List<Booking> uncompletedBookings = new ArrayList<>();
         List<Booking> bookingsList = findAll();
 
-        for(Booking booking : bookingsList){
-            if(booking.getRealDropOffDate() == null) {
+        for (Booking booking : bookingsList) {
+            if (booking.getRealDropOffDate() == null) {
                 uncompletedBookings.add(booking);
             }
         }
@@ -92,12 +88,12 @@ public class BookingRepository {
      *
      * @return Liste der abgeschlossenen Buchungen
      */
-    public static List<Booking> findCompleted(){
+    public static List<Booking> findCompleted() {
         List<Booking> completedBookings = new ArrayList<>();
         List<Booking> bookingsList = findAll();
 
-        for(Booking booking : bookingsList){
-            if(booking.getRealDropOffDate() != null) {
+        for (Booking booking : bookingsList) {
+            if (booking.getRealDropOffDate() != null) {
                 completedBookings.add(booking);
             }
         }

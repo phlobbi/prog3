@@ -16,85 +16,87 @@
 
 <BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480.0" minWidth="854.0" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: teal;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.htwsaar.hopper.ui.BookingManagementController">
    <left>
-      <VBox prefHeight="639.0" prefWidth="167.0" spacing="20.0" BorderPane.alignment="CENTER">
-         <padding>
-            <Insets left="20.0" right="20.0" top="20.0" />
-         </padding>
-         <children>
-            <Button fx:id="btnBookCar" mnemonicParsing="false" onAction="#switchToSceneNewBooking" prefHeight="25.0" prefWidth="125.0" text="%CAR_BOOK">
-               <graphic>
+       <VBox prefHeight="639.0" prefWidth="167.0" spacing="20.0" BorderPane.alignment="CENTER">
+           <padding>
+               <Insets left="20.0" right="20.0" top="20.0"/>
+           </padding>
+           <Button fx:id="btnBookCar" mnemonicParsing="false" onAction="#switchToSceneNewBooking" prefHeight="25.0"
+                   prefWidth="125.0" text="%CAR_BOOK">
+              <graphic>
                   <ImageView fitHeight="70.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/wysiwyg_FILL0_wght400_GRAD0_opsz48.png" />
-                     </image>
+                      <Image url="@../icons/wysiwyg_FILL0_wght400_GRAD0_opsz48.png"/>
                   </ImageView>
-               </graphic></Button>
-            <Button fx:id="btnReturnCar" mnemonicParsing="false" onAction="#switchToSceneReturnCar" prefHeight="25.0" prefWidth="125.0" text="%MENU_RETURN">
-               <graphic>
+              </graphic>
+           </Button>
+           <Button fx:id="btnReturnCar" mnemonicParsing="false" onAction="#switchToSceneReturnCar" prefHeight="25.0"
+                   prefWidth="125.0" text="%MENU_RETURN">
+              <graphic>
                   <ImageView fitHeight="31.0" fitWidth="14.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png" />
-                     </image>
+                      <Image url="@../icons/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png"/>
                   </ImageView>
-               </graphic></Button>
-            <Button fx:id="btnGenerateInvoice" mnemonicParsing="false" onAction="#generateInvoice" prefHeight="26.0" prefWidth="126.0" text="%BOOKING_GENERATE_INVOICE">
-               <graphic>
+              </graphic>
+           </Button>
+           <Button fx:id="btnGenerateInvoice" mnemonicParsing="false" onAction="#generateInvoice" prefHeight="26.0"
+                   prefWidth="126.0" text="%BOOKING_GENERATE_INVOICE">
+              <graphic>
                   <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/receipt_long_FILL0_wght400_GRAD0_opsz48.png" />
-                     </image>
+                      <Image url="@../icons/receipt_long_FILL0_wght400_GRAD0_opsz48.png"/>
                   </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="btnReadBooking" mnemonicParsing="false" onAction="#switchToSceneReadBooking" prefHeight="25.0" prefWidth="125.0" text="%BOOKING_READ">
-               <graphic>
+              </graphic>
+           </Button>
+           <Button fx:id="btnReadBooking" mnemonicParsing="false" onAction="#switchToSceneReadBooking" prefHeight="25.0"
+                   prefWidth="125.0" text="%BOOKING_READ">
+              <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/search_FILL0_wght400_GRAD0_opsz48.png" />
-                     </image>
+                      <Image url="@../icons/search_FILL0_wght400_GRAD0_opsz48.png"/>
                   </ImageView>
-               </graphic></Button>
-            <MenuButton fx:id="menuButtonShowBookings" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="%MENU_ACTIVE">
-              <items>
-                <MenuItem fx:id="menuItemShowActive" mnemonicParsing="false" onAction="#showActiveBookings" text="%MENU_SHOW_ACTIVE" />
-                <MenuItem fx:id="menuItemShowDone" mnemonicParsing="false" onAction="#showDoneBookings" text="%MENU_SHOW_DONE" />
-                  <MenuItem fx:id="menuItemShowAll" mnemonicParsing="false" onAction="#showAllBookings" text="%MENU_SHOW_ALL" />
-              </items>
-            </MenuButton>
-         </children>
-      </VBox>
+              </graphic>
+           </Button>
+           <MenuButton fx:id="menuButtonShowBookings" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0"
+                       prefWidth="125.0" text="%MENU_ACTIVE">
+               <items>
+                   <MenuItem fx:id="menuItemShowActive" mnemonicParsing="false" onAction="#showActiveBookings"
+                             text="%MENU_SHOW_ACTIVE"/>
+                   <MenuItem fx:id="menuItemShowDone" mnemonicParsing="false" onAction="#showDoneBookings"
+                             text="%MENU_SHOW_DONE"/>
+                   <MenuItem fx:id="menuItemShowAll" mnemonicParsing="false" onAction="#showAllBookings"
+                             text="%MENU_SHOW_ALL"/>
+               </items>
+           </MenuButton>
+       </VBox>
    </left>
    <top>
-      <HBox alignment="CENTER" prefHeight="68.0" prefWidth="1280.0" spacing="20.0" BorderPane.alignment="CENTER">
-         <children>
-            <TextField fx:id="textFieldSearch" onKeyPressed="#searchBookingsViaEnter" prefHeight="25.0" prefWidth="300.0" />
-            <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchBookings" prefHeight="25.0" prefWidth="125.0" text="%MENU_SEARCH">
-               <graphic>
+       <HBox alignment="CENTER" prefHeight="68.0" prefWidth="1280.0" spacing="20.0" BorderPane.alignment="CENTER">
+           <TextField fx:id="textFieldSearch" onKeyPressed="#searchBookingsViaEnter" prefHeight="25.0"
+                      prefWidth="300.0"/>
+           <Button fx:id="btnSearch" mnemonicParsing="false" onAction="#searchBookings" prefHeight="25.0"
+                   prefWidth="125.0" text="%MENU_SEARCH">
+              <graphic>
                   <ImageView fitHeight="70.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/search_FILL0_wght400_GRAD0_opsz48.png" />
-                     </image>
+                      <Image url="@../icons/search_FILL0_wght400_GRAD0_opsz48.png"/>
                   </ImageView>
-               </graphic></Button>
-            <MenuButton fx:id="menuButtonFilter" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="125.0" text="%MENU_FILTER">
-               <items>
-                  <CheckMenuItem fx:id="filterCustomer" mnemonicParsing="false" text="%CUSTOMER" />
-                  <CheckMenuItem fx:id="filterCar" mnemonicParsing="false" text="%CAR" />
-                  <CheckMenuItem fx:id="filterPickUpDate" mnemonicParsing="false" text="%BOOKING_PICK_UP_DATE" />
-                  <CheckMenuItem fx:id="filterDropOffDate" mnemonicParsing="false" text="%BOOKING_DROP_OFF_DATE" />
-                  <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckFilters" text="%MENU_REMOVE_FILTER" />
-               </items>
-            </MenuButton>
-            <Button fx:id="btnResetSearch" mnemonicParsing="false" onAction="#resetSearch" prefHeight="25.0" prefWidth="125.0" text="%MENU_REMOVE_FILTER">
-               <graphic>
+              </graphic>
+           </Button>
+           <MenuButton fx:id="menuButtonFilter" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0"
+                       prefWidth="125.0" text="%MENU_FILTER">
+              <items>
+                  <CheckMenuItem fx:id="filterCustomer" mnemonicParsing="false" text="%CUSTOMER"/>
+                  <CheckMenuItem fx:id="filterCar" mnemonicParsing="false" text="%CAR"/>
+                  <CheckMenuItem fx:id="filterPickUpDate" mnemonicParsing="false" text="%BOOKING_PICK_UP_DATE"/>
+                  <CheckMenuItem fx:id="filterDropOffDate" mnemonicParsing="false" text="%BOOKING_DROP_OFF_DATE"/>
+                  <MenuItem fx:id="menuItemUncheck" mnemonicParsing="false" onAction="#uncheckFilters"
+                            text="%MENU_REMOVE_FILTER"/>
+              </items>
+           </MenuButton>
+           <Button fx:id="btnResetSearch" mnemonicParsing="false" onAction="#resetSearch" prefHeight="25.0"
+                   prefWidth="125.0" text="%MENU_REMOVE_FILTER">
+              <graphic>
                   <ImageView fitHeight="16.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/undo_FILL0_wght400_GRAD0_opsz48.png" />
-                     </image>
+                      <Image url="@../icons/undo_FILL0_wght400_GRAD0_opsz48.png"/>
                   </ImageView>
-               </graphic></Button>
-         </children>
-      </HBox>
+              </graphic>
+           </Button>
+       </HBox>
    </top>
    <center>
       <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
@@ -110,21 +112,19 @@
       </TableView>
    </center>
    <bottom>
-      <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="1366.0" spacing="20.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#switchToFirstView" prefHeight="25.0" prefWidth="125.0" text="%MENU_GO_BACK">
-               <graphic>
+       <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="1366.0" spacing="20.0" BorderPane.alignment="CENTER">
+           <padding>
+               <Insets left="20.0" right="20.0"/>
+           </padding>
+           <Button fx:id="btnGoBack" mnemonicParsing="false" onAction="#switchToFirstView" prefHeight="25.0"
+                   prefWidth="125.0" text="%MENU_GO_BACK">
+              <graphic>
                   <ImageView fitHeight="13.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png" />
-                     </image>
+                      <Image url="@../icons/arrow_back_ios_FILL0_wght400_GRAD0_opsz48.png"/>
                   </ImageView>
-               </graphic></Button>
-         </children>
-         <padding>
-            <Insets left="20.0" right="20.0" />
-         </padding>
-      </HBox>
+              </graphic>
+           </Button>
+       </HBox>
    </bottom>
    <right>
       <VBox prefHeight="639.0" prefWidth="45.0" BorderPane.alignment="CENTER" />
