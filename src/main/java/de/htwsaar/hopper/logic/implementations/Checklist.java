@@ -7,6 +7,7 @@ import de.htwsaar.hopper.repositories.BookingRepository;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ResourceBundle;
 
 /**
  * Checkliste, die bei jedem Wiedereingang eines Fahrzeugs ausgefüllt werden muss.
@@ -81,8 +82,9 @@ public class Checklist implements ChecklistInterface {
      */
     @Override
     public void addToBooking(int bookingId) {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         Booking booking = BookingRepository.find(bookingId);
-        Utils.check(booking.getChecklistId() == BookingValidation.CHECKLIST_NULL, "Checkliste bereits gesetzt");
+        Utils.check(booking.getChecklistId() == BookingValidation.CHECKLIST_NULL, bundle.getString("CHECKLIST_ALREADY_SET"));
         booking.setChecklistId(checklistId);
         BookingRepository.persist(booking);
     }

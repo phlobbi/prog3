@@ -9,6 +9,7 @@ import de.htwsaar.hopper.repositories.CustomerRepository;
 
 import javax.persistence.*;
 import java.util.Calendar;
+import java.util.ResourceBundle;
 
 /**
  * Buchungsklasse für die Datenbankverwaltung
@@ -18,6 +19,7 @@ import java.util.Calendar;
 @Entity
 @Table(name = "Bookings")
 public class Booking implements BookingInterface {
+
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -50,6 +52,8 @@ public class Booking implements BookingInterface {
     @Basic
     @Column(name = "ChecklistID")
     private Integer checklistId;
+
+
 
     /**
     * Standard-Konstruktor
@@ -123,8 +127,9 @@ public class Booking implements BookingInterface {
      */
     @Override
     public String getRealDropOffDateShowField() {
+        ResourceBundle bundle = ResourceBundle.getBundle("bundles/i18n");
         if (this.realDropOffDate == null){
-            return "Noch nicht zurückgegeben";
+            return bundle.getString("NOT_RETURNED_YET");
         } else {
             return Utils.calendarToString(this.realDropOffDate);
         }
