@@ -1,12 +1,12 @@
 # Autovermietung
 Ein Prog3-Projekt von:
 
-- Anderson Ananfack
+- Anderson Nguegan Ananfack
 - Ronny Bauer
 - Bennet Burg
-- Togla Dagli
+- Tolga Dagli
 - Philip Dausend
-- Sosthene Fotso
+- Sosthene Donhou Fotso
 - Daniel Gomer
 - Daniel Stelz
 
