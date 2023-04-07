@@ -31,10 +31,10 @@ import java.util.ResourceBundle;
  * Eine Klasse, die die Logik für die Buchungsverwaltung enthält.
  */
 @SuppressWarnings("MissingJavadoc")
-public class BookingManagementController implements Initializable {
+public final class BookingManagementController implements Initializable {
 
     @FXML
-    public Button btnGenerateInvoice;
+    private Button btnGenerateInvoice;
 
     @FXML
     private Button btnBookCar;
@@ -145,7 +145,7 @@ public class BookingManagementController implements Initializable {
      * @param event Event
      */
     @FXML
-    void resetSearch(ActionEvent event) {
+    private void resetSearch(ActionEvent event) {
         uncheckFilters(new ActionEvent());
         textFieldSearch.setText("");
         reloadTable();
@@ -157,7 +157,7 @@ public class BookingManagementController implements Initializable {
      * @param event Event
      */
     @FXML
-    void searchBookings(ActionEvent event) {
+    private void searchBookings(ActionEvent event) {
         try {
             String searchCriteria = textFieldSearch.getText();
             if (searchCriteria.trim().isEmpty())
@@ -231,7 +231,7 @@ public class BookingManagementController implements Initializable {
     }
 
     @FXML
-    void searchBookingsViaEnter(KeyEvent event) {
+    private void searchBookingsViaEnter(KeyEvent event) {
         if (event.getCode().toString().equals("ENTER")) {
             searchBookings(new ActionEvent());
         }
@@ -244,7 +244,7 @@ public class BookingManagementController implements Initializable {
      * @param event Event
      */
     @FXML
-    void showActiveBookings(ActionEvent event) {
+    private void showActiveBookings(ActionEvent event) {
         tableView.getItems().clear();
         menuButtonShowBookings.setText("Aktive");
 
@@ -267,7 +267,7 @@ public class BookingManagementController implements Initializable {
      * @param event Event
      */
     @FXML
-    void showDoneBookings(ActionEvent event) {
+    private void showDoneBookings(ActionEvent event) {
         tableView.getItems().clear();
         menuButtonShowBookings.setText("Erledigte");
 
@@ -288,7 +288,7 @@ public class BookingManagementController implements Initializable {
      * @param event Event
      */
     @FXML
-    void showAllBookings(ActionEvent event) {
+    private void showAllBookings(ActionEvent event) {
         tableView.getItems().clear();
         menuButtonShowBookings.setText("Alle");
 
@@ -311,7 +311,7 @@ public class BookingManagementController implements Initializable {
      * @param event button click
      */
     @FXML
-    void switchToFirstView(ActionEvent event) throws IOException {
+    private void switchToFirstView(ActionEvent event) throws IOException {
         App.setRoot("fxml/first-view.fxml");
     }
 
@@ -321,7 +321,7 @@ public class BookingManagementController implements Initializable {
      * @param event button click
      */
     @FXML
-    void switchToSceneNewBooking(ActionEvent event) {
+    private void switchToSceneNewBooking(ActionEvent event) {
         Stage stage;
         URL url = getClass().getResource("fxml/Booking-creation-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
@@ -351,7 +351,7 @@ public class BookingManagementController implements Initializable {
      * @param event button click
      */
     @FXML
-    void switchToSceneReadBooking(ActionEvent event) throws IOException {
+    private void switchToSceneReadBooking(ActionEvent event) throws IOException {
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
         if (selectedBooking == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Keine Buchung ausgewählt.");
@@ -370,7 +370,7 @@ public class BookingManagementController implements Initializable {
      * @throws IOException Exception
      */
     @FXML
-    void switchToSceneReturnCar(ActionEvent event) throws IOException {
+    private void switchToSceneReturnCar(ActionEvent event) throws IOException {
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
         URL url = sceneChooser();
@@ -401,7 +401,7 @@ public class BookingManagementController implements Initializable {
      * @param event Event des Buttons
      */
     @FXML
-    void uncheckFilters(ActionEvent event) {
+    private void uncheckFilters(ActionEvent event) {
         filterCustomer.setSelected(false);
         filterCar.setSelected(false);
         filterPickUpDate.setSelected(false);
@@ -411,7 +411,7 @@ public class BookingManagementController implements Initializable {
     /**
      * deaktiviert die Buttons und das Schließen des Fensters
      */
-    void disableWindow() {
+    private void disableWindow() {
         btnGenerateInvoice.setDisable(true);
         btnBookCar.setDisable(true);
         btnReturnCar.setDisable(true);
@@ -430,7 +430,7 @@ public class BookingManagementController implements Initializable {
     /**
      * aktiviert die Buttons und das Schließen des Fensters
      */
-    void enableWindow() {
+    private void enableWindow() {
         btnGenerateInvoice.setDisable(false);
         btnBookCar.setDisable(false);
         btnReturnCar.setDisable(false);
@@ -451,7 +451,7 @@ public class BookingManagementController implements Initializable {
      * generiert Rechnung für die ausgewählte Buchung.
      */
     @FXML
-    void generateInvoice() {
+    private void generateInvoice() {
         setSelectedBooking(tableView.getSelectionModel().getSelectedItem());
         if (selectedBooking == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Keine Buchung ausgewählt.");

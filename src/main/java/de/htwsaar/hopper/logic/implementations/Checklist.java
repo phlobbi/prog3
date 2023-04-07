@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "Checklists")
-public class Checklist implements ChecklistInterface {
+public final class Checklist implements ChecklistInterface {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

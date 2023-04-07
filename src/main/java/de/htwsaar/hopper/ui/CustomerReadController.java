@@ -57,7 +57,7 @@ public final class CustomerReadController implements Initializable {
      * @throws IOException IOException
      */
     @FXML
-    void switchToCustomerView(ActionEvent event) throws IOException {
+    private void switchToCustomerView(ActionEvent event) throws IOException {
         App.setRoot("fxml/Customer-management-view.fxml");
     }
 
@@ -65,7 +65,7 @@ public final class CustomerReadController implements Initializable {
      * Öffnet die Kundenbearbeitung
      */
     @FXML
-    void updateCustomer(ActionEvent event) {
+    private void updateCustomer(ActionEvent event) {
         Stage stage;
         try {
             Customer selectedCustomer = CustomerManagementController.getSelectedCustomer();
@@ -91,7 +91,7 @@ public final class CustomerReadController implements Initializable {
      * @throws IOException IOException
      */
     @FXML
-    void deleteCustomer(ActionEvent event) throws IOException {
+    private void deleteCustomer(ActionEvent event) throws IOException {
         Customer selectedCustomer = CustomerManagementController.getSelectedCustomer();
         CustomerManagementController.setSelectedCustomer(selectedCustomer);
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Wollen Sie den Kunden wirklich löschen?");
@@ -146,7 +146,7 @@ public final class CustomerReadController implements Initializable {
     /**
      * Deaktiviert das Fenster
      */
-    void disableWindow() {
+    private void disableWindow() {
         btnRemove.setDisable(true);
         btnUpdate.setDisable(true);
         btnGoBack.setDisable(true);
@@ -158,7 +158,7 @@ public final class CustomerReadController implements Initializable {
     /**
      * Aktiviert das Fenster
      */
-    void enableWindow() {
+    private void enableWindow() {
         btnRemove.setDisable(false);
         btnUpdate.setDisable(false);
         btnGoBack.setDisable(false);

@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 /**
  * Controller für die Auswahl eines Kunden für eine Buchung
  */
-public class BookingCustomerChooseController implements Initializable {
+public final class BookingCustomerChooseController implements Initializable {
 
     private Customer chosenCustomer;
 
@@ -74,7 +74,7 @@ public class BookingCustomerChooseController implements Initializable {
      * Bricht die Auswahl ab und schließt das Fenster
      */
     @FXML
-    void cancel(ActionEvent event) {
+    private void cancel(ActionEvent event) {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
@@ -83,7 +83,7 @@ public class BookingCustomerChooseController implements Initializable {
      * Speichert den ausgewählten Kunden und schließt das Fenster
      */
     @FXML
-    void saveChosenCustomer(ActionEvent event) {
+    private void saveChosenCustomer(ActionEvent event) {
         chosenCustomer = tableView.getSelectionModel().getSelectedItem();
         Stage stage = (Stage) btnSave.getScene().getWindow();
         stage.close();
@@ -95,7 +95,7 @@ public class BookingCustomerChooseController implements Initializable {
      * @param event Event
      */
     @FXML
-    void searchForCustomer(ActionEvent event) {
+    private void searchForCustomer(ActionEvent event) {
         try {
             String searchCriteria = textFieldSearch.getText();
 
@@ -153,7 +153,7 @@ public class BookingCustomerChooseController implements Initializable {
      * @param event Event
      */
     @FXML
-    void searchForCustomerViaEnter(KeyEvent event) {
+    private void searchForCustomerViaEnter(KeyEvent event) {
         if (event.getCode().toString().equals("ENTER")) {
             searchForCustomer(new ActionEvent());
         }
@@ -165,7 +165,7 @@ public class BookingCustomerChooseController implements Initializable {
      * @param event KeyEvent, das die Enter-Taste repräsentiert
      */
     @FXML
-    void saveCustomerViaEnter(KeyEvent event) {
+    private void saveCustomerViaEnter(KeyEvent event) {
         if (event.getCode().toString().equals("ENTER")) {
             saveChosenCustomer(new ActionEvent());
         }
@@ -177,7 +177,7 @@ public class BookingCustomerChooseController implements Initializable {
      * @param event Event
      */
     @FXML
-    void uncheckCriteria(ActionEvent event) {
+    private void uncheckCriteria(ActionEvent event) {
         searchCritFirstName.setSelected(false);
         searchCritLastName.setSelected(false);
         searchCritEmail.setSelected(false);
@@ -190,7 +190,7 @@ public class BookingCustomerChooseController implements Initializable {
      * @param event Event
      */
     @FXML
-    void resetSearch(ActionEvent event) {
+    private void resetSearch(ActionEvent event) {
         uncheckCriteria(new ActionEvent());
         reloadTable();
         textFieldSearch.clear();
@@ -199,7 +199,7 @@ public class BookingCustomerChooseController implements Initializable {
     /**
      * Lädt die Tabelle mit allen verfügbaren Autos
      */
-    public void reloadTable() {
+    private void reloadTable() {
         tableView.getItems().clear();
 
         customerIdColumn.setCellValueFactory(new PropertyValueFactory<>("customerId"));

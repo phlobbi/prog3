@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Repository-Klasse für Checklist.
  */
-public class ChecklistRepository {
+public final class ChecklistRepository {
 
     /**
      * Findet eine Checklist über ihre ID.

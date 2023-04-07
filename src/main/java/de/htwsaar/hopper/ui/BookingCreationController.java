@@ -27,7 +27,7 @@ import static java.util.Calendar.*;
 /**
  * Controller für die Wahl eines Kunden bei der Buchung
  */
-public class BookingCreationController {
+public final class BookingCreationController {
 
     private Car chosenCar;
     private Customer chosenCustomer;
@@ -89,7 +89,7 @@ public class BookingCreationController {
      * @param event Event (hier Mausklick)
      */
     @FXML
-    void cancelCreation(ActionEvent event) {
+    private void cancelCreation(ActionEvent event) {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
@@ -145,7 +145,7 @@ public class BookingCreationController {
      * @param event Event (hier Mausklick)
      */
     @FXML
-    void chooseCustomer(ActionEvent event) {
+    private void chooseCustomer(ActionEvent event) {
         Stage stage;
         URL url = getClass().getResource("fxml/Booking-customer-choose-view.fxml");
         ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
@@ -190,7 +190,7 @@ public class BookingCreationController {
      * @param event Klick auf den Button "Speichern"
      */
     @FXML
-    void createBooking(ActionEvent event) {
+    private void createBooking(ActionEvent event) {
         try {
 
             if (datePickerPickUpDate.getValue() == null) {
@@ -259,7 +259,7 @@ public class BookingCreationController {
      * Deaktiviert die Buttons und den X-Button, damit das Hauptfenster nicht geschlossen werden kann
      * und die BookingManagement View nicht mehr bedient werden kann.
      */
-    void disableWindow() {
+    private void disableWindow() {
         btnCancel.setDisable(true);
         btnChooseCustomer.setDisable(true);
         btnChooseCar.setDisable(true);
@@ -274,7 +274,7 @@ public class BookingCreationController {
      * Aktiviert die Buttons und den X-Button, damit das Hauptfenster wieder geschlossen werden kann
      * und die BookingManagement View wieder bedient werden kann.
      */
-    void enableWindow() {
+    private void enableWindow() {
         btnCancel.setDisable(false);
         btnChooseCustomer.setDisable(false);
         btnChooseCar.setDisable(false);

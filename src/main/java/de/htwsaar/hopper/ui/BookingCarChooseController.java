@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 /**
  * Controller für die Auswahl eines Autos für eine Buchung
  */
-public class BookingCarChooseController implements Initializable {
+public final class BookingCarChooseController implements Initializable {
 
     private Car chosenCar;
 
@@ -89,7 +89,7 @@ public class BookingCarChooseController implements Initializable {
     private TextField textFieldSearch;
 
     @FXML
-    void cancel(ActionEvent event) {
+    private void cancel(ActionEvent event) {
         Stage stage = (Stage) btnCancel.getScene().getWindow();
         stage.close();
     }
@@ -100,7 +100,7 @@ public class BookingCarChooseController implements Initializable {
      * @param event Event
      */
     @FXML
-    void saveChosenCar(ActionEvent event) {
+    private void saveChosenCar(ActionEvent event) {
         chosenCar = tableView.getSelectionModel().getSelectedItem();
         Stage stage = (Stage) btnSave.getScene().getWindow();
         stage.close();
@@ -112,7 +112,7 @@ public class BookingCarChooseController implements Initializable {
      * @param event Event
      */
     @FXML
-    void searchForCar(ActionEvent event) {
+    private void searchForCar(ActionEvent event) {
         try {
             String searchCriteria = textFieldSearch.getText();
 
@@ -176,7 +176,7 @@ public class BookingCarChooseController implements Initializable {
      * @param event Event
      */
     @FXML
-    void searchForCarViaEnter(KeyEvent event) {
+    private void searchForCarViaEnter(KeyEvent event) {
         if (event.getCode().toString().equals("ENTER")) {
             searchForCar(new ActionEvent());
         }
@@ -188,7 +188,7 @@ public class BookingCarChooseController implements Initializable {
      * @param event Event
      */
     @FXML
-    void saveCarViaEnter(KeyEvent event) {
+    private void saveCarViaEnter(KeyEvent event) {
         if (event.getCode().toString().equals("ENTER")) {
             saveChosenCar(new ActionEvent());
         }
@@ -200,7 +200,7 @@ public class BookingCarChooseController implements Initializable {
      * @param event Event
      */
     @FXML
-    void uncheckCriteria(ActionEvent event) {
+    private void uncheckCriteria(ActionEvent event) {
         searchCritBrand.setSelected(false);
         searchCritModel.setSelected(false);
         searchCritType.setSelected(false);
@@ -215,7 +215,7 @@ public class BookingCarChooseController implements Initializable {
      * @param event Event
      */
     @FXML
-    void resetSearch(ActionEvent event) {
+    private void resetSearch(ActionEvent event) {
         uncheckCriteria(new ActionEvent());
         reloadTable();
         textFieldSearch.clear();
@@ -224,7 +224,7 @@ public class BookingCarChooseController implements Initializable {
     /**
      * Lädt die Tabelle mit allen verfügbaren Autos
      */
-    public void reloadTable() {
+    private void reloadTable() {
         tableView.getItems().clear();
 
         carIdColumn.setCellValueFactory(new PropertyValueFactory<>("carId"));

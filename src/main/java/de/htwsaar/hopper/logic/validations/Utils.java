@@ -6,7 +6,14 @@ import java.util.Calendar;
 /**
  * Diese Klasse enthält Methoden, die zwar nützlich sind, aber nicht in die Validierung gehören.
  */
-public class Utils {
+public final class Utils {
+
+    /**
+     * Privater Konstruktor, um eine Instanziierung zu verhindern.
+     */
+    private Utils() {
+    }
+
     /**
      * Prüft, ob eine Bedingung erfüllt ist.
      *

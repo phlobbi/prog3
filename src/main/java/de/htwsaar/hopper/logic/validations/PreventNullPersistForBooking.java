@@ -11,7 +11,7 @@ import java.util.stream.Stream;
  *
  * @author roblin
  */
-public class PreventNullPersistForBooking {
+public final class PreventNullPersistForBooking {
 
     /**
      * Wird automatisiert aufgerufen, wann immer eine Booking-Entität persistiert werden soll.

@@ -23,7 +23,7 @@ import java.util.Calendar;
                 @UniqueConstraint(columnNames = "IBAN"),
                 @UniqueConstraint(columnNames = "DriverLicenseNumber")
         })
-public class Customer implements CustomerInterface {
+public final class Customer implements CustomerInterface {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
