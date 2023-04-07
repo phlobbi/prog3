@@ -218,7 +218,6 @@ public final class BookingCustomerChooseController implements Initializable {
         if (tableView.getSelectionModel().isEmpty()) {
             btnSave.setDisable(true);
             btnSearch.setDisable(true);
-            btnCancel.setDisable(true);
         }
     }
 
