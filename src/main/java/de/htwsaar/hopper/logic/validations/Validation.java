@@ -10,12 +10,6 @@ public abstract class Validation {
     private static ResourceBundle bundle = ResourceBundle.getBundle("bundles.i18n");
 
     /**
-     * Privater Konstruktor, um eine Instanziierung zu verhindern.
-     */
-    private Validation() {
-    }
-
-    /**
      * Prüft, ob ein String leer oder null ist.
      * Der String wird ebenfalls getrimmt.
      *
